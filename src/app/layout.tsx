@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 // Providers
 import StoreProvider from '@/providers/store-provider';
 import ThemeProvider from '@/providers/theme-provider';
 import DirectionProvider from '@/providers/direction-provider';
 // Styles
 import './globals.css';
-const inter = Inter({ subsets: ['latin'] });
+
+const appFont = localFont({ src: 'MorabbaVF.ttf' });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,17 +21,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={inter.className}>
-        <DirectionProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+      <body className={appFont.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <DirectionProvider>
             <StoreProvider>{children}</StoreProvider>
-          </ThemeProvider>
-        </DirectionProvider>
+          </DirectionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
