@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import HomeContent from './_components/home-content';
 
 export default function Home() {
   return (
-    <div>
-      <Button>Hello World</Button>
+    <div className="h-screen w-screen flex flex-col justify-center items-center">
+      <HomeContent />
     </div>
   );
 }
