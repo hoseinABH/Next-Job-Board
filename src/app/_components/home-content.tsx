@@ -16,7 +16,7 @@ export default function HomeContent() {
 
   return (
     <div>
-      <Button loading={appLoading} onClick={callAction}>
+      <Button variant="secondary" loading={appLoading} onClick={callAction}>
         سلام دنیا
       </Button>
     </div>
