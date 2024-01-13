@@ -1,8 +1,9 @@
 'use client';
 import Link from 'next/link';
 // UI frameworks
-import { Fingerprint, Gem } from 'lucide-react';
+import { Fingerprint } from 'lucide-react';
 // Common components
+import Logo from './logo';
 import { Button } from './ui/button';
 // Utilities
 import { clsx } from 'clsx';
@@ -18,11 +19,8 @@ export default function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         {/* Right Part */}
         <div className="ml-4 hidden md:flex">
-          <Link href="/" className="ml-6 flex items-center">
-            <Gem className="w-6 h-6 hover:rotate-45 transition-transform text-primary" />
-            <span className="hidden font-bold sm:inline-block">
-              [جاب اونجا]
-            </span>
+          <Link href="/">
+            <Logo />
           </Link>
           <nav className="flex items-center gap-6 text-sm">
             {navigationLinks.map((navItem) => (
