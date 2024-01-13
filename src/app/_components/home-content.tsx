@@ -17,7 +17,7 @@ export default function HomeContent() {
   return (
     <div>
       <Button loading={appLoading} onClick={callAction}>
-        Hello World
+        سلام دنیا
       </Button>
     </div>
   );

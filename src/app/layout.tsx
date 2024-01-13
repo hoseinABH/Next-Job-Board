@@ -3,9 +3,9 @@ import { Inter } from 'next/font/google';
 // Providers
 import StoreProvider from '@/providers/store-provider';
 import ThemeProvider from '@/providers/theme-provider';
+import DirectionProvider from '@/providers/direction-provider';
 // Styles
 import './globals.css';
-
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -19,16 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" dir="rtl">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <StoreProvider>{children}</StoreProvider>
-        </ThemeProvider>
+        <DirectionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <StoreProvider>{children}</StoreProvider>
+          </ThemeProvider>
+        </DirectionProvider>
       </body>
     </html>
   );
