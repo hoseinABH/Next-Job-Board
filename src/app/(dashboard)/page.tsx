@@ -5,15 +5,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <section className="mt-8">
-      <div className="flex items-center justify-between w-full">
-        <Image
-          className="drop-shadow-2xl"
-          src="hero-img.svg"
-          objectFit="contain"
-          alt="جاب اونجا"
-          width={400}
-          height={400}
-        />
+      <div className="flex items-center justify-around w-full">
         <div className="">
           <div className="w-[600px] mb-12">
             <h1 className="font-bold text-xl">دنبال چه شغلی می‌گردید؟</h1>
@@ -39,6 +31,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Image
+          className="drop-shadow-2xl"
+          src="hero-img.svg"
+          objectFit="contain"
+          alt="جاب اونجا"
+          width={400}
+          height={400}
+        />
       </div>
     </section>
   );
