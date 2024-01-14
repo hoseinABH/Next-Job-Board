@@ -12,9 +12,9 @@ export default function Footer() {
     <footer className="w-full border-t border-border/40 bg-background/95">
       <div className="container py-6">
         {/* Top Section */}
-        <div className="flex items-start">
+        <div className="flex flex-col lg:flex-row items-center">
           {/* Footer Links */}
-          <div className="flex items-center gap-x-14 flex-1">
+          <div className="flex flex-wrap items-center gap-y-6 gap-x-14 flex-1">
             {appConfig.footerLinks.map((footerCol) => (
               <ul key={footerCol.id} className="flex flex-col space-y-4">
                 <span className="font-semibold">{footerCol.title}</span>
@@ -31,7 +31,7 @@ export default function Footer() {
             ))}
           </div>
           {/* Footer Description */}
-          <div className="max-w-sm">
+          <div className="max-w-sm mt-8 lg:mt-auto">
             <Logo />
             <p className="text-base text-muted-foreground text-justify mt-4">
               {appConfig.footerDescription}
@@ -39,8 +39,8 @@ export default function Footer() {
           </div>
         </div>
         {/* Bottom Section */}
-        <div className="flex items-center justify-between mt-10">
-          <div>
+        <div className="flex items-center justify-between mt-10 flex-col-reverse sm:flex-row">
+          <div className="mt-6 md:mt-0">
             <span className="text-sm text-muted-foreground">
               © ۱۴۰۲ - تمامی حقوق برای {appConfig.appData.appName} محفوظ است.
             </span>

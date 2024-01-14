@@ -30,8 +30,7 @@ export default function Header() {
                 className={clsx(
                   'text-md transition-colors hover:text-foreground/80 text-foreground/60',
                   {
-                    ['text-primary hover:text-primary']:
-                      pathname === navItem.href,
+                    ['text-foreground/90']: pathname === navItem.href,
                   }
                 )}
               >
