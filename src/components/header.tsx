@@ -30,7 +30,8 @@ export default function Header() {
                 className={clsx(
                   'text-md transition-colors hover:text-foreground/80 text-foreground/60',
                   {
-                    ['text-foreground']: pathname === navItem.href,
+                    ['text-primary hover:text-primary']:
+                      pathname === navItem.href,
                   }
                 )}
               >
@@ -42,8 +43,8 @@ export default function Header() {
 
         {/* Left Part */}
         <div className="flex flex-1 items-center justify-end">
-          <Button>
-            <Fingerprint className="ml-2" />
+          <Button size="sm">
+            <Fingerprint className="ml-2 w-4 h-4" />
             <span>ورود | ثبت نام </span>
           </Button>
         </div>
