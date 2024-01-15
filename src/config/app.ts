@@ -1,4 +1,5 @@
 import * as Routes from './routes';
+import type { Company } from '@/types/company';
 
 export const appData = {
   appName: 'جاب اونجا',
@@ -122,3 +123,36 @@ export const socials = [
     href: 'https://www.instagram.com/',
   },
 ] as const;
+
+export const landingCompanies: Company[] = [
+  {
+    name: 'ایرانسل',
+    location: 'تهران',
+    image: '/companies/1.webp',
+    openPosition: 22,
+  },
+  {
+    name: 'همراه اول',
+    location: 'کرج',
+    image: '/companies/2.webp',
+    openPosition: 12,
+  },
+  {
+    name: 'اسنپ',
+    location: 'تهران',
+    image: '/companies/3.webp',
+    openPosition: 12,
+  },
+  {
+    name: 'دیجیکالا',
+    location: 'تهران',
+    image: '/companies/4.webp',
+    openPosition: 28,
+  },
+  {
+    name: 'تپسی',
+    location: 'تهران',
+    image: '/companies/5.webp',
+    openPosition: 8,
+  },
+];
