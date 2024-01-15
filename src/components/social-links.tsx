@@ -18,7 +18,7 @@ export default function SocialLinks(props: Props) {
   return (
     <div
       {...props}
-      className={cn('flex items-center gap-x-4', props.className)}
+      className={cn('flex items-center justify-center sm:justify-start gap-x-4', props.className)}
     >
       {appConfig.socials.map((social) => (
         <a
