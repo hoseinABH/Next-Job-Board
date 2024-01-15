@@ -3,13 +3,17 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 // Common components
 import { Button } from './ui/button';
 import { MapPin, Search } from 'lucide-react';
+// Utilities
+import { cn } from '@/lib/utils';
 // hooks
 import { useRouter } from 'next/navigation';
 // Configs
 import * as Routes from '@/config/routes';
 
-interface Props {}
-export default function JobSearch({}: Props) {
+interface Props {
+  className?: string;
+}
+export default function JobSearch({ className }: Props) {
   const router = useRouter();
 
   const [searchValues, setSearchValues] = useState({
@@ -29,10 +33,10 @@ export default function JobSearch({}: Props) {
     );
   }
   return (
-    <div className="search-section">
+    <div className={cn('search-section', className)}>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row items-center gap-2">
-          <div className="relative">
+          <div className="relative w-full">
             <Search className="right-input-adornment" />
             <input
               type="text"
@@ -42,7 +46,7 @@ export default function JobSearch({}: Props) {
               onChange={handleChange}
             />
           </div>
-          <div className="relative">
+          <div className="relative w-full">
             <MapPin className="right-input-adornment" />
             <input
               type="text"
@@ -52,7 +56,6 @@ export default function JobSearch({}: Props) {
               onChange={handleChange}
             />
           </div>
-
           <Button type="submit" className="w-full md:w-auto mt-4 md:mt-0">
             جستجو در مشاغل
           </Button>

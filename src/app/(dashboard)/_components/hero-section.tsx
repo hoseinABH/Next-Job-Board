@@ -4,7 +4,7 @@ import JobSearch from '@/components/job-search';
 
 export default function HeroSection() {
   return (
-    <div className="flex items-center justify-around w-full">
+    <section className="flex mt-4 items-center justify-around w-full">
       <div>
         <div className="w-full lg:w-[600px] mb-4 md:mb-12">
           <h1 className="font-bold text-xl">دنبال چه شغلی می‌گردید؟</h1>
@@ -24,6 +24,6 @@ export default function HeroSection() {
         width={400}
         priority={true}
       />
-    </div>
+    </section>
   );
 }
