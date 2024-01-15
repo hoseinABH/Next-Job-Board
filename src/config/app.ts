@@ -1,5 +1,6 @@
 import * as Routes from './routes';
 import type { Company } from '@/types/company';
+import type { Job } from '@/types/job';
 
 export const appData = {
   appName: 'جاب اونجا',
@@ -154,5 +155,64 @@ export const landingCompanies: Company[] = [
     location: 'تهران',
     image: '/companies/5.webp',
     openPosition: 8,
+  },
+];
+
+export const landingJobs: Job[] = [
+  {
+    title: 'توسعه دهنده فرانت اند',
+    salary: 'توافقی',
+    company: landingCompanies[1],
+    jobType: 'full-time',
+    isUrgent: true,
+  },
+  {
+    title: 'بازاریابی',
+    salary: 'توافقی',
+    company: landingCompanies[1],
+    jobType: 'full-time',
+    isUrgent: true,
+  },
+  {
+    title: 'توسعه دهنده بک اند',
+    salary: 'توافقی',
+    company: landingCompanies[0],
+    jobType: 'full-time',
+    isUrgent: false,
+  },
+  {
+    title: 'مالک محصول',
+    salary: 'توافقی',
+    company: landingCompanies[1],
+    jobType: 'full-time',
+    isUrgent: true,
+  },
+  {
+    title: 'طراح محصول',
+    salary: 'توافقی',
+    company: landingCompanies[2],
+    jobType: 'full-time',
+    isUrgent: true,
+  },
+  {
+    title: 'مدیر محصول',
+    salary: 'توافقی',
+    company: landingCompanies[3],
+    jobType: 'full-time',
+    isUrgent: false,
+  },
+  {
+    title: 'مدیر فنی',
+    salary: '800000000',
+    company: landingCompanies[4],
+    jobType: 'full-time',
+    isUrgent: true,
+  },
+  {
+    title: 'کارشناس زیرساخت',
+    salary: 'توافقی',
+    company: landingCompanies[1],
+    jobType: 'full-time',
+    isUrgent: true,
   },
 ];
