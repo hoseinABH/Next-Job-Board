@@ -1,12 +1,19 @@
-import Link from 'next/link';
+"use client"
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
 import { Button } from '@/components/ui/button';
+// Hooks
+import { useRouter } from 'next/navigation';
 // Configs
 import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 export default function FeaturedJobs() {
+  const router = useRouter()
+
+  function navigateToJobs() {
+      router.push(Routes.JOBS)
+  }
   return (
     <section className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
@@ -23,8 +30,8 @@ export default function FeaturedJobs() {
           <FeaturedJobCard key={job.title} job={job} />
         ))}
       </div>
-      <Button variant="outline" className="mt-14">
-        <Link href={Routes.JOBS}>مشاهده همه</Link>
+      <Button variant="outline" className="mt-14" onClick={navigateToJobs}>
+        مشاهده همه
       </Button>
     </section>
   );

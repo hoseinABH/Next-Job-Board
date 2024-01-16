@@ -27,7 +27,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col sm:flex-row w-full justify-between border rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:drop-shadow-md',
+        'flex flex-col sm:flex-row w-full justify-between border rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:shadow-md',
         className
       )}
     >
@@ -37,7 +37,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
           width={85}
           height={85}
           alt={job.company.name!}
-          className='rounded-full'
+          className="rounded-full"
         />
         <div className="space-y-4">
           <Link
