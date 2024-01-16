@@ -17,7 +17,7 @@ export default function CompanyCard({ className, company }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col sm:flex-row w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary transition-all hover:drop-shadow-md',
+        'flex flex-col sm:flex-row w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary/30 transition-all hover:drop-shadow-md',
         className
       )}
     >

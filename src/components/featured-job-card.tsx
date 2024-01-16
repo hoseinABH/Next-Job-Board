@@ -18,7 +18,7 @@ export default function FeaturedJobCard({ className, job }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col relative w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary transition-all hover:drop-shadow-md',
+        'flex flex-col relative w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary/30 transition-all hover:drop-shadow-md',
         className
       )}
     >
@@ -37,7 +37,7 @@ export default function FeaturedJobCard({ className, job }: Props) {
       <Button variant="link" className="text-slate-900 dark:text-white hover:text-primary">
         {job.title}
       </Button>
-      <p className="flex items-center  text-muted-foreground">
+      <p className="flex items-center text-muted-foreground">
         <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
       </p>
     </div>
