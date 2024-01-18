@@ -15,16 +15,11 @@ export const navigationLinks = [
   },
   {
     id: 2,
-    name: 'محصولات',
-    href: Routes.PRODUCTS,
-  },
-  {
-    id: 3,
     name: 'رده‌بندی شرکت‌ها',
     href: Routes.TOP_COMPANIES,
   },
   {
-    id: 4,
+    id: 3,
     name: 'رزومه ساز',
     href: Routes.CV_MAKER,
   },
