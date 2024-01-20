@@ -9,7 +9,7 @@ export default function FilterSection({ className }: Props) {
   return (
     <div
       className={cn(
-        'rounded-md border bg-card dark:bg-secondary/30 p-6',
+        'rounded-md shadow-md bg-card dark:bg-secondary/30 p-6',
         className
       )}
     ></div>
