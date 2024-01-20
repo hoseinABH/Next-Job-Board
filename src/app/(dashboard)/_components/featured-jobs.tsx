@@ -1,4 +1,4 @@
-"use client"
+'use client';
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
 import { Button } from '@/components/ui/button';
@@ -9,10 +9,10 @@ import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 export default function FeaturedJobs() {
-  const router = useRouter()
+  const router = useRouter();
 
   function navigateToJobs() {
-      router.push(Routes.JOBS)
+    router.push(Routes.JOBS);
   }
   return (
     <section className="flex flex-col justify-center items-center my-12">

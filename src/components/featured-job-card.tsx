@@ -18,7 +18,7 @@ export default function FeaturedJobCard({ className, job }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col relative w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary/30 transition-all hover:shadow-md',
+        'flex flex-col relative w-full items-center justify-between border rounded-md px-8 py-10 bg-background dark:bg-secondary/30 transition-all hover:scale-y-105',
         className
       )}
     >

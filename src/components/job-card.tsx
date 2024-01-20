@@ -27,7 +27,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col sm:flex-row w-full justify-between border rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:shadow-md',
+        'flex flex-col sm:flex-row w-full justify-between border rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:scale-95',
         className
       )}
     >
