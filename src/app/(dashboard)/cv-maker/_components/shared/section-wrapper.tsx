@@ -7,6 +7,12 @@ import { Separator } from '@/components/ui/separator';
 import ShowMoreButton from '@/components/show-more-button';
 // Utilities
 import { cn } from '@/lib/utils';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface Props {
   className?: string;
@@ -48,9 +54,18 @@ export default function SectionWrapper({
           ) : null}
           <p className="text-lg">{title}</p>
         </div>
-        <Button size="icon" variant="ghost">
-          <ActionIcon className="text-primary w-4 h-4" />
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="icon" variant="ghost">
+                <ActionIcon className="text-primary w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{actionType === 'create' ? 'افزودن' : 'ویرایش'}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
       <Separator className="my-3" />
       {children}

@@ -2,6 +2,12 @@
 import { Briefcase, Pencil, User } from 'lucide-react';
 // Common components
 import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export default function AboutSection() {
   return (
@@ -27,9 +33,22 @@ export default function AboutSection() {
           </p>
         </div>
       </div>
-      <Button variant="ghost" size="icon" className="absolute top-5 left-5">
-        <Pencil className="text-primary w-4 h-4" />
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-5 left-5"
+            >
+              <Pencil className="text-primary w-4 h-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>ویرایش</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </section>
   );
 }
