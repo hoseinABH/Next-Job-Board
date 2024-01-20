@@ -4,15 +4,15 @@ import { ChevronDown, LucideIcon, Pencil, PlusCircle } from 'lucide-react';
 // Common components
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import ShowMoreButton from '@/components/show-more-button';
-// Utilities
-import { cn } from '@/lib/utils';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import ShowMoreButton from '@/components/show-more-button';
+// Utilities
+import { cn } from '@/lib/utils';
 
 interface Props {
   className?: string;

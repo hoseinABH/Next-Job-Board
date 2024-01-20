@@ -1,4 +1,4 @@
-"use client"
+'use client';
 // Utilities
 import { cn } from '@/lib/utils';
 // Shared Components
