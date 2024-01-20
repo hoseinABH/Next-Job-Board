@@ -9,7 +9,7 @@ interface Props {
 }
 export default function ShowMoreButton({ toggle, collapsed }: Props) {
   return (
-    <div
+    <button
       onClick={toggle}
       className="cursor-pointer text-muted-foreground absolute bottom-2 left-5 flex items-center select-none"
     >
@@ -35,6 +35,6 @@ export default function ShowMoreButton({ toggle, collapsed }: Props) {
           ['rotate-180 duration-500']: collapsed,
         })}
       />
-    </div>
+    </button>
   );
 }
