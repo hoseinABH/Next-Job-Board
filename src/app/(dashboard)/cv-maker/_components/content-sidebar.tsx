@@ -39,7 +39,10 @@ interface Props {
 export default function ContentSidebar({ className }: Props) {
   return (
     <div
-      className={cn('rounded-md bg-card dark:bg-secondary/30 p-6', className)}
+      className={cn(
+        'rounded-md bg-card shadow-md dark:bg-secondary/30 p-6',
+        className
+      )}
     >
       <div className="flex items-center gap-x-2">
         <FileText className="text-primary" />

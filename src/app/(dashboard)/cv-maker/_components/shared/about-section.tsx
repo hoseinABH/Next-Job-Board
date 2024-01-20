@@ -7,7 +7,7 @@ export default function AboutSection() {
   return (
     <section
       id="about-me"
-      className="p-6 rounded-md relative bg-card dark:bg-secondary/30"
+      className="p-6 rounded-md shadow-md relative bg-card dark:bg-secondary/30"
     >
       <div className="flex gap-x-4 items-start">
         <div className="border rounded-full flex justify-center items-center p-8 hover:bg-neutral-100 dark:hover:bg-slate-800 cursor-pointer transition-all">

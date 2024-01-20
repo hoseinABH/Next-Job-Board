@@ -28,7 +28,7 @@ export default function SectionWrapper({
     <section
       id={id}
       className={cn(
-        'p-6 rounded-md relative bg-card dark:bg-secondary/30',
+        'p-6 rounded-md shadow-md relative bg-card dark:bg-secondary/30',
         className
       )}
     >
