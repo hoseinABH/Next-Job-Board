@@ -45,6 +45,7 @@ export default function PersonalInfo() {
       actionType="edit"
       title="مشخصات فردی"
       id="personal-info"
+      hasShowMore
     >
       <div className="flex flex-col gap-y-6">
         {infoRows.map((info) => (
