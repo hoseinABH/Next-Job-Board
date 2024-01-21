@@ -1,15 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
+// UI Frameworks
+import { Bookmark, MapPin, Building2, Clock7 } from 'lucide-react';
 // Common components
 import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Bookmark, MapPin, Building2, Clock7 } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from './ui/tooltip';
+import IconButton from './icon-button';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
@@ -67,18 +62,9 @@ export default function JobCard({ className, job, href = '/' }: Props) {
           <Badge className="rounded-full">{mapJobType[job.jobType]}</Badge>
         </div>
       </div>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button size="icon" variant="ghost">
-              <Bookmark className="w-4 h-4 text-muted-foreground" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>ذخیره کردن</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <IconButton title="ذخیره کردن">
+        <Bookmark className="w-4 h-4 text-muted-foreground" />
+      </IconButton>
     </div>
   );
 }

@@ -1,23 +1,64 @@
 // UI Frameworks
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, X as RemoveIcon } from 'lucide-react';
+// Common components
+import { Badge } from '@/components/ui/badge';
+import IconButton from '@/components/icon-button';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Types
+import { Skill, SkillLevel } from '@/types/job-seeker';
 
-const infoRows = [
+const mapSkillLevel: Record<SkillLevel, string> = {
+  mid: 'کارشناس',
+  senior: 'کارشناس ارشد',
+  intern: 'کارآموز',
+  junior: 'تازه کار',
+};
+
+const skills: Skill[] = [
   {
-    title: 'نام و نام خانوادگی',
-    value: 'حسین ابوالحسنی',
+    id: 1,
+    name: 'ReduxJS',
+    level: 'senior',
+  },
+  {
+    id: 2,
+    name: 'Typescript',
+    level: 'mid',
+  },
+  {
+    id: 3,
+    name: 'ReactNative',
+    level: 'mid',
+  },
+  {
+    id: 4,
+    name: 'NestJS',
+    level: 'junior',
+  },
+  {
+    id: 5,
+    name: 'Mongoose',
+    level: 'junior',
   },
 ];
 
 export default function Skills() {
   return (
     <SectionWrapper icon={ShieldCheck} title="مهارت ها" id="skills">
-      <div className="flex flex-col gap-y-6">
-        {infoRows.map((info) => (
-          <div key={info.value} className="flex items-center">
-            <p className="text-muted-foreground w-52">{info.title}</p>
-            <p>{info.value}</p>
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
+        {skills.map((skill) => (
+          <div
+            key={skill.id}
+            className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
+          >
+            <div className="flex items-center gap-x-2">
+              <IconButton title="حذف">
+                <RemoveIcon className="w-4 h-4" />
+              </IconButton>
+              <p className="text-muted-foreground">{skill.name}</p>
+            </div>
+            <Badge>{mapSkillLevel[skill.level]}</Badge>
           </div>
         ))}
       </div>

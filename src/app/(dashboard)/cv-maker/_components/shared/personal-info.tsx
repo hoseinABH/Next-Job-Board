@@ -47,7 +47,7 @@ export default function PersonalInfo() {
       id="personal-info"
       hasShowMore
     >
-      <div className="flex flex-col gap-y-6">
+      <div className="flex flex-col gap-y-4">
         {infoRows.map((info) => (
           <div key={info.value} className="flex items-center">
             <p className="text-muted-foreground w-52">{info.title}</p>

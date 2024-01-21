@@ -6,12 +6,20 @@ import { cn } from '@/lib/utils';
 interface Props {
   toggle: () => void;
   collapsed: boolean;
+  className?: string;
 }
-export default function ShowMoreButton({ toggle, collapsed }: Props) {
+export default function ShowMoreButton({
+  toggle,
+  collapsed,
+  className,
+}: Props) {
   return (
     <button
       onClick={toggle}
-      className="cursor-pointer text-muted-foreground absolute bottom-2 left-5 flex items-center select-none"
+      className={cn(
+        'cursor-pointer text-muted-foreground absolute bottom-2 left-5 flex items-center select-none',
+        className
+      )}
     >
       نمایش
       <div className="relative mr-1">

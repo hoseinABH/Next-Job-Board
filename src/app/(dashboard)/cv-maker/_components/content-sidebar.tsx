@@ -60,7 +60,7 @@ export default function ContentSidebar({ className }: Props) {
             <Link
               href={{ hash: section.hash }}
               className={cn('hover:text-primary flex items-center', {
-                ['text-green-600 hover:text-green-600']:
+                ['text-green-500 hover:text-green-500']:
                   urlHash === section.hash,
               })}
             >

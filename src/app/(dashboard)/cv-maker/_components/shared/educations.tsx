@@ -1,12 +1,23 @@
 // UI Frameworks
 import { GraduationCap } from 'lucide-react';
+// Common components
+import EducationCard from '@/components/education-card';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Types
+import type { Education } from '@/types/job-seeker';
 
-const infoRows = [
+const educations: Education[] = [
   {
-    title: 'نام و نام خانوادگی',
-    value: 'حسین ابوالحسنی',
+    id: 1,
+    field: 'کامپیوتر و فناوری اطلاعات - مهندسی نرم افزار',
+    school: 'هاروارد تهران جنوب',
+    location: 'تهران',
+    level: 'bachelor',
+    date: {
+      from: '95',
+      to: '99',
+    },
   },
 ];
 
@@ -14,11 +25,8 @@ export default function Educations() {
   return (
     <SectionWrapper icon={GraduationCap} title="سوابق تحصیلی" id="educations">
       <div className="flex flex-col gap-y-6">
-        {infoRows.map((info) => (
-          <div key={info.value} className="flex items-center">
-            <p className="text-muted-foreground w-52">{info.title}</p>
-            <p>{info.value}</p>
-          </div>
+        {educations.map((education) => (
+          <EducationCard key={education.id} education={education} />
         ))}
       </div>
     </SectionWrapper>

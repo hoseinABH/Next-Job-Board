@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 export default function CvMaker() {
   return (
-    <section className="py-12">
+    <div className="py-4 lg:py-12">
       <div className="grid grid-cols-12 gap-6 relative">
-        <ContentSidebar className="col-span-3 sticky top-[100px] h-max" />
-        <ResumeContent className="col-span-9" />
+        <ContentSidebar className="col-span-3 sticky top-[100px] h-max hidden lg:block" />
+        <ResumeContent className="col-span-12 lg:col-span-9" />
       </div>
-    </section>
+    </div>
   );
 }

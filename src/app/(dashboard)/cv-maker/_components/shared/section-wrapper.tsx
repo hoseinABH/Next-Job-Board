@@ -1,15 +1,9 @@
 import { ReactNode, useState } from 'react';
 // UI Frameworks
-import { ChevronDown, LucideIcon, Pencil, PlusCircle } from 'lucide-react';
+import { LucideIcon, Pencil, Plus } from 'lucide-react';
 // Common components
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import IconButton from '@/components/icon-button';
 import ShowMoreButton from '@/components/show-more-button';
 // Utilities
 import { cn } from '@/lib/utils';
@@ -34,7 +28,7 @@ export default function SectionWrapper({
 }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const SectionIcon = icon;
-  const ActionIcon = actionType === 'edit' ? Pencil : PlusCircle;
+  const ActionIcon = actionType === 'edit' ? Pencil : Plus;
   function toggleAccordion() {
     setCollapsed((prev) => !prev);
   }
@@ -42,8 +36,8 @@ export default function SectionWrapper({
     <section
       id={id}
       className={cn(
-        'p-6 rounded-md shadow-md relative bg-card dark:bg-secondary/30 max-h-80 overflow-hidden transition-[max-height] duration-500',
-        { ['max-h-full transition-[max-height] duration-500']: collapsed },
+        'p-6 rounded-md max-h-full xl:max-h-72 shadow-md relative bg-card dark:bg-secondary/30 overflow-hidden transition-[max-height] duration-500',
+        { ['max-h-full xl:max-h-full transition-[max-height] duration-500']: collapsed },
         className
       )}
     >
@@ -54,23 +48,18 @@ export default function SectionWrapper({
           ) : null}
           <p className="text-lg">{title}</p>
         </div>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost">
-                <ActionIcon className="text-primary w-4 h-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{actionType === 'create' ? 'افزودن' : 'ویرایش'}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <IconButton title={actionType === 'create' ? 'افزودن' : 'ویرایش'}>
+          <ActionIcon className="text-primary w-4 h-4" />
+        </IconButton>
       </div>
       <Separator className="my-3" />
       {children}
       {hasShowMore ? (
-        <ShowMoreButton toggle={toggleAccordion} collapsed={collapsed} />
+        <ShowMoreButton
+          className="lg:flex hidden"
+          toggle={toggleAccordion}
+          collapsed={collapsed}
+        />
       ) : null}
     </section>
   );
