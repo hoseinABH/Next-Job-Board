@@ -20,8 +20,8 @@ export default function JobsList({ className }: Props) {
   return (
     <div className={cn('', className)}>
       <div className="flex items-center justify-between mb-6">
-        <p className="text-muted-foreground">
-          <span className="font-semibold">10</span> فرصت شغلی یافت شد
+        <p className="text-muted-foreground hidden sm:block">
+          <span className="font-semibold ml-1">{landingJobs.length}</span> فرصت شغلی یافت شد
         </p>
         <div className="flex items-center gap-x-4">
           <Select>

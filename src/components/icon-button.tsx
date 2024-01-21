@@ -13,11 +13,16 @@ interface Props extends ButtonProps {
   title?: string;
 }
 
-export default function IconButton({ children, title, ...ButtonProps }: Props) {
+export default function IconButton({
+  children,
+  className,
+  title,
+  ...ButtonProps
+}: Props) {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger asChild className={className}>
           <Button size="icon" variant="ghost" {...ButtonProps}>
             {children}
           </Button>

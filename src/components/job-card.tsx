@@ -28,11 +28,11 @@ export default function JobCard({ className, job, href = '/' }: Props) {
   return (
     <div
       className={cn(
-        'flex flex-col sm:flex-row w-full justify-between shadow-md hover:shadow-none rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:scale-95',
+        'flex flex-col sm:flex-row w-full justify-center md:justify-between shadow-md hover:shadow-none rounded-md px-8 py-6 bg-background dark:bg-secondary/30 transition-all hover:scale-95 relative',
         className
       )}
     >
-      <div className="flex items-center gap-x-4">
+      <div className="flex flex-col md:flex-row items-center gap-x-4">
         <Image
           src={job.company.image!}
           width={85}
@@ -40,21 +40,21 @@ export default function JobCard({ className, job, href = '/' }: Props) {
           alt={job.company.name!}
           className="rounded-full"
         />
-        <div className="space-y-4">
+        <div className="flex flex-col items-center md:items-start gap-y-2">
           <Link
             href={href}
             className="font-semibold text-lg hover:text-primary transition-all"
           >
             {job.title}
           </Link>
-          <div className="flex items-center gap-x-4 text-muted-foreground mt-4">
+          <div className="flex items-center flex-wrap sm:flex-wrap gap-2 text-muted-foreground mt-2">
             <p className="flex items-center">
               <Building2 className="w-4 h-4 ml-1" /> {job.company.name}
             </p>
             <p className="flex items-center">
               <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
             </p>
-            <p className="flex items-center">
+            <p className="items-center hidden md:flex">
               <Clock7 className="w-4 h-4 ml-1" /> 11 ساعت پیش
             </p>
             <p className="text-green-500">{job.salary}</p>
@@ -62,7 +62,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
           <Badge className="rounded-full">{mapJobType[job.jobType]}</Badge>
         </div>
       </div>
-      <IconButton title="ذخیره کردن">
+      <IconButton title="ذخیره کردن" className="hidden md:flex">
         <Bookmark className="w-4 h-4 text-muted-foreground" />
       </IconButton>
     </div>
