@@ -1,5 +1,5 @@
 // UI Frameworks
-import type { Education, EducationLevel } from '@/types/job-seeker';
+import type { Education, EducationLevel } from '@/types/resume';
 // Common components
 import IconButton from './icon-button';
 // Types

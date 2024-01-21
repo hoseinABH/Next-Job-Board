@@ -6,7 +6,7 @@ import IconButton from '@/components/icon-button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Types
-import { Skill, SkillLevel } from '@/types/job-seeker';
+import { Skill, SkillLevel } from '@/types/resume';
 
 const mapSkillLevel: Record<SkillLevel, string> = {
   mid: 'کارشناس',

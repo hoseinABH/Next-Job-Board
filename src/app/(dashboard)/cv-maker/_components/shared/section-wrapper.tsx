@@ -16,6 +16,7 @@ interface Props {
   children: ReactNode;
   icon?: LucideIcon;
   hasShowMore?: boolean;
+  actionHandler?: () => void;
 }
 export default function SectionWrapper({
   children,
@@ -25,6 +26,7 @@ export default function SectionWrapper({
   title,
   actionType = 'create',
   hasShowMore = false,
+  actionHandler,
 }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const SectionIcon = icon;
@@ -37,7 +39,10 @@ export default function SectionWrapper({
       id={id}
       className={cn(
         'p-6 rounded-md max-h-full xl:max-h-72 shadow-md relative bg-card dark:bg-secondary/30 overflow-hidden transition-[max-height] duration-500',
-        { ['max-h-full xl:max-h-full transition-[max-height] duration-500']: collapsed },
+        {
+          ['max-h-full xl:max-h-full transition-[max-height] duration-500']:
+            collapsed,
+        },
         className
       )}
     >
@@ -48,7 +53,10 @@ export default function SectionWrapper({
           ) : null}
           <p className="text-lg">{title}</p>
         </div>
-        <IconButton title={actionType === 'create' ? 'افزودن' : 'ویرایش'}>
+        <IconButton
+          title={actionType === 'create' ? 'افزودن' : 'ویرایش'}
+          onClick={actionHandler}
+        >
           <ActionIcon className="text-primary w-4 h-4" />
         </IconButton>
       </div>

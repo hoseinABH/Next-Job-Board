@@ -5,7 +5,7 @@ import WorkExperienceCard from '@/components/work-experience-card';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Types
-import type { WorkExperience } from '@/types/job-seeker';
+import type { WorkExperience } from '@/types/resume';
 
 const workExperiences: WorkExperience[] = [
   {

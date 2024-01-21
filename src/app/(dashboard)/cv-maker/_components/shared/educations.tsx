@@ -5,7 +5,7 @@ import EducationCard from '@/components/education-card';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Types
-import type { Education } from '@/types/job-seeker';
+import type { Education } from '@/types/resume';
 
 const educations: Education[] = [
   {

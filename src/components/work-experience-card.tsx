@@ -3,7 +3,7 @@ import { Trash2, Building2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 // Types
-import type { WorkExperience } from '@/types/job-seeker';
+import type { WorkExperience } from '@/types/resume';
 
 interface Props {
   experience: WorkExperience;

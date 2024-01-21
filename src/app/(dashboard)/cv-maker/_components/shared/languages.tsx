@@ -6,13 +6,13 @@ import { Badge } from '@/components/ui/badge';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Types
-import type { Language, LanguageLevel } from '@/types/job-seeker';
+import type { Language, LanguageLevel } from '@/types/resume';
 
 const mapLanguageLevel: Record<LanguageLevel, string> = {
   beginner: 'مبتدی',
   intermediate: 'متوسط',
   fluent: 'در حد زبان مادری',
-  expert: 'حرفه ای کار',
+  expert: 'حرفه ای',
 };
 
 const languages: Language[] = [
