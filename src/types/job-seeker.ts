@@ -27,3 +27,9 @@ export interface Skill {
   name: string;
   level: SkillLevel;
 }
+export type LanguageLevel = 'beginner' | 'intermediate' | 'expert' | 'fluent';
+export interface Language {
+  id: number;
+  name: string;
+  level: LanguageLevel;
+}
