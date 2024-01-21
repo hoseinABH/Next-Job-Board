@@ -11,11 +11,11 @@ export default function AboutSection() {
       icon={ScanFace}
       actionType="edit"
     >
-      <div className="flex gap-x-4 items-start">
+      <div className="flex flex-col md:flex-row gap-x-4 items-center md:items-start">
         <div className="border rounded-full flex justify-center items-center p-8 cursor-pointer transition-all">
           <User className="text-muted-foreground" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center md:items-start">
           <p className="text-2xl mb-0">حسین ابوالحسنی</p>
           <p className="flex items-center text-muted-foreground">
             توسعه دهنده فرانت اند
