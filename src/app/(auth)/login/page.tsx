@@ -1,8 +1,11 @@
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+// UI Frameworks
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
+// Common components
+import { Input } from '@/components/ui/input';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'ورود',
@@ -14,7 +17,10 @@ export default function LoginPage() {
       <div className="container">
         <div className="grid grid-cols-2 h-full w-full border bg-background dark:bg-secondary/30 shadow-md rounded-lg min-h-[800px] overflow-hidden">
           <div className="">
-            <Link href="/" className={buttonVariants({ variant: 'ghost' , className:"m-8" })}> 
+            <Link
+              href="/"
+              className={buttonVariants({ variant: 'ghost', className: 'm-8' })}
+            >
               ثبت نام
             </Link>
             <div className="w-full flex flex-col items-center justify-center mt-28">
@@ -39,7 +45,15 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-          <div className="bg-primary dark:bg-secondary/40"></div>
+          <div className="bg-primary dark:bg-secondary/40 flex items-center justify-center">
+            <Image
+              src="/javascript.webp"
+              alt="صفحه ورود"
+              height={400}
+              width={400}
+              className="select-none"
+            />
+          </div>
         </div>
       </div>
     </main>
