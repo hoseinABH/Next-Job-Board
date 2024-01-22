@@ -15,15 +15,15 @@ export default function LoginPage() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-background">
       <div className="container">
-        <div className="grid grid-cols-2 h-full w-full border bg-background dark:bg-secondary/30 shadow-md rounded-lg min-h-[800px] overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-full w-full border bg-background dark:bg-secondary/30 shadow-md rounded-lg min-h-full md:min-h-[800px] overflow-hidden">
           <div className="">
             <Link
               href="/"
-              className={buttonVariants({ variant: 'ghost', className: 'm-8' })}
+              className={buttonVariants({ variant: 'ghost', className: 'm-8 hidden md:block' })}
             >
               ثبت نام
             </Link>
-            <div className="w-full flex flex-col items-center justify-center mt-28">
+            <div className="w-full flex flex-col items-center justify-center mt-4 md:mt-28 p-4">
               <h1 className="font-bold text-2xl">یک حساب کاربری ایجاد کنید</h1>
               <p className="text-muted-foreground mt-2">
                 برای ایجاد حساب کاربری ایمیل خود را در زیر وارد کنید
@@ -45,7 +45,7 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-          <div className="bg-primary dark:bg-secondary/40 flex items-center justify-center">
+          <div className="bg-primary dark:bg-secondary/40 hidden lg:flex items-center justify-center">
             <Image
               src="/javascript.webp"
               alt="صفحه ورود"
