@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
+import { Textarea } from '@/components/ui/textarea';
 
 export function AboutMeModal() {
   const dispatch = useAppDispatch();
@@ -30,18 +31,18 @@ export function AboutMeModal() {
             لطفا فیلد های مورد نظر را تکمیل نمایید
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="flex items-center gap-4">
-            <Label htmlFor="name" className="text-nowrap min-w-[110px]">
-              نام
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="name" className="text-nowrap">
+              عنوان
             </Label>
             <Input id="name" className="col-span-3" />
           </div>
-          <div className="flex items-center gap-4">
-            <Label htmlFor="username" className="text-nowrap min-w-[110px]">
-              نام و نام خانوادگی
+          <div className="space-y-2">
+            <Label htmlFor="username" className="text-nowrap">
+              درباره خود - حداکثر ۴۰۰ کاراکتر
             </Label>
-            <Input id="username" className="col-span-3" />
+            <Textarea rows={6} id="username" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>

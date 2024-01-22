@@ -6,13 +6,14 @@ import { Fingerprint } from 'lucide-react';
 // Common components
 import Logo from './logo';
 import NavigationDrawer from './navigation-drawer';
-import { Button } from './ui/button';
+import { Button, buttonVariants } from './ui/button';
 // Utilities
 import { clsx } from 'clsx';
 // Hooks
 import { usePathname } from 'next/navigation';
 // Config
 import { navigationLinks } from '@/config/app';
+import * as Routes from '@/config/routes';
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -55,10 +56,10 @@ export default function Header() {
         </div>
         {/* Left Part */}
         <div className="flex flex-1 items-center justify-end">
-          <Button size="sm">
+          <Link href={Routes.LOGIN} className={buttonVariants()}>
             <Fingerprint className="ml-2 w-4 h-4" />
             <span>ورود | ثبت نام</span>
-          </Button>
+          </Link>
         </div>
       </div>
     </header>
