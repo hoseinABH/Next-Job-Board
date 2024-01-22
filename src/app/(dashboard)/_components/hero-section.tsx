@@ -18,7 +18,7 @@ export default function HeroSection() {
       </div>
       <Image
         className="drop-shadow-2xl hidden lg:block"
-        src="/hero-img.webp"
+        src="/javascript.webp"
         alt="جاب اونجا"
         height={400}
         width={400}
