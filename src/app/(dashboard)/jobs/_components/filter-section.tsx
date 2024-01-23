@@ -1,17 +1,12 @@
 'use client';
-
+// Common components
+import { Card } from '@/components/ui/card';
+// Utilities
 import { cn } from '@/lib/utils';
 
 interface Props {
   className?: string;
 }
 export default function FilterSection({ className }: Props) {
-  return (
-    <div
-      className={cn(
-        'rounded-md shadow-md bg-card dark:bg-secondary/30 p-6',
-        className
-      )}
-    ></div>
-  );
+  return <Card className={cn('', className)}></Card>;
 }

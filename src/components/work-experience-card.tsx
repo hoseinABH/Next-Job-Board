@@ -17,8 +17,10 @@ export default function WorkExperienceCard({ experience }: Props) {
           <Building2 className="text-muted-foreground" />
         </div>
         <div className="space-y-1">
-          <h6 className="font-semibold">{experience.position}</h6>
-          <p className="text-green-500">{experience.company}</p>
+          <h6 className="font-semibold text-lg golden-text">
+            {experience.position}
+          </h6>
+          <p>{experience.company}</p>
           <p className="text-muted-foreground">{experience.location}</p>
           <p className="text-muted-foreground">
             {experience.date.from} - {experience.date.to}

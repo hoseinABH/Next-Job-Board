@@ -7,6 +7,7 @@ import IconButton from '@/components/icon-button';
 import ShowMoreButton from '@/components/show-more-button';
 // Utilities
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 interface Props {
   className?: string;
@@ -35,10 +36,10 @@ export default function SectionWrapper({
     setCollapsed((prev) => !prev);
   }
   return (
-    <section
+    <Card
       id={id}
       className={cn(
-        'p-6 rounded-md max-h-full xl:max-h-72 shadow-md relative bg-card dark:bg-secondary/30 overflow-hidden transition-[max-height] duration-500',
+        'relative p-6 max-h-full xl:max-h-72 overflow-hidden transition-[max-height] duration-500',
         {
           ['max-h-full xl:max-h-full transition-[max-height] duration-500']:
             collapsed,
@@ -49,7 +50,7 @@ export default function SectionWrapper({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-3">
           {SectionIcon ? (
-            <SectionIcon className="w-6 h-6 text-primary" />
+            <SectionIcon className="w-6 h-6" />
           ) : null}
           <p className="text-lg">{title}</p>
         </div>
@@ -57,7 +58,7 @@ export default function SectionWrapper({
           title={actionType === 'create' ? 'افزودن' : 'ویرایش'}
           onClick={actionHandler}
         >
-          <ActionIcon className="text-primary w-4 h-4" />
+          <ActionIcon className="w-4 h-4" />
         </IconButton>
       </div>
       <Separator className="my-3" />
@@ -69,6 +70,6 @@ export default function SectionWrapper({
           collapsed={collapsed}
         />
       ) : null}
-    </section>
+    </Card>
   );
 }

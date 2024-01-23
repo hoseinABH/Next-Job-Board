@@ -37,7 +37,7 @@ export default function LoginPage() {
               </Button>
             </div>
           </div>
-          <div className="bg-primary dark:bg-secondary/40 hidden lg:flex items-center justify-center">
+          <div className="bg-zinc-950 dark:bg-secondary/40 hidden lg:flex items-center justify-center">
             <Image
               src="/javascript.webp"
               alt="صفحه ورود"

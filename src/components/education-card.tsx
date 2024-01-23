@@ -19,10 +19,10 @@ export default function EducationCard({ education }: Props) {
   return (
     <div className="flex justify-between">
       <div className="space-y-1">
-        <h6 className="font-semibold">{education.field}</h6>
+        <h6 className="font-semibold text-lg golden-text">{education.field}</h6>
         <div className="flex items-center">
           {mapEducationLevel[education.level]} -{' '}
-          <p className="text-green-500">{education.school}</p>
+          <p>{education.school}</p>
         </div>
         <p className="text-muted-foreground">{education.location}</p>
         <p className="text-muted-foreground">

@@ -26,9 +26,9 @@ export default function Header() {
           key={navItem.id}
           href={navItem.href}
           className={clsx(
-            'text-md transition-colors hover:text-foreground/80 text-foreground/60',
+            'text-md transition-colors',
             {
-              ['text-foreground/90 font-medium']: pathname === navItem.href,
+              ['golden-text font-medium']: pathname === navItem.href,
             }
           )}
         >

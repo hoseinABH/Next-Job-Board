@@ -198,7 +198,7 @@ export const landingJobs: Job[] = [
   },
   {
     title: 'مدیر فنی',
-    salary: '800000000',
+    salary: '۱۶,۰۰۰,۰۰۰ تومان',
     company: landingCompanies[4],
     jobType: 'full-time',
     isUrgent: true,

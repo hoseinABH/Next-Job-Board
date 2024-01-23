@@ -2,6 +2,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 // Common components
 import { Button } from './ui/button';
+import { Card, CardContent } from './ui/card';
 import { MapPin, Search } from 'lucide-react';
 // Utilities
 import { cn } from '@/lib/utils';
@@ -33,34 +34,36 @@ export default function JobSearch({ className }: Props) {
     );
   }
   return (
-    <div className={cn('search-section', className)}>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row items-center gap-2">
-          <div className="relative w-full">
-            <Search className="right-input-adornment" />
-            <input
-              type="text"
-              name="query"
-              placeholder="عنوان شغلی یا شرکت..."
-              className="search-input"
-              onChange={handleChange}
-            />
+    <Card className={cn('', className)}>
+      <CardContent className='p-6'>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col md:flex-row items-center gap-2">
+            <div className="relative w-full">
+              <Search className="right-input-adornment" />
+              <input
+                type="text"
+                name="query"
+                placeholder="عنوان شغلی یا شرکت..."
+                className="search-input"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative w-full">
+              <MapPin className="right-input-adornment" />
+              <input
+                type="text"
+                name="location"
+                placeholder="شهر"
+                className="search-input"
+                onChange={handleChange}
+              />
+            </div>
+            <Button type="submit" className="w-full md:w-auto mt-4 md:mt-0">
+              جستجو در مشاغل
+            </Button>
           </div>
-          <div className="relative w-full">
-            <MapPin className="right-input-adornment" />
-            <input
-              type="text"
-              name="location"
-              placeholder="شهر"
-              className="search-input"
-              onChange={handleChange}
-            />
-          </div>
-          <Button type="submit" className="w-full md:w-auto mt-4 md:mt-0">
-            جستجو در مشاغل
-          </Button>
-        </div>
-      </form>
-    </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

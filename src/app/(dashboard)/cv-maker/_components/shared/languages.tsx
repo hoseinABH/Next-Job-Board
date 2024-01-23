@@ -43,7 +43,7 @@ export default function Languages() {
               </IconButton>
               <p className="text-muted-foreground">{lang.name}</p>
             </div>
-            <Badge>{mapLanguageLevel[lang.level]}</Badge>
+            <Badge variant="gradient">{mapLanguageLevel[lang.level]}</Badge>
           </div>
         ))}
       </div>

@@ -14,7 +14,7 @@ export default function Logo({ className }: Props) {
         className
       )}
     >
-      <Gem className="w-6 h-6 group-hover:rotate-45 transition-transform text-primary" />
+      <Gem className="w-6 h-6 group-hover:rotate-45 transition-transform" />
       <span className="font-bold inline-block">[جاب اونجا]</span>
     </div>
   );
