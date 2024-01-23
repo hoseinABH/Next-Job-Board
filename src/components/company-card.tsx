@@ -18,7 +18,7 @@ interface Props {
 export default function CompanyCard({ className, company, href = '/' }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('cursor-pointer', className)}>
+      <Card className={cn('dark-border', className)}>
         <CardContent className="flex flex-col sm:flex-row p-6 justify-between items-center">
           <div className="flex flex-col sm:flex-row items-center gap-x-2">
             <Image

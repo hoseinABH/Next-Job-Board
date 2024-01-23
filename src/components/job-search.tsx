@@ -34,8 +34,8 @@ export default function JobSearch({ className }: Props) {
     );
   }
   return (
-    <Card className={cn('', className)}>
-      <CardContent className='p-6'>
+    <Card className={cn('dark-border', className)}>
+      <CardContent className="p-6">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row items-center gap-2">
             <div className="relative w-full">

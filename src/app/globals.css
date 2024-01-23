@@ -63,7 +63,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth !important;
+    @apply scroll-smooth;
   }
   * {
     @apply border-border;
@@ -82,5 +82,8 @@
   }
   .golden-bg {
     @apply dark:bg-gradient-to-br dark:from-[#FFFF92] dark:to-[#EE8912] bg-primary;
+  }
+  .dark-border {
+    @apply transition-all dark:hover:border-[#444];
   }
 }
