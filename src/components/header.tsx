@@ -25,12 +25,9 @@ export default function Header() {
           onClick={() => setDrawerOpen(false)}
           key={navItem.id}
           href={navItem.href}
-          className={clsx(
-            'text-md transition-colors',
-            {
-              ['golden-text font-medium']: pathname === navItem.href,
-            }
-          )}
+          className={clsx('text-md transition-colors', {
+            ['golden-text font-medium']: pathname === navItem.href,
+          })}
         >
           {navItem.name}
         </Link>
@@ -39,9 +36,9 @@ export default function Header() {
   );
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex justify-between h-14 items-center">
+      <div className="container px-2 sm:px-8 flex justify-between h-14 items-center">
         {/* Right Part */}
-        <div className="ml-4 flex items-center">
+        <div className="flex items-center">
           <div className="inline md:hidden ml-4">
             <NavigationDrawer open={drawerOpen} setOpen={setDrawerOpen}>
               {renderNavLinks}
