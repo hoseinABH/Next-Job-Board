@@ -4,7 +4,7 @@
  */
 import { RESET_FACTORY } from '../index.constants';
 // Utilities
-import * as R from 'ramda';
+import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
@@ -23,12 +23,12 @@ const reducer: Reducer<CommonState, Action> = (
   state = initialState,
   action
 ) => {
-  const update = R.mergeRight<CommonState>(state)<Partial<CommonState>>;
+  const update = updateState<CommonState>(state);
   switch (action.type) {
     case types.SET_APP_LOADING:
       return update({ appLoading: action.payload });
     case RESET_FACTORY:
-      return update(initialState);
+      return initialState;
     default:
       return state;
   }

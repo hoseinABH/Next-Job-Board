@@ -12,7 +12,6 @@ import ResumeActions from '@/store/Resume/resume.actions';
 export default function AboutSection() {
   const dispatch = useAppDispatch();
   function openEditModal() {
-    console.log('test');
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
   }
   return (
