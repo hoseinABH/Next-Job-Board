@@ -43,7 +43,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
             >
               {job.title} ({mapJobType[job.jobType]})
             </Link>
-            <div className="flex items-center flex-wrap sm:flex-wrap gap-2 text-muted-foreground mt-2">
+            <div className="flex items-center flex-wrap sm:flex-wrap gap-2 text-muted-foreground mt-1">
               <p className="flex items-center">
                 <Building2 className="w-4 h-4 ml-1" /> {job.company.name}
               </p>
