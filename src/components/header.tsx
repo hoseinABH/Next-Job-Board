@@ -6,7 +6,7 @@ import { Fingerprint } from 'lucide-react';
 // Common components
 import Logo from './logo';
 import NavigationDrawer from './navigation-drawer';
-import { Button, buttonVariants } from './ui/button';
+import { buttonVariants } from './ui/button';
 // Utilities
 import { clsx } from 'clsx';
 // Hooks
