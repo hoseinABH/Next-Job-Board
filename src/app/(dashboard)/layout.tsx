@@ -10,7 +10,7 @@ export default function DashboardLayout({
     <main className="relative flex min-h-screen flex-col bg-gray-50 dark:bg-background">
       <Header />
       <main className="flex-1">
-        <div className="container relative">{children}</div>
+        <div className="container px-4 sm:px-8 relative">{children}</div>
       </main>
       <Footer />
     </main>

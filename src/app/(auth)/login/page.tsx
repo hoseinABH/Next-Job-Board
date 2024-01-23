@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-background">
-      <div className="container">
+      <div className="container px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full w-full border bg-background dark:bg-secondary/30 shadow-md rounded-lg min-h-full md:min-h-[700px] overflow-hidden">
           <div className="w-full flex flex-col items-center justify-center mt-4 md:mt-28 p-4">
             <h1 className="font-bold text-2xl">یک حساب کاربری ایجاد کنید</h1>
