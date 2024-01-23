@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 // UI Frameworks
-import { Bookmark, MapPin, Building2, } from 'lucide-react';
+import { Bookmark, MapPin, Building2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 import { Card, CardContent } from './ui/card';
@@ -26,7 +26,7 @@ const mapJobType: Record<JobType, string> = {
 
 export default function JobCard({ className, job, href = '/' }: Props) {
   return (
-    <Card className={cn('', className)}>
+    <Card className={cn('dark-border', className)}>
       <CardContent className="p-6 flex flex-col sm:flex-row  justify-center md:justify-between">
         <div className="flex flex-col md:flex-row items-center gap-x-4">
           <Image
@@ -51,7 +51,10 @@ export default function JobCard({ className, job, href = '/' }: Props) {
                 <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
               </p>
             </div>
-            <p className="text-muted-foreground flex items-baseline"> حقوق {job.salary}</p>
+            <p className="text-muted-foreground flex items-baseline">
+              {' '}
+              حقوق {job.salary}
+            </p>
           </div>
         </div>
         <IconButton title="ذخیره کردن" className="hidden md:flex">
