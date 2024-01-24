@@ -17,7 +17,7 @@ export default function FeaturedJobs() {
       <div className="text-center">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 ">
           تازه‌ترین آگهی‌های شغلی برای شما{' '}
-          <span className="w-2 h-2 rounded-full golden-bg animate-pulse ml-2 absolute"></span>
+          <span className="w-2 h-2 rounded-full primary-bg-color animate-pulse ml-2 absolute"></span>
         </h1>
         <p className="text-muted-foreground">
           ارزش خود را بدانید و شغلی را پیدا کنید که شرایط زندگی شما را فراهم کند

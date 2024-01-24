@@ -77,13 +77,13 @@
   .right-input-adornment {
     @apply text-muted-foreground w-6 h-6 absolute top-[23%] right-2;
   }
-  .golden-text {
+  .primary-text-color {
     @apply text-primary dark:bg-gradient-to-br dark:bg-clip-text dark:text-transparent dark:from-[#FFFF92] dark:to-[#EE8912];
   }
-  .golden-bg {
+  .primary-bg-color {
     @apply dark:bg-gradient-to-br dark:from-[#FFFF92] dark:to-[#EE8912] bg-primary;
   }
-  .dark-border {
+  .dark-card-border {
     @apply transition-all dark:hover:border-[#444];
   }
 }

@@ -1,9 +1,9 @@
 // UI Frameworks
-import type { Education, EducationLevel } from '@/types/resume';
+import { Trash2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 // Types
-import { Trash2 } from 'lucide-react';
+import type { Education, EducationLevel } from '@/types/resume';
 
 const mapEducationLevel: Record<EducationLevel, string> = {
   bachelor: 'لیسانس',
@@ -19,10 +19,11 @@ export default function EducationCard({ education }: Props) {
   return (
     <div className="flex justify-between">
       <div className="space-y-1">
-        <h6 className="font-semibold text-lg golden-text">{education.field}</h6>
+        <h6 className="font-semibold text-lg primary-text-color">
+          {education.field}
+        </h6>
         <div className="flex items-center">
-          {mapEducationLevel[education.level]} -{' '}
-          <p>{education.school}</p>
+          {mapEducationLevel[education.level]} - <p>{education.school}</p>
         </div>
         <p className="text-muted-foreground">{education.location}</p>
         <p className="text-muted-foreground">

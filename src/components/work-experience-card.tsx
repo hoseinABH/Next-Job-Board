@@ -17,7 +17,7 @@ export default function WorkExperienceCard({ experience }: Props) {
           <Building2 className="text-muted-foreground" />
         </div>
         <div className="space-y-1">
-          <h6 className="font-semibold text-lg golden-text">
+          <h6 className="font-semibold text-lg primary-text-color">
             {experience.position}
           </h6>
           <p>{experience.company}</p>

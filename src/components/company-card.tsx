@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 // Common components
-import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { MapPin } from 'lucide-react';
 // Utilities
@@ -18,7 +17,7 @@ interface Props {
 export default function CompanyCard({ className, company, href = '/' }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('dark-border', className)}>
+      <Card className={cn('dark-card-border', className)}>
         <CardContent className="flex flex-col sm:flex-row p-6 justify-between items-center">
           <div className="flex flex-col sm:flex-row items-center gap-x-2">
             <Image
@@ -35,7 +34,7 @@ export default function CompanyCard({ className, company, href = '/' }: Props) {
             </div>
           </div>
           <div className="flex gap-1">
-            <span className="text-xl font-bold golden-text">
+            <span className="text-xl font-bold primary-text-color">
               {company.openPosition}
             </span>{' '}
             موقعیت شغلی فعال

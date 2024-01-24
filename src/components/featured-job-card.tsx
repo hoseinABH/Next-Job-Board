@@ -1,13 +1,13 @@
+import Link from 'next/link';
 import Image from 'next/image';
 // Common components
+import { Badge } from './ui/badge';
 import { MapPin } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
 import type { Job } from '@/types/job';
-import { Badge } from './ui/badge';
-import Link from 'next/link';
 
 interface Props {
   job: Job;
@@ -18,7 +18,7 @@ interface Props {
 export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('relative dark-border', className)}>
+      <Card className={cn('relative dark-card-border', className)}>
         {job.isUrgent ? (
           <Badge variant="destructive" className="absolute top-2 right-2">
             فوری
@@ -32,7 +32,9 @@ export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
             alt={job.company.name!}
           />
           <span className="text-sm mt-4">{job.company.name}</span>
-          <p className="font-semibold golden-text text-md">{job.title}</p>
+          <p className="font-semibold primary-text-color text-md">
+            {job.title}
+          </p>
           <p className="flex items-center text-muted-foreground">
             <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
           </p>

@@ -9,7 +9,7 @@ export default function CompaniesSection() {
       <div className="text-center">
         <h1 className="text-2xl  md:text-3xl font-bold mb-4">
           استخدام شرکت های برتر در{' '}
-          <span className="golden-text">{appData.appName}</span>
+          <span className="primary-text-color">{appData.appName}</span>
         </h1>
         <p className="text-muted-foreground">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده

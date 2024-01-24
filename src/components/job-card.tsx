@@ -26,7 +26,7 @@ const mapJobType: Record<JobType, string> = {
 
 export default function JobCard({ className, job, href = '/' }: Props) {
   return (
-    <Card className={cn('dark-border', className)}>
+    <Card className={cn('dark-card-border', className)}>
       <CardContent className="p-6 flex flex-col sm:flex-row  justify-center md:justify-between">
         <div className="flex flex-col md:flex-row items-center gap-x-4">
           <Image
@@ -39,7 +39,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
           <div className="flex flex-col items-center md:items-start gap-y-2">
             <Link
               href={href}
-              className="font-semibold text-lg golden-text transition-all"
+              className="font-semibold text-lg primary-text-color transition-all"
             >
               {job.title} ({mapJobType[job.jobType]})
             </Link>
