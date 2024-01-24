@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 // Providers
 import StoreProvider from '@/providers/store-provider';
@@ -6,6 +5,8 @@ import ThemeProvider from '@/providers/theme-provider';
 import DirectionProvider from '@/providers/direction-provider';
 // Configs
 import * as appConfig from '@/config/app';
+// Types
+import type { Metadata } from 'next';
 // Styles
 import '@/app/globals.css';
 
