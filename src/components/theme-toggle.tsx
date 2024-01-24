@@ -23,18 +23,6 @@ const availableThemes = [
 ];
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-
-  /**🤦‍♂️The code below is just to get rid of the following warning:
-   * warning: Prop className did not match
-   */
-  const [selectedTheme, setSelectedTheme] = useState<string>();
-  useEffect(() => {
-    if (theme) {
-      setSelectedTheme(theme);
-    }
-  }, [theme]);
-  /** The end of the magic code */
-
   return (
     <div className="border rounded-3xl p-1">
       {availableThemes.map((item) => {
@@ -45,7 +33,7 @@ export default function ThemeToggle() {
             size="icon"
             variant="ghost"
             className={cn('rounded-full', {
-              ['bg-muted']: item.key === selectedTheme,
+              ['bg-muted']: item.key === theme,
             })}
             onClick={() => setTheme(item.key)}
           >
