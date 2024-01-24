@@ -2,9 +2,10 @@ import { Monitor, Moon, SunDim } from 'lucide-react';
 // Common components
 import { Button } from './ui/button';
 // Utilities
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 // Hooks
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const availableThemes = [
   {
@@ -20,9 +21,20 @@ const availableThemes = [
     icon: SunDim,
   },
 ];
-
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+
+  /**🤦‍♂️The code below is just to get rid of the following warning:
+   * warning: Prop className did not match
+   */
+  const [selectedTheme, setSelectedTheme] = useState<string>();
+  useEffect(() => {
+    if (theme) {
+      setSelectedTheme(theme);
+    }
+  }, [theme]);
+  /** The end of the magic code */
+
   return (
     <div className="border rounded-3xl p-1">
       {availableThemes.map((item) => {
@@ -32,8 +44,8 @@ export default function ThemeToggle() {
             key={item.key}
             size="icon"
             variant="ghost"
-            className={clsx('rounded-full', {
-              ['bg-muted']: item.key === theme,
+            className={cn('rounded-full', {
+              ['bg-muted']: item.key === selectedTheme,
             })}
             onClick={() => setTheme(item.key)}
           >
