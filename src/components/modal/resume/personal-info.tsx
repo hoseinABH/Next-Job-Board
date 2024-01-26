@@ -1,5 +1,7 @@
 // Common components
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Dialog,
@@ -9,8 +11,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
@@ -34,7 +41,7 @@ export function PersonalInfoModal() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="firstName">نام</Label>
-            <Input id="firstName" required />
+            <Input id="firstName" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="lastName">نام خانوادگی</Label>
@@ -68,7 +75,7 @@ export function PersonalInfoModal() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="birthDate">تاریخ تولد</Label>
-            <Input id="birthDate" />
+            <Input id="birthDate" dir="ltr" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="location">محل سکونت</Label>
@@ -76,11 +83,20 @@ export function PersonalInfoModal() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="militaryService">وضعیت خدمت</Label>
-            <Input id="militaryService" />
+            <Select>
+              <SelectTrigger>
+                <SelectValue id="militaryService" placeholder="وضعیت خدمت" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="done">تمام شده</SelectItem>
+                <SelectItem value="notDoneYet">هنوز انجام نشده</SelectItem>
+                <SelectItem value="exempt">معاف</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="space-y-2">
             <Label htmlFor="mobileNumber">شماره موبایل</Label>
-            <Input id="mobileNumber" />
+            <Input id="mobileNumber" dir="ltr" inputMode="numeric" />
           </div>
         </div>
         <DialogFooter>

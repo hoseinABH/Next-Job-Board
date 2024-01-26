@@ -2,8 +2,13 @@
 import { Briefcase } from 'lucide-react';
 // Common components
 import WorkExperienceCard from '@/components/work-experience-card';
+import { WorkExperienceModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import { useAppDispatch } from '@/hooks/store';
+// Actions
+import ResumeActions from '@/store/Resume/resume.actions';
 // Types
 import type { WorkExperience } from '@/types/resume';
 
@@ -23,18 +28,26 @@ const workExperiences: WorkExperience[] = [
 ];
 
 export default function WorkExperience() {
+  const dispatch = useAppDispatch();
+  function openCreateModal() {
+    dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
+  }
   return (
-    <SectionWrapper
-      hasShowMore={workExperiences.length > 1}
-      icon={Briefcase}
-      title="سوابق شغلی"
-      id="work-experience"
-    >
-      <div className="flex flex-col gap-y-6">
-        {workExperiences.map((experience) => (
-          <WorkExperienceCard key={experience.id} experience={experience} />
-        ))}
-      </div>
-    </SectionWrapper>
+    <>
+      <SectionWrapper
+        hasShowMore={workExperiences.length > 1}
+        icon={Briefcase}
+        title="سوابق شغلی"
+        id="work-experience"
+        actionHandler={openCreateModal}
+      >
+        <div className="flex flex-col gap-y-6">
+          {workExperiences.map((experience) => (
+            <WorkExperienceCard key={experience.id} experience={experience} />
+          ))}
+        </div>
+      </SectionWrapper>
+      <WorkExperienceModal />
+    </>
   );
 }

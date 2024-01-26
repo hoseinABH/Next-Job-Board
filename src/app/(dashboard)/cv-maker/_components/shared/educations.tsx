@@ -23,7 +23,12 @@ const educations: Education[] = [
 
 export default function Educations() {
   return (
-    <SectionWrapper icon={GraduationCap} title="سوابق تحصیلی" id="educations">
+    <SectionWrapper
+      hasShowMore={educations.length > 1}
+      icon={GraduationCap}
+      title="سوابق تحصیلی"
+      id="educations"
+    >
       <div className="flex flex-col gap-y-6">
         {educations.map((education) => (
           <EducationCard key={education.id} education={education} />

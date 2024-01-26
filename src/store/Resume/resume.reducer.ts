@@ -20,6 +20,7 @@ export const initialState: ResumeState = {
   modals: {
     aboutMe: false,
     personalInfo: false,
+    workExperience: false,
   },
 };
 
