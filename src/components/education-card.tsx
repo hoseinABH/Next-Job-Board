@@ -13,9 +13,10 @@ const mapEducationLevel: Record<EducationLevel, string> = {
 
 interface Props {
   education: Education;
+  onDelete: () => void;
 }
 
-export default function EducationCard({ education }: Props) {
+export default function EducationCard({ education, onDelete }: Props) {
   return (
     <div className="flex justify-between">
       <div className="space-y-1">
@@ -30,7 +31,7 @@ export default function EducationCard({ education }: Props) {
           {education.date.from} - {education.date.to}
         </p>
       </div>
-      <IconButton title="حذف">
+      <IconButton title="حذف" onClick={onDelete}>
         <Trash2 className="w-5 h-4" />
       </IconButton>
     </div>

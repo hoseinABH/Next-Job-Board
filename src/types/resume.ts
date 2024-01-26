@@ -41,3 +41,10 @@ export type ModalKeys =
   | 'language'
   | 'skill';
 export type ResumeModals = Record<ModalKeys, boolean>;
+
+export interface DeleteAlertData {
+  key: ModalKeys;
+  title: string;
+  message: string;
+  model: unknown;
+}

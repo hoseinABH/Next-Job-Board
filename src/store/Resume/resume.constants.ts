@@ -15,6 +15,6 @@ export const SET_OPEN_MODAL = prefix('SET_OPEN_MODAL');
 
 /**
  * @module RESUME
- * @desc some dummy sagas - just for test
+ * @desc set delete modal data
  */
-export const SAGAS_SOME_ACTION = prefix('SAGAS_SOME_ACTION');
+export const SET_DELETE_DATA = prefix('SET_DELETE_DATA');

@@ -9,6 +9,7 @@ import SectionWrapper from './section-wrapper';
 import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
+import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Education } from '@/types/resume';
 
@@ -31,6 +32,18 @@ export default function Educations() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));
   }
+  function handleDeleteEducation() {
+    dispatch(
+      ResumeActions.setDeleteAlertData({
+        key: 'education',
+        title: 'حذف تجربه تحصیلی',
+        message:
+          'آیا از حذف تجربه تحصیلی خود در دانشگاه هاروارد-تهران جنوب مطمئن هستید؟',
+        model: {},
+      })
+    );
+    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+  }
   return (
     <>
       <SectionWrapper
@@ -42,7 +55,11 @@ export default function Educations() {
       >
         <div className="flex flex-col gap-y-6">
           {educations.map((education) => (
-            <EducationCard key={education.id} education={education} />
+            <EducationCard
+              key={education.id}
+              education={education}
+              onDelete={handleDeleteEducation}
+            />
           ))}
         </div>
       </SectionWrapper>

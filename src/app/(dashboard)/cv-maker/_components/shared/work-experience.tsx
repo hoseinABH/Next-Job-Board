@@ -9,6 +9,7 @@ import SectionWrapper from './section-wrapper';
 import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
+import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { WorkExperience } from '@/types/resume';
 
@@ -32,6 +33,17 @@ export default function WorkExperience() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
   }
+  function handleDeleteWorkExperience() {
+    dispatch(
+      ResumeActions.setDeleteAlertData({
+        key: 'workExperience',
+        title: 'حذف تجربه کاری',
+        message: 'آیا از حذف تجربه کاری خود در حصین مطمئن هستید؟',
+        model: {},
+      })
+    );
+    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+  }
   return (
     <>
       <SectionWrapper
@@ -43,7 +55,11 @@ export default function WorkExperience() {
       >
         <div className="flex flex-col gap-y-6">
           {workExperiences.map((experience) => (
-            <WorkExperienceCard key={experience.id} experience={experience} />
+            <WorkExperienceCard
+              key={experience.id}
+              experience={experience}
+              onDelete={handleDeleteWorkExperience}
+            />
           ))}
         </div>
       </SectionWrapper>

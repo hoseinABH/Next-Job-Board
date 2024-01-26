@@ -10,6 +10,7 @@ import SectionWrapper from './section-wrapper';
 import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
+import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Language, LanguageLevel } from '@/types/resume';
 
@@ -38,6 +39,17 @@ export default function Languages() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));
   }
+  function handleDeleteLanguage() {
+    dispatch(
+      ResumeActions.setDeleteAlertData({
+        key: 'language',
+        title: 'حذف زبان',
+        message: 'آیا از حذف زبان انگلیسی مطمئن هستید؟',
+        model: {},
+      })
+    );
+    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+  }
   return (
     <>
       <SectionWrapper
@@ -53,7 +65,7 @@ export default function Languages() {
               className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
             >
               <div className="flex items-center gap-x-2">
-                <IconButton title="حذف">
+                <IconButton title="حذف" onClick={handleDeleteLanguage}>
                   <RemoveIcon className="w-4 h-4" />
                 </IconButton>
                 <p className="text-muted-foreground">{lang.name}</p>

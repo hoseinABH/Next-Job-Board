@@ -10,6 +10,7 @@ import SectionWrapper from './section-wrapper';
 import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
+import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Skill, SkillLevel } from '@/types/resume';
 
@@ -53,6 +54,17 @@ export default function Skills() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'skill'));
   }
+  function handleDeleteSkill() {
+    dispatch(
+      ResumeActions.setDeleteAlertData({
+        key: 'skill',
+        title: 'حذف مهارت',
+        message: 'آیا از حذف مهارت Typescript مطمئن هستید؟',
+        model: {},
+      })
+    );
+    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+  }
   return (
     <>
       <SectionWrapper
@@ -68,7 +80,7 @@ export default function Skills() {
               className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
             >
               <div className="flex items-center gap-x-2">
-                <IconButton title="حذف">
+                <IconButton title="حذف" onClick={handleDeleteSkill}>
                   <RemoveIcon className="w-4 h-4" />
                 </IconButton>
                 <p className="text-muted-foreground">{skill.name}</p>

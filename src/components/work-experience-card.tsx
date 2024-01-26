@@ -7,9 +7,10 @@ import type { WorkExperience } from '@/types/resume';
 
 interface Props {
   experience: WorkExperience;
+  onDelete: () => void;
 }
 
-export default function WorkExperienceCard({ experience }: Props) {
+export default function WorkExperienceCard({ experience, onDelete }: Props) {
   return (
     <div className="flex justify-between">
       <div className="flex gap-x-2 items-start">
@@ -28,7 +29,7 @@ export default function WorkExperienceCard({ experience }: Props) {
           <p className="text-sm mt-2">{experience.description}</p>
         </div>
       </div>
-      <IconButton title="حذف">
+      <IconButton title="حذف" onClick={onDelete}>
         <Trash2 className="w-5 h-4" />
       </IconButton>
     </div>

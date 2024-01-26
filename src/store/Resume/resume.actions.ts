@@ -5,7 +5,7 @@
 import * as types from './resume.constants';
 // Types
 import type { Action } from '@/types/store';
-import type { ModalKeys } from '@/types/resume';
+import type { DeleteAlertData, ModalKeys } from '@/types/resume';
 
 class Actions {
   /**
@@ -23,14 +23,15 @@ class Actions {
       payload: { open, key },
     };
   }
-
   /**
-   * trigger some test action
-   * @return {Action}
+   * set delete alert data
+   * @param {DeleteAlertData} data
+   * @return {Action<DeleteAlertData>}
    */
-  public triggerSomeAction(): Action {
+  public setDeleteAlertData(data: DeleteAlertData): Action<DeleteAlertData> {
     return {
-      type: types.SAGAS_SOME_ACTION,
+      type: types.SET_DELETE_DATA,
+      payload: data,
     };
   }
 }

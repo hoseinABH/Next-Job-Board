@@ -5,6 +5,7 @@
 import * as types from './common.constants';
 // Types
 import type { Action } from '@/types/store';
+import type { ModalKeys } from '@/types/common';
 
 class Actions {
   /**
@@ -16,6 +17,21 @@ class Actions {
     return {
       type: types.SET_APP_LOADING,
       payload: isLoading,
+    };
+  }
+  /**
+   * set modals open
+   * @param {boolean} open
+   * @param {ModalKeys} key
+   * @return {Action<{ open: boolean; key: ModalKeys }>}
+   */
+  public setModalOpen(
+    open: boolean,
+    key: ModalKeys
+  ): Action<{ open: boolean; key: ModalKeys }> {
+    return {
+      type: types.SET_OPEN_MODAL,
+      payload: { open, key },
     };
   }
 

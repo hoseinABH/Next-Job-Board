@@ -8,12 +8,14 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { ResumeModals } from '@/types/resume';
+import type { DeleteAlertData, ResumeModals } from '@/types/resume';
+import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './resume.constants';
 
 export interface ResumeState {
   modals: ResumeModals;
+  deleteAlertData: Nullable<DeleteAlertData>;
 }
 
 export const initialState: ResumeState = {
@@ -25,6 +27,7 @@ export const initialState: ResumeState = {
     language: false,
     skill: false,
   },
+  deleteAlertData: null,
 };
 
 const reducer: Reducer<ResumeState, Action> = (
@@ -39,6 +42,11 @@ const reducer: Reducer<ResumeState, Action> = (
           [action.payload.key]: action.payload.open,
         }),
       });
+    case types.SET_DELETE_DATA:
+      return update({
+        deleteAlertData: action.payload,
+      });
+
     case RESET_FACTORY:
       return initialState;
     default:
