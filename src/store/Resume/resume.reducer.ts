@@ -21,6 +21,9 @@ export const initialState: ResumeState = {
     aboutMe: false,
     personalInfo: false,
     workExperience: false,
+    education: false,
+    language: false,
+    skill: false,
   },
 };
 

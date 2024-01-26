@@ -2,8 +2,13 @@
 import { GraduationCap } from 'lucide-react';
 // Common components
 import EducationCard from '@/components/education-card';
+import { EducationModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import { useAppDispatch } from '@/hooks/store';
+// Actions
+import ResumeActions from '@/store/Resume/resume.actions';
 // Types
 import type { Education } from '@/types/resume';
 
@@ -22,18 +27,26 @@ const educations: Education[] = [
 ];
 
 export default function Educations() {
+  const dispatch = useAppDispatch();
+  function openCreateModal() {
+    dispatch(ResumeActions.setModalOpen(true, 'education'));
+  }
   return (
-    <SectionWrapper
-      hasShowMore={educations.length > 1}
-      icon={GraduationCap}
-      title="سوابق تحصیلی"
-      id="educations"
-    >
-      <div className="flex flex-col gap-y-6">
-        {educations.map((education) => (
-          <EducationCard key={education.id} education={education} />
-        ))}
-      </div>
-    </SectionWrapper>
+    <>
+      <SectionWrapper
+        hasShowMore={educations.length > 1}
+        icon={GraduationCap}
+        title="سوابق تحصیلی"
+        id="educations"
+        actionHandler={openCreateModal}
+      >
+        <div className="flex flex-col gap-y-6">
+          {educations.map((education) => (
+            <EducationCard key={education.id} education={education} />
+          ))}
+        </div>
+      </SectionWrapper>
+      <EducationModal />
+    </>
   );
 }
