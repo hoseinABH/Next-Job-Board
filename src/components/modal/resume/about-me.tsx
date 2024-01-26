@@ -24,7 +24,7 @@ export function AboutMeModal() {
   }
   return (
     <Dialog open={modals.aboutMe} onOpenChange={onOpenChange}>
-      <DialogContent className="">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>درباره من</DialogTitle>
           <DialogDescription>
@@ -33,16 +33,12 @@ export function AboutMeModal() {
         </DialogHeader>
         <div className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-nowrap">
-              عنوان
-            </Label>
-            <Input id="name" className="col-span-3" />
+            <Label htmlFor="title">عنوان</Label>
+            <Input id="title" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="username" className="text-nowrap">
-              درباره خود - حداکثر ۴۰۰ کاراکتر
-            </Label>
-            <Textarea rows={6} id="username" className="col-span-3" />
+            <Label htmlFor="aboutMe">درباره خود - حداکثر ۴۰۰ کاراکتر</Label>
+            <Textarea rows={6} id="aboutMe" />
           </div>
         </div>
         <DialogFooter>

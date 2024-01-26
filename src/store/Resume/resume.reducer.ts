@@ -19,6 +19,7 @@ export interface ResumeState {
 export const initialState: ResumeState = {
   modals: {
     aboutMe: false,
+    personalInfo: false,
   },
 };
 

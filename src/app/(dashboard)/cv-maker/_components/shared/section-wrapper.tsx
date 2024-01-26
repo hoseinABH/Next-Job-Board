@@ -3,11 +3,11 @@ import { ReactNode, useState } from 'react';
 import { LucideIcon, Pencil, Plus } from 'lucide-react';
 // Common components
 import { Separator } from '@/components/ui/separator';
+import { Card } from '@/components/ui/card';
 import IconButton from '@/components/icon-button';
 import ShowMoreButton from '@/components/show-more-button';
 // Utilities
 import { cn } from '@/lib/utils';
-import { Card } from '@/components/ui/card';
 
 interface Props {
   className?: string;
@@ -49,9 +49,7 @@ export default function SectionWrapper({
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-3">
-          {SectionIcon ? (
-            <SectionIcon className="w-6 h-6" />
-          ) : null}
+          {SectionIcon ? <SectionIcon className="w-6 h-6" /> : null}
           <p className="text-lg">{title}</p>
         </div>
         <IconButton

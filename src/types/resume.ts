@@ -33,5 +33,5 @@ export interface Language {
   name: string;
   level: LanguageLevel;
 }
-export type ModalKeys = 'aboutMe';
+export type ModalKeys = 'aboutMe' | 'personalInfo';
 export type ResumeModals = Record<ModalKeys, boolean>;

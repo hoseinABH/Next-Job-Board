@@ -1,7 +1,13 @@
 // UI Frameworks
 import { User } from 'lucide-react';
+// Common components
+import { PersonalInfoModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import { useAppDispatch } from '@/hooks/store';
+// Actions
+import ResumeActions from '@/store/Resume/resume.actions';
 
 const infoRows = [
   {
@@ -39,22 +45,30 @@ const infoRows = [
 ];
 
 export default function PersonalInfo() {
+  const dispatch = useAppDispatch();
+  function openEditModal() {
+    dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
+  }
   return (
-    <SectionWrapper
-      icon={User}
-      actionType="edit"
-      title="مشخصات فردی"
-      id="personal-info"
-      hasShowMore
-    >
-      <div className="flex flex-col gap-y-4">
-        {infoRows.map((info) => (
-          <div key={info.value} className="flex items-center">
-            <p className="text-muted-foreground w-52">{info.title}</p>
-            <p>{info.value}</p>
-          </div>
-        ))}
-      </div>
-    </SectionWrapper>
+    <>
+      <SectionWrapper
+        icon={User}
+        actionType="edit"
+        title="مشخصات فردی"
+        id="personal-info"
+        hasShowMore
+        actionHandler={openEditModal}
+      >
+        <div className="flex flex-col gap-y-4">
+          {infoRows.map((info) => (
+            <div key={info.value} className="flex items-center">
+              <p className="text-muted-foreground w-32 sm:w-52">{info.title}</p>
+              <p>{info.value}</p>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+      <PersonalInfoModal />
+    </>
   );
 }

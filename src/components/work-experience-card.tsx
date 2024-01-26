@@ -13,7 +13,7 @@ export default function WorkExperienceCard({ experience }: Props) {
   return (
     <div className="flex justify-between">
       <div className="flex gap-x-2 items-start">
-        <div className="bg-gray-100 dark:bg-zinc-800 p-6 rounded-full">
+        <div className="bg-gray-100 dark:bg-zinc-800 p-6 rounded-full hidden sm:block">
           <Building2 className="text-muted-foreground" />
         </div>
         <div className="space-y-1">
