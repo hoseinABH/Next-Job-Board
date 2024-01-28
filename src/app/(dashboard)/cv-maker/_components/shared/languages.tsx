@@ -39,12 +39,12 @@ export default function Languages() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));
   }
-  function handleDeleteLanguage() {
+  function handleDeleteLanguage(language: Language) {
     dispatch(
       ResumeActions.setDeleteAlertData({
         key: 'language',
         title: 'حذف زبان',
-        message: 'آیا از حذف زبان انگلیسی مطمئن هستید؟',
+        message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
         model: {},
       })
     );

@@ -54,12 +54,12 @@ export default function Skills() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'skill'));
   }
-  function handleDeleteSkill() {
+  function handleDeleteSkill(skill: Skill) {
     dispatch(
       ResumeActions.setDeleteAlertData({
         key: 'skill',
         title: 'حذف مهارت',
-        message: 'آیا از حذف مهارت Typescript مطمئن هستید؟',
+        message: `آیا از حذف مهارت ${skill.name} مطمئن هستید؟`,
         model: {},
       })
     );
@@ -80,7 +80,10 @@ export default function Skills() {
               className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
             >
               <div className="flex items-center gap-x-2">
-                <IconButton title="حذف" onClick={handleDeleteSkill}>
+                <IconButton
+                  title="حذف"
+                  onClick={() => handleDeleteSkill(skill)}
+                >
                   <RemoveIcon className="w-4 h-4" />
                 </IconButton>
                 <p className="text-muted-foreground">{skill.name}</p>
