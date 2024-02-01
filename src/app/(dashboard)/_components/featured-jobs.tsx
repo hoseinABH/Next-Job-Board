@@ -23,7 +23,7 @@ export default function FeaturedJobs() {
           ارزش خود را بدانید و شغلی را پیدا کنید که شرایط زندگی شما را فراهم کند
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-8 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-2 mt-10">
         {landingJobs.map((job) => (
           <FeaturedJobCard key={job.title} job={job} />
         ))}

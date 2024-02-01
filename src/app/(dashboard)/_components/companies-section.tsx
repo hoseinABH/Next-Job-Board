@@ -15,7 +15,7 @@ export default function CompaniesSection() {
         </p>
       </div>
       {/* Companies Section */}
-      <div className="grid grid-cols-1 w-full gap-8 mt-10 lg:grid-cols-2">
+      <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
         {landingCompanies.map((company) => (
           <CompanyCard key={company.name} company={company} />
         ))}

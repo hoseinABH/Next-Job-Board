@@ -44,10 +44,8 @@ export default function Header() {
               {renderNavLinks}
             </NavigationDrawer>
           </div>
-          <Link href="/">
-            <Logo />
-          </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <Logo />
+          <nav className="hidden md:flex items-center gap-6 text-sm mr-6">
             {renderNavLinks}
           </nav>
         </div>

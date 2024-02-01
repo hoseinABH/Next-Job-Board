@@ -36,9 +36,7 @@ export default function NavigationDrawer({ children, open, setOpen }: Props) {
           <SheetContent visibleCloseButton={false}>
             <SheetHeader>
               <SheetTitle>
-                <Link href="/" onClick={() => setOpen(false)}>
-                  <Logo />
-                </Link>
+                <Logo onClick={() => setOpen(false)} />
               </SheetTitle>
             </SheetHeader>
             <Separator className="mt-4" />

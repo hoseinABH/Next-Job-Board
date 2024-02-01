@@ -1,21 +1,35 @@
-// UI frameworks
-import { Gem } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 // Utilities
 import { cn } from '@/lib/utils';
+// Config
+import * as configs from '@/config/app';
 
 interface Props {
   className?: string;
+  onClick?: () => void;
 }
-export default function Logo({ className }: Props) {
+export default function Logo({ className, onClick }: Props) {
   return (
-    <div
-      className={cn(
-        'group ml-6 flex items-center w-fit text-nowrap',
-        className
-      )}
-    >
-      <Gem className="w-6 h-6 group-hover:rotate-45 transition-transform" />
-      <span className="font-bold inline-block">[جاب اونجا]</span>
-    </div>
+    <Link href="/">
+      <div
+        className={cn(
+          'group flex items-center w-fit text-nowrap gap-x-2',
+          className
+        )}
+        onClick={onClick}
+      >
+        <Image
+          priority
+          src="/github.webp"
+          width={40}
+          height={40}
+          alt={configs.appData.appName}
+        />
+        <span className="font-bold inline-block">
+          {configs.appData.appName}
+        </span>
+      </div>
+    </Link>
   );
 }
