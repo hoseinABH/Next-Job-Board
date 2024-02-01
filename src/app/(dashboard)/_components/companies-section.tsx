@@ -8,8 +8,7 @@ export default function CompaniesSection() {
     <div className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
         <h1 className="text-2xl  md:text-3xl font-bold mb-4">
-          استخدام شرکت های برتر در{' '}
-          <span className="primary-text-color">{appData.appName}</span>
+          استخدام شرکت های برتر در <span className="">{appData.appName}</span>
         </h1>
         <p className="text-muted-foreground">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده

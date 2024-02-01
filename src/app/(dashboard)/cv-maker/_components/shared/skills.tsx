@@ -88,7 +88,7 @@ export default function Skills() {
                 </IconButton>
                 <p className="text-muted-foreground">{skill.name}</p>
               </div>
-              <Badge variant="gradient">{mapSkillLevel[skill.level]}</Badge>
+              <Badge>{mapSkillLevel[skill.level]}</Badge>
             </div>
           ))}
         </div>

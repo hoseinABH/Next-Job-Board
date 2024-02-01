@@ -69,21 +69,12 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply relative bg-lightGradientBackground dark:bg-darkGradientBackground text-foreground bg-no-repeat bg-top bg-cover;
   }
   .search-input {
     @apply h-12 bg-transparent outline-none border lg:border-none w-full pl-4 pr-10 rounded-xl;
   }
   .right-input-adornment {
     @apply text-muted-foreground w-6 h-6 absolute top-[23%] right-2;
-  }
-  .primary-text-color {
-    @apply text-primary dark:bg-gradient-to-br dark:bg-clip-text dark:text-transparent dark:from-[#FFFF92] dark:to-[#EE8912];
-  }
-  .primary-bg-color {
-    @apply dark:bg-gradient-to-br dark:from-[#FFFF92] dark:to-[#EE8912] bg-primary;
-  }
-  .dark-card-border {
-    @apply transition-all dark:hover:border-[#444];
   }
 }

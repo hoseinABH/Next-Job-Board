@@ -17,7 +17,7 @@ interface Props {
 export default function CompanyCard({ className, company, href = '/' }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('dark-card-border', className)}>
+      <Card className={cn('', className)}>
         <CardContent className="flex flex-col sm:flex-row p-6 justify-between items-center">
           <div className="flex flex-col sm:flex-row items-center gap-x-2">
             <Image
@@ -34,9 +34,7 @@ export default function CompanyCard({ className, company, href = '/' }: Props) {
             </div>
           </div>
           <div className="flex gap-1">
-            <span className="text-xl font-bold primary-text-color">
-              {company.openPosition}
-            </span>{' '}
+            <span className="text-xl font-bold ">{company.openPosition}</span>{' '}
             موقعیت شغلی فعال
           </div>
         </CardContent>

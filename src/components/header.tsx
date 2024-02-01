@@ -26,7 +26,7 @@ export default function Header() {
           key={navItem.id}
           href={navItem.href}
           className={clsx('text-md transition-colors', {
-            ['primary-text-color font-medium']: pathname === navItem.href,
+            [' font-medium']: pathname === navItem.href,
           })}
         >
           {navItem.name}

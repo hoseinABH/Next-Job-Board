@@ -18,9 +18,7 @@ export default function WorkExperienceCard({ experience, onDelete }: Props) {
           <Building2 className="text-muted-foreground" />
         </div>
         <div className="space-y-1">
-          <h6 className="font-semibold text-lg primary-text-color">
-            {experience.position}
-          </h6>
+          <h6 className="font-semibold text-lg ">{experience.position}</h6>
           <p>{experience.company}</p>
           <p className="text-muted-foreground">{experience.location}</p>
           <p className="text-muted-foreground">

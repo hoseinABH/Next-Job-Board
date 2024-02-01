@@ -18,7 +18,7 @@ interface Props {
 export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('relative dark-card-border', className)}>
+      <Card className={cn('relative ', className)}>
         {job.isUrgent ? (
           <Badge variant="destructive" className="absolute top-2 right-2">
             فوری
@@ -32,9 +32,7 @@ export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
             alt={job.company.name!}
           />
           <span className="text-sm mt-4">{job.company.name}</span>
-          <p className="font-semibold primary-text-color text-md">
-            {job.title}
-          </p>
+          <p className="font-semibold  text-md">{job.title}</p>
           <p className="flex items-center text-muted-foreground">
             <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
           </p>

@@ -60,8 +60,7 @@ export default function ContentSidebar({ className }: Props) {
                 ) : null}
                 <span
                   className={cn('-translate-x-0 transition-all duration-300', {
-                    ['-translate-x-2 duration-300 primary-text-color']:
-                      urlHash === section.hash,
+                    ['-translate-x-2 duration-300 ']: urlHash === section.hash,
                   })}
                 >
                   {section.name}
