@@ -35,7 +35,7 @@ export default function Header() {
     [pathname]
   );
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container px-2 sm:px-8 flex justify-between h-14 items-center">
         {/* Right Part */}
         <div className="flex items-center">
