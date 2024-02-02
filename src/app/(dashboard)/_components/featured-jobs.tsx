@@ -3,15 +3,11 @@ import Link from 'next/link';
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
 import { buttonVariants } from '@/components/ui/button';
-// Hooks
-import { useRouter } from 'next/navigation';
 // Configs
 import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 export default function FeaturedJobs() {
-  const router = useRouter();
-
   return (
     <section className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
@@ -25,7 +21,11 @@ export default function FeaturedJobs() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-2 mt-10">
         {landingJobs.map((job) => (
-          <FeaturedJobCard key={job.title} job={job} />
+          <FeaturedJobCard
+            key={job.title}
+            job={job}
+            href={`${Routes.JOBS}/${job.id}`}
+          />
         ))}
       </div>
       <Link
