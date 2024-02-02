@@ -3,13 +3,9 @@ import { Trash2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 // Types
-import type { Education, EducationLevel } from '@/types/resume';
-
-const mapEducationLevel: Record<EducationLevel, string> = {
-  bachelor: 'لیسانس',
-  doctoral: 'دکترا',
-  master: 'فوق لیسانس',
-};
+import type { Education } from '@/types/resume';
+// Constants
+import { mapEducationLevel } from '@/constants';
 
 interface Props {
   education: Education;

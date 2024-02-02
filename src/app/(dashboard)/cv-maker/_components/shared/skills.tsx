@@ -11,15 +11,10 @@ import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
+// Constants
+import { mapSkillLevel } from '@/constants';
 // Types
-import type { Skill, SkillLevel } from '@/types/resume';
-
-const mapSkillLevel: Record<SkillLevel, string> = {
-  mid: 'کارشناس',
-  senior: 'کارشناس ارشد',
-  intern: 'کارآموز',
-  junior: 'تازه کار',
-};
+import type { Skill } from '@/types/resume';
 
 const skills: Skill[] = [
   {

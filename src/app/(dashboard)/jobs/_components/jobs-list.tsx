@@ -19,6 +19,7 @@ import { useAppDispatch } from '@/hooks/store';
 import JobsActions from '@/store/Jobs/jobs.actions';
 // Configs
 import { landingJobs } from '@/config/app';
+import * as Routes from '@/config/routes';
 
 interface Props {
   className?: string;
@@ -46,18 +47,14 @@ export default function JobsList({ className }: Props) {
               <SelectItem value="highest-salary">بیشترین حقوق</SelectItem>
             </SelectContent>
           </Select>
-          <IconButton
-            title="فیلتر"
-            className="flex lg:hidden"
-            onClick={openFilterSheet}
-          >
+          <IconButton className="flex lg:hidden" onClick={openFilterSheet}>
             <SlidersHorizontal />
           </IconButton>
         </div>
       </div>
       <div className="flex flex-col gap-y-4">
         {landingJobs.map((job) => (
-          <JobCard key={job.title} job={job} />
+          <JobCard key={job.id} job={job} href={`${Routes.JOBS}/${job.id}`} />
         ))}
       </div>
     </div>

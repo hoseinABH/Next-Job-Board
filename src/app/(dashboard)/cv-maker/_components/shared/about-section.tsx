@@ -32,7 +32,7 @@ export default function AboutSection() {
             <p className="flex items-center text-muted-foreground">
               توسعه دهنده فرانت اند
             </p>
-            <p className="text-justify text-muted-foreground leading-6 mt-2">
+            <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
               در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد

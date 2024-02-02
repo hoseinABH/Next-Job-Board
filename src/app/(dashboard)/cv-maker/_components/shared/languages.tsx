@@ -11,15 +11,10 @@ import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
+// Constants
+import { mapLanguageLevel } from '@/constants';
 // Types
-import type { Language, LanguageLevel } from '@/types/resume';
-
-const mapLanguageLevel: Record<LanguageLevel, string> = {
-  beginner: 'مبتدی',
-  intermediate: 'متوسط',
-  fluent: 'در حد زبان مادری',
-  expert: 'حرفه ای',
-};
+import type { Language } from '@/types/resume';
 
 const languages: Language[] = [
   {

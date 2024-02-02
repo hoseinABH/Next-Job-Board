@@ -27,6 +27,8 @@ export default function FilterSection({
   className,
   visibleHeader = true,
 }: Props) {
+  const optionLabelClassName =
+    'text-sm w-full font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70';
   return (
     <Card className={cn('', className)}>
       <Maybe condition={visibleHeader}>
@@ -58,12 +60,12 @@ export default function FilterSection({
                       {item.options.map((option) => (
                         <div
                           key={option.id}
-                          className="flex items-center gap-x-2 h-12"
+                          className="flex items-center gap-x-2 h-12 "
                         >
                           <Checkbox id={option.id} />
                           <Label
                             htmlFor={option.id}
-                            className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className={optionLabelClassName}
                           >
                             {option.title}
                           </Label>
@@ -82,7 +84,7 @@ export default function FilterSection({
                         <RadioGroupItem id={option.id} value={option.title} />
                         <Label
                           htmlFor={option.id}
-                          className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className={optionLabelClassName}
                         >
                           {option.title}
                         </Label>
