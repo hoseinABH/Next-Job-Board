@@ -1,6 +1,6 @@
 /**
- * @module Sagas/Resume
- * @desc All resume sagas
+ * @module Sagas/Jobs
+ * @desc All jobs sagas
  */
 
 // Utilities

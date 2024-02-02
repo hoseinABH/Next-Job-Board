@@ -6,3 +6,7 @@ export interface Job {
   company: Partial<Company>;
   isUrgent: boolean;
 }
+
+export type ModalKeys = 'filter';
+
+export type JobsModals = Record<ModalKeys, boolean>;

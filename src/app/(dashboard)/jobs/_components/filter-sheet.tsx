@@ -1,0 +1,45 @@
+'use client';
+// Common components
+import { Button } from '@/components/ui/button';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+} from '@/components/ui/drawer';
+// Hooks
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+// Actions
+import JobsActions from '@/store/Jobs/jobs.actions';
+
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function FilterSheet({ children }: Props) {
+  const dispatch = useAppDispatch();
+  const { modals } = useAppSelector((state) => state.jobs);
+
+  function onOpenChange(open: boolean) {
+    dispatch(JobsActions.setModalOpen(open, 'filter'));
+  }
+  return (
+    <Drawer
+      open={modals.filter}
+      shouldScaleBackground
+      onOpenChange={onOpenChange}
+    >
+      <DrawerContent>
+        <div className="max-h-96 overflow-auto">{children}</div>
+        <DrawerFooter>
+          <Button>اعمال فیلتر</Button>
+          <DrawerClose asChild>
+            <Button variant="outline">انصراف</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}

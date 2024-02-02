@@ -7,6 +7,7 @@ import {
   TooltipTrigger,
 } from './ui/tooltip';
 import { Button, ButtonProps } from './ui/button';
+import Maybe from './maybe';
 
 interface Props extends ButtonProps {
   children: ReactNode;
@@ -27,9 +28,11 @@ export default function IconButton({
             {children}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
-          <p>{title}</p>
-        </TooltipContent>
+        <Maybe condition={Boolean(title)}>
+          <TooltipContent>
+            <p>{title}</p>
+          </TooltipContent>
+        </Maybe>
       </Tooltip>
     </TooltipProvider>
   );

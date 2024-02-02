@@ -1,5 +1,6 @@
 // Local components
 import FilterSection from './_components/filter-section';
+import FilterSheet from './_components/filter-sheet';
 import JobsListSection from './_components/jobs-list';
 // Types
 import type { Metadata } from 'next';
@@ -15,6 +16,9 @@ export default function Jobs() {
         <FilterSection className="hidden lg:block col-span-3 sticky top-[100px] w-[300px] h-fit" />
         <JobsListSection className="flex-1" />
       </div>
+      <FilterSheet>
+        <FilterSection visibleHeader={false} className="my-4 mx-2" />
+      </FilterSheet>
     </section>
   );
 }

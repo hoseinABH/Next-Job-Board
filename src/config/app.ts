@@ -1,6 +1,6 @@
 import * as Routes from './routes';
 import type { Company } from '@/types/company';
-import type { Job } from '@/types/job';
+import type { Job } from '@/types/jobs';
 
 export const appData = {
   appName: 'جاب اونجا',

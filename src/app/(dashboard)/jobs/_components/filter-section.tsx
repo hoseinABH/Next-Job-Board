@@ -21,14 +21,20 @@ import { data } from './filter-data';
 
 interface Props {
   className?: string;
+  visibleHeader?: boolean;
 }
-export default function FilterSection({ className }: Props) {
+export default function FilterSection({
+  className,
+  visibleHeader = true,
+}: Props) {
   return (
     <Card className={cn('', className)}>
-      <CardHeader>
-        <CardTitle className="text-xl font-normal">فیلترها</CardTitle>
-      </CardHeader>
-      <Separator />
+      <Maybe condition={visibleHeader}>
+        <CardHeader>
+          <CardTitle className="text-xl font-normal">فیلترها</CardTitle>
+        </CardHeader>
+        <Separator />
+      </Maybe>
       <CardContent className="p-0">
         <Accordion type="multiple">
           {data.map((item) => (
