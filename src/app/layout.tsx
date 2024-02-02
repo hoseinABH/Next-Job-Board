@@ -6,7 +6,7 @@ import DirectionProvider from '@/providers/direction-provider';
 // Configs
 import * as appConfig from '@/config/app';
 // Types
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 // Styles
 import '@/app/globals.css';
 
@@ -18,6 +18,12 @@ export const metadata: Metadata = {
     default: `${appConfig.appData.appName}`,
   },
   description: `${appConfig.appData.appDescription}`,
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

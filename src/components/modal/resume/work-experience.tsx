@@ -25,7 +25,7 @@ export function WorkExperienceModal() {
   }
   return (
     <Dialog open={modals.workExperience} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen overflow-auto">
+      <DialogContent className="max-w-xl max-h-screen py-12 sm:py-4 overflow-auto">
         <DialogHeader>
           <DialogTitle>سوابق شغلی</DialogTitle>
           <DialogDescription>

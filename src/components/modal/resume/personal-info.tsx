@@ -31,7 +31,7 @@ export function PersonalInfoModal() {
   }
   return (
     <Dialog open={modals.personalInfo} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen overflow-auto">
+      <DialogContent className="max-w-xl max-h-screen py-12 sm:py-4 overflow-auto">
         <DialogHeader>
           <DialogTitle>مشخصات فردی</DialogTitle>
           <DialogDescription>
