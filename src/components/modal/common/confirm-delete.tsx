@@ -29,9 +29,12 @@ export function ConfirmDeleteDialog({ title, children, onSubmit }: Props) {
   function onOpenChange(open: boolean) {
     dispatch(CommonActions.setModalOpen(open, 'confirmDelete'));
   }
+  function dismiss() {
+    dispatch(CommonActions.setModalOpen(false, 'confirmDelete'));
+  }
   return (
     <AlertDialog open={modals.confirmDelete} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
+      <AlertDialogContent onDismiss={dismiss}>
         <AlertDialogHeader>
           <AlertDialogTitle className="flex gap-x-2">
             <XOctagon className="w-6 h-6 text-destructive" />
