@@ -78,3 +78,9 @@
     @apply text-muted-foreground w-6 h-6 absolute top-[23%] right-2;
   }
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
