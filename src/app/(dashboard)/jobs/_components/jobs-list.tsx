@@ -20,6 +20,7 @@ import JobsActions from '@/store/Jobs/jobs.actions';
 // Configs
 import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
+import JobSearch from '@/components/job-search';
 
 interface Props {
   className?: string;
@@ -30,8 +31,8 @@ export default function JobsList({ className }: Props) {
     dispatch(JobsActions.setModalOpen(true, 'filter'));
   }
   return (
-    <div className={cn('', className)}>
-      <div className="flex items-center justify-between mb-6">
+    <div className={cn('space-y-4', className)}>
+      <div className="flex items-center justify-between ">
         <p className="text-muted-foreground hidden sm:block">
           <span className="font-semibold ml-1">{landingJobs.length}</span> فرصت
           کارآموزی یافت شد
@@ -52,6 +53,7 @@ export default function JobsList({ className }: Props) {
           </IconButton>
         </div>
       </div>
+      <JobSearch />
       <div className="flex flex-col gap-y-4">
         {landingJobs.map((job) => (
           <JobCard key={job.id} job={job} href={`${Routes.JOBS}/${job.id}`} />

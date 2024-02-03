@@ -5,9 +5,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
-  DrawerHeader,
 } from '@/components/ui/drawer';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
@@ -26,13 +24,9 @@ export default function FilterSheet({ children }: Props) {
     dispatch(JobsActions.setModalOpen(open, 'filter'));
   }
   return (
-    <Drawer
-      open={modals.filter}
-      shouldScaleBackground
-      onOpenChange={onOpenChange}
-    >
+    <Drawer open={modals.filter} onOpenChange={onOpenChange}>
       <DrawerContent>
-        <div className="max-h-96 overflow-auto">{children}</div>
+        <div className="max-h-[96%] overflow-auto">{children}</div>
         <DrawerFooter>
           <Button>اعمال فیلتر</Button>
           <DrawerClose asChild>

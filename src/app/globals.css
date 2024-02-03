@@ -72,7 +72,7 @@
     @apply relative bg-lightGradientBackground dark:bg-darkGradientBackground text-foreground bg-no-repeat bg-top bg-cover;
   }
   .search-input {
-    @apply h-12 bg-transparent outline-none border lg:border-none w-full pl-4 pr-10 rounded-xl;
+    @apply h-12 bg-transparent outline-none border lg:border-none w-full pl-4 pr-10 rounded-md;
   }
   .right-input-adornment {
     @apply text-muted-foreground w-6 h-6 absolute top-[23%] right-2;
