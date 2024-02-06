@@ -1,5 +1,5 @@
 // UI Frameworks
-import { User, ScanFace } from 'lucide-react';
+import { ScanFace } from 'lucide-react';
 // Common components
 import { AboutMeModal } from '@/components/modal';
 // Local components
@@ -23,22 +23,17 @@ export default function AboutSection() {
         actionType="edit"
         actionHandler={openEditModal}
       >
-        <div className="flex flex-col md:flex-row gap-x-4 items-center md:items-start">
-          <div className="border rounded-full flex justify-center items-center p-8 cursor-pointer transition-all">
-            <User className="text-muted-foreground" />
-          </div>
-          <div className="flex flex-col items-center md:items-start">
-            <p className="text-2xl mb-0">حسین ابوالحسنی</p>
-            <p className="flex items-center text-muted-foreground">
-              توسعه دهنده فرانت اند
-            </p>
-            <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
-              در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
-              نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-            </p>
-          </div>
+        <div className="flex flex-col items-center md:items-start">
+          <p className="text-2xl mb-0">حسین ابوالحسنی</p>
+          <p className="flex items-center text-muted-foreground">
+            توسعه دهنده فرانت اند
+          </p>
+          <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
+            ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+          </p>
         </div>
       </SectionWrapper>
       <AboutMeModal />

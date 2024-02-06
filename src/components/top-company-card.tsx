@@ -13,7 +13,11 @@ interface Props {
   href?: string;
 }
 
-export default function CompanyCard({ className, company, href = '/' }: Props) {
+export default function TopCompanyCard({
+  className,
+  company,
+  href = '/',
+}: Props) {
   return (
     <Link href={href}>
       <Card className={cn('', className)}>

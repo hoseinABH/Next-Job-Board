@@ -145,10 +145,6 @@ export const data = [
     searchable: false,
     options: [
       {
-        id: '1',
-        title: 'همه',
-      },
-      {
         id: '2',
         title: 'کارشناسی',
       },
@@ -410,10 +406,6 @@ export const data = [
     key: 'militaryStatus',
     searchable: false,
     options: [
-      {
-        id: '1',
-        title: 'همه',
-      },
       {
         id: '2',
         title: 'پایان خدمت',

@@ -4,13 +4,8 @@ import { SlidersHorizontal } from 'lucide-react';
 // Common components
 import JobCard from '@/components/job-card';
 import IconButton from '@/components/icon-button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import JobSearch from '@/components/job-search';
+import SelectBox from '@/components/select-box';
 // Utilities
 import { cn } from '@/lib/utils';
 // Hooks
@@ -20,7 +15,6 @@ import JobsActions from '@/store/Jobs/jobs.actions';
 // Configs
 import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
-import JobSearch from '@/components/job-search';
 
 interface Props {
   className?: string;
@@ -38,16 +32,14 @@ export default function JobsList({ className }: Props) {
           کارآموزی یافت شد
         </p>
         <div className="flex w-full sm:w-max items-center gap-x-2">
-          <Select>
-            <SelectTrigger className="flex w-full sm:w-36">
-              <SelectValue placeholder="مرتب سازی" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="most-relevant">مرتبط بودن</SelectItem>
-              <SelectItem value="recent">جدیدترین</SelectItem>
-              <SelectItem value="highest-salary">بیشترین حقوق</SelectItem>
-            </SelectContent>
-          </Select>
+          <SelectBox
+            options={[
+              { title: 'مرتبط ترین', value: 'mostRelevant' },
+              { title: 'جدید ترین', value: 'mostRecent' },
+              { title: 'بالاترین حقوق', value: 'highestSalary' },
+            ]}
+            placeholder="مرتب سازی"
+          />
           <IconButton className="flex lg:hidden" onClick={openFilterSheet}>
             <SlidersHorizontal />
           </IconButton>

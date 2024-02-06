@@ -1,5 +1,5 @@
 // Common components
-import CompanyCard from '@/components/company-card';
+import TopCompanyCard from '@/components/top-company-card';
 // Configs
 import { appData, landingCompanies } from '@/config/app';
 
@@ -17,7 +17,7 @@ export default function CompaniesSection() {
       {/* Companies Section */}
       <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
         {landingCompanies.map((company) => (
-          <CompanyCard key={company.name} company={company} />
+          <TopCompanyCard key={company.name} company={company} />
         ))}
       </div>
     </div>
