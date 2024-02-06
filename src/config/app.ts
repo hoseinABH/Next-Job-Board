@@ -15,8 +15,8 @@ export const navigationLinks = [
   },
   {
     id: 2,
-    name: 'رده‌بندی شرکت‌ها',
-    href: Routes.TOP_COMPANIES,
+    name: 'شرکت‌ها',
+    href: Routes.COMPANIES,
   },
   {
     id: 3,
@@ -122,26 +122,31 @@ export const socials = [
 
 export const landingCompanies: Company[] = [
   {
+    id: '1',
     name: 'ایرانسل',
     location: 'تهران',
     openPosition: 22,
   },
   {
+    id: '2',
     name: 'همراه اول',
     location: 'کرج',
     openPosition: 12,
   },
   {
+    id: '3',
     name: 'اسنپ',
     location: 'تهران',
     openPosition: 12,
   },
   {
+    id: '4',
     name: 'دیجیکالا',
     location: 'تهران',
     openPosition: 28,
   },
   {
+    id: '5',
     name: 'تپسی',
     location: 'تهران',
     openPosition: 8,

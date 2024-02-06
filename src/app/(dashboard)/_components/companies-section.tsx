@@ -1,7 +1,8 @@
 // Common components
-import TopCompanyCard from '@/components/top-company-card';
+import CompanyCard from '@/components/company-card';
 // Configs
 import { appData, landingCompanies } from '@/config/app';
+import * as Routes from '@/config/routes';
 
 export default function CompaniesSection() {
   return (
@@ -17,7 +18,12 @@ export default function CompaniesSection() {
       {/* Companies Section */}
       <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
         {landingCompanies.map((company) => (
-          <TopCompanyCard key={company.name} company={company} />
+          <CompanyCard
+            key={company.id}
+            company={company}
+            href={`${Routes.COMPANIES}/${company.id}`}
+            visibleOpenPositions
+          />
         ))}
       </div>
     </div>
