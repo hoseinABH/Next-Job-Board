@@ -31,8 +31,18 @@ export default function CompanyCard({
             ['justify-center']: !visibleOpenPositions,
           })}
         >
-          <div className="flex flex-col items-center gap-y-4">
-            <Image src="next.svg" width={80} height={80} alt={company.name} />
+          <div
+            className={cn('flex flex-col items-center gap-4', {
+              ['flex-col sm:flex-row']: visibleOpenPositions,
+              ['flex-col']: !visibleOpenPositions,
+            })}
+          >
+            <Image
+              src="/javascript.webp"
+              width={80}
+              height={80}
+              alt={company.name}
+            />
             <div className="my-4 sm:my-0">
               <h4 className="font-semibold mb-2">{company.name}</h4>
               <span className="flex items-center  text-muted-foreground">
