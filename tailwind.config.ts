@@ -54,10 +54,7 @@ const config = {
         },
       },
       backgroundImage: {
-        lightGradientBackground:
-          'linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0) 15.59%),linear-gradient(90.32deg, #fdf5e0 -2.35%, #fff 45.56%, #e2f7f9 99.81%)',
-        darkGradientBackground:
-          'radial-gradient(100% 50% at 50% 0%, rgba(0, 163, 255, 0.13) 0%, rgba(0, 163, 255, 0) 50%, rgba(0, 163, 255, 0) 100%)',
+        gradientBackground: 'var(--gradient-background)',
       },
       borderRadius: {
         lg: 'var(--radius)',
