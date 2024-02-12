@@ -11,7 +11,7 @@ const prefix = createReduxConstant('AUTH');
  * @module AUTH
  * @desc set loading
  */
-export const SET_LOADING = prefix('SET_OPEN_MODAL');
+export const SET_LOADING = prefix('SET_LOADING');
 
 /**
  * @module AUTH
