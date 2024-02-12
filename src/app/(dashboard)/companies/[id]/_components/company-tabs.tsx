@@ -1,6 +1,5 @@
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
-import JobCard from '@/components/job-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { landingJobs } from '@/config/app';
 // Configs
