@@ -1,6 +1,6 @@
 // Local components
 import CompanyHeader from './_components/company-header';
-// import CompanyTabs from './_components/company-tabs';
+import CompanyTabs from './_components/company-tabs';
 // Types
 import type { Metadata } from 'next';
 // Configs
@@ -24,7 +24,7 @@ export default function Company({ params }: Props) {
   return (
     <section className="py-12 space-y-8">
       <CompanyHeader company={company} />
-      {/* <CompanyTabs company={company} /> */}
+      <CompanyTabs company={company} />
     </section>
   );
 }
