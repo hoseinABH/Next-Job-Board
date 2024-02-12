@@ -8,7 +8,7 @@ class AuthenticationProvider extends HttpService {
       suffix: 'auth',
     });
   }
-  public getPersonInfo(data: LoginDto) {
+  public loginWithEmail(data: LoginDto) {
     return this.httpService.post('email/login', data);
   }
 }
