@@ -1,4 +1,5 @@
 'use client';
+import { useMemo } from 'react';
 import Link from 'next/link';
 // UI frameworks
 import { Fingerprint } from 'lucide-react';
@@ -11,21 +12,29 @@ import { useAppSelector } from '@/hooks/store';
 // Configs
 import * as Routes from '@/config/routes';
 
+function giveFirstChar(str: string | undefined) {
+  if (!str) return '';
+  return str.substring(0, 1).toUpperCase();
+}
+
 export default function UserDropDown() {
   const { isLoggedIn, loggedInUserInfo } = useAppSelector(
     (state) => state.user
   );
+  const briefName = useMemo(() => {
+    const left = giveFirstChar(loggedInUserInfo?.firstName);
+    const right = giveFirstChar(loggedInUserInfo?.lastName);
+    return left.concat(right);
+  }, [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]);
   return (
     <>
       <Maybe condition={isLoggedIn}>
         <Avatar>
           <AvatarImage
-            src="https://github.com/shsadcn.png"
+            src="https://github.com/shadcn.png"
             alt={loggedInUserInfo?.firstName}
           />
-          <AvatarFallback>
-            {loggedInUserInfo?.firstName.substring(0, 2)}
-          </AvatarFallback>
+          <AvatarFallback>{briefName}</AvatarFallback>
         </Avatar>
       </Maybe>
       <Maybe condition={!isLoggedIn}>
