@@ -12,8 +12,11 @@ import {
 } from '@/components/ui/form';
 // Utilities
 import { z } from 'zod';
+// Actions
+import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
 import { useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: 'ساختار ایمیل معتبر نیست' }),
@@ -21,6 +24,8 @@ const loginFormSchema = z.object({
 });
 type FormData = typeof loginFormSchema;
 export default function LoginForm() {
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.auth);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -29,9 +34,7 @@ export default function LoginForm() {
     },
   });
   function onSubmit(values: z.infer<FormData>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    dispatch(AuthActions.login(values));
   }
 
   return (
@@ -47,6 +50,7 @@ export default function LoginForm() {
             <FormItem>
               <FormControl>
                 <Input
+                  type="email"
                   dir="ltr"
                   placeholder="ایمیل"
                   className="placeholder:text-right"
@@ -75,7 +79,9 @@ export default function LoginForm() {
             </FormItem>
           )}
         />
-        <Button className="w-full mt-4">ورود به حساب کاربری</Button>
+        <Button className="w-full mt-4" loading={loading.login}>
+          ورود به حساب کاربری
+        </Button>
       </form>
     </Form>
   );

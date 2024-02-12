@@ -14,7 +14,7 @@ const prefix = createReduxConstant('COMMON');
 export const SET_APP_LOADING = prefix('SET_APP_LOADING');
 
 /**
- * @module RESUME
+ * @module COMMON
  * @desc set modals open
  */
 export const SET_OPEN_MODAL = prefix('SET_OPEN_MODAL');

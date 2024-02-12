@@ -9,6 +9,7 @@ import * as appConfig from '@/config/app';
 import type { Metadata, Viewport } from 'next';
 // Styles
 import '@/app/globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const appFont = localFont({ src: 'MorabbaVF.ttf' });
 
@@ -40,7 +41,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <DirectionProvider>
-            <StoreProvider>{children}</StoreProvider>
+            <StoreProvider>
+              {children}
+              <Toaster />
+            </StoreProvider>
           </DirectionProvider>
         </ThemeProvider>
       </body>
