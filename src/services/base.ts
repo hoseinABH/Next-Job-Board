@@ -1,4 +1,6 @@
 import axios from 'axios';
+// Utilities
+import { readToken } from '@/lib/token';
 // Types
 import type { AxiosInstance } from 'axios';
 
@@ -24,6 +26,7 @@ abstract class BaseAPI {
         return status >= 200 && status < 300;
       },
     });
+    this.requestInterceptors();
     this.responseInterceptors();
   }
 
@@ -41,6 +44,20 @@ abstract class BaseAPI {
         }
         return Promise.reject(error);
       }
+    );
+  }
+  private requestInterceptors() {
+    this.httpService.interceptors.request.use(
+      (config) => {
+        if (!config.headers.Authorization) {
+          const token = readToken();
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
     );
   }
 }

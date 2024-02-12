@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 // Config
 import * as configs from '@/config/app';
+import * as Routes from '@/config/routes';
 
 interface Props {
   className?: string;
@@ -11,7 +12,7 @@ interface Props {
 }
 export default function Logo({ className, onClick }: Props) {
   return (
-    <Link href="/">
+    <Link href={Routes.HOME}>
       <div
         className={cn(
           'group flex items-center w-fit text-nowrap gap-x-2',

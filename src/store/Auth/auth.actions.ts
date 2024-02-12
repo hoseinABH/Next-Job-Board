@@ -6,6 +6,7 @@ import * as types from './auth.constants';
 // Types
 import type { Action } from '@/types/store';
 import type { LoadingKeys, LoginDto } from '@/types/auth';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 class Actions {
   /**
@@ -27,12 +28,16 @@ class Actions {
   /**
    * trigger login sagas
    * @param {LoginDto} loginDto
-   * @return {Action<LoginDto>}
+   * @param {AppRouterInstance} router
+   * @return {Action<{loginDto: LoginDto; router: AppRouterInstance}>}
    */
-  public login(loginDto: LoginDto): Action<LoginDto> {
+  public login(
+    loginDto: LoginDto,
+    router: AppRouterInstance
+  ): Action<{ loginDto: LoginDto; router: AppRouterInstance }> {
     return {
       type: types.SAGAS_LOGIN,
-      payload: loginDto,
+      payload: { loginDto, router },
     };
   }
 }

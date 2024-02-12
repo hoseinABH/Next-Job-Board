@@ -1,3 +1,4 @@
+export const HOME = '/';
 export const JOBS = '/jobs';
 export const COMPANIES = '/companies';
 export const CV_MAKER = '/cv-maker';

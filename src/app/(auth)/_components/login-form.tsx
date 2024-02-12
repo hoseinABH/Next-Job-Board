@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
 import { Input } from '@/components/ui/input';
@@ -25,6 +26,7 @@ const loginFormSchema = z.object({
 type FormData = typeof loginFormSchema;
 export default function LoginForm() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { loading } = useAppSelector((state) => state.auth);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(loginFormSchema),
@@ -34,7 +36,7 @@ export default function LoginForm() {
     },
   });
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(AuthActions.login(values));
+    dispatch(AuthActions.login(values, router));
   }
 
   return (
