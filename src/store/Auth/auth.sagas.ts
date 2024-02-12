@@ -6,10 +6,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
 import { storeToken } from '@/lib/token';
+import Database from '@/lib/database';
 // Services
 import AuthenticationService from '@/services/endpoints/authentication';
 // Actions
 import AuthActions from './auth.actions';
+import UserActions from '../User/user.actions';
 // Types
 import type { LoginDto, LoginResponse } from '@/types/auth';
 import type { Action } from '@/types/store';
@@ -30,6 +32,8 @@ function* login(
     );
     if (response.token) {
       storeToken(response.token);
+      Database.store('refreshToken', response.refreshToken);
+      yield put(UserActions.setUserInfo(response.user));
       router.push(Routes.HOME);
     }
   } catch (error) {

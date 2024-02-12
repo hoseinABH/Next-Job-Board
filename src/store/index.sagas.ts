@@ -4,6 +4,7 @@ import CommonSagas from './Common/common.sagas';
 import ResumeSagas from './Resume/resume.sagas';
 import JobsSagas from './Jobs/jobs.sagas';
 import AuthSagas from './Auth/auth.sagas';
+import UserSagas from './User/user.sagas';
 
 /**
  * rootSaga
@@ -15,5 +16,7 @@ export default function* root() {
     fork(ResumeSagas),
     fork(JobsSagas),
     fork(AuthSagas),
+    fork(AuthSagas),
+    fork(UserSagas),
   ]);
 }

@@ -5,7 +5,7 @@ export interface LoginDto {
   password: string;
 }
 
-export interface UserInfo {
+export interface LoggedInUserInfo {
   id: string;
   email: string;
   provider: 'email';
@@ -24,7 +24,7 @@ export interface UserInfo {
 export interface LoginResponse {
   refreshToken: string;
   token: string;
-  user: UserInfo;
+  user: LoggedInUserInfo;
 }
 
 export type LoadingKeys = 'login' | 'register';

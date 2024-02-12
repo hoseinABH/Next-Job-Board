@@ -30,50 +30,19 @@ interface DatabaseProviderOptions {
  *
  * @internal
  * @public
- * @version 1.0.78
  */
 class DatabaseProvider extends CryptoProvider {
-  /**
-   * Decrypted keys
-   *
-   * @default {}
-   * @private
-   */
   private keyToValue = new Map<string, any>();
-  /**
-   * A Dictionary of original keys to their hashed key.
-   *
-   * @default {}
-   * @private
-   */
+
   private keyToHash = new Map<string, string>();
-  /**
-   * Listen to every actions which effect the Database such as
-   * 1. Add a new key
-   * 2. Update a stored key
-   * 3. Remove a Key
-   * 4. Clear all stored keys
-   * 5. Get a key
-   *
-   * @type Map<DatabaseEvents, DatabaseListenerCallback>
-   * @default {}
-   * @private
-   * @version 1.0.81
-   */
+
   private events = new Map<DatabaseEvents, DatabaseListenerCallback>();
+
   private readonly shouldBeHashed: boolean = false;
 
   constructor(options: DatabaseProviderOptions = {}) {
     super();
-
-    /**
-     * Enables the encrypt and decryption process by the Database methods
-     *
-     * @private
-     * @return True or False
-     */
     this.shouldBeHashed = options.enableEncryption ?? false;
-
     if (options.secretKey) {
       this.secretKey = options.secretKey;
     }
@@ -102,10 +71,8 @@ class DatabaseProvider extends CryptoProvider {
         LocalStorage.store(hashKey, hashValue);
       } else {
         this.keyToValue.set(key, value);
-
         LocalStorage.store(key, $value);
       }
-
       this.emit('store', {
         key,
         value,
@@ -183,7 +150,6 @@ class DatabaseProvider extends CryptoProvider {
    */
   public delete(key: string): void {
     this.keyToValue.delete(key);
-
     if (this.shouldBeHashed) {
       const hashedKey = this.getHashedKey(key) ?? this.hashByVId(key);
 
@@ -193,7 +159,6 @@ class DatabaseProvider extends CryptoProvider {
     } else {
       LocalStorage.remove(key);
     }
-
     this.emit('delete', {
       key,
       resolver: 'runtime',
@@ -208,22 +173,6 @@ class DatabaseProvider extends CryptoProvider {
    * @return void
    */
   public clear({ browser }: { browser: boolean } = { browser: true }): void {
-    /**
-     * User's selected language
-     *
-     * @type string
-     */
-    const lang = LocalStorage.read('lang') ?? 'fa';
-    /**
-     * Push notification device identifier that is unique per users and should not be deleted
-     *
-     * @length 36
-     * @type {string | undefined}
-     */
-    const deviceIdentifier = LocalStorage.read('deviceIdentifier');
-    const isExistDeviceIdentifier =
-      deviceIdentifier && deviceIdentifier.length === 36;
-    const ramznamaLoggedInBefore = LocalStorage.read('ramznamaLoggedInBefore');
     // Clear the Local storage
     this.keyToHash.clear();
     this.keyToValue.clear();
@@ -232,19 +181,7 @@ class DatabaseProvider extends CryptoProvider {
       // Clear the Browser Storage
       localStorage.clear();
       sessionStorage.clear();
-
-      if (isExistDeviceIdentifier) {
-        LocalStorage.store('deviceIdentifier', deviceIdentifier);
-      }
-      LocalStorage.store('lang', lang);
-      LocalStorage.store('ramznamaLoggedInBefore', ramznamaLoggedInBefore);
     }
-
-    if (isExistDeviceIdentifier) {
-      this.keyToValue.set('deviceIdentifier', deviceIdentifier);
-    }
-    this.keyToValue.set('lang', lang);
-
     this.emit('clear');
   }
 
@@ -279,11 +216,10 @@ class DatabaseProvider extends CryptoProvider {
   }
 
   /**
-   * Decode and Decrypt localstorage keys by a secure-key that we generated before by {@link uniqueUserIdentification}.
+   * Decode and Decrypt local storage keys by a secure-key that we generated before by {@link uniqueUserIdentification}.
    *
    * @private
    * @param key
-   * @version 1.0.77
    */
   private decodeKey(key: string): DatabaseDecoder | undefined {
     if (this.keyToValue.has(key)) {

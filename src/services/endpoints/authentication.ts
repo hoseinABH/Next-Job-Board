@@ -1,6 +1,6 @@
 import HttpService from '../base';
 // Types
-import type { LoginDto } from '@/types/auth';
+import type { LoginDto, LoginResponse } from '@/types/auth';
 
 class AuthenticationProvider extends HttpService {
   constructor() {
@@ -8,7 +8,7 @@ class AuthenticationProvider extends HttpService {
       suffix: 'auth',
     });
   }
-  public loginWithEmail(data: LoginDto) {
+  public loginWithEmail(data: LoginDto): Promise<LoginResponse> {
     return this.httpService.post('email/login', data);
   }
 }
