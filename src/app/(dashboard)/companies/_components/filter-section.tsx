@@ -34,7 +34,7 @@ export default function FilterSection({ className }: Props) {
               className="min-w-full sm:min-w-fit"
             />
           </div>
-          <Button className="w-full sm:w-auto">جستجو</Button>
+          <Button className="w-full sm:w-auto">جستجو شرکت</Button>
         </form>
       </CardContent>
     </Card>

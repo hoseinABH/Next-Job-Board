@@ -14,7 +14,7 @@ export default function CompaniesList({ className }: Props) {
   return (
     <div
       className={cn(
-        'grid grid-cols-1 sm:grid-cols-2 w-full gap-6 lg:grid-cols-3',
+        'grid grid-cols-1 sm:grid-cols-2 w-full gap-6 lg:grid-cols-4',
         className
       )}
     >
