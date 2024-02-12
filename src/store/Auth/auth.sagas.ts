@@ -34,6 +34,7 @@ function* login(
       storeToken(response.token);
       Database.store('refreshToken', response.refreshToken);
       yield put(UserActions.setUserInfo(response.user));
+      yield put(UserActions.setIsLoggedIn(true));
       router.push(Routes.HOME);
     }
   } catch (error) {

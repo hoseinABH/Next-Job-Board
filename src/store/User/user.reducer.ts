@@ -12,12 +12,15 @@ import type { LoggedInUserInfo } from '@/types/auth';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
+import { readToken } from '@/lib/token';
 
 export interface UserState {
+  isLoggedIn: boolean;
   loggedInUserInfo: Nullable<LoggedInUserInfo>;
 }
 
 export const initialState: UserState = {
+  isLoggedIn: Boolean(readToken()) ?? false,
   loggedInUserInfo: null,
 };
 
@@ -26,6 +29,8 @@ const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_USER_INFO:
       return update({ loggedInUserInfo: action.payload });
+    case types.SET_IS_LOGGED_IN:
+      return update({ isLoggedIn: action.payload });
     case RESET_FACTORY:
       return initialState;
     default:

@@ -59,7 +59,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : 'button';
     const { theme } = useTheme();
     const spinnerColor =
-      theme === 'dark' ? 'hsl(221.2 83.2% 53.3%)' : 'hsl(195, 40%, 98.04%)';
+      theme === 'dark'
+        ? 'hsl(226.67, 77.14%, 6.86%, 0.75)'
+        : 'hsl(195, 40%, 98.04%)';
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}

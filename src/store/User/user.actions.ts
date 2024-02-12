@@ -19,6 +19,17 @@ class Actions {
       payload: userData,
     };
   }
+  /**
+   * set is LoggedIn
+   * @param {boolean} isLoggedIn
+   * @return {Action<boolean>}
+   */
+  public setIsLoggedIn(isLoggedIn: boolean): Action<boolean> {
+    return {
+      type: types.SET_IS_LOGGED_IN,
+      payload: isLoggedIn,
+    };
+  }
 }
 
 const UserActions = new Actions();

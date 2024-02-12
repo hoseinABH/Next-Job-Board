@@ -1,22 +1,25 @@
 'use client';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-// UI frameworks
-import { Fingerprint } from 'lucide-react';
+import dynamic from 'next/dynamic';
 // Common components
 import Logo from './logo';
 import NavigationDrawer from './navigation-drawer';
-import { buttonVariants } from './ui/button';
 // Utilities
 import { clsx } from 'clsx';
 // Hooks
 import { usePathname } from 'next/navigation';
 // Config
 import { navigationLinks } from '@/config/app';
-import * as Routes from '@/config/routes';
+
+/** If we don't do this, we get the following warning:
+ * * Warning: Prop className did not match.
+ */
+const UserDropDown = dynamic(() => import('./user-drop-down'), { ssr: false });
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
   const pathname = usePathname();
   const renderNavLinks = useMemo(
     () =>
@@ -51,10 +54,7 @@ export default function Header() {
         </div>
         {/* Left Part */}
         <div className="flex flex-1 items-center justify-end">
-          <Link href={Routes.LOGIN} className={buttonVariants()}>
-            <Fingerprint className="ml-2 w-4 h-4" />
-            <span>ورود | ثبت نام</span>
-          </Link>
+          <UserDropDown />
         </div>
       </div>
     </header>
