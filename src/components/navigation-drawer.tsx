@@ -1,18 +1,19 @@
 import { Fragment, ReactNode } from 'react';
-import Link from 'next/link';
 // UI frameworks
 import { AlignJustify } from 'lucide-react';
 // Common components
 import Logo from './logo';
+import AppVersion from './app-version';
 import { Button } from './ui/button';
+import { Separator } from './ui/separator';
 import {
   Sheet,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetPortal,
   SheetTitle,
 } from './ui/sheet';
-import { Separator } from './ui/separator';
 
 interface Props {
   children: ReactNode;
@@ -41,6 +42,9 @@ export default function NavigationDrawer({ children, open, setOpen }: Props) {
             </SheetHeader>
             <Separator className="mt-4" />
             <nav className="flex flex-col gap-4 mt-4">{children}</nav>
+            <SheetFooter className="absolute bottom-4">
+              <AppVersion />
+            </SheetFooter>
           </SheetContent>
         </SheetPortal>
       </Sheet>
