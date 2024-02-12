@@ -54,6 +54,7 @@ export default function LoginForm() {
                 <Input
                   type="email"
                   dir="ltr"
+                  autoComplete="username"
                   placeholder="ایمیل"
                   className="placeholder:text-right"
                   {...field}
@@ -72,6 +73,7 @@ export default function LoginForm() {
                 <Input
                   type="password"
                   dir="ltr"
+                  autoComplete="current-password"
                   placeholder="رمز عبور"
                   className="placeholder:text-right"
                   {...field}
