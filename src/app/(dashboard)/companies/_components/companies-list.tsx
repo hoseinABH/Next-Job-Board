@@ -1,3 +1,4 @@
+'use client';
 // Common components
 import CompanyCard from '@/components/company-card';
 // Utilities

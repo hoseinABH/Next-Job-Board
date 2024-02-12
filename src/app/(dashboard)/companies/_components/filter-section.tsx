@@ -1,3 +1,4 @@
+'use client';
 // UI Frameworks
 import { MapPin, Search } from 'lucide-react';
 // Common components
