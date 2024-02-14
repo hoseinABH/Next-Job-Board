@@ -36,7 +36,7 @@ export default function UserDropDown() {
     if (isLoggedIn && !loggedInUserInfo) {
       dispatch(AuthActions.fetchMe());
     }
-  }, []);
+  }, [isLoggedIn]);
   return (
     <>
       {loading.fetchMe ? (
