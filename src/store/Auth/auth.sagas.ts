@@ -13,17 +13,18 @@ import AuthenticationService from '@/services/endpoints/authentication';
 import AuthActions from './auth.actions';
 import UserActions from '../User/user.actions';
 // Types
-import type { LoginDto, LoginResponse } from '@/types/auth';
+import type {
+  LoggedInUserInfo,
+  LoginActionPayload,
+  LoginResponse,
+} from '@/types/auth';
 import type { Action } from '@/types/store';
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 // Constants
 import * as types from './auth.constants';
 import * as Routes from '@/config/routes';
-import { messages } from '@/constants/messages';
+import * as messages from '@/constants/messages';
 
-function* login(
-  action: Action<{ loginDto: LoginDto; router: AppRouterInstance }>
-) {
+function* login(action: Action<LoginActionPayload>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
     const { loginDto, router } = action.payload!;
@@ -47,6 +48,26 @@ function* login(
   }
 }
 
+function* fetchMe() {
+  try {
+    yield put(AuthActions.setLoading(true, 'fetchMe'));
+    const response: LoggedInUserInfo = yield call(() =>
+      AuthenticationService.fetchMe()
+    );
+    yield put(UserActions.setUserInfo(response));
+    yield put(UserActions.setIsLoggedIn(true));
+  } catch (error) {
+    toast({
+      description: messages.fetchDataError,
+    });
+  } finally {
+    yield put(AuthActions.setLoading(false, 'fetchMe'));
+  }
+}
+
 export default function* networkListeners() {
-  yield all([takeLatest(types.SAGAS_LOGIN, login)]);
+  yield all([
+    takeLatest(types.SAGAS_LOGIN, login),
+    takeLatest(types.SAGAS_FETCH_ME, fetchMe),
+  ]);
 }

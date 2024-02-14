@@ -9,21 +9,18 @@ export const appData = {
 
 export const navigationLinks = [
   {
-    id: 1,
     name: 'فرصت‌های شغلی',
     href: Routes.JOBS,
   },
   {
-    id: 2,
     name: 'شرکت‌ها',
     href: Routes.COMPANIES,
   },
   {
-    id: 3,
     name: 'رزومه ساز',
     href: Routes.CV_MAKER,
   },
-] as const;
+];
 
 export const footerLinks = [
   {

@@ -20,6 +20,7 @@ export const initialState: AuthState = {
   loading: {
     login: false,
     register: false,
+    fetchMe: false,
   },
 };
 

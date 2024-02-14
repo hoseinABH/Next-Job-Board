@@ -5,6 +5,7 @@
 import { RESET_FACTORY } from '../index.constants';
 // Utilities
 import { updateState } from '@/lib/store';
+import { readToken } from '@/lib/token';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
@@ -12,7 +13,6 @@ import type { LoggedInUserInfo } from '@/types/auth';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
-import { readToken } from '@/lib/token';
 
 export interface UserState {
   isLoggedIn: boolean;
@@ -20,7 +20,7 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  isLoggedIn: Boolean(readToken()) ?? false,
+  isLoggedIn: false,
   loggedInUserInfo: null,
 };
 

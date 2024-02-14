@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { ThreeDots } from 'react-loader-spinner';
-import { useTheme } from 'next-themes';
+import Spinner from '../spinner';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 select-none',
@@ -57,11 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const Comp = asChild ? Slot : 'button';
-    const { theme } = useTheme();
-    const spinnerColor =
-      theme === 'dark'
-        ? 'hsl(226.67, 77.14%, 6.86%, 0.75)'
-        : 'hsl(195, 40%, 98.04%)';
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
@@ -69,17 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         {...props}
       >
-        {loading ? (
-          <ThreeDots
-            visible={true}
-            height="100%"
-            width={40}
-            radius="9"
-            color={spinnerColor}
-          />
-        ) : (
-          children
-        )}
+        {loading ? <Spinner buttonChild /> : children}
       </Comp>
     );
   }

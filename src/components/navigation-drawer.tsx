@@ -1,9 +1,11 @@
-import { Fragment, ReactNode } from 'react';
+'use client';
+import { Fragment, useState } from 'react';
 // UI frameworks
 import { AlignJustify } from 'lucide-react';
 // Common components
 import Logo from './logo';
 import AppVersion from './app-version';
+import NavigationItems from './navigation-items';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import {
@@ -15,21 +17,21 @@ import {
   SheetTitle,
 } from './ui/sheet';
 
-interface Props {
-  children: ReactNode;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}
-export default function NavigationDrawer({ children, open, setOpen }: Props) {
-  function triggerDrawer() {
-    setOpen(true);
-  }
+export default function NavigationDrawer() {
+  const [open, setOpen] = useState(false);
+
   function openChange(open: boolean) {
     setOpen(open);
   }
+  function openDrawer() {
+    setOpen(true);
+  }
+  function closeDrawer() {
+    setOpen(false);
+  }
   return (
     <Fragment>
-      <Button size="icon" variant="ghost" onClick={triggerDrawer}>
+      <Button size="icon" variant="ghost" onClick={openDrawer}>
         <AlignJustify className="w-4 h-4" />
       </Button>
       <Sheet onOpenChange={openChange} open={open}>
@@ -37,11 +39,14 @@ export default function NavigationDrawer({ children, open, setOpen }: Props) {
           <SheetContent visibleCloseButton={false}>
             <SheetHeader>
               <SheetTitle>
-                <Logo onClick={() => setOpen(false)} />
+                <Logo onClick={closeDrawer} />
               </SheetTitle>
             </SheetHeader>
             <Separator className="mt-4" />
-            <nav className="flex flex-col gap-4 mt-4">{children}</nav>
+            <NavigationItems
+              className="flex flex-col gap-4 mt-4"
+              onSelect={closeDrawer}
+            />
             <SheetFooter className="absolute bottom-4">
               <AppVersion />
             </SheetFooter>

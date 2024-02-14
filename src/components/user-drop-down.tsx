@@ -1,14 +1,19 @@
 'use client';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
 // UI frameworks
 import { Fingerprint } from 'lucide-react';
 // Common components
 import Maybe from './maybe';
+import Spinner from './spinner';
 import { buttonVariants } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+// Utilities
+import { readToken } from '@/lib/token';
+// Actions
+import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
-import { useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Configs
 import * as Routes from '@/config/routes';
 
@@ -18,31 +23,46 @@ function giveFirstChar(str: string | undefined) {
 }
 
 export default function UserDropDown() {
+  const dispatch = useAppDispatch();
   const { isLoggedIn, loggedInUserInfo } = useAppSelector(
     (state) => state.user
   );
+  const { loading } = useAppSelector((state) => state.auth);
   const briefName = useMemo(() => {
     const left = giveFirstChar(loggedInUserInfo?.firstName);
     const right = giveFirstChar(loggedInUserInfo?.lastName);
     return left.concat(right);
   }, [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]);
+
+  useEffect(() => {
+    if (Boolean(readToken())) {
+      dispatch(AuthActions.fetchMe());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
-      <Maybe condition={isLoggedIn}>
-        <Avatar>
-          <AvatarImage
-            src="https://github.com/shadcn.png"
-            alt={loggedInUserInfo?.firstName}
-          />
-          <AvatarFallback>{briefName}</AvatarFallback>
-        </Avatar>
-      </Maybe>
-      <Maybe condition={!isLoggedIn}>
-        <Link href={Routes.LOGIN} className={buttonVariants()}>
-          <Fingerprint className="ml-2 w-4 h-4" />
-          <span>ورود | ثبت نام</span>
-        </Link>
-      </Maybe>
+      {loading.fetchMe ? (
+        <Spinner />
+      ) : (
+        <>
+          <Maybe condition={isLoggedIn}>
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/shadcn.png"
+                alt={loggedInUserInfo?.firstName}
+              />
+              <AvatarFallback>{briefName}</AvatarFallback>
+            </Avatar>
+          </Maybe>
+          <Maybe condition={!isLoggedIn}>
+            <Link href={Routes.LOGIN} className={buttonVariants()}>
+              <Fingerprint className="ml-2 w-4 h-4" />
+              <span>ورود | ثبت نام</span>
+            </Link>
+          </Maybe>
+        </>
+      )}
     </>
   );
 }
