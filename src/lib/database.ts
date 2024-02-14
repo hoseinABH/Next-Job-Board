@@ -316,7 +316,7 @@ class DatabaseProvider extends CryptoProvider {
 
 const Database = new DatabaseProvider({
   enableEncryption: isProduction(),
+  secretKey: process.env.AUTH_SECRET,
 });
-
 export default Database;
 export { DatabaseProvider };

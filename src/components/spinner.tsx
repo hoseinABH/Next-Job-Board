@@ -9,12 +9,12 @@ interface Props {
 }
 export type Theme = 'dark' | 'light';
 const mapThemeToButtonSpinnerColor: Record<Theme, string> = {
-  dark: 'hsl(226.67, 77.14%, 6.86%, 0.75)',
-  light: 'hsl(195, 40%, 98.04%)',
+  dark: 'black',
+  light: 'white',
 };
 const mapThemeToSpinnerColor: Record<Theme, string> = {
-  dark: 'hsl(195, 40%, 98.04%)',
-  light: 'hsl(226.67, 77.14%, 6.86%, 0.75)',
+  dark: 'white',
+  light: 'black',
 };
 
 export default function Spinner({ buttonChild = false }: Props) {

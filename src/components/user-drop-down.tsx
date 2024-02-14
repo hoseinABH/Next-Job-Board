@@ -8,8 +8,6 @@ import Maybe from './maybe';
 import Spinner from './spinner';
 import { buttonVariants } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-// Utilities
-import { readToken } from '@/lib/token';
 // Actions
 import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
@@ -35,8 +33,7 @@ export default function UserDropDown() {
   }, [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]);
 
   useEffect(() => {
-    console.log(readToken());
-    if (Boolean(readToken())) {
+    if (isLoggedIn && !loggedInUserInfo) {
       dispatch(AuthActions.fetchMe());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,14 +6,17 @@ import * as types from './user.constants';
 // Types
 import type { Action } from '@/types/store';
 import type { LoggedInUserInfo } from '@/types/auth';
+import type { Nullable } from '@/types/common';
 
 class Actions {
   /**
    * set loggedIn user info
-   * @param {LoggedInUserInfo} userData
-   * @return {Action<LoggedInUserInfo>}
+   * @param {Nullable<LoggedInUserInfo>} userData
+   * @return {Action<Nullable<LoggedInUserInfo>>}
    */
-  public setUserInfo(userData: LoggedInUserInfo): Action<LoggedInUserInfo> {
+  public setUserInfo(
+    userData: Nullable<LoggedInUserInfo>
+  ): Action<Nullable<LoggedInUserInfo>> {
     return {
       type: types.SET_USER_INFO,
       payload: userData,

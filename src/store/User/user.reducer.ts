@@ -20,7 +20,7 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  isLoggedIn: false,
+  isLoggedIn: Boolean(readToken()) ?? false,
   loggedInUserInfo: null,
 };
 

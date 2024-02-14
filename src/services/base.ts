@@ -1,6 +1,7 @@
 import axios from 'axios';
 // Utilities
-import { readToken } from '@/lib/token';
+import { readToken, removeToken } from '@/lib/token';
+import Database from '@/lib/database';
 // Types
 import type { AxiosInstance } from 'axios';
 
@@ -37,6 +38,10 @@ abstract class BaseAPI {
         if (Number(error.response.status) >= 500) {
           const serverErrorEvent = new Event('serverError');
           window.dispatchEvent(serverErrorEvent);
+        }
+        if (error.response.status === 401 && readToken()) {
+          Database.delete('refreshToken');
+          removeToken();
         }
         if (error.code === 'ECONNABORTED') {
           const timeoutErrorEvent = new Event('timeoutError');

@@ -5,7 +5,7 @@
 // Utilities
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
-import { storeToken } from '@/lib/token';
+import { removeToken, storeToken } from '@/lib/token';
 import Database from '@/lib/database';
 // Services
 import AuthenticationService from '@/services/endpoints/authentication';
@@ -60,9 +60,17 @@ function* fetchMe() {
     toast({
       description: messages.fetchDataError,
     });
+    call(logout);
   } finally {
     yield put(AuthActions.setLoading(false, 'fetchMe'));
   }
+}
+
+function* logout() {
+  Database.delete('refreshToken');
+  removeToken();
+  yield put(UserActions.setIsLoggedIn(false));
+  yield put(UserActions.setUserInfo(null));
 }
 
 export default function* networkListeners() {
