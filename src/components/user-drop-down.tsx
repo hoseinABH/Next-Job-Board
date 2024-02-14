@@ -35,6 +35,7 @@ export default function UserDropDown() {
   }, [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]);
 
   useEffect(() => {
+    console.log(readToken());
     if (Boolean(readToken())) {
       dispatch(AuthActions.fetchMe());
     }
