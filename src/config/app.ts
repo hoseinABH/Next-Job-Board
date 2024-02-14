@@ -3,8 +3,8 @@ import type { Company } from '@/types/company';
 import type { Job } from '@/types/jobs';
 
 export const appData = {
-  appName: 'جاب اونجا',
-  appDescription: 'جاب اونجا بهترین راه ارتباطی کارجویان و کارفرمایان',
+  appName: 'اسم اپلیکیشن',
+  appDescription: 'اسم اپلیکیشن بهترین راه ارتباطی کارجویان و کارفرمایان',
 };
 
 export const navigationLinks = [
