@@ -3,13 +3,14 @@ import localFont from 'next/font/local';
 import StoreProvider from '@/providers/store-provider';
 import ThemeProvider from '@/providers/theme-provider';
 import DirectionProvider from '@/providers/direction-provider';
+// Common components
+import { Toaster } from '@/components/ui/toaster';
 // Configs
 import * as appConfig from '@/config/app';
 // Types
 import type { Metadata, Viewport } from 'next';
 // Styles
 import '@/app/globals.css';
-import { Toaster } from '@/components/ui/toaster';
 
 const appFont = localFont({ src: 'MorabbaVF.ttf' });
 

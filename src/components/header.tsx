@@ -7,7 +7,7 @@ import NavigationItems from './navigation-items';
 /** If we don't do this, we get the following warning:
  * * Warning: Prop className did not match.
  */
-const UserDropDown = dynamic(() => import('./user-drop-down'));
+const UserDropDown = dynamic(() => import('./user-drop-down') , {ssr:false});
 
 export default function Header() {
   return (

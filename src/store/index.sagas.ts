@@ -16,7 +16,6 @@ export default function* root() {
     fork(ResumeSagas),
     fork(JobsSagas),
     fork(AuthSagas),
-    fork(AuthSagas),
     fork(UserSagas),
   ]);
 }
