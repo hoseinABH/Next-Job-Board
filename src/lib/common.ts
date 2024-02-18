@@ -12,3 +12,7 @@ export function isBoolean(value: any) {
 export function isNumber(value: any) {
   return typeof value === 'number' && !isNaN(Number(value));
 }
+
+export function isServer() {
+  return typeof window === 'undefined';
+}
