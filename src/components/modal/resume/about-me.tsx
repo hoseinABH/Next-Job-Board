@@ -69,6 +69,7 @@ export function AboutMeModal() {
   }
   function onOpenChange(open: boolean) {
     dispatch(ResumeActions.setModalOpen(open, 'aboutMe'));
+    form.reset();
   }
 
   return (

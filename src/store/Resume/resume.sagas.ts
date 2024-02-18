@@ -32,6 +32,7 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
         description: 'مشخصات شخصی با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'aboutMe'));
+      yield put(ResumeActions.setModalOpen(false, 'personalInfo'));
     }
   } catch (error) {
     toast({

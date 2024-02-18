@@ -51,8 +51,6 @@ export interface DeleteAlertData {
   model: unknown;
 }
 
-///
-
 export type MaritalStatus = 'single' | 'married' | 'unknown';
 export type Gender = 'female' | 'male' | 'other';
 export type MilitaryStatus =
