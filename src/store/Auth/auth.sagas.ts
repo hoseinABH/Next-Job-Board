@@ -62,7 +62,6 @@ function* fetchMe() {
     toast({
       description: messages.fetchDataError,
     });
-    call(logout);
   } finally {
     yield put(AuthActions.setLoading(false, 'fetchMe'));
   }

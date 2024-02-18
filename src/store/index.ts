@@ -7,6 +7,8 @@ import sagas from './index.sagas';
 import middlewares, { sagaMiddleware } from './index.middleware';
 // Utilities
 import { isDevelopment } from '@/lib/env';
+// Actions
+import AuthActions from './Auth/auth.actions';
 
 /**
  * Running redux-devtools composer or if it doesn't installed on user's browser then we will use redux native composer function
@@ -24,6 +26,10 @@ const appStore = createStore(
 );
 // Run redux-saga middleware and apply all forked sagas that we have created
 sagaMiddleware.run(sagas);
+
+window.addEventListener('unauthorizedError', () => {
+  appStore.dispatch(AuthActions.logout());
+});
 
 export default appStore;
 
