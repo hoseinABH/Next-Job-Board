@@ -46,7 +46,7 @@ export default function JobsList({ className }: Props) {
         </div>
       </div>
       <JobSearch />
-      <div className="flex flex-col gap-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {landingJobs.map((job) => (
           <JobCard key={job.id} job={job} href={`${Routes.JOBS}/${job.id}`} />
         ))}
