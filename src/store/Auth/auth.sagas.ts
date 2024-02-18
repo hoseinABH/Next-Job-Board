@@ -19,6 +19,7 @@ import type {
   LoginResponse,
 } from '@/types/auth';
 import type { Action } from '@/types/store';
+import type { BaseApiResponse } from '@/types/http';
 // Constants
 import * as types from './auth.constants';
 import * as Routes from '@/config/routes';
@@ -28,13 +29,13 @@ function* login(action: Action<LoginActionPayload>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
     const { loginDto, router } = action.payload!;
-    const response: LoginResponse = yield call(() =>
+    const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.loginWithEmail(loginDto)
     );
-    if (response.token) {
-      storeToken(response.token);
-      Database.store('refreshToken', response.refreshToken);
-      yield put(UserActions.setUserInfo(response.user));
+    if (response.data) {
+      storeToken(response.data.token);
+      Database.store('refreshToken', response.data.refreshToken);
+      yield put(UserActions.setUserInfo(response.data.user));
       yield put(UserActions.setIsLoggedIn(true));
       router.push(Routes.HOME);
     }
