@@ -8,35 +8,71 @@ import Maybe from './maybe';
 import Spinner from './spinner';
 import { buttonVariants } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
 // Actions
 import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useRouter } from 'next/navigation';
 // Configs
 import * as Routes from '@/config/routes';
 
-function giveFirstChar(str: string | undefined) {
-  if (!str) return '';
-  return str.substring(0, 1).toUpperCase();
-}
+const userMenuItems = [
+  {
+    title: 'درخواست های من',
+    key: 'ApplicationRequest',
+  },
+  {
+    title: 'حساب کاربری',
+    key: 'Account',
+  },
+  {
+    title: 'رزومه من',
+    key: 'Resume',
+  },
+  {
+    title: 'خروج',
+    key: 'Logout',
+  },
+];
 
 export default function UserDropDown() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { isLoggedIn, loggedInUserInfo } = useAppSelector(
     (state) => state.user
   );
   const { loading } = useAppSelector((state) => state.auth);
-  const briefName = useMemo(() => {
-    const left = giveFirstChar(loggedInUserInfo?.firstName);
-    const right = giveFirstChar(loggedInUserInfo?.lastName);
-    return left.concat(right);
-  }, [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]);
+  const fullName = useMemo(
+    () => `${loggedInUserInfo?.firstName} ${loggedInUserInfo?.lastName}`,
+    [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]
+  );
+
+  function handleSelectMenu(menuKey: string) {
+    switch (menuKey) {
+      case 'Resume':
+        router.push(Routes.CV_MAKER);
+        break;
+      case 'Logout':
+        dispatch(AuthActions.logout());
+        break;
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     if (isLoggedIn && !loggedInUserInfo) {
       dispatch(AuthActions.fetchMe());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
+
   return (
     <>
       {loading.fetchMe ? (
@@ -44,13 +80,26 @@ export default function UserDropDown() {
       ) : (
         <>
           <Maybe condition={isLoggedIn}>
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/shadcn.png"
-                alt={loggedInUserInfo?.firstName}
-              />
-              <AvatarFallback>{briefName}</AvatarFallback>
-            </Avatar>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-x-2 outline-none">
+                <Avatar>
+                  <AvatarImage src="/" alt={fullName} />
+                  <AvatarFallback>{fullName[0]}</AvatarFallback>
+                </Avatar>
+                {fullName}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {userMenuItems.map((menu) => (
+                  <DropdownMenuItem
+                    key={menu.key}
+                    onClick={() => handleSelectMenu(menu.key)}
+                    className="cursor-pointer"
+                  >
+                    {menu.title}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </Maybe>
           <Maybe condition={!isLoggedIn}>
             <Link href={Routes.LOGIN} className={buttonVariants()}>

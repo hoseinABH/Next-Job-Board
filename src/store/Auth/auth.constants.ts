@@ -24,3 +24,9 @@ export const SAGAS_LOGIN = prefix('SAGAS_LOGIN');
  * @desc fetch logged in user information
  */
 export const SAGAS_FETCH_ME = prefix('SAGAS_FETCH_ME');
+
+/**
+ * @module AUTH
+ * @desc logout user
+ */
+export const SAGAS_LOGOUT = prefix('SAGAS_LOGOUT');

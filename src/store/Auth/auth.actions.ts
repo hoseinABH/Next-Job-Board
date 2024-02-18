@@ -50,6 +50,15 @@ class Actions {
       type: types.SAGAS_FETCH_ME,
     };
   }
+  /**
+   * logging out user
+   * @return {Action}
+   */
+  public logout(): Action {
+    return {
+      type: types.SAGAS_LOGOUT,
+    };
+  }
 }
 
 const AuthActions = new Actions();

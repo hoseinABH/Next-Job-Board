@@ -52,10 +52,11 @@ function* login(action: Action<LoginActionPayload>) {
 function* fetchMe() {
   try {
     yield put(AuthActions.setLoading(true, 'fetchMe'));
-    const response: LoggedInUserInfo = yield call(() =>
+    const response: BaseApiResponse<LoggedInUserInfo> = yield call(() =>
       AuthenticationService.fetchMe()
     );
-    yield put(UserActions.setUserInfo(response));
+    if (!response.data) return;
+    yield put(UserActions.setUserInfo(response.data));
     yield put(UserActions.setIsLoggedIn(true));
   } catch (error) {
     toast({
@@ -78,5 +79,6 @@ export default function* networkListeners() {
   yield all([
     takeLatest(types.SAGAS_LOGIN, login),
     takeLatest(types.SAGAS_FETCH_ME, fetchMe),
+    takeLatest(types.SAGAS_LOGOUT, logout),
   ]);
 }
