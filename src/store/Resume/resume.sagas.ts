@@ -11,7 +11,7 @@ import ResumeService from '@/services/endpoints/resume';
 // Actions
 import ResumeActions from './resume.actions';
 // Types
-import type { UpdatePersonalDto } from '@/types/resume';
+import type { CreateExperienceDto, UpdatePersonalDto } from '@/types/resume';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
 // Constants
@@ -43,7 +43,34 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
     yield put(ResumeActions.setLoading(false, 'updatePersonal'));
   }
 }
+function* createExperience(action: Action<CreateExperienceDto>) {
+  try {
+    yield put(ResumeActions.setLoading(true, 'createExperience'));
+    const experience = action.payload!;
+    const response: BaseApiResponse<unknown> = yield call(() =>
+      ResumeService.createExperience(experience)
+    );
+    if (response.message === 'Success') {
+      console.log({ experience });
+      toast({
+        variant: 'success',
+        description: 'سابقه شغلی با موفقیت ثبت شد',
+      });
+      yield put(ResumeActions.setModalOpen(false, 'workExperience'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'createExperience'));
+  }
+}
 
 export default function* networkListeners() {
-  yield all([takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo)]);
+  yield all([
+    takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo),
+    takeLatest(types.SAGAS_CREATE_EXPERIENCE, createExperience),
+  ]);
 }

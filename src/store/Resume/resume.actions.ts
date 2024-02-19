@@ -6,6 +6,7 @@ import * as types from './resume.constants';
 // Types
 import type { Action } from '@/types/store';
 import type {
+  CreateExperienceDto,
   DeleteAlertData,
   LoadingKeys,
   ModalKeys,
@@ -64,6 +65,19 @@ class Actions {
   ): Action<UpdatePersonalDto> {
     return {
       type: types.SAGAS_UPDATE_PERSONAL,
+      payload: data,
+    };
+  }
+  /**
+   * create a work experience
+   * @param {CreateExperienceDto} data
+   * @return {Action<CreateExperienceDto>}
+   */
+  public createExperience(
+    data: CreateExperienceDto
+  ): Action<CreateExperienceDto> {
+    return {
+      type: types.SAGAS_CREATE_EXPERIENCE,
       payload: data,
     };
   }

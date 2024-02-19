@@ -30,3 +30,9 @@ export const SET_DELETE_DATA = prefix('SET_DELETE_DATA');
  * @desc update personal user info
  */
 export const SAGAS_UPDATE_PERSONAL = prefix('SAGAS_UPDATE_PERSONAL');
+
+/**
+ * @module RESUME
+ * @desc create a work experience
+ */
+export const SAGAS_CREATE_EXPERIENCE = prefix('SAGAS_CREATE_EXPERIENCE');

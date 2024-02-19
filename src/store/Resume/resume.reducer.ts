@@ -26,6 +26,7 @@ export interface ResumeState {
 export const initialState: ResumeState = {
   loading: {
     updatePersonal: false,
+    createExperience: false,
   },
   modals: {
     aboutMe: false,
