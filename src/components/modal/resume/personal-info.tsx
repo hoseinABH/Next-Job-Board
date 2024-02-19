@@ -83,7 +83,7 @@ export function PersonalInfoModal() {
   }
   return (
     <Dialog open={modals.personalInfo} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen py-12 sm:py-4 overflow-auto">
+      <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">
         <DialogHeader>
           <DialogTitle>مشخصات فردی</DialogTitle>
           <DialogDescription>
@@ -128,7 +128,7 @@ export function PersonalInfoModal() {
               control={form.control}
               name="birthDate"
               label="تاریخ تولد"
-              inputProps={{ dir: 'ltr' }}
+              inputProps={{ dir: 'ltr', type: 'date' }}
             />
             <ControlledInput
               control={form.control}

@@ -32,7 +32,7 @@ export function EducationModal() {
   }
   return (
     <Dialog open={modals.education} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen py-12 sm:py-4 overflow-auto">
+      <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">
         <DialogHeader>
           <DialogTitle>سوابق تحصیلی</DialogTitle>
           <DialogDescription>
