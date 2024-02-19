@@ -8,30 +8,46 @@ import {
   FormMessage,
 } from './ui/form';
 import { Input, InputProps } from './ui/input';
+import { Textarea } from './ui/textarea';
 // Types
 import type { Control, FieldValues, Path } from 'react-hook-form';
 
-interface Props<TFieldValues extends FieldValues, TContext> {
+interface Props<TFieldProps, TFieldValues extends FieldValues, TContext> {
+  inputProps?: TFieldProps;
   control: Control<TFieldValues, TContext>;
   name: Path<TFieldValues>;
   label?: string;
-  inputProps?: InputProps;
+  className?: string;
+  isTextArea?: boolean;
 }
+
 export default function ControlledInput<
+  TFieldProps = InputProps,
   TFieldValues extends FieldValues = FieldValues,
   TContext = any
->({ control, name, label, inputProps }: Props<TFieldValues, TContext>) {
+>({
+  inputProps,
+  control,
+  name,
+  label,
+  className,
+  isTextArea = false,
+}: Props<TFieldProps, TFieldValues, TContext>) {
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={className}>
           <Maybe condition={!!label}>
             <FormLabel>{label}</FormLabel>
           </Maybe>
           <FormControl>
-            <Input {...inputProps} {...field} />
+            {!isTextArea ? (
+              <Input {...inputProps} {...field} />
+            ) : (
+              <Textarea {...inputProps} {...field} />
+            )}
           </FormControl>
           <FormMessage />
         </FormItem>
