@@ -27,11 +27,10 @@ export interface Skill {
   name: string;
   level: SkillLevel;
 }
-export type LanguageLevel = 'beginner' | 'intermediate' | 'expert' | 'fluent';
 export interface Language {
   id: number;
   name: string;
-  level: LanguageLevel;
+  level: SeniorityLevel;
 }
 export type ModalKeys =
   | 'aboutMe'
@@ -73,3 +72,31 @@ export interface UpdatePersonalDto {
   phone: string;
   aboutMe: string;
 }
+
+export interface CreateEducationDto {
+  institution: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface CreateExperienceDto {
+  companyName: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  isCurrent: boolean;
+}
+
+export type SeniorityLevel =
+  | 'Beginner'
+  | 'Intermediate'
+  | 'Advanced'
+  | 'Expert';
+
+export interface CreateLanguageDto {
+  name: string;
+  level: SeniorityLevel;
+}
+export interface CreateSkillDto extends CreateLanguageDto {}

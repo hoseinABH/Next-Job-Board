@@ -20,12 +20,12 @@ const languages: Language[] = [
   {
     id: 1,
     name: 'فارسی',
-    level: 'fluent',
+    level: 'Expert',
   },
   {
     id: 2,
     name: 'انگلیسی',
-    level: 'expert',
+    level: 'Advanced',
   },
 ];
 

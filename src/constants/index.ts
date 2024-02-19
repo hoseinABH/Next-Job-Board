@@ -1,4 +1,8 @@
-import type { EducationLevel, LanguageLevel, SkillLevel } from '@/types/resume';
+import type {
+  EducationLevel,
+  SeniorityLevel,
+  SkillLevel,
+} from '@/types/resume';
 
 export const mapEducationLevel: Record<EducationLevel, string> = {
   bachelor: 'کارشناسی',
@@ -6,11 +10,11 @@ export const mapEducationLevel: Record<EducationLevel, string> = {
   master: 'کارشناسی‌ارشد',
 };
 
-export const mapLanguageLevel: Record<LanguageLevel, string> = {
-  beginner: 'مبتدی',
-  intermediate: 'متوسط',
-  fluent: 'در حد زبان مادری',
-  expert: 'حرفه ای',
+export const mapLanguageLevel: Record<SeniorityLevel, string> = {
+  Beginner: 'مبتدی',
+  Intermediate: 'متوسط',
+  Expert: 'در حد زبان مادری',
+  Advanced: 'حرفه ای',
 };
 
 export const mapSkillLevel: Record<SkillLevel, string> = {
