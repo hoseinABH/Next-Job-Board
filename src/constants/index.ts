@@ -1,5 +1,6 @@
 import type {
   EducationLevel,
+  MilitaryStatus,
   SeniorityLevel,
   SkillLevel,
 } from '@/types/resume';
@@ -23,3 +24,30 @@ export const mapSkillLevel: Record<SkillLevel, string> = {
   intern: 'کارآموز',
   junior: 'تازه کار',
 };
+
+interface MilitaryStatusOption {
+  value: MilitaryStatus;
+  title: string;
+}
+export const militaryStatusOptions: MilitaryStatusOption[] = [
+  {
+    value: 'EducationalExemption',
+    title: 'معافیت تحصیلی',
+  },
+  {
+    value: 'ActiveService',
+    title: 'درحال انجام',
+  },
+  {
+    value: 'ExemptionCard',
+    title: 'معافیت دائم',
+  },
+  {
+    value: 'ServiceCompletionCard',
+    title: 'پایان خدمت',
+  },
+  {
+    value: 'Absent',
+    title: 'غایب',
+  },
+];

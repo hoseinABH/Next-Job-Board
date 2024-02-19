@@ -36,19 +36,20 @@ import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
 // Types
 import type { UpdatePersonalDto } from '@/types/resume';
+// Constants
+import { militaryStatusOptions } from '@/constants';
 
 const personalInfoFormSchema = z.object({
-  firstName: z.string({ required_error: 'نام را وارد کنید' }),
-  lastName: z.string({ required_error: 'نام خانوادگی را وارد کنید' }),
-  maritalStatus: z.enum(['single', 'married', ''], {
+  firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
+  lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
+  maritalStatus: z.enum(['single', 'married'], {
     required_error: 'وضعیت تاهل را وارد کنید',
   }),
-  gender: z.enum(['female', 'male', ''], {
+  gender: z.enum(['female', 'male'], {
     required_error: 'جنسیت را وارد کنید',
   }),
   militaryStatus: z.enum(
     [
-      '',
       'EducationalExemption',
       'ActiveService',
       'ExemptionCard',
@@ -59,9 +60,9 @@ const personalInfoFormSchema = z.object({
       required_error: 'وضعیت خدمت را وارد کنید',
     }
   ),
-  address: z.string({ required_error: 'محل سکونت را وارد کنید' }),
-  birthDate: z.string({ required_error: 'تاریخ تولد را وارد کنید' }),
-  phone: z.string({ required_error: 'شماره موبایل را وارد کنید' }),
+  address: z.string().min(1, { message: 'محل سکونت را وارد کنید' }),
+  birthDate: z.string().min(1, { message: 'تاریخ تولد را وارد کنید' }),
+  phone: z.string().min(1, { message: 'شماره موبایل را وارد کنید' }),
 });
 
 type FormData = typeof personalInfoFormSchema;
@@ -74,9 +75,6 @@ export function PersonalInfoModal() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      maritalStatus: '',
-      gender: '',
-      militaryStatus: 'EducationalExemption',
       address: '',
       birthDate: '',
       phone: '',
@@ -226,19 +224,34 @@ export function PersonalInfoModal() {
                 </FormItem>
               )}
             />
-            <div className="space-y-2">
-              <Label htmlFor="militaryService">وضعیت خدمت</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue id="militaryService" placeholder="وضعیت خدمت" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="done">تمام شده</SelectItem>
-                  <SelectItem value="notDoneYet">هنوز انجام نشده</SelectItem>
-                  <SelectItem value="exempt">معاف</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            <FormField
+              control={form.control}
+              name="militaryStatus"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>وضعیت خدمت</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="وضعیت خدمت" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {militaryStatusOptions.map((status) => (
+                        <SelectItem key={status.value} value={status.value}>
+                          {status.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="phone"
