@@ -121,6 +121,17 @@ class Actions {
       payload: skill,
     };
   }
+  /**
+   * remove a field
+   * @param {string} id
+   * @return {Action<string>}
+   */
+  public removeField(id: string): Action<string> {
+    return {
+      type: types.SAGAS_REMOVE_RESUME_FIELD,
+      payload: id,
+    };
+  }
 }
 
 const ResumeActions = new Actions();

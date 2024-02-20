@@ -52,3 +52,8 @@ export const SAGAS_CREATE_LANGUAGE = prefix('SAGAS_CREATE_LANGUAGE');
  * @desc create a skill
  */
 export const SAGAS_CREATE_SKILL = prefix('SAGAS_CREATE_SKILL');
+/**
+ * @module RESUME
+ * @desc remove a field
+ */
+export const SAGAS_REMOVE_RESUME_FIELD = prefix('SAGAS_REMOVE_RESUME_FIELD');

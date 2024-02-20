@@ -18,12 +18,12 @@ import type { Language } from '@/types/resume';
 
 const languages: Language[] = [
   {
-    id: 1,
+    id: '1',
     name: 'فارسی',
     level: 'Expert',
   },
   {
-    id: 2,
+    id: '2',
     name: 'انگلیسی',
     level: 'Advanced',
   },
@@ -40,7 +40,10 @@ export default function Languages() {
         key: 'language',
         title: 'حذف زبان',
         message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
-        model: {},
+        model: {
+          id: language.id,
+          entity: 'language',
+        },
       })
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));

@@ -20,16 +20,24 @@ import type { AlertDialogProps } from '@radix-ui/react-alert-dialog';
 
 interface Props extends AlertDialogProps {
   title?: string;
+  loading?: boolean;
   children: string;
   onSubmit: () => void;
 }
-export function ConfirmDeleteDialog({ title, children, onSubmit }: Props) {
+export function ConfirmDeleteDialog({
+  title,
+  children,
+  loading = false,
+  onSubmit,
+}: Props) {
   const dispatch = useAppDispatch();
   const { modals } = useAppSelector((state) => state.common);
   function onOpenChange(open: boolean) {
+    if (loading) return;
     dispatch(CommonActions.setModalOpen(open, 'confirmDelete'));
   }
   function dismiss() {
+    if (loading) return;
     dispatch(CommonActions.setModalOpen(false, 'confirmDelete'));
   }
   return (
@@ -45,10 +53,10 @@ export function ConfirmDeleteDialog({ title, children, onSubmit }: Props) {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button variant="destructive" onClick={onSubmit}>
+          <Button variant="destructive" loading={loading} onClick={onSubmit}>
             حذف
           </Button>
-          <AlertDialogCancel>انصراف</AlertDialogCancel>
+          <AlertDialogCancel disabled={loading}>انصراف</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

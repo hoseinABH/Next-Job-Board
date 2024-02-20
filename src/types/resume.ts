@@ -1,5 +1,5 @@
 export interface WorkExperience {
-  id: number;
+  id: string;
   position: string;
   company: string;
   location: string;
@@ -10,7 +10,7 @@ export interface WorkExperience {
   description: string;
 }
 export interface Education {
-  id: number;
+  id: string;
   school: string;
   field: string;
   location: string;
@@ -22,12 +22,12 @@ export interface Education {
 }
 export type SkillLevel = 'mid' | 'junior' | 'intern' | 'senior';
 export interface Skill {
-  id: number;
+  id: string;
   name: string;
   level: SkillLevel;
 }
 export interface Language {
-  id: number;
+  id: string;
   name: string;
   level: LanguageLevel;
 }
@@ -44,14 +44,18 @@ export type LoadingKeys =
   | 'createExperience'
   | 'createEducation'
   | 'createLanguage'
-  | 'createSkill';
+  | 'createSkill'
+  | 'removeEntity';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
 export interface DeleteAlertData {
   key: ModalKeys;
   title: string;
   message: string;
-  model: unknown;
+  model: {
+    id: string;
+    entity: Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>;
+  };
 }
 
 export type MaritalStatus = 'single' | 'married' | 'unknown';

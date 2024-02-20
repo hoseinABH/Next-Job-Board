@@ -15,7 +15,7 @@ import type { WorkExperience } from '@/types/resume';
 
 const workExperiences: WorkExperience[] = [
   {
-    id: 1,
+    id: '1',
     position: 'توسعه دهنده نرم افزار',
     company: 'حصین',
     location: 'تهران',
@@ -33,13 +33,16 @@ export default function WorkExperience() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
   }
-  function handleDeleteWorkExperience() {
+  function handleDeleteWorkExperience(experience: WorkExperience) {
     dispatch(
       ResumeActions.setDeleteAlertData({
         key: 'workExperience',
         title: 'حذف تجربه کاری',
-        message: 'آیا از حذف تجربه کاری خود در حصین مطمئن هستید؟',
-        model: {},
+        message: `آیا از حذف تجربه کاری خود در ${experience.company} مطمئن هستید؟`,
+        model: {
+          id: experience.id,
+          entity: 'workExperience',
+        },
       })
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
@@ -58,7 +61,7 @@ export default function WorkExperience() {
             <WorkExperienceCard
               key={experience.id}
               experience={experience}
-              onDelete={handleDeleteWorkExperience}
+              onDelete={() => handleDeleteWorkExperience(experience)}
             />
           ))}
         </div>

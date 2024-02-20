@@ -10,6 +10,8 @@ import Skills from './shared/skills';
 import Languages from './shared/languages';
 // Utilities
 import { cn } from '@/lib/utils';
+// Actions
+import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
@@ -19,10 +21,10 @@ interface Props {
 export default function ResumeContent({ className }: Props) {
   const dispatch = useAppDispatch();
   const { modals } = useAppSelector((state) => state.common);
-  const { deleteAlertData } = useAppSelector((state) => state.resume);
+  const { deleteAlertData, loading } = useAppSelector((state) => state.resume);
 
-  function submitDeleteAction() {
-    console.log('resume action should be called');
+  function submitDeleteAction(id: string) {
+    dispatch(ResumeActions.removeField(id));
   }
   return (
     <>
@@ -37,7 +39,8 @@ export default function ResumeContent({ className }: Props) {
       <ConfirmDeleteDialog
         open={modals.confirmDelete}
         title={deleteAlertData?.title}
-        onSubmit={submitDeleteAction}
+        onSubmit={() => submitDeleteAction(deleteAlertData?.model.id!)}
+        loading={loading.removeEntity}
       >
         {deleteAlertData?.message ?? ''}
       </ConfirmDeleteDialog>

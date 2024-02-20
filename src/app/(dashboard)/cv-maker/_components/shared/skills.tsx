@@ -18,27 +18,27 @@ import type { Skill } from '@/types/resume';
 
 const skills: Skill[] = [
   {
-    id: 1,
+    id: '1',
     name: 'ReduxJS',
     level: 'senior',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Typescript',
     level: 'mid',
   },
   {
-    id: 3,
+    id: '3',
     name: 'ReactNative',
     level: 'mid',
   },
   {
-    id: 4,
+    id: '4',
     name: 'NestJS',
     level: 'junior',
   },
   {
-    id: 5,
+    id: '5',
     name: 'Mongoose',
     level: 'junior',
   },
@@ -55,7 +55,10 @@ export default function Skills() {
         key: 'skill',
         title: 'حذف مهارت',
         message: `آیا از حذف مهارت ${skill.name} مطمئن هستید؟`,
-        model: {},
+        model: {
+          id: skill.id,
+          entity: 'skill',
+        },
       })
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));

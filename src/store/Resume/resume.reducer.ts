@@ -30,6 +30,7 @@ export const initialState: ResumeState = {
     createEducation: false,
     createLanguage: false,
     createSkill: false,
+    removeEntity: false,
   },
   modals: {
     aboutMe: false,

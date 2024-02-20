@@ -4,12 +4,13 @@
  */
 
 // Utilities
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
 // Services
 import ResumeService from '@/services/endpoints/resume';
 // Actions
 import ResumeActions from './resume.actions';
+import CommonActions from '../Common/common.actions';
 // Types
 import type {
   CreateEducationDto,
@@ -20,6 +21,7 @@ import type {
 } from '@/types/resume';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
+import type { ResumeState } from './resume.reducer';
 // Constants
 import * as types from './resume.constants';
 import * as messages from '@/constants/messages';
@@ -140,6 +142,52 @@ function* createSkill(action: Action<CreateSkillDto>) {
     yield put(ResumeActions.setLoading(false, 'createSkill'));
   }
 }
+function* removeField(action: Action<string>) {
+  try {
+    yield put(ResumeActions.setLoading(true, 'removeEntity'));
+    const { deleteAlertData }: ResumeState = yield select(
+      (state) => state.resume
+    );
+    const id = action.payload!;
+    const entity = deleteAlertData?.model.entity;
+    let response: BaseApiResponse<unknown> | null = null;
+    let entityTitle = '';
+    switch (entity) {
+      case 'education':
+        response = yield call(() => ResumeService.deleteEducation(id));
+        entityTitle = 'سابقه تحصیلی';
+        break;
+      case 'language':
+        response = yield call(() => ResumeService.deleteLanguage(id));
+        entityTitle = 'زبان';
+        break;
+      case 'skill':
+        response = yield call(() => ResumeService.deleteSkill(id));
+        entityTitle = 'مهارت';
+        break;
+      case 'workExperience':
+        response = yield call(() => ResumeService.deleteExperience(id));
+        entityTitle = 'سابقه شغلی';
+        break;
+      default:
+        break;
+    }
+    if (response?.message) {
+      toast({
+        variant: 'success',
+        description: `${entityTitle} با موفقیت حذف شد`,
+      });
+      yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'removeEntity'));
+  }
+}
 
 export default function* networkListeners() {
   yield all([
@@ -148,5 +196,6 @@ export default function* networkListeners() {
     takeLatest(types.SAGAS_CREATE_EDUCATION, createEducation),
     takeLatest(types.SAGAS_CREATE_LANGUAGE, createLanguage),
     takeLatest(types.SAGAS_CREATE_SKILL, createSkill),
+    takeLatest(types.SAGAS_REMOVE_RESUME_FIELD, removeField),
   ]);
 }

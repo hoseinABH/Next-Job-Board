@@ -15,7 +15,7 @@ import type { Education } from '@/types/resume';
 
 const educations: Education[] = [
   {
-    id: 1,
+    id: '1',
     field: 'کامپیوتر و فناوری اطلاعات - مهندسی نرم افزار',
     school: 'هاروارد تهران جنوب',
     location: 'تهران',
@@ -32,14 +32,16 @@ export default function Educations() {
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));
   }
-  function handleDeleteEducation() {
+  function handleDeleteEducation(education: Education) {
     dispatch(
       ResumeActions.setDeleteAlertData({
         key: 'education',
         title: 'حذف تجربه تحصیلی',
-        message:
-          'آیا از حذف تجربه تحصیلی خود در دانشگاه هاروارد-تهران جنوب مطمئن هستید؟',
-        model: {},
+        message: `آیا از حذف تجربه تحصیلی خود در ${education.school} مطمئن هستید؟`,
+        model: {
+          id: education.id,
+          entity: 'education',
+        },
       })
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
@@ -58,7 +60,7 @@ export default function Educations() {
             <EducationCard
               key={education.id}
               education={education}
-              onDelete={handleDeleteEducation}
+              onDelete={() => handleDeleteEducation(education)}
             />
           ))}
         </div>
