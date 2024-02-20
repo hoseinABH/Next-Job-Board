@@ -28,6 +28,8 @@ export const initialState: ResumeState = {
     updatePersonal: false,
     createExperience: false,
     createEducation: false,
+    createLanguage: false,
+    createSkill: false,
   },
   modals: {
     aboutMe: false,

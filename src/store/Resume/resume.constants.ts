@@ -42,3 +42,13 @@ export const SAGAS_CREATE_EXPERIENCE = prefix('SAGAS_CREATE_EXPERIENCE');
  * @desc create an education
  */
 export const SAGAS_CREATE_EDUCATION = prefix('SAGAS_CREATE_EDUCATION');
+/**
+ * @module RESUME
+ * @desc create a language
+ */
+export const SAGAS_CREATE_LANGUAGE = prefix('SAGAS_CREATE_LANGUAGE');
+/**
+ * @module RESUME
+ * @desc create a skill
+ */
+export const SAGAS_CREATE_SKILL = prefix('SAGAS_CREATE_SKILL');

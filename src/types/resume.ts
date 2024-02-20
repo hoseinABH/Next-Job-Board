@@ -42,7 +42,9 @@ export type ResumeModals = Record<ModalKeys, boolean>;
 export type LoadingKeys =
   | 'updatePersonal'
   | 'createExperience'
-  | 'createEducation';
+  | 'createEducation'
+  | 'createLanguage'
+  | 'createSkill';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
 export interface DeleteAlertData {

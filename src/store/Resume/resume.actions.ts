@@ -8,6 +8,8 @@ import type { Action } from '@/types/store';
 import type {
   CreateEducationDto,
   CreateExperienceDto,
+  CreateLanguageDto,
+  CreateSkillDto,
   DeleteAlertData,
   LoadingKeys,
   ModalKeys,
@@ -93,6 +95,30 @@ class Actions {
     return {
       type: types.SAGAS_CREATE_EDUCATION,
       payload: education,
+    };
+  }
+  /**
+   * create a language
+   * @param {CreateLanguageDto} language
+   * @return {Action<CreateLanguageDto>}
+   */
+  public createLanguage(
+    language: CreateLanguageDto
+  ): Action<CreateLanguageDto> {
+    return {
+      type: types.SAGAS_CREATE_LANGUAGE,
+      payload: language,
+    };
+  }
+  /**
+   * create a skill
+   * @param {CreateSkillDto} skill
+   * @return {Action<CreateSkillDto>}
+   */
+  public createSkill(skill: CreateSkillDto): Action<CreateSkillDto> {
+    return {
+      type: types.SAGAS_CREATE_SKILL,
+      payload: skill,
     };
   }
 }

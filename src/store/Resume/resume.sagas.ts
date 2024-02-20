@@ -14,6 +14,8 @@ import ResumeActions from './resume.actions';
 import type {
   CreateEducationDto,
   CreateExperienceDto,
+  CreateLanguageDto,
+  CreateSkillDto,
   UpdatePersonalDto,
 } from '@/types/resume';
 import type { Action } from '@/types/store';
@@ -92,11 +94,59 @@ function* createEducation(action: Action<CreateEducationDto>) {
     yield put(ResumeActions.setLoading(false, 'createEducation'));
   }
 }
+function* createLanguage(action: Action<CreateLanguageDto>) {
+  try {
+    yield put(ResumeActions.setLoading(true, 'createLanguage'));
+    const language = action.payload!;
+    const response: BaseApiResponse<unknown> = yield call(() =>
+      ResumeService.createLanguage(language)
+    );
+    if (response.message === 'Success') {
+      toast({
+        variant: 'success',
+        description: 'زبان با موفقیت ثبت شد',
+      });
+      yield put(ResumeActions.setModalOpen(false, 'language'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'createLanguage'));
+  }
+}
+function* createSkill(action: Action<CreateSkillDto>) {
+  try {
+    yield put(ResumeActions.setLoading(true, 'createSkill'));
+    const skill = action.payload!;
+    const response: BaseApiResponse<unknown> = yield call(() =>
+      ResumeService.createSkill(skill)
+    );
+    if (response.message === 'Success') {
+      toast({
+        variant: 'success',
+        description: 'مهارت با موفقیت ثبت شد',
+      });
+      yield put(ResumeActions.setModalOpen(false, 'skill'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'createSkill'));
+  }
+}
 
 export default function* networkListeners() {
   yield all([
     takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo),
     takeLatest(types.SAGAS_CREATE_EXPERIENCE, createExperience),
     takeLatest(types.SAGAS_CREATE_EDUCATION, createEducation),
+    takeLatest(types.SAGAS_CREATE_LANGUAGE, createLanguage),
+    takeLatest(types.SAGAS_CREATE_SKILL, createSkill),
   ]);
 }
