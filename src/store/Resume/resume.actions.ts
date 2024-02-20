@@ -6,6 +6,7 @@ import * as types from './resume.constants';
 // Types
 import type { Action } from '@/types/store';
 import type {
+  CreateEducationDto,
   CreateExperienceDto,
   DeleteAlertData,
   LoadingKeys,
@@ -61,24 +62,37 @@ class Actions {
    * @return {Action<UpdatePersonalDto>}
    */
   public updatePersonalInfo(
-    data: UpdatePersonalDto
+    personalInfo: UpdatePersonalDto
   ): Action<UpdatePersonalDto> {
     return {
       type: types.SAGAS_UPDATE_PERSONAL,
-      payload: data,
+      payload: personalInfo,
     };
   }
   /**
    * create a work experience
-   * @param {CreateExperienceDto} data
+   * @param {CreateExperienceDto} experience
    * @return {Action<CreateExperienceDto>}
    */
   public createExperience(
-    data: CreateExperienceDto
+    experience: CreateExperienceDto
   ): Action<CreateExperienceDto> {
     return {
       type: types.SAGAS_CREATE_EXPERIENCE,
-      payload: data,
+      payload: experience,
+    };
+  }
+  /**
+   * create an education
+   * @param {CreateEducationDto} education
+   * @return {Action<CreateEducationDto>}
+   */
+  public createEducation(
+    education: CreateEducationDto
+  ): Action<CreateEducationDto> {
+    return {
+      type: types.SAGAS_CREATE_EDUCATION,
+      payload: education,
     };
   }
 }

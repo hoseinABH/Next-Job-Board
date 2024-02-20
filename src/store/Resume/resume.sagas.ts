@@ -11,7 +11,11 @@ import ResumeService from '@/services/endpoints/resume';
 // Actions
 import ResumeActions from './resume.actions';
 // Types
-import type { CreateExperienceDto, UpdatePersonalDto } from '@/types/resume';
+import type {
+  CreateEducationDto,
+  CreateExperienceDto,
+  UpdatePersonalDto,
+} from '@/types/resume';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
 // Constants
@@ -26,7 +30,6 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
       ResumeService.updatePersonal(personalData)
     );
     if (response.message === 'Success') {
-      console.log({ personalData });
       toast({
         variant: 'success',
         description: 'مشخصات شخصی با موفقیت ثبت شد',
@@ -51,7 +54,6 @@ function* createExperience(action: Action<CreateExperienceDto>) {
       ResumeService.createExperience(experience)
     );
     if (response.message === 'Success') {
-      console.log({ experience });
       toast({
         variant: 'success',
         description: 'سابقه شغلی با موفقیت ثبت شد',
@@ -67,10 +69,34 @@ function* createExperience(action: Action<CreateExperienceDto>) {
     yield put(ResumeActions.setLoading(false, 'createExperience'));
   }
 }
+function* createEducation(action: Action<CreateEducationDto>) {
+  try {
+    yield put(ResumeActions.setLoading(true, 'createEducation'));
+    const education = action.payload!;
+    const response: BaseApiResponse<unknown> = yield call(() =>
+      ResumeService.createEducation(education)
+    );
+    if (response.message === 'Success') {
+      toast({
+        variant: 'success',
+        description: 'مقطع تحصیلی با موفقیت ثبت شد',
+      });
+      yield put(ResumeActions.setModalOpen(false, 'education'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'createEducation'));
+  }
+}
 
 export default function* networkListeners() {
   yield all([
     takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo),
     takeLatest(types.SAGAS_CREATE_EXPERIENCE, createExperience),
+    takeLatest(types.SAGAS_CREATE_EDUCATION, createEducation),
   ]);
 }

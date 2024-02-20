@@ -40,7 +40,10 @@ export type ModalKeys =
   | 'language'
   | 'skill';
 export type ResumeModals = Record<ModalKeys, boolean>;
-export type LoadingKeys = 'updatePersonal' | 'createExperience';
+export type LoadingKeys =
+  | 'updatePersonal'
+  | 'createExperience'
+  | 'createEducation';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
 export interface DeleteAlertData {

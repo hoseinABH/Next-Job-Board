@@ -36,3 +36,9 @@ export const SAGAS_UPDATE_PERSONAL = prefix('SAGAS_UPDATE_PERSONAL');
  * @desc create a work experience
  */
 export const SAGAS_CREATE_EXPERIENCE = prefix('SAGAS_CREATE_EXPERIENCE');
+
+/**
+ * @module RESUME
+ * @desc create an education
+ */
+export const SAGAS_CREATE_EDUCATION = prefix('SAGAS_CREATE_EDUCATION');

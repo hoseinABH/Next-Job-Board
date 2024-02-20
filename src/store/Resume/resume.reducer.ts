@@ -27,6 +27,7 @@ export const initialState: ResumeState = {
   loading: {
     updatePersonal: false,
     createExperience: false,
+    createEducation: false,
   },
   modals: {
     aboutMe: false,
