@@ -37,7 +37,11 @@ export default function ControlledSelect<
           <Maybe condition={!!label}>
             <FormLabel>{label}</FormLabel>
           </Maybe>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            value={field.value}
+            onValueChange={field.onChange}
+            defaultValue={field.value}
+          >
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={label} />

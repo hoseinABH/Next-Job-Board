@@ -29,7 +29,7 @@ export interface Skill {
 export interface Language {
   id: number;
   name: string;
-  level: SeniorityLevel;
+  level: LanguageLevel;
 }
 export type ModalKeys =
   | 'aboutMe'
@@ -95,14 +95,10 @@ export interface CreateExperienceDto {
   isCurrent: boolean;
 }
 
-export type SeniorityLevel =
-  | 'Beginner'
-  | 'Intermediate'
-  | 'Advanced'
-  | 'Expert';
+export type LanguageLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 
 export interface CreateLanguageDto {
   name: string;
-  level: SeniorityLevel;
+  level: LanguageLevel;
 }
 export interface CreateSkillDto extends CreateLanguageDto {}

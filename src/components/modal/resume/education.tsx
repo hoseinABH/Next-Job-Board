@@ -24,7 +24,7 @@ import { useForm } from 'react-hook-form';
 const educationFormSchema = z.object({
   institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
   degree: z.enum(['bachelor', 'master', 'doctoral'], {
-    required_error: 'مقطع را وارد کنید',
+    required_error: 'مقطع را انتخاب کنید',
   }),
   startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
   endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),

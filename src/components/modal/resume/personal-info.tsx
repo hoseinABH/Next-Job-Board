@@ -29,10 +29,10 @@ const personalInfoFormSchema = z.object({
   firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
   lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
   maritalStatus: z.enum(['single', 'married'], {
-    required_error: 'وضعیت تاهل را وارد کنید',
+    required_error: 'وضعیت تاهل را انتخاب کنید',
   }),
   gender: z.enum(['female', 'male'], {
-    required_error: 'جنسیت را وارد کنید',
+    required_error: 'جنسیت را انتخاب کنید',
   }),
   militaryStatus: z.enum(
     [
@@ -43,7 +43,7 @@ const personalInfoFormSchema = z.object({
       'Absent',
     ],
     {
-      required_error: 'وضعیت خدمت را وارد کنید',
+      required_error: 'وضعیت خدمت را انتخاب کنید',
     }
   ),
   address: z.string().min(1, { message: 'محل سکونت را وارد کنید' }),

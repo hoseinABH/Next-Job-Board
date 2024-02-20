@@ -1,17 +1,17 @@
 import type {
-  EducationLevel,
+  EducationDegree,
   MilitaryStatus,
-  SeniorityLevel,
+  LanguageLevel,
   SkillLevel,
 } from '@/types/resume';
 
-export const mapEducationLevel: Record<EducationLevel, string> = {
+export const mapEducationLevel: Record<EducationDegree, string> = {
   bachelor: 'کارشناسی',
   doctoral: 'دکتری',
   master: 'کارشناسی‌ارشد',
 };
 
-export const mapLanguageLevel: Record<SeniorityLevel, string> = {
+export const mapLanguageLevel: Record<LanguageLevel, string> = {
   Beginner: 'مبتدی',
   Intermediate: 'متوسط',
   Expert: 'در حد زبان مادری',
@@ -49,5 +49,28 @@ export const militaryStatusOptions: MilitaryStatusOption[] = [
   {
     value: 'Absent',
     title: 'غایب',
+  },
+];
+
+interface LanguageLevelOption {
+  value: LanguageLevel;
+  title: string;
+}
+export const levelOptions: LanguageLevelOption[] = [
+  {
+    value: 'Beginner',
+    title: 'مبتدی',
+  },
+  {
+    value: 'Intermediate',
+    title: 'متوسط',
+  },
+  {
+    value: 'Advanced',
+    title: 'پیشرفته',
+  },
+  {
+    value: 'Expert',
+    title: 'حرفه ای',
   },
 ];

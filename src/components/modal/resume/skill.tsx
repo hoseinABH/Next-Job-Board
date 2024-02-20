@@ -1,14 +1,8 @@
 // Common components
+import ControlledInput from '@/components/controlled-input';
+import ControlledSelect from '@/components/controlled-select';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Form } from '@/components/ui/form';
 import {
   Dialog,
   DialogContent,
@@ -17,16 +11,43 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+// Utilities
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
+import { useForm } from 'react-hook-form';
+// Constants
+import { levelOptions } from '@/constants';
+
+const languageFormSchema = z.object({
+  name: z.string().min(1, { message: 'مهارت را وارد کنید' }),
+  level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Expert'], {
+    required_error: 'سطح را انتخاب کنید',
+  }),
+});
+
+type FormData = typeof languageFormSchema;
 
 export function SkillModal() {
   const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.resume);
+  const { modals, loading } = useAppSelector((state) => state.resume);
+  const form = useForm<z.infer<FormData>>({
+    resolver: zodResolver(languageFormSchema),
+    defaultValues: {
+      name: '',
+    },
+  });
+
+  function onSubmit(values: z.infer<FormData>) {
+    dispatch(ResumeActions.createSkill(values));
+    form.reset();
+  }
   function onOpenChange(open: boolean) {
     dispatch(ResumeActions.setModalOpen(open, 'skill'));
+    form.reset();
   }
   return (
     <Dialog open={modals.skill} onOpenChange={onOpenChange}>
@@ -37,28 +58,26 @@ export function SkillModal() {
             لطفا فیلد های مورد نظر را تکمیل نمایید
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="skill">مهارت</Label>
-            <Input id="skill" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="level">سطح مهارت</Label>
-            <Select>
-              <SelectTrigger>
-                <SelectValue id="level" placeholder="سطح مهارت" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="beginner">مبتدی</SelectItem>
-                <SelectItem value="mid">متوسط</SelectItem>
-                <SelectItem value="professional">حرفه ای</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">ذخیره تغییرات</Button>
-        </DialogFooter>
+        <Form {...form}>
+          <form
+            id="skill"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <ControlledInput control={form.control} name="name" label="مهارت" />
+            <ControlledSelect
+              control={form.control}
+              name="level"
+              label="سطح"
+              options={levelOptions}
+            />
+          </form>
+          <DialogFooter>
+            <Button form="skill" type="submit" loading={loading.createSkill}>
+              ذخیره تغییرات
+            </Button>
+          </DialogFooter>
+        </Form>
       </DialogContent>
     </Dialog>
   );
