@@ -154,7 +154,7 @@ export function PersonalInfoModal() {
               type="submit"
               loading={loading.updatePersonal}
             >
-              ذخیره تغییرات
+              ثبت اطلاعات
             </Button>
           </DialogFooter>
         </Form>

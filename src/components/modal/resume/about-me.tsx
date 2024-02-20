@@ -1,4 +1,7 @@
 // Common components
+import ControlledInput from '@/components/controlled-input';
+import { Form } from '@/components/ui/form';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -7,18 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 // Utilities
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -87,32 +78,18 @@ export function AboutMeModal() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6"
           >
-            <FormField
+            <ControlledInput
               control={form.control}
               name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>عنوان</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="عنوان"
             />
-            <FormField
+            <ControlledInput
               control={form.control}
               name="aboutMe"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>درباره من</FormLabel>
-                  <FormControl>
-                    <Textarea rows={6} {...field} />
-                  </FormControl>
-                  <FormDescription>حداکثر 400 کاراکتر</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="درباره من"
+              isTextArea
+              inputProps={{ rows: 6 }}
+              description="حداکثر 400 کاراکتر"
             />
           </form>
           <DialogFooter>
@@ -121,7 +98,7 @@ export function AboutMeModal() {
               type="submit"
               loading={loading.updatePersonal}
             >
-              ذخیره تغییرات
+              ثبت اطلاعات
             </Button>
           </DialogFooter>
         </Form>

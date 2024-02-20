@@ -111,7 +111,7 @@ export function WorkExperienceModal() {
               type="submit"
               loading={loading.createExperience}
             >
-              ذخیره تغییرات
+              ثبت اطلاعات
             </Button>
           </DialogFooter>
         </Form>

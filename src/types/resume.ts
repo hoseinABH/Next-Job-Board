@@ -9,13 +9,12 @@ export interface WorkExperience {
   };
   description: string;
 }
-export type EducationLevel = 'bachelor' | 'master' | 'doctoral';
 export interface Education {
   id: number;
   school: string;
   field: string;
   location: string;
-  level: EducationLevel;
+  level: EducationDegree;
   date: {
     from: string;
     to: string;
@@ -76,9 +75,11 @@ export interface UpdatePersonalDto {
   aboutMe: string;
 }
 
+export type EducationDegree = 'bachelor' | 'master' | 'doctoral';
+
 export interface CreateEducationDto {
   institution: string;
-  degree: string;
+  degree: EducationDegree;
   startDate: string;
   endDate: string;
 }

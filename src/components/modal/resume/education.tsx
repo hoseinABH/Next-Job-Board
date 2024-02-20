@@ -1,9 +1,9 @@
 // Common components
+import ControlledInput from '@/components/controlled-input';
+import ControlledSelect from '@/components/controlled-select';
+import ControlledCheckbox from '@/components/controlled-checkbox';
+import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -12,23 +12,45 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+// Utilities
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { useForm } from 'react-hook-form';
+
+const educationFormSchema = z.object({
+  institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
+  degree: z.enum(['bachelor', 'master', 'doctoral'], {
+    required_error: 'مقطع را وارد کنید',
+  }),
+  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
+  endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),
+});
+
+type FormData = typeof educationFormSchema;
 
 export function EducationModal() {
   const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.resume);
+  const { modals, loading } = useAppSelector((state) => state.resume);
+  const form = useForm<z.infer<FormData>>({
+    resolver: zodResolver(educationFormSchema),
+    defaultValues: {
+      institution: '',
+      startDate: '',
+      endDate: '',
+    },
+  });
+
+  function onSubmit(values: z.infer<FormData>) {
+    dispatch(ResumeActions.createEducation(values));
+    form.reset();
+  }
   function onOpenChange(open: boolean) {
     dispatch(ResumeActions.setModalOpen(open, 'education'));
+    form.reset();
   }
   return (
     <Dialog open={modals.education} onOpenChange={onOpenChange}>
@@ -39,52 +61,60 @@ export function EducationModal() {
             لطفا فیلد های مورد نظر را تکمیل نمایید
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="major">رشته تحصیلی و گرایش</Label>
-            <Input id="major" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="school">نام دانشگاه</Label>
-            <Input id="school" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="schoolLocation">محل تحصیل</Label>
-            <Input id="schoolLocation" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="grade">مقطع تحصیلی</Label>
-            <Select>
-              <SelectTrigger>
-                <SelectValue id="grade" placeholder="مقطع تحصیلی" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="bachelor">لیسانس</SelectItem>
-                <SelectItem value="master">فوق لیسانس</SelectItem>
-                <SelectItem value="doctoral">دکترا</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="startDate">تاریخ شروع</Label>
-            <Input id="startDate" dir="ltr" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="endDate">تاریخ پایان</Label>
-            <Input id="endDate" dir="ltr" />
-          </div>
-          <div className="flex items-center gap-x-2 self-end">
-            <Checkbox id="present" />
-            <Label htmlFor="present">در این مقطع مشغول به تحصیل هستم</Label>
-          </div>
-          <div className="space-y-2 sm:col-span-2">
-            <Label htmlFor="aboutMe">توضیحات</Label>
-            <Textarea rows={6} id="aboutMe" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">ذخیره تغییرات</Button>
-        </DialogFooter>
+        <Form {...form}>
+          <form
+            id="education"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <ControlledInput
+              control={form.control}
+              name="institution"
+              label="رشته تحصیلی و گرایش"
+            />
+            <ControlledInput
+              control={form.control}
+              name="institution"
+              label="نام دانشگاه"
+            />
+            <ControlledSelect
+              control={form.control}
+              name="degree"
+              label="مقطع تحصیلی"
+              options={[
+                { title: 'کارشناسی', value: 'bachelor' },
+                { title: 'کارشناسی ارشد', value: 'master' },
+                { title: 'دکترا', value: 'doctoral' },
+              ]}
+            />
+            <ControlledInput
+              control={form.control}
+              name="startDate"
+              label="تاریخ شروع"
+              inputProps={{ dir: 'ltr', type: 'date' }}
+            />
+            <ControlledInput
+              control={form.control}
+              name="endDate"
+              label="تاریخ پایان"
+              inputProps={{ dir: 'ltr', type: 'date' }}
+            />
+            <ControlledCheckbox
+              control={form.control}
+              label="در این مقطع مشغول به تحصیل هستم"
+              name={'institution'}
+            />
+          </form>
+          <DialogFooter>
+            <Button
+              form="education"
+              type="submit"
+              loading={loading.createEducation}
+            >
+              ثبت اطلاعات
+            </Button>
+          </DialogFooter>
+        </Form>
       </DialogContent>
     </Dialog>
   );

@@ -2,6 +2,7 @@
 import Maybe from './maybe';
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,6 +20,7 @@ interface Props<TFieldProps, TFieldValues extends FieldValues, TContext> {
   label?: string;
   className?: string;
   isTextArea?: boolean;
+  description?: string;
 }
 
 export default function ControlledInput<
@@ -32,6 +34,7 @@ export default function ControlledInput<
   label,
   className,
   isTextArea = false,
+  description,
 }: Props<TFieldProps, TFieldValues, TContext>) {
   return (
     <FormField
@@ -49,6 +52,9 @@ export default function ControlledInput<
               <Textarea {...inputProps} {...field} />
             )}
           </FormControl>
+          <Maybe condition={!!description}>
+            <FormDescription>{description}</FormDescription>
+          </Maybe>
           <FormMessage />
         </FormItem>
       )}
