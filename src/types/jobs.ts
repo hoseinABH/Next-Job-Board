@@ -1,5 +1,5 @@
 import type { Company } from './company';
-import type { EducationLevel } from './resume';
+import type { EducationDegree } from './resume';
 
 interface Content {
   id: string;
@@ -13,7 +13,7 @@ export interface Job {
   salary: string;
   company: Partial<Company>;
   isUrgent: boolean;
-  level: EducationLevel;
+  level: EducationDegree;
   content: Content[];
   major: string[];
 }
