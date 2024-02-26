@@ -251,7 +251,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[1],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -266,7 +266,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[1],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -281,7 +281,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[0],
     isUrgent: false,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -296,7 +296,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[1],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -311,7 +311,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[2],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -326,7 +326,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[3],
     isUrgent: false,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -341,7 +341,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[4],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',
@@ -356,7 +356,7 @@ export const landingJobs: Job[] = [
     company: landingCompanies[1],
     isUrgent: true,
     content,
-    level: 'bachelor',
+    level: 'Bachelor',
     major: [
       'روان‌شناسی صنعتی',
       ' مدیریت بازرگانی',

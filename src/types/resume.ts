@@ -81,13 +81,21 @@ export interface UpdatePersonalDto {
   aboutMe: string;
 }
 
-export type EducationDegree = 'bachelor' | 'master' | 'doctoral';
+export type EducationDegree =
+  | 'Bachelor'
+  | 'Master'
+  | 'Doctoral'
+  | 'MiddleSchoolDiploma'
+  | 'Associate'
+  | 'Professional';
 
 export interface CreateEducationDto {
   institution: string;
   degree: EducationDegree;
+  fieldOfStudy: string;
   startDate: string;
   endDate: string;
+  currentlyEnrolled: boolean;
 }
 
 export interface CreateExperienceDto {

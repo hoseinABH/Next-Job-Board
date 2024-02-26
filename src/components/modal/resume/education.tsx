@@ -20,14 +20,28 @@ import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
+// Constants
+import { educationDegreeOptions } from '@/constants';
 
 const educationFormSchema = z.object({
   institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
-  degree: z.enum(['bachelor', 'master', 'doctoral'], {
-    required_error: 'مقطع را انتخاب کنید',
-  }),
+  degree: z.enum(
+    [
+      'Bachelor',
+      'Master',
+      'Doctoral',
+      'MiddleSchoolDiploma',
+      'Associate',
+      'Professional',
+    ],
+    {
+      required_error: 'مقطع را انتخاب کنید',
+    }
+  ),
+  fieldOfStudy: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
   startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
   endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),
+  currentlyEnrolled: z.boolean(),
 });
 
 type FormData = typeof educationFormSchema;
@@ -41,6 +55,8 @@ export function EducationModal() {
       institution: '',
       startDate: '',
       endDate: '',
+      fieldOfStudy: '',
+      currentlyEnrolled: false,
     },
   });
 
@@ -69,7 +85,7 @@ export function EducationModal() {
           >
             <ControlledInput
               control={form.control}
-              name="institution"
+              name="fieldOfStudy"
               label="رشته تحصیلی و گرایش"
             />
             <ControlledInput
@@ -81,11 +97,7 @@ export function EducationModal() {
               control={form.control}
               name="degree"
               label="مقطع تحصیلی"
-              options={[
-                { title: 'کارشناسی', value: 'bachelor' },
-                { title: 'کارشناسی ارشد', value: 'master' },
-                { title: 'دکترا', value: 'doctoral' },
-              ]}
+              options={educationDegreeOptions}
             />
             <ControlledInput
               control={form.control}
@@ -101,8 +113,9 @@ export function EducationModal() {
             />
             <ControlledCheckbox
               control={form.control}
+              name="currentlyEnrolled"
               label="در این مقطع مشغول به تحصیل هستم"
-              name={'institution'}
+              className="sm:col-span-2"
             />
           </form>
           <DialogFooter>

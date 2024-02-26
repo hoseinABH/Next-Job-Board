@@ -19,7 +19,7 @@ const educations: Education[] = [
     field: 'کامپیوتر و فناوری اطلاعات - مهندسی نرم افزار',
     school: 'هاروارد تهران جنوب',
     location: 'تهران',
-    level: 'bachelor',
+    level: 'Bachelor',
     date: {
       from: '95',
       to: '99',

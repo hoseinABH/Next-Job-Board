@@ -6,9 +6,12 @@ import type {
 } from '@/types/resume';
 
 export const mapEducationLevel: Record<EducationDegree, string> = {
-  bachelor: 'کارشناسی',
-  doctoral: 'دکتری',
-  master: 'کارشناسی‌ارشد',
+  Bachelor: 'کارشناسی',
+  Doctoral: 'دکترا',
+  Master: 'کارشناسی‌ارشد',
+  MiddleSchoolDiploma: 'دیپلم',
+  Associate: 'فوق دیپلم',
+  Professional: 'پرفسورا',
 };
 
 export const mapLanguageLevel: Record<LanguageLevel, string> = {
@@ -73,4 +76,17 @@ export const levelOptions: LanguageLevelOption[] = [
     value: 'Expert',
     title: 'حرفه ای',
   },
+];
+
+interface EducationDegreeOption {
+  value: EducationDegree;
+  title: string;
+}
+export const educationDegreeOptions: EducationDegreeOption[] = [
+  { title: 'کارشناسی', value: 'Bachelor' },
+  { title: 'کارشناسی ارشد', value: 'Master' },
+  { title: 'دکترا', value: 'Doctoral' },
+  { title: 'فوق دیپلم', value: 'Associate' },
+  { title: 'دیپلم', value: 'MiddleSchoolDiploma' },
+  { title: 'پرفسورا', value: 'Professional' },
 ];
