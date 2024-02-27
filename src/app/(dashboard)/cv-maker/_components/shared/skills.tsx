@@ -7,45 +7,18 @@ import IconButton from '@/components/icon-button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Constants
-import { mapSkillLevel } from '@/constants';
+import { mapLanguageLevel } from '@/constants';
 // Types
 import type { Skill } from '@/types/resume';
 
-const skills: Skill[] = [
-  {
-    id: '1',
-    name: 'ReduxJS',
-    level: 'senior',
-  },
-  {
-    id: '2',
-    name: 'Typescript',
-    level: 'mid',
-  },
-  {
-    id: '3',
-    name: 'ReactNative',
-    level: 'mid',
-  },
-  {
-    id: '4',
-    name: 'NestJS',
-    level: 'junior',
-  },
-  {
-    id: '5',
-    name: 'Mongoose',
-    level: 'junior',
-  },
-];
-
 export default function Skills() {
   const dispatch = useAppDispatch();
+  const skills = useAppSelector((state) => state.resume.resumeData?.skills);
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'skill'));
   }
@@ -56,7 +29,7 @@ export default function Skills() {
         title: 'حذف مهارت',
         message: `آیا از حذف مهارت ${skill.name} مطمئن هستید؟`,
         model: {
-          id: skill.id,
+          id: skill.level,
           entity: 'skill',
         },
       })
@@ -72,9 +45,9 @@ export default function Skills() {
         actionHandler={openCreateModal}
       >
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-          {skills.map((skill) => (
+          {skills?.map((skill) => (
             <div
-              key={skill.id}
+              key={skill.name}
               className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
             >
               <div className="flex items-center gap-x-2">
@@ -86,7 +59,7 @@ export default function Skills() {
                 </IconButton>
                 <p className="text-muted-foreground">{skill.name}</p>
               </div>
-              <Badge>{mapSkillLevel[skill.level]}</Badge>
+              <Badge>{mapLanguageLevel[skill.level]}</Badge>
             </div>
           ))}
         </div>

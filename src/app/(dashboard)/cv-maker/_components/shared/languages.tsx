@@ -7,7 +7,7 @@ import { LanguageModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
@@ -16,21 +16,11 @@ import { mapLanguageLevel } from '@/constants';
 // Types
 import type { Language } from '@/types/resume';
 
-const languages: Language[] = [
-  {
-    id: '1',
-    name: 'فارسی',
-    level: 'Expert',
-  },
-  {
-    id: '2',
-    name: 'انگلیسی',
-    level: 'Advanced',
-  },
-];
-
 export default function Languages() {
   const dispatch = useAppDispatch();
+  const languages = useAppSelector(
+    (state) => state.resume.resumeData?.languages
+  );
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));
   }
@@ -41,7 +31,7 @@ export default function Languages() {
         title: 'حذف زبان',
         message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
         model: {
-          id: language.id,
+          id: language.level,
           entity: 'language',
         },
       })
@@ -57,9 +47,9 @@ export default function Languages() {
         actionHandler={openCreateModal}
       >
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-          {languages.map((lang) => (
+          {languages?.map((lang) => (
             <div
-              key={lang.id}
+              key={lang.name}
               className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
             >
               <div className="flex items-center gap-x-2">

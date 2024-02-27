@@ -57,3 +57,9 @@ export const SAGAS_CREATE_SKILL = prefix('SAGAS_CREATE_SKILL');
  * @desc remove a field
  */
 export const SAGAS_REMOVE_RESUME_FIELD = prefix('SAGAS_REMOVE_RESUME_FIELD');
+/**
+ * @module RESUME
+ * @desc fill resume data
+ */
+export const SAGAS_GET_RESUME_DATA = prefix('SAGAS_GET_RESUME_DATA');
+export const SET_RESUME_DATA = prefix('SET_RESUME_DATA');

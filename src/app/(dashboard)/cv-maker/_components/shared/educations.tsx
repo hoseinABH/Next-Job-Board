@@ -6,29 +6,18 @@ import { EducationModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Education } from '@/types/resume';
 
-const educations: Education[] = [
-  {
-    id: '1',
-    field: 'کامپیوتر و فناوری اطلاعات - مهندسی نرم افزار',
-    school: 'هاروارد تهران جنوب',
-    location: 'تهران',
-    level: 'Bachelor',
-    date: {
-      from: '95',
-      to: '99',
-    },
-  },
-];
-
 export default function Educations() {
   const dispatch = useAppDispatch();
+  const educations = useAppSelector(
+    (state) => state.resume.resumeData?.education
+  );
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));
   }
@@ -37,9 +26,9 @@ export default function Educations() {
       ResumeActions.setDeleteAlertData({
         key: 'education',
         title: 'حذف تجربه تحصیلی',
-        message: `آیا از حذف تجربه تحصیلی خود در ${education.school} مطمئن هستید؟`,
+        message: `آیا از حذف تجربه تحصیلی خود در ${education.institution} مطمئن هستید؟`,
         model: {
-          id: education.id,
+          id: education.educationId,
           entity: 'education',
         },
       })
@@ -49,16 +38,16 @@ export default function Educations() {
   return (
     <>
       <SectionWrapper
-        hasShowMore={educations.length > 1}
+        hasShowMore={educations?.length ? educations?.length > 1 : false}
         icon={GraduationCap}
         title="سوابق تحصیلی"
         id="educations"
         actionHandler={openCreateModal}
       >
         <div className="flex flex-col gap-y-6">
-          {educations.map((education) => (
+          {educations?.map((education) => (
             <EducationCard
-              key={education.id}
+              key={education.educationId}
               education={education}
               onDelete={() => handleDeleteEducation(education)}
             />

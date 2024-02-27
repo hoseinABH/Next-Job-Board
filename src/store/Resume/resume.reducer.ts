@@ -10,6 +10,7 @@ import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
 import type {
   DeleteAlertData,
+  ResumeData,
   ResumeLoading,
   ResumeModals,
 } from '@/types/resume';
@@ -21,6 +22,7 @@ export interface ResumeState {
   loading: ResumeLoading;
   modals: ResumeModals;
   deleteAlertData: Nullable<DeleteAlertData>;
+  resumeData: Nullable<ResumeData>;
 }
 
 export const initialState: ResumeState = {
@@ -41,6 +43,7 @@ export const initialState: ResumeState = {
     skill: false,
   },
   deleteAlertData: null,
+  resumeData: null,
 };
 
 const reducer: Reducer<ResumeState, Action> = (
@@ -65,7 +68,10 @@ const reducer: Reducer<ResumeState, Action> = (
       return update({
         deleteAlertData: action.payload,
       });
-
+    case types.SET_RESUME_DATA:
+      return update({
+        resumeData: action.payload,
+      });
     case RESET_FACTORY:
       return initialState;
     default:

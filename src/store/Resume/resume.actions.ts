@@ -4,7 +4,7 @@
  */
 import * as types from './resume.constants';
 // Types
-import type { Action } from '@/types/store';
+import type { Action, ExtraActionInfo } from '@/types/store';
 import type {
   CreateEducationDto,
   CreateExperienceDto,
@@ -13,8 +13,10 @@ import type {
   DeleteAlertData,
   LoadingKeys,
   ModalKeys,
+  ResumeData,
   UpdatePersonalDto,
 } from '@/types/resume';
+import { Nullable } from '@/types/common';
 
 class Actions {
   /**
@@ -130,6 +132,23 @@ class Actions {
     return {
       type: types.SAGAS_REMOVE_RESUME_FIELD,
       payload: id,
+    };
+  }
+  /**
+   * fill resume data
+   * @param {Nullable<ResumeData>} data
+   * @param {ExtraActionInfo} options
+   * @return {Action<Nullable<ResumeData>>}
+   */
+  public fillResumeData(
+    data: Nullable<ResumeData>,
+    options?: ExtraActionInfo
+  ): Action<Nullable<ResumeData>> {
+    return {
+      type: options?.sagas
+        ? types.SAGAS_GET_RESUME_DATA
+        : types.SET_RESUME_DATA,
+      payload: data,
     };
   }
 }

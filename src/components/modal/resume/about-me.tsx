@@ -54,6 +54,7 @@ export function AboutMeModal() {
         birthDate: '',
         phone: '',
         aboutMe: values.aboutMe,
+        jobTitle: values.title,
       })
     );
     form.reset();

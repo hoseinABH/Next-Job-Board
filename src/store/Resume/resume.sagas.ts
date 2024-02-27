@@ -17,6 +17,7 @@ import type {
   CreateExperienceDto,
   CreateLanguageDto,
   CreateSkillDto,
+  ResumeData,
   UpdatePersonalDto,
 } from '@/types/resume';
 import type { Action } from '@/types/store';
@@ -172,12 +173,32 @@ function* removeField(action: Action<string>) {
       default:
         break;
     }
-    if (response?.message) {
+    if (response?.message === 'Success') {
       toast({
         variant: 'success',
         description: `${entityTitle} با موفقیت حذف شد`,
       });
       yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(ResumeActions.setLoading(false, 'removeEntity'));
+  }
+}
+function* getResumeData() {
+  try {
+    yield put(ResumeActions.setLoading(true, 'removeEntity'));
+
+    const response: BaseApiResponse<ResumeData> = yield call(() =>
+      ResumeService.getMyResume()
+    );
+    if (response.message === 'Success') {
+      yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
+      yield put(ResumeActions.fillResumeData(response.data));
     }
   } catch (error) {
     toast({
@@ -197,5 +218,6 @@ export default function* networkListeners() {
     takeLatest(types.SAGAS_CREATE_LANGUAGE, createLanguage),
     takeLatest(types.SAGAS_CREATE_SKILL, createSkill),
     takeLatest(types.SAGAS_REMOVE_RESUME_FIELD, removeField),
+    takeLatest(types.SAGAS_GET_RESUME_DATA, getResumeData),
   ]);
 }

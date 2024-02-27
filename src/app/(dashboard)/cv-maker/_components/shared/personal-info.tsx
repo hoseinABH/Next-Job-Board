@@ -1,54 +1,66 @@
+import { useMemo } from 'react';
 // UI Frameworks
 import { User } from 'lucide-react';
 // Common components
 import { PersonalInfoModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Utilities
+import { persianDate } from '@/lib/date';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
-
-const infoRows = [
-  {
-    title: 'نام و نام خانوادگی',
-    value: 'حسین ابوالحسنی',
-  },
-  {
-    title: 'وضعیت تاهل',
-    value: 'متاهل',
-  },
-  {
-    title: 'جنسیت',
-    value: 'آقا',
-  },
-  {
-    title: 'وضعیت نظام وظیفه',
-    value: 'مشمول',
-  },
-  {
-    title: 'محل سکونت',
-    value: 'تهران',
-  },
-  {
-    title: 'تاریخ تولد',
-    value: '17/02/1377',
-  },
-  {
-    title: 'شماره تلفن',
-    value: '09380980800',
-  },
-  {
-    title: 'ایمیل',
-    value: 'user@gmail.com',
-  },
-];
+// Constants
+import {
+  mapGenderTitle,
+  mapMaritalStatus,
+  mapMilitaryStatus,
+} from '@/constants';
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
+  const personalInfo = useAppSelector(
+    (state) => state.resume.resumeData?.personalInfo
+  );
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
   }
+  const infoRows = useMemo(
+    () => [
+      {
+        title: 'نام و نام خانوادگی',
+        value: `${personalInfo?.firstName} ${personalInfo?.lastName}`,
+      },
+      {
+        title: 'وضعیت تاهل',
+        value: mapMaritalStatus[personalInfo?.maritalStatus!],
+      },
+      {
+        title: 'جنسیت',
+        value: mapGenderTitle[personalInfo?.gender!],
+      },
+      {
+        title: 'وضعیت نظام وظیفه',
+        value: mapMilitaryStatus[personalInfo?.militaryStatus!],
+      },
+      {
+        title: 'محل سکونت',
+        value: personalInfo?.address,
+      },
+      {
+        title: 'تاریخ تولد',
+        value: personalInfo?.birthDate
+          ? persianDate(personalInfo?.birthDate)
+          : '',
+      },
+      {
+        title: 'شماره تلفن',
+        value: personalInfo?.phone,
+      },
+    ],
+    [personalInfo]
+  );
   return (
     <>
       <SectionWrapper
@@ -61,7 +73,7 @@ export default function PersonalInfo() {
       >
         <div className="flex flex-col gap-y-4">
           {infoRows.map((info) => (
-            <div key={info.value} className="flex items-center">
+            <div key={info.title} className="flex items-center">
               <p className="text-muted-foreground w-32 sm:w-52">{info.title}</p>
               <p>{info.value}</p>
             </div>

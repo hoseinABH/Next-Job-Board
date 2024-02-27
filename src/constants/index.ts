@@ -2,7 +2,8 @@ import type {
   EducationDegree,
   MilitaryStatus,
   LanguageLevel,
-  SkillLevel,
+  MaritalStatus,
+  Gender,
 } from '@/types/resume';
 
 export const mapEducationLevel: Record<EducationDegree, string> = {
@@ -17,15 +18,8 @@ export const mapEducationLevel: Record<EducationDegree, string> = {
 export const mapLanguageLevel: Record<LanguageLevel, string> = {
   Beginner: 'مبتدی',
   Intermediate: 'متوسط',
-  Expert: 'در حد زبان مادری',
+  Expert: 'متخصص',
   Advanced: 'حرفه ای',
-};
-
-export const mapSkillLevel: Record<SkillLevel, string> = {
-  mid: 'کارشناس',
-  senior: 'کارشناس ارشد',
-  intern: 'کارآموز',
-  junior: 'تازه کار',
 };
 
 interface MilitaryStatusOption {
@@ -90,3 +84,22 @@ export const educationDegreeOptions: EducationDegreeOption[] = [
   { title: 'دیپلم', value: 'MiddleSchoolDiploma' },
   { title: 'پرفسورا', value: 'Professional' },
 ];
+
+export const mapMaritalStatus: Record<MaritalStatus, string> = {
+  single: 'مجرد',
+  married: 'متاهل',
+  unknown: 'نا مشخص',
+};
+export const mapGenderTitle: Record<Gender, string> = {
+  male: 'آقا',
+  female: 'خانم',
+  other: 'دیگر',
+};
+
+export const mapMilitaryStatus: Record<MilitaryStatus, string> = {
+  EducationalExemption: 'معافیت تحصیلی',
+  ActiveService: 'درحال انجام',
+  ExemptionCard: 'معافیت دائم',
+  ServiceCompletionCard: 'پایان خدمت',
+  Absent: 'غایب',
+};

@@ -1,33 +1,8 @@
-export interface WorkExperience {
-  id: string;
-  position: string;
-  company: string;
-  location: string;
-  date: {
-    from: string;
-    to: string;
-  };
-  description: string;
-}
-export interface Education {
-  id: string;
-  school: string;
-  field: string;
-  location: string;
-  level: EducationDegree;
-  date: {
-    from: string;
-    to: string;
-  };
-}
-export type SkillLevel = 'mid' | 'junior' | 'intern' | 'senior';
 export interface Skill {
-  id: string;
   name: string;
-  level: SkillLevel;
+  level: LanguageLevel;
 }
 export interface Language {
-  id: string;
   name: string;
   level: LanguageLevel;
 }
@@ -66,7 +41,7 @@ export type MilitaryStatus =
   | 'ExemptionCard'
   | 'ServiceCompletionCard'
   | 'Absent';
-export interface UpdatePersonalDto {
+export interface PersonalInfo {
   firstName: string;
   lastName: string;
   photo: {
@@ -79,8 +54,9 @@ export interface UpdatePersonalDto {
   birthDate: string;
   phone: string;
   aboutMe: string;
+  jobTitle: string;
 }
-
+export interface UpdatePersonalDto extends PersonalInfo {}
 export type EducationDegree =
   | 'Bachelor'
   | 'Master'
@@ -98,7 +74,11 @@ export interface CreateEducationDto {
   currentlyEnrolled: boolean;
 }
 
-export interface CreateExperienceDto {
+export interface Education extends CreateEducationDto {
+  educationId: string;
+}
+
+export interface Experience {
   companyName: string;
   position: string;
   startDate: string;
@@ -106,6 +86,7 @@ export interface CreateExperienceDto {
   description: string;
   isCurrent: boolean;
 }
+export interface CreateExperienceDto extends Experience {}
 
 export type LanguageLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 
@@ -114,3 +95,12 @@ export interface CreateLanguageDto {
   level: LanguageLevel;
 }
 export interface CreateSkillDto extends CreateLanguageDto {}
+
+export interface ResumeData {
+  id: string;
+  personalInfo: PersonalInfo;
+  education: Education[];
+  workExperience: Experience[];
+  skills: Skill[];
+  languages: Language[];
+}

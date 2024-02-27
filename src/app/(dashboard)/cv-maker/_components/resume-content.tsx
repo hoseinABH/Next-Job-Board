@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 // Common components
 import { ConfirmDeleteDialog } from '@/components/modal';
 // Shared Components
@@ -26,6 +27,10 @@ export default function ResumeContent({ className }: Props) {
   function submitDeleteAction(id: string) {
     dispatch(ResumeActions.removeField(id));
   }
+  useEffect(() => {
+    dispatch(ResumeActions.fillResumeData(null, { sagas: true }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div className={cn('flex flex-col gap-y-4', className)}>

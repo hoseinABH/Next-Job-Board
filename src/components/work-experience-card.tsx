@@ -3,10 +3,11 @@ import { Trash2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 // Types
-import type { WorkExperience } from '@/types/resume';
+import type { Experience } from '@/types/resume';
+import { persianDate } from '@/lib/date';
 
 interface Props {
-  experience: WorkExperience;
+  experience: Experience;
   onDelete: () => void;
 }
 
@@ -15,10 +16,10 @@ export default function WorkExperienceCard({ experience, onDelete }: Props) {
     <div className="flex justify-between">
       <div className="space-y-1">
         <h6 className="font-semibold text-lg ">{experience.position}</h6>
-        <p>{experience.company}</p>
-        <p className="text-muted-foreground">{experience.location}</p>
+        <p>{experience.companyName}</p>
         <p className="text-muted-foreground">
-          {experience.date.from} - {experience.date.to}
+          {persianDate(experience.startDate)} -{' '}
+          {experience.isCurrent ? 'تا اکنون' : persianDate(experience.endDate)}
         </p>
         <p className="text-sm mt-2">{experience.description}</p>
       </div>

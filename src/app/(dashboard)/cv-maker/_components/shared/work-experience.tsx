@@ -6,41 +6,29 @@ import { WorkExperienceModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Types
-import type { WorkExperience } from '@/types/resume';
-
-const workExperiences: WorkExperience[] = [
-  {
-    id: '1',
-    position: 'توسعه دهنده نرم افزار',
-    company: 'حصین',
-    location: 'تهران',
-    date: {
-      from: 'آبان 98',
-      to: 'اکنون',
-    },
-    description:
-      'ما روی پروژه های مالی زیادی کار می کنیم. به‌عنوان یک توسعه‌دهنده سطح متوسط، من مسئول توسعه و نگهداری برنامه‌های کاربردی خود به تمیزترین روش هستم.',
-  },
-];
+import type { Experience } from '@/types/resume';
 
 export default function WorkExperience() {
   const dispatch = useAppDispatch();
+  const workExperiences = useAppSelector(
+    (state) => state.resume.resumeData?.workExperience
+  );
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
   }
-  function handleDeleteWorkExperience(experience: WorkExperience) {
+  function handleDeleteWorkExperience(experience: Experience) {
     dispatch(
       ResumeActions.setDeleteAlertData({
         key: 'workExperience',
         title: 'حذف تجربه کاری',
-        message: `آیا از حذف تجربه کاری خود در ${experience.company} مطمئن هستید؟`,
+        message: `آیا از حذف تجربه کاری خود در ${experience.companyName} مطمئن هستید؟`,
         model: {
-          id: experience.id,
+          id: experience.companyName,
           entity: 'workExperience',
         },
       })
@@ -50,16 +38,18 @@ export default function WorkExperience() {
   return (
     <>
       <SectionWrapper
-        hasShowMore={workExperiences.length > 1}
+        hasShowMore={
+          workExperiences?.length ? workExperiences.length > 1 : false
+        }
         icon={Briefcase}
         title="سوابق شغلی"
         id="work-experience"
         actionHandler={openCreateModal}
       >
         <div className="flex flex-col gap-y-6">
-          {workExperiences.map((experience) => (
+          {workExperiences?.map((experience) => (
             <WorkExperienceCard
-              key={experience.id}
+              key={experience.companyName}
               experience={experience}
               onDelete={() => handleDeleteWorkExperience(experience)}
             />

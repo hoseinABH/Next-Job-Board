@@ -70,10 +70,10 @@ export function LanguageModal() {
               options={[
                 {
                   title: 'انگلیسی',
-                  value: 'english',
+                  value: 'انگلیسی',
                 },
-                { title: 'آلمانی', value: 'germany' },
-                { title: 'فرانسوی', value: 'french' },
+                { title: 'آلمانی', value: 'آلمانی' },
+                { title: 'فرانسوی', value: 'فرانسوی' },
               ]}
             />
             <ControlledSelect

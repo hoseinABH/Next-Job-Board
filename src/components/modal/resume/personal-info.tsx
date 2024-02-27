@@ -72,6 +72,7 @@ export function PersonalInfoModal() {
         id: '',
       },
       aboutMe: '',
+      jobTitle: '',
       ...values,
     } as UpdatePersonalDto;
     dispatch(ResumeActions.updatePersonalInfo(data));

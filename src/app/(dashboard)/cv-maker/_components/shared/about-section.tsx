@@ -5,12 +5,15 @@ import { AboutMeModal } from '@/components/modal';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();
+  const personalInfo = useAppSelector(
+    (state) => state.resume.resumeData?.personalInfo
+  );
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
   }
@@ -24,15 +27,14 @@ export default function AboutSection() {
         actionHandler={openEditModal}
       >
         <div className="flex flex-col items-center md:items-start">
-          <p className="text-2xl mb-0">حسین ابوالحسنی</p>
+          <p className="text-2xl mb-0">
+            {personalInfo?.firstName} {personalInfo?.lastName}
+          </p>
           <p className="flex items-center text-muted-foreground">
-            توسعه دهنده فرانت اند
+            {personalInfo?.jobTitle}
           </p>
           <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+            {personalInfo?.aboutMe}
           </p>
         </div>
       </SectionWrapper>
