@@ -2,13 +2,13 @@
 import { ScanFace } from 'lucide-react';
 // Common components
 import { AboutMeModal } from '@/components/modal';
+import { Skeleton } from '@/components/ui/skeleton';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();
@@ -27,13 +27,7 @@ export default function AboutSection() {
         actionHandler={openEditModal}
       >
         {loading.getMyResume ? (
-          <div className="flex flex-col items-center sm:items-start space-y-3">
-            <Skeleton className="h-6 w-[140px]" />
-            <Skeleton className="h-4 w-[120px]" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-full" />
-          </div>
+          <SkeletonLoading />
         ) : (
           <div className="flex flex-col items-center md:items-start">
             <p className="text-2xl mb-0">
@@ -50,5 +44,17 @@ export default function AboutSection() {
       </SectionWrapper>
       <AboutMeModal />
     </>
+  );
+}
+
+function SkeletonLoading() {
+  return (
+    <div className="flex flex-col items-center sm:items-start space-y-3">
+      <Skeleton className="h-6 w-[140px]" />
+      <Skeleton className="h-4 w-[120px]" />
+      <Skeleton className="h-3 w-full" />
+      <Skeleton className="h-3 w-full" />
+      <Skeleton className="h-3 w-full" />
+    </div>
   );
 }
