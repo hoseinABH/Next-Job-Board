@@ -20,7 +20,8 @@ export type LoadingKeys =
   | 'createEducation'
   | 'createLanguage'
   | 'createSkill'
-  | 'removeEntity';
+  | 'removeEntity'
+  | 'getMyResume';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
 export interface DeleteAlertData {

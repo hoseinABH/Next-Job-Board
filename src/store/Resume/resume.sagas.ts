@@ -191,7 +191,7 @@ function* removeField(action: Action<string>) {
 }
 function* getResumeData() {
   try {
-    yield put(ResumeActions.setLoading(true, 'removeEntity'));
+    yield put(ResumeActions.setLoading(true, 'getMyResume'));
 
     const response: BaseApiResponse<ResumeData> = yield call(() =>
       ResumeService.getMyResume()
@@ -206,7 +206,7 @@ function* getResumeData() {
       description: messages.commonError,
     });
   } finally {
-    yield put(ResumeActions.setLoading(false, 'removeEntity'));
+    yield put(ResumeActions.setLoading(false, 'getMyResume'));
   }
 }
 

@@ -33,6 +33,7 @@ export const initialState: ResumeState = {
     createLanguage: false,
     createSkill: false,
     removeEntity: false,
+    getMyResume: false,
   },
   modals: {
     aboutMe: false,

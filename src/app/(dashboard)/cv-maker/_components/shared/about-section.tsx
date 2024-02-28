@@ -8,12 +8,12 @@ import SectionWrapper from './section-wrapper';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/Resume/resume.actions';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();
-  const personalInfo = useAppSelector(
-    (state) => state.resume.resumeData?.personalInfo
-  );
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const personalInfo = resumeData?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
   }
@@ -26,17 +26,27 @@ export default function AboutSection() {
         actionType="edit"
         actionHandler={openEditModal}
       >
-        <div className="flex flex-col items-center md:items-start">
-          <p className="text-2xl mb-0">
-            {personalInfo?.firstName} {personalInfo?.lastName}
-          </p>
-          <p className="flex items-center text-muted-foreground">
-            {personalInfo?.jobTitle}
-          </p>
-          <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
-            {personalInfo?.aboutMe}
-          </p>
-        </div>
+        {loading.getMyResume ? (
+          <div className="flex flex-col items-center sm:items-start space-y-3">
+            <Skeleton className="h-6 w-[140px]" />
+            <Skeleton className="h-4 w-[120px]" />
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-full" />
+          </div>
+        ) : (
+          <div className="flex flex-col items-center md:items-start">
+            <p className="text-2xl mb-0">
+              {personalInfo?.firstName} {personalInfo?.lastName}
+            </p>
+            <p className="flex items-center text-muted-foreground">
+              {personalInfo?.jobTitle}
+            </p>
+            <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
+              {personalInfo?.aboutMe}
+            </p>
+          </div>
+        )}
       </SectionWrapper>
       <AboutMeModal />
     </>
