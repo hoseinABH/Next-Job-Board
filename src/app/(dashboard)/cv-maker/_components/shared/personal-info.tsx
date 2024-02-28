@@ -17,12 +17,12 @@ import {
   mapMaritalStatus,
   mapMilitaryStatus,
 } from '@/constants';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
-  const personalInfo = useAppSelector(
-    (state) => state.resume.resumeData?.personalInfo
-  );
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const personalInfo = resumeData?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
   }
@@ -71,16 +71,35 @@ export default function PersonalInfo() {
         hasShowMore
         actionHandler={openEditModal}
       >
-        <div className="flex flex-col gap-y-4">
-          {infoRows.map((info) => (
-            <div key={info.title} className="flex items-center">
-              <p className="text-muted-foreground w-32 sm:w-52">{info.title}</p>
-              <p>{info.value}</p>
-            </div>
-          ))}
-        </div>
+        {loading.getMyResume || !personalInfo ? (
+          <SkeletonLoading />
+        ) : (
+          <div className="flex flex-col gap-y-4">
+            {infoRows.map((info) => (
+              <div key={info.title} className="flex items-center">
+                <p className="text-muted-foreground w-32 sm:w-52">
+                  {info.title}
+                </p>
+                <p>{info.value}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </SectionWrapper>
       <PersonalInfoModal />
     </>
+  );
+}
+
+function SkeletonLoading() {
+  return (
+    <div className="flex flex-col gap-y-4">
+      {[1, 2, 3, 4, 5].map((item) => (
+        <div key={item} className="flex items-center">
+          <Skeleton className="w-32 h-4 ml-16" />
+          <Skeleton className="h-4 w-60" />
+        </div>
+      ))}
+    </div>
   );
 }

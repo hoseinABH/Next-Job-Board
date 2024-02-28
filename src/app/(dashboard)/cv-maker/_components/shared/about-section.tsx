@@ -26,7 +26,7 @@ export default function AboutSection() {
         actionType="edit"
         actionHandler={openEditModal}
       >
-        {loading.getMyResume ? (
+        {loading.getMyResume || !personalInfo ? (
           <SkeletonLoading />
         ) : (
           <div className="flex flex-col items-center md:items-start">
