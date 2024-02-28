@@ -1,5 +1,6 @@
 'use client';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 // Common components
 import { ConfirmDeleteDialog } from '@/components/modal';
 // Shared Components
@@ -15,19 +16,25 @@ import { cn } from '@/lib/utils';
 import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
-
+// Configs
+import * as Routes from '@/config/routes';
 interface Props {
   className?: string;
 }
 export default function ResumeContent({ className }: Props) {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { modals } = useAppSelector((state) => state.common);
+  const { isLoggedIn } = useAppSelector((state) => state.user);
   const { deleteAlertData, loading } = useAppSelector((state) => state.resume);
 
   function submitDeleteAction(id: string) {
     dispatch(ResumeActions.removeField(id));
   }
   useEffect(() => {
+    if (!isLoggedIn) {
+      router.push(Routes.LOGIN);
+    }
     dispatch(ResumeActions.fillResumeData(null, { sagas: true }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 // Common components
 import ControlledInput from '@/components/controlled-input';
 import ControlledRadio from '@/components/controlled-radio';
@@ -28,10 +29,10 @@ import { militaryStatusOptions } from '@/constants';
 const personalInfoFormSchema = z.object({
   firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
   lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
-  maritalStatus: z.enum(['single', 'married'], {
+  maritalStatus: z.enum(['single', 'married', 'unknown'], {
     required_error: 'وضعیت تاهل را انتخاب کنید',
   }),
-  gender: z.enum(['female', 'male'], {
+  gender: z.enum(['female', 'male', 'other'], {
     required_error: 'جنسیت را انتخاب کنید',
   }),
   militaryStatus: z.enum(
@@ -55,7 +56,10 @@ type FormData = typeof personalInfoFormSchema;
 
 export function PersonalInfoModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.resume);
+  const { modals, loading, resumeData } = useAppSelector(
+    (state) => state.resume
+  );
+  const state = resumeData?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
@@ -68,11 +72,7 @@ export function PersonalInfoModal() {
   });
   function onSubmit(values: z.infer<FormData>) {
     const data = {
-      photo: {
-        id: '',
-      },
-      aboutMe: '',
-      jobTitle: '',
+      ...state,
       ...values,
     } as UpdatePersonalDto;
     dispatch(ResumeActions.updatePersonalInfo(data));
@@ -82,6 +82,44 @@ export function PersonalInfoModal() {
     dispatch(ResumeActions.setModalOpen(open, 'personalInfo'));
     form.reset();
   }
+
+  useEffect(() => {
+    if (state?.address) {
+      form.setValue('address', state?.address);
+    }
+    if (state?.birthDate) {
+      form.setValue('birthDate', state?.birthDate);
+    }
+    if (state?.firstName) {
+      form.setValue('firstName', state?.firstName);
+    }
+    if (state?.lastName) {
+      form.setValue('lastName', state?.lastName);
+    }
+    if (state?.gender) {
+      form.setValue('gender', state?.gender);
+    }
+    if (state?.maritalStatus) {
+      form.setValue('maritalStatus', state?.maritalStatus);
+    }
+    if (state?.militaryStatus) {
+      form.setValue('militaryStatus', state?.militaryStatus);
+    }
+    if (state?.phone) {
+      form.setValue('phone', state?.phone);
+    }
+  }, [
+    form,
+    state?.address,
+    state?.birthDate,
+    state?.firstName,
+    state?.gender,
+    state?.lastName,
+    state?.maritalStatus,
+    state?.militaryStatus,
+    state?.phone,
+  ]);
+
   return (
     <Dialog open={modals.personalInfo} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">

@@ -18,6 +18,7 @@ import ResumeActions from '@/store/Resume/resume.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const aboutMeFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
@@ -30,7 +31,10 @@ type FormData = typeof aboutMeFormSchema;
 
 export function AboutMeModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.resume);
+  const { modals, loading, resumeData } = useAppSelector(
+    (state) => state.resume
+  );
+  const state = resumeData?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(aboutMeFormSchema),
     defaultValues: {
@@ -42,17 +46,7 @@ export function AboutMeModal() {
   function onSubmit(values: z.infer<FormData>) {
     dispatch(
       ResumeActions.updatePersonalInfo({
-        firstName: '',
-        lastName: '',
-        photo: {
-          id: '',
-        },
-        maritalStatus: 'single',
-        gender: 'female',
-        militaryStatus: 'EducationalExemption',
-        address: '',
-        birthDate: '',
-        phone: '',
+        ...state!,
         aboutMe: values.aboutMe,
         jobTitle: values.title,
       })
@@ -63,6 +57,16 @@ export function AboutMeModal() {
     dispatch(ResumeActions.setModalOpen(open, 'aboutMe'));
     form.reset();
   }
+
+  useEffect(() => {
+    if (state?.aboutMe) {
+      form.setValue('aboutMe', state?.aboutMe);
+    }
+    if (state?.jobTitle) {
+      form.setValue('title', state?.jobTitle);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.aboutMe, state?.jobTitle]);
 
   return (
     <Dialog open={modals.aboutMe} onOpenChange={onOpenChange}>
