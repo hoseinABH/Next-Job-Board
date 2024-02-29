@@ -4,6 +4,7 @@ import { ShieldCheck, X as RemoveIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { SkillModal } from '@/components/modal';
 import IconButton from '@/components/icon-button';
+import { Skeleton } from '@/components/ui/skeleton';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -18,7 +19,8 @@ import type { Skill } from '@/types/resume';
 
 export default function Skills() {
   const dispatch = useAppDispatch();
-  const skills = useAppSelector((state) => state.resume.resumeData?.skills);
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const skills = resumeData?.skills;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'skill'));
   }
@@ -45,23 +47,33 @@ export default function Skills() {
         actionHandler={openCreateModal}
       >
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-          {skills?.map((skill) => (
-            <div
-              key={skill.name}
-              className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
-            >
-              <div className="flex items-center gap-x-2">
-                <IconButton
-                  title="حذف"
-                  onClick={() => handleDeleteSkill(skill)}
+          {loading.getMyResume || !skills ? (
+            <>
+              {[1, 2].map((skeleton) => (
+                <Skeleton key={skeleton} className="h-16 w-full" />
+              ))}
+            </>
+          ) : (
+            <>
+              {skills?.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
                 >
-                  <RemoveIcon className="w-4 h-4" />
-                </IconButton>
-                <p className="text-muted-foreground">{skill.name}</p>
-              </div>
-              <Badge>{mapLanguageLevel[skill.level]}</Badge>
-            </div>
-          ))}
+                  <div className="flex items-center gap-x-2">
+                    <IconButton
+                      title="حذف"
+                      onClick={() => handleDeleteSkill(skill)}
+                    >
+                      <RemoveIcon className="w-4 h-4" />
+                    </IconButton>
+                    <p className="text-muted-foreground">{skill.name}</p>
+                  </div>
+                  <Badge>{mapLanguageLevel[skill.level]}</Badge>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </SectionWrapper>
       <SkillModal />

@@ -4,6 +4,7 @@ import { Languages as LanguagesIcon, X as RemoveIcon } from 'lucide-react';
 import IconButton from '@/components/icon-button';
 import { Badge } from '@/components/ui/badge';
 import { LanguageModal } from '@/components/modal';
+import { Skeleton } from '@/components/ui/skeleton';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -18,9 +19,8 @@ import type { Language } from '@/types/resume';
 
 export default function Languages() {
   const dispatch = useAppDispatch();
-  const languages = useAppSelector(
-    (state) => state.resume.resumeData?.languages
-  );
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const languages = resumeData?.languages;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));
   }
@@ -47,23 +47,33 @@ export default function Languages() {
         actionHandler={openCreateModal}
       >
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-          {languages?.map((lang) => (
-            <div
-              key={lang.name}
-              className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
-            >
-              <div className="flex items-center gap-x-2">
-                <IconButton
-                  title="حذف"
-                  onClick={() => handleDeleteLanguage(lang)}
+          {loading.getMyResume || !languages ? (
+            <>
+              {[1, 2].map((skeleton) => (
+                <Skeleton key={skeleton} className="h-16 w-full" />
+              ))}
+            </>
+          ) : (
+            <>
+              {languages?.map((lang) => (
+                <div
+                  key={lang.name}
+                  className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
                 >
-                  <RemoveIcon className="w-4 h-4" />
-                </IconButton>
-                <p className="text-muted-foreground">{lang.name}</p>
-              </div>
-              <Badge>{mapLanguageLevel[lang.level]}</Badge>
-            </div>
-          ))}
+                  <div className="flex items-center gap-x-2">
+                    <IconButton
+                      title="حذف"
+                      onClick={() => handleDeleteLanguage(lang)}
+                    >
+                      <RemoveIcon className="w-4 h-4" />
+                    </IconButton>
+                    <p className="text-muted-foreground">{lang.name}</p>
+                  </div>
+                  <Badge>{mapLanguageLevel[lang.level]}</Badge>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </SectionWrapper>
       <LanguageModal />

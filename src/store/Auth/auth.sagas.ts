@@ -72,6 +72,7 @@ function* logout() {
   removeToken();
   yield put(UserActions.setIsLoggedIn(false));
   yield put(UserActions.setUserInfo(null));
+  window.location.reload();
 }
 
 export default function* networkListeners() {

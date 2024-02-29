@@ -3,6 +3,7 @@ import { Briefcase } from 'lucide-react';
 // Common components
 import WorkExperienceCard from '@/components/work-experience-card';
 import { WorkExperienceModal } from '@/components/modal';
+import { Skeleton } from '@/components/ui/skeleton';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -15,9 +16,8 @@ import type { Experience } from '@/types/resume';
 
 export default function WorkExperience() {
   const dispatch = useAppDispatch();
-  const workExperiences = useAppSelector(
-    (state) => state.resume.resumeData?.workExperience
-  );
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const workExperiences = resumeData?.workExperience;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
   }
@@ -47,16 +47,38 @@ export default function WorkExperience() {
         actionHandler={openCreateModal}
       >
         <div className="flex flex-col gap-y-6">
-          {workExperiences?.map((experience) => (
-            <WorkExperienceCard
-              key={experience.companyName}
-              experience={experience}
-              onDelete={() => handleDeleteWorkExperience(experience)}
-            />
-          ))}
+          {loading.getMyResume || !workExperiences ? (
+            <>
+              {[1, 2].map((item) => (
+                <SkeletonLoading key={item} />
+              ))}
+            </>
+          ) : (
+            <>
+              {workExperiences?.map((experience) => (
+                <WorkExperienceCard
+                  key={experience.companyName}
+                  experience={experience}
+                  onDelete={() => handleDeleteWorkExperience(experience)}
+                />
+              ))}
+            </>
+          )}
         </div>
       </SectionWrapper>
       <WorkExperienceModal />
     </>
+  );
+}
+
+function SkeletonLoading() {
+  return (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-4 w-[140px]" />
+      <Skeleton className="h-3 w-[120px]" />
+      <Skeleton className="h-3 w-[140px]" />
+      <Skeleton className="h-3 w-[80%]" />
+      <Skeleton className="h-3 w-[70%]" />
+    </div>
   );
 }

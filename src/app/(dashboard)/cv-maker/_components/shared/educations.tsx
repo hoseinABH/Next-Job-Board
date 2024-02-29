@@ -3,6 +3,7 @@ import { GraduationCap } from 'lucide-react';
 // Common components
 import EducationCard from '@/components/education-card';
 import { EducationModal } from '@/components/modal';
+import { Skeleton } from '@/components/ui/skeleton';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -15,9 +16,8 @@ import type { Education } from '@/types/resume';
 
 export default function Educations() {
   const dispatch = useAppDispatch();
-  const educations = useAppSelector(
-    (state) => state.resume.resumeData?.education
-  );
+  const { resumeData, loading } = useAppSelector((state) => state.resume);
+  const educations = resumeData?.education;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));
   }
@@ -45,16 +45,36 @@ export default function Educations() {
         actionHandler={openCreateModal}
       >
         <div className="flex flex-col gap-y-6">
-          {educations?.map((education) => (
-            <EducationCard
-              key={education.educationId}
-              education={education}
-              onDelete={() => handleDeleteEducation(education)}
-            />
-          ))}
+          {loading.getMyResume || !educations ? (
+            <>
+              {[1, 2].map((item) => (
+                <SkeletonLoading key={item} />
+              ))}
+            </>
+          ) : (
+            <>
+              {educations?.map((education) => (
+                <EducationCard
+                  key={education.educationId}
+                  education={education}
+                  onDelete={() => handleDeleteEducation(education)}
+                />
+              ))}
+            </>
+          )}
         </div>
       </SectionWrapper>
       <EducationModal />
     </>
+  );
+}
+
+function SkeletonLoading() {
+  return (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-4 w-[140px]" />
+      <Skeleton className="h-3 w-[120px]" />
+      <Skeleton className="h-3 w-[140px]" />
+    </div>
   );
 }
