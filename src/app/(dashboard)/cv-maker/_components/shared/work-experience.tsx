@@ -4,6 +4,7 @@ import { Briefcase } from 'lucide-react';
 import WorkExperienceCard from '@/components/work-experience-card';
 import { WorkExperienceModal } from '@/components/modal';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -46,25 +47,33 @@ export default function WorkExperience() {
         id="work-experience"
         actionHandler={openCreateModal}
       >
-        <div className="flex flex-col gap-y-6">
-          {loading.getMyResume || !workExperiences ? (
-            <>
-              {[1, 2].map((item) => (
-                <SkeletonLoading key={item} />
-              ))}
-            </>
-          ) : (
-            <>
-              {workExperiences?.map((experience) => (
-                <WorkExperienceCard
-                  key={experience.companyName}
-                  experience={experience}
-                  onDelete={() => handleDeleteWorkExperience(experience)}
-                />
-              ))}
-            </>
-          )}
-        </div>
+        {!workExperiences ? (
+          <div className="flex items-center justify-center h-28">
+            <Button variant="secondary" onClick={openCreateModal}>
+              افزودن تجربه شغلی
+            </Button>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-y-6">
+            {loading.getMyResume ? (
+              <>
+                {[1, 2].map((item) => (
+                  <SkeletonLoading key={item} />
+                ))}
+              </>
+            ) : (
+              <>
+                {workExperiences?.map((experience) => (
+                  <WorkExperienceCard
+                    key={experience.companyName}
+                    experience={experience}
+                    onDelete={() => handleDeleteWorkExperience(experience)}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+        )}
       </SectionWrapper>
       <WorkExperienceModal />
     </>

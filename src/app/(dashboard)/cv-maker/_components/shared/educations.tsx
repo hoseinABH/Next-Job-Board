@@ -4,6 +4,7 @@ import { GraduationCap } from 'lucide-react';
 import EducationCard from '@/components/education-card';
 import { EducationModal } from '@/components/modal';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
@@ -44,25 +45,33 @@ export default function Educations() {
         id="educations"
         actionHandler={openCreateModal}
       >
-        <div className="flex flex-col gap-y-6">
-          {loading.getMyResume || !educations ? (
-            <>
-              {[1, 2].map((item) => (
-                <SkeletonLoading key={item} />
-              ))}
-            </>
-          ) : (
-            <>
-              {educations?.map((education) => (
-                <EducationCard
-                  key={education.educationId}
-                  education={education}
-                  onDelete={() => handleDeleteEducation(education)}
-                />
-              ))}
-            </>
-          )}
-        </div>
+        {!educations ? (
+          <div className="flex items-center justify-center h-28">
+            <Button variant="secondary" onClick={openCreateModal}>
+              افزودن تجربه تحصیلی
+            </Button>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-y-6">
+            {loading.getMyResume ? (
+              <>
+                {[1, 2].map((item) => (
+                  <SkeletonLoading key={item} />
+                ))}
+              </>
+            ) : (
+              <>
+                {educations?.map((education) => (
+                  <EducationCard
+                    key={education.educationId}
+                    education={education}
+                    onDelete={() => handleDeleteEducation(education)}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+        )}
       </SectionWrapper>
       <EducationModal />
     </>

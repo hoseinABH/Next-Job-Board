@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { User } from 'lucide-react';
 // Common components
 import { PersonalInfoModal } from '@/components/modal';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Utilities
@@ -17,7 +19,6 @@ import {
   mapMaritalStatus,
   mapMilitaryStatus,
 } from '@/constants';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
@@ -68,22 +69,32 @@ export default function PersonalInfo() {
         actionType="edit"
         title="مشخصات فردی"
         id="personal-info"
-        hasShowMore
+        hasShowMore={!!personalInfo}
         actionHandler={openEditModal}
       >
-        {loading.getMyResume || !personalInfo ? (
-          <SkeletonLoading />
-        ) : (
-          <div className="flex flex-col gap-y-4">
-            {infoRows.map((info) => (
-              <div key={info.title} className="flex items-center">
-                <p className="text-muted-foreground w-32 sm:w-52">
-                  {info.title}
-                </p>
-                <p>{info.value}</p>
-              </div>
-            ))}
+        {!personalInfo ? (
+          <div className="flex items-center justify-center h-28">
+            <Button variant="secondary" onClick={openEditModal}>
+              ثبت اطلاعات فردی
+            </Button>
           </div>
+        ) : (
+          <>
+            {loading.getMyResume ? (
+              <SkeletonLoading />
+            ) : (
+              <div className="flex flex-col gap-y-4">
+                {infoRows.map((info) => (
+                  <div key={info.title} className="flex items-center">
+                    <p className="text-muted-foreground w-32 sm:w-52">
+                      {info.title}
+                    </p>
+                    <p>{info.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </SectionWrapper>
       <PersonalInfoModal />
