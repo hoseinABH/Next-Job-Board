@@ -27,7 +27,7 @@ export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
           <span className="text-sm mt-4">{job.company.name}</span>
           <p className="font-semibold  text-md">{job.title}</p>
           <p className="flex items-center text-muted-foreground">
-            <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
+            <MapPin className="w-4 h-4 ml-1" /> تهران
           </p>
         </CardContent>
       </Card>
