@@ -59,14 +59,15 @@ export function AboutMeModal() {
   }
 
   useEffect(() => {
-    if (state?.aboutMe) {
-      form.setValue('aboutMe', state?.aboutMe);
+    if (modals.aboutMe) {
+      if (state?.aboutMe) {
+        form.setValue('aboutMe', state?.aboutMe);
+      }
+      if (state?.jobTitle) {
+        form.setValue('title', state?.jobTitle);
+      }
     }
-    if (state?.jobTitle) {
-      form.setValue('title', state?.jobTitle);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.aboutMe, state?.jobTitle]);
+  }, [form, modals.aboutMe, state?.aboutMe, state?.jobTitle]);
 
   return (
     <Dialog open={modals.aboutMe} onOpenChange={onOpenChange}>

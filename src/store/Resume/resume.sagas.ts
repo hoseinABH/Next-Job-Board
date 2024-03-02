@@ -17,6 +17,7 @@ import type {
   CreateExperienceDto,
   CreateLanguageDto,
   CreateSkillDto,
+  Education,
   ResumeData,
   UpdatePersonalDto,
 } from '@/types/resume';
@@ -30,6 +31,7 @@ import * as messages from '@/constants/messages';
 function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
   try {
     yield put(ResumeActions.setLoading(true, 'updatePersonal'));
+    const { resumeData }: ResumeState = yield select((state) => state.resume);
     const personalData = action.payload!;
     const response: BaseApiResponse<unknown> = yield call(() =>
       ResumeService.updatePersonal(personalData)
@@ -41,6 +43,12 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
       });
       yield put(ResumeActions.setModalOpen(false, 'aboutMe'));
       yield put(ResumeActions.setModalOpen(false, 'personalInfo'));
+      yield put(
+        ResumeActions.fillResumeData({
+          ...resumeData!,
+          personalInfo: { ...resumeData?.personalInfo, ...personalData },
+        })
+      );
     }
   } catch (error) {
     toast({
@@ -54,6 +62,7 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
 function* createExperience(action: Action<CreateExperienceDto>) {
   try {
     yield put(ResumeActions.setLoading(true, 'createExperience'));
+    const { resumeData }: ResumeState = yield select((state) => state.resume);
     const experience = action.payload!;
     const response: BaseApiResponse<unknown> = yield call(() =>
       ResumeService.createExperience(experience)
@@ -64,6 +73,15 @@ function* createExperience(action: Action<CreateExperienceDto>) {
         description: 'سابقه شغلی با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'workExperience'));
+      const newExperiences = resumeData?.workExperience.length
+        ? [...resumeData.workExperience, experience]
+        : [experience];
+      yield put(
+        ResumeActions.fillResumeData({
+          ...resumeData!,
+          workExperience: newExperiences,
+        })
+      );
     }
   } catch (error) {
     toast({
@@ -77,6 +95,7 @@ function* createExperience(action: Action<CreateExperienceDto>) {
 function* createEducation(action: Action<CreateEducationDto>) {
   try {
     yield put(ResumeActions.setLoading(true, 'createEducation'));
+    const { resumeData }: ResumeState = yield select((state) => state.resume);
     const education = action.payload!;
     const response: BaseApiResponse<unknown> = yield call(() =>
       ResumeService.createEducation(education)
@@ -87,6 +106,17 @@ function* createEducation(action: Action<CreateEducationDto>) {
         description: 'مقطع تحصیلی با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'education'));
+      const newEducations = (
+        resumeData?.education.length
+          ? [...resumeData.education, education]
+          : [education]
+      ) as Education[];
+      yield put(
+        ResumeActions.fillResumeData({
+          ...resumeData!,
+          education: newEducations,
+        })
+      );
     }
   } catch (error) {
     toast({
@@ -100,6 +130,7 @@ function* createEducation(action: Action<CreateEducationDto>) {
 function* createLanguage(action: Action<CreateLanguageDto>) {
   try {
     yield put(ResumeActions.setLoading(true, 'createLanguage'));
+    const { resumeData }: ResumeState = yield select((state) => state.resume);
     const language = action.payload!;
     const response: BaseApiResponse<unknown> = yield call(() =>
       ResumeService.createLanguage(language)
@@ -110,6 +141,15 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
         description: 'زبان با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'language'));
+      const newLanguages = resumeData?.languages.length
+        ? [...resumeData.languages, language]
+        : [language];
+      yield put(
+        ResumeActions.fillResumeData({
+          ...resumeData!,
+          languages: newLanguages,
+        })
+      );
     }
   } catch (error) {
     toast({
@@ -123,6 +163,7 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
 function* createSkill(action: Action<CreateSkillDto>) {
   try {
     yield put(ResumeActions.setLoading(true, 'createSkill'));
+    const { resumeData }: ResumeState = yield select((state) => state.resume);
     const skill = action.payload!;
     const response: BaseApiResponse<unknown> = yield call(() =>
       ResumeService.createSkill(skill)
@@ -133,6 +174,15 @@ function* createSkill(action: Action<CreateSkillDto>) {
         description: 'مهارت با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'skill'));
+      const newSkills = resumeData?.skills.length
+        ? [...resumeData.skills, skill]
+        : [skill];
+      yield put(
+        ResumeActions.fillResumeData({
+          ...resumeData!,
+          skills: newSkills,
+        })
+      );
     }
   } catch (error) {
     toast({
@@ -146,7 +196,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
 function* removeField(action: Action<string>) {
   try {
     yield put(ResumeActions.setLoading(true, 'removeEntity'));
-    const { deleteAlertData }: ResumeState = yield select(
+    const { deleteAlertData, resumeData }: ResumeState = yield select(
       (state) => state.resume
     );
     const id = action.payload!;
@@ -179,6 +229,21 @@ function* removeField(action: Action<string>) {
         description: `${entityTitle} با موفقیت حذف شد`,
       });
       yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
+      switch (entity) {
+        case 'education':
+          const newEducations = resumeData?.education.filter(
+            (item) => item.educationId !== id
+          );
+          yield put(
+            ResumeActions.fillResumeData({
+              ...resumeData!,
+              education: newEducations!,
+            })
+          );
+          break;
+        default:
+          break;
+      }
     }
   } catch (error) {
     toast({

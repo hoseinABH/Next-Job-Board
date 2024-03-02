@@ -84,32 +84,35 @@ export function PersonalInfoModal() {
   }
 
   useEffect(() => {
-    if (state?.address) {
-      form.setValue('address', state?.address);
-    }
-    if (state?.birthDate) {
-      form.setValue('birthDate', state?.birthDate);
-    }
-    if (state?.firstName) {
-      form.setValue('firstName', state?.firstName);
-    }
-    if (state?.lastName) {
-      form.setValue('lastName', state?.lastName);
-    }
-    if (state?.gender) {
-      form.setValue('gender', state?.gender);
-    }
-    if (state?.maritalStatus) {
-      form.setValue('maritalStatus', state?.maritalStatus);
-    }
-    if (state?.militaryStatus) {
-      form.setValue('militaryStatus', state?.militaryStatus);
-    }
-    if (state?.phone) {
-      form.setValue('phone', state?.phone);
+    if (modals.personalInfo) {
+      if (state?.address) {
+        form.setValue('address', state?.address);
+      }
+      if (state?.birthDate) {
+        form.setValue('birthDate', state?.birthDate);
+      }
+      if (state?.firstName) {
+        form.setValue('firstName', state?.firstName);
+      }
+      if (state?.lastName) {
+        form.setValue('lastName', state?.lastName);
+      }
+      if (state?.gender) {
+        form.setValue('gender', state?.gender);
+      }
+      if (state?.maritalStatus) {
+        form.setValue('maritalStatus', state?.maritalStatus);
+      }
+      if (state?.militaryStatus) {
+        form.setValue('militaryStatus', state?.militaryStatus);
+      }
+      if (state?.phone) {
+        form.setValue('phone', state?.phone);
+      }
     }
   }, [
     form,
+    modals.personalInfo,
     state?.address,
     state?.birthDate,
     state?.firstName,
