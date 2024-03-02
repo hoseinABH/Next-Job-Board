@@ -1,8 +1,7 @@
 import Link from 'next/link';
 // UI Frameworks
-import { Bookmark, MapPin, Building2 } from 'lucide-react';
+import { MapPin, Building2 } from 'lucide-react';
 // Common components
-import IconButton from './icon-button';
 import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
@@ -31,7 +30,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
                   <Building2 className="w-4 h-4 ml-1" /> {job.company.name}
                 </p>
                 <p className="flex items-center">
-                  <MapPin className="w-4 h-4 ml-1" /> {job.company.location}
+                  <MapPin className="w-4 h-4 ml-1" /> تهران
                 </p>
               </div>
               <p className="text-muted-foreground flex items-baseline">
