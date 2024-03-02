@@ -38,7 +38,7 @@ export default function Company({ params }: Props) {
   );
 }
 
-export function SkeletonLoading() {
+function SkeletonLoading() {
   return (
     <>
       <div className="flex items-center justify-center gap-y-4 flex-col">
