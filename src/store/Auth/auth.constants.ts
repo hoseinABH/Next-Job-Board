@@ -21,6 +21,12 @@ export const SAGAS_LOGIN = prefix('SAGAS_LOGIN');
 
 /**
  * @module AUTH
+ * @desc call register service
+ */
+export const SAGAS_REGISTER = prefix('SAGAS_REGISTER');
+
+/**
+ * @module AUTH
  * @desc fetch logged in user information
  */
 export const SAGAS_FETCH_ME = prefix('SAGAS_FETCH_ME');

@@ -17,6 +17,7 @@ import type {
   LoggedInUserInfo,
   LoginActionPayload,
   LoginResponse,
+  RegisterActionPayload,
 } from '@/types/auth';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
@@ -39,6 +40,26 @@ function* login(action: Action<LoginActionPayload>) {
       yield put(UserActions.setIsLoggedIn(true));
       router.push(Routes.CV_MAKER);
     }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(AuthActions.setLoading(false, 'login'));
+  }
+}
+function* register(action: Action<RegisterActionPayload>) {
+  try {
+    yield put(AuthActions.setLoading(true, 'login'));
+    const { registerDto, router } = action.payload!;
+    yield call(() => AuthenticationService.registerWithEmail(registerDto));
+    router.push(Routes.LOGIN);
+    toast({
+      variant: 'success',
+      title: 'عملیات موفق',
+      description: `${registerDto.firstName} عزیز حساب کاربری شما با موفقیت ساخته شد`,
+    });
   } catch (error) {
     toast({
       title: 'خطایی رخ داده است',
@@ -78,6 +99,7 @@ function* logout() {
 export default function* networkListeners() {
   yield all([
     takeLatest(types.SAGAS_LOGIN, login),
+    takeLatest(types.SAGAS_REGISTER, register),
     takeLatest(types.SAGAS_FETCH_ME, fetchMe),
     takeLatest(types.SAGAS_LOGOUT, logout),
   ]);

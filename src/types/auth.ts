@@ -36,3 +36,12 @@ export interface LoginActionPayload {
   loginDto: LoginDto;
   router: AppRouterInstance;
 }
+
+export interface RegisterDto extends LoginDto {
+  firstName: string;
+  lastName: string;
+}
+export interface RegisterActionPayload {
+  registerDto: RegisterDto;
+  router: AppRouterInstance;
+}
