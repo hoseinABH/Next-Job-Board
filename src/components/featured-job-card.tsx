@@ -24,7 +24,7 @@ export default function FeaturedJobCard({ className, job, href = '/' }: Props) {
           </Badge>
         ) : null}
         <CardContent className="flex flex-col p-6 justify-center items-center w-full">
-          <span className="text-sm mt-4">{job.company.name}</span>
+          <span className="text-sm mt-4">دیجی کالا</span>
           <p className="font-semibold  text-md">{job.title}</p>
           <p className="flex items-center text-muted-foreground">
             <MapPin className="w-4 h-4 ml-1" /> تهران

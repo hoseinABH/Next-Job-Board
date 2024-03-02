@@ -1,3 +1,4 @@
+'use client';
 // Local components
 import HeroSection from './_components/hero-section';
 import CompaniesSection from './_components/companies-section';

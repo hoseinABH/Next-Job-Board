@@ -53,6 +53,6 @@ export default function CompaniesSection() {
 
 export function SkeletonLoading() {
   return [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-    <Skeleton key={item} className="w-full h-[180px]" />
+    <Skeleton key={item} className="w-full h-[120px]" />
   ));
 }
