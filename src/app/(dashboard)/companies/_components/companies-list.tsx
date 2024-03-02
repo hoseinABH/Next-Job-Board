@@ -22,7 +22,6 @@ export default function CompaniesList({ className }: Props) {
     dispatch(CompanyActions.fillCompanies(null, { sagas: true }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(loading.getAllCompanies);
   return (
     <div
       className={cn(

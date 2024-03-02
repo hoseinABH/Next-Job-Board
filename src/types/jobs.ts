@@ -11,7 +11,6 @@ export interface Job {
   id: string;
   title: string;
   salary: string;
-  company: Partial<Company>;
   isUrgent: boolean;
   level: EducationDegree;
   content: Content[];

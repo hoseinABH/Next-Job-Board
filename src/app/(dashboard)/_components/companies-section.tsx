@@ -1,10 +1,24 @@
+'ues client';
+import { useEffect } from 'react';
 // Common components
 import CompanyCard from '@/components/company-card';
 // Configs
-import { appData, landingCompanies } from '@/config/app';
+import { appData } from '@/config/app';
 import * as Routes from '@/config/routes';
+// Actions
+import CompanyActions from '@/store/Company/company.actions';
+// Hooks
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 export default function CompaniesSection() {
+  const dispatch = useAppDispatch();
+  const { companies } = useAppSelector((state) => state.company);
+
+  useEffect(() => {
+    dispatch(CompanyActions.fillCompanies(null, { sagas: true }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
@@ -17,7 +31,7 @@ export default function CompaniesSection() {
       </div>
       {/* Companies Section */}
       <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
-        {landingCompanies.map((company) => (
+        {companies.map((company) => (
           <CompanyCard
             key={company.id}
             company={company}
