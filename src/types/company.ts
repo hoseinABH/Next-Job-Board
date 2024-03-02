@@ -1,16 +1,16 @@
-export interface CompanyDetails {
-  size: number;
-  category: string;
-  tel: string;
-  email: string;
-  address: string;
-  about: string;
-}
+export type LoadingKeys = 'getAllCompanies';
+
+export type CompanyLoading = Record<LoadingKeys, boolean>;
 
 export interface Company {
   id: string;
   name: string;
-  openPosition: number;
-  location: string;
-  details?: CompanyDetails;
+  address: string;
+  aboutUs: string;
+  city: string;
+  website: string;
+  geolocation: {
+    latitude: number;
+    longitude: number;
+  };
 }

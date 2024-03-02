@@ -1,16 +1,27 @@
 'use client';
+import { useEffect } from 'react';
 // Common components
 import CompanyCard from '@/components/company-card';
 // Utilities
 import { cn } from '@/lib/utils';
+// Hooks
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+// Actions
+import CompanyActions from '@/store/Company/company.actions';
 // Configs
-import { landingCompanies } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 interface Props {
   className?: string;
 }
 export default function CompaniesList({ className }: Props) {
+  const dispatch = useAppDispatch();
+  const { companies } = useAppSelector((state) => state.company);
+  useEffect(() => {
+    dispatch(CompanyActions.fillCompanies(null, { sagas: true }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(companies);
   return (
     <div
       className={cn(
@@ -18,7 +29,7 @@ export default function CompaniesList({ className }: Props) {
         className
       )}
     >
-      {landingCompanies.map((company) => (
+      {companies.map((company) => (
         <CompanyCard
           key={company.id}
           company={company}

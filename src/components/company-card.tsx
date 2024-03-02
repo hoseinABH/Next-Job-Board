@@ -34,7 +34,7 @@ export default function CompanyCard({
           <div
             className={cn('flex flex-col items-center gap-4', {
               ['flex-col sm:flex-row']: visibleOpenPositions,
-              ['flex-col']: !visibleOpenPositions,
+              ['flex-col text-center']: !visibleOpenPositions,
             })}
           >
             <Image
@@ -46,14 +46,15 @@ export default function CompanyCard({
             <div className="my-4 sm:my-0">
               <h4 className="font-semibold mb-2">{company.name}</h4>
               <span className="flex items-center  text-muted-foreground">
-                <MapPin className="w-4 h-4 ml-1" /> {company.location}
+                <MapPin className="w-4 h-4 ml-1" />{' '}
+                {company?.geolocation?.latitude}-
+                {company?.geolocation?.latitude}
               </span>
             </div>
           </div>
           <Maybe condition={visibleOpenPositions}>
             <div className="flex gap-1">
-              <span className="text-xl font-bold ">{company.openPosition}</span>{' '}
-              موقعیت شغلی فعال
+              <span className="text-xl font-bold ">12</span> موقعیت شغلی فعال
             </div>
           </Maybe>
         </CardContent>

@@ -5,6 +5,7 @@ import resume from './Resume/resume.reducer';
 import jobs from './Jobs/jobs.reducer';
 import auth from './Auth/auth.reducer';
 import user from './User/user.reducer';
+import company from './Company/company.reducer';
 
 // Combine all reducers together to control by redux reducers observer.
 const rootReducer = combineReducers({
@@ -13,5 +14,6 @@ const rootReducer = combineReducers({
   jobs,
   auth,
   user,
+  company,
 });
 export default rootReducer;
