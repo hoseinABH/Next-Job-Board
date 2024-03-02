@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 // Common components
 import CompanyCard from '@/components/company-card';
+import { Skeleton } from '@/components/ui/skeleton';
 // Utilities
 import { cn } from '@/lib/utils';
 // Hooks
@@ -16,12 +17,12 @@ interface Props {
 }
 export default function CompaniesList({ className }: Props) {
   const dispatch = useAppDispatch();
-  const { companies } = useAppSelector((state) => state.company);
+  const { companies, loading } = useAppSelector((state) => state.company);
   useEffect(() => {
     dispatch(CompanyActions.fillCompanies(null, { sagas: true }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(companies);
+  console.log(loading.getAllCompanies);
   return (
     <div
       className={cn(
@@ -29,13 +30,25 @@ export default function CompaniesList({ className }: Props) {
         className
       )}
     >
-      {companies.map((company) => (
-        <CompanyCard
-          key={company.id}
-          company={company}
-          href={`${Routes.COMPANIES}/${company.id}`}
-        />
-      ))}
+      {loading.getAllCompanies ? (
+        <SkeletonLoading />
+      ) : (
+        <>
+          {companies.map((company) => (
+            <CompanyCard
+              key={company.id}
+              company={company}
+              href={`${Routes.COMPANIES}/${company.id}`}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
+}
+
+export function SkeletonLoading() {
+  return [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+    <Skeleton key={item} className="w-full h-[180px]" />
+  ));
 }

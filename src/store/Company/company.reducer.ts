@@ -8,6 +8,7 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
+import type { Nullable } from '@/types/common';
 import type { Company, CompanyLoading } from '@/types/company';
 // Constants
 import * as types from './company.constants';
@@ -15,13 +16,16 @@ import * as types from './company.constants';
 export interface CompanyState {
   loading: CompanyLoading;
   companies: Company[];
+  companyDetails: Nullable<Company>;
 }
 
 export const initialState: CompanyState = {
   loading: {
     getAllCompanies: false,
+    getCompanyById: false,
   },
   companies: [],
+  companyDetails: null,
 };
 
 const reducer: Reducer<CompanyState, Action> = (
@@ -39,6 +43,10 @@ const reducer: Reducer<CompanyState, Action> = (
     case types.SET_COMPANIES:
       return update({
         companies: action.payload,
+      });
+    case types.SET_COMPANY_DETAILS:
+      return update({
+        companyDetails: action.payload,
       });
     case RESET_FACTORY:
       return initialState;

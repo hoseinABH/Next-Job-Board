@@ -39,6 +39,25 @@ class Actions {
       payload: companies,
     };
   }
+  /**
+   * fill company details
+   * @param {Nullable<Company>} company
+   * @param {Nullable<string>} id
+   * @param {ExtraActionInfo} options
+   * @return {Action<Nullable<Company | string>>}
+   */
+  public selectCompany(
+    company: Nullable<Company>,
+    id: Nullable<string>,
+    options?: ExtraActionInfo
+  ): Action<Nullable<Company | string>> {
+    return {
+      type: options?.sagas
+        ? types.SAGAS_GET_COMPANY_DETAILS
+        : types.SET_COMPANY_DETAILS,
+      payload: options?.sagas ? id : company,
+    };
+  }
 }
 
 const CompanyActions = new Actions();

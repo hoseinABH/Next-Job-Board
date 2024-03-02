@@ -20,7 +20,7 @@ export default function CompanyTabs({ company }: Props) {
       <TabsContent value="about">
         <div className="py-4 px-4 sm:px-0">
           <p className="text-md leading-8 text-center sm:text-justify">
-            {company.details?.about.repeat(5)}
+            {company.aboutUs}
           </p>
         </div>
       </TabsContent>

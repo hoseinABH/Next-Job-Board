@@ -12,6 +12,9 @@ class CompanyProvider extends HttpService {
   public getAllCompanies(): Promise<BaseApiResponse<Company[]>> {
     return this.httpService.get('');
   }
+  public getCompanyById(id: string): Promise<BaseApiResponse<Company>> {
+    return this.httpService.get(`/${id}`);
+  }
 }
 
 const CompanyService = new CompanyProvider();

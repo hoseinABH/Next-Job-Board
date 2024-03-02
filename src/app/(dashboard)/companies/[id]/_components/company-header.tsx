@@ -1,6 +1,6 @@
 import Image from 'next/image';
 // UI Frameworks
-import { Briefcase, Mail, MapPin, Phone } from 'lucide-react';
+import { Briefcase, Mail, MapPin, Phone, Network } from 'lucide-react';
 // Types
 import type { Company } from '@/types/company';
 
@@ -16,23 +16,25 @@ export default function CompanyHeader({ company }: Props) {
       <h1 className="text-2xl font-bold">{company.name}</h1>
       <div className="flex items-center flex-wrap gap-4">
         <span className="flex items-center  text-muted-foreground">
-          <MapPin className={iconClassName} /> {company.location}
+          <MapPin className={iconClassName} /> {company.geolocation.longitude}-
+          {company.geolocation.latitude}
         </span>
         <span className="flex items-center  text-muted-foreground">
-          <Briefcase className={iconClassName} /> {company.details?.category}
+          <Briefcase className={iconClassName} /> فناوری اطلاعات
         </span>
         <a
-          href={`tel:${company.details?.tel}`}
+          href={`tel:02125521149`}
           className="flex items-center text-muted-foreground"
         >
           <Phone className={iconClassName} />
-          {company.details?.tel}
+          021-2552-1149
         </a>
         <a
-          href={`mailto:${company.details?.email}`}
+          href={company.website}
           className="flex items-center text-muted-foreground"
+          target="_blank"
         >
-          <Mail className={iconClassName} /> {company.details?.email}
+          <Network className={iconClassName} /> {company.website}
         </a>
       </div>
     </div>

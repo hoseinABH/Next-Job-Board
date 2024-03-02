@@ -1,4 +1,4 @@
-export type LoadingKeys = 'getAllCompanies';
+export type LoadingKeys = 'getAllCompanies' | 'getCompanyById';
 
 export type CompanyLoading = Record<LoadingKeys, boolean>;
 
