@@ -25,7 +25,7 @@ export default function PositionDescription({ className, job }: Props) {
             <h6 className="text-muted-foreground font-normal flex items-center">
               <MapPinIcon className="h-4 w-4 ml-1 text-primary" /> محل کارآموزی:
             </h6>
-            <p>{job.company.location}</p>
+            <p>مرکز علمی فناوری</p>
           </li>
           <li className="space-y-2">
             <h6 className="text-muted-foreground font-normal flex items-center">
