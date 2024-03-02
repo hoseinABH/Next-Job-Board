@@ -37,7 +37,7 @@ function* login(action: Action<LoginActionPayload>) {
       Database.store('refreshToken', response.data.refreshToken);
       yield put(UserActions.setUserInfo(response.data.user));
       yield put(UserActions.setIsLoggedIn(true));
-      router.push(Routes.HOME);
+      router.push(Routes.CV_MAKER);
     }
   } catch (error) {
     toast({
