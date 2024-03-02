@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 // Common components
 import CompanyCard from '@/components/company-card';
+import { Skeleton } from '@/components/ui/skeleton';
 // Configs
 import { appData } from '@/config/app';
 import * as Routes from '@/config/routes';
@@ -12,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 export default function CompaniesSection() {
   const dispatch = useAppDispatch();
-  const { companies } = useAppSelector((state) => state.company);
+  const { companies, loading } = useAppSelector((state) => state.company);
 
   useEffect(() => {
     dispatch(CompanyActions.fillCompanies(null, { sagas: true }));
@@ -31,15 +32,27 @@ export default function CompaniesSection() {
       </div>
       {/* Companies Section */}
       <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
-        {companies.map((company) => (
-          <CompanyCard
-            key={company.id}
-            company={company}
-            href={`${Routes.COMPANIES}/${company.id}`}
-            visibleOpenPositions
-          />
-        ))}
+        {loading.getAllCompanies ? (
+          <SkeletonLoading />
+        ) : (
+          <>
+            {companies.map((company) => (
+              <CompanyCard
+                key={company.id}
+                company={company}
+                href={`${Routes.COMPANIES}/${company.id}`}
+                visibleOpenPositions
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
+}
+
+export function SkeletonLoading() {
+  return [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+    <Skeleton key={item} className="w-full h-[180px]" />
+  ));
 }
