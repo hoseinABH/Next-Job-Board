@@ -18,6 +18,9 @@ class ResumeProvider extends HttpService {
   public getMyResume(): Promise<BaseApiResponse> {
     return this.httpService.get('me');
   }
+  public submitPersonal(data: UpdatePersonalDto): Promise<BaseApiResponse> {
+    return this.httpService.post('personal', data);
+  }
   public updatePersonal(data: UpdatePersonalDto): Promise<BaseApiResponse> {
     return this.httpService.put('personal', data);
   }

@@ -72,7 +72,7 @@ export default function PersonalInfo() {
         hasShowMore={!!personalInfo}
         actionHandler={openEditModal}
       >
-        {!personalInfo ? (
+        {!personalInfo?.firstName ? (
           <div className="flex items-center justify-center h-28">
             <Button variant="secondary" onClick={openEditModal}>
               ثبت اطلاعات فردی

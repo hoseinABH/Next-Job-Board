@@ -33,9 +33,12 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
     yield put(ResumeActions.setLoading(true, 'updatePersonal'));
     const { resumeData }: ResumeState = yield select((state) => state.resume);
     const personalData = action.payload!;
-    const response: BaseApiResponse<unknown> = yield call(() =>
-      ResumeService.updatePersonal(personalData)
-    );
+    let response: BaseApiResponse;
+    if (resumeData?.personalInfo) {
+      response = yield call(() => ResumeService.updatePersonal(personalData));
+    } else {
+      response = yield call(() => ResumeService.submitPersonal(personalData));
+    }
     if (response.message === 'Success') {
       toast({
         variant: 'success',

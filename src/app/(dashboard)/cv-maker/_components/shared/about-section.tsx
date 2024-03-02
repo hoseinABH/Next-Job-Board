@@ -18,12 +18,7 @@ export default function AboutSection() {
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
   }
-  const isEmpty = !Boolean(
-    personalInfo?.firstName &&
-      personalInfo?.lastName &&
-      personalInfo?.aboutMe &&
-      !personalInfo?.jobTitle
-  );
+  const isEmpty = !Boolean(personalInfo?.aboutMe && personalInfo?.jobTitle);
   return (
     <>
       <SectionWrapper
