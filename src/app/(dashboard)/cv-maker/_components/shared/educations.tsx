@@ -45,7 +45,7 @@ export default function Educations() {
         id="educations"
         actionHandler={openCreateModal}
       >
-        {!educations ? (
+        {!educations?.length ? (
           <div className="flex items-center justify-center h-28">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن تجربه تحصیلی

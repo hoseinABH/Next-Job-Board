@@ -47,7 +47,7 @@ export default function WorkExperience() {
         id="work-experience"
         actionHandler={openCreateModal}
       >
-        {!workExperiences ? (
+        {!workExperiences?.length ? (
           <div className="flex items-center justify-center h-28">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن تجربه شغلی

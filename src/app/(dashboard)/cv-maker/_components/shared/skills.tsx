@@ -47,7 +47,7 @@ export default function Skills() {
         id="skills"
         actionHandler={openCreateModal}
       >
-        {!skills ? (
+        {!skills?.length ? (
           <div className="flex items-center justify-center h-28">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن مهارت

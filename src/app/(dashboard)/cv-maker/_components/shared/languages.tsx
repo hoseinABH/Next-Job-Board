@@ -47,7 +47,7 @@ export default function Languages() {
         id="languages"
         actionHandler={openCreateModal}
       >
-        {!languages ? (
+        {!languages?.length ? (
           <div className="flex items-center justify-center h-28">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن زبان
