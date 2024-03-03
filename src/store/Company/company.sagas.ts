@@ -31,7 +31,7 @@ function* getAllCompanies() {
   } catch (error) {
     toast({
       title: 'خطایی رخ داده است',
-      description: messages.commonError,
+      description: messages.fetchDataError,
     });
   } finally {
     yield put(CompanyActions.setLoading(false, 'getAllCompanies'));
@@ -50,7 +50,7 @@ function* getCompanyById(action: Action<string>) {
   } catch (error) {
     toast({
       title: 'خطایی رخ داده است',
-      description: messages.commonError,
+      description: messages.fetchDataError,
     });
   } finally {
     yield put(CompanyActions.setLoading(false, 'getCompanyById'));

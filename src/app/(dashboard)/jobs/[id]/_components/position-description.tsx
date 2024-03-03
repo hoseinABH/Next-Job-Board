@@ -1,8 +1,7 @@
-'use client';
 // UI Frameworks
 import { MapPinIcon, GraduationCap, BookText } from 'lucide-react';
 // Common components
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 // Utilities
@@ -11,12 +10,18 @@ import { cn } from '@/lib/utils';
 import { mapEducationLevel } from '@/constants';
 // Types
 import type { Job } from '@/types/jobs';
+import { requestTests } from '@/config/app';
 
 interface Props {
   className?: string;
   job: Job;
+  onRequestApplication: () => void;
 }
-export default function PositionDescription({ className, job }: Props) {
+export default function PositionDescription({
+  className,
+  job,
+  onRequestApplication,
+}: Props) {
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
@@ -42,9 +47,25 @@ export default function PositionDescription({ className, job }: Props) {
           </li>
         </ul>
         <Separator className="my-4" />
+        <p className="text-muted-foreground mb-3">تست های مورد نیاز:</p>
+        <div className="space-y-2">
+          {requestTests.map((test) => (
+            <div
+              key={test.key}
+              className="flex h-14 items-center justify-center border border-muted-foreground rounded-md"
+            >
+              <p>{test.name}</p>
+            </div>
+          ))}
+        </div>
+        <Separator className="my-4" />
         <p className="text-muted-foreground">درخواست برای این موقعیت:</p>
-        <Button disabled size="lg" className="mt-4 w-full">
-          مهلت ارسال درخواست به پایان رسیده
+        <Button
+          size="lg"
+          className="mt-4 w-full"
+          onClick={onRequestApplication}
+        >
+          ارسال درخواست
         </Button>
       </CardContent>
     </Card>

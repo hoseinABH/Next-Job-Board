@@ -17,6 +17,6 @@ export interface Job {
   major: string[];
 }
 
-export type ModalKeys = 'filter';
+export type ModalKeys = 'filter' | 'jobApplication';
 
 export type JobsModals = Record<ModalKeys, boolean>;

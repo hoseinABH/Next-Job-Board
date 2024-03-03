@@ -19,6 +19,7 @@ export interface JobsState {
 export const initialState: JobsState = {
   modals: {
     filter: false,
+    jobApplication: false,
   },
 };
 

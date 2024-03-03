@@ -283,3 +283,14 @@ export const landingJobs: Job[] = [
     ],
   },
 ];
+
+export const requestTests = [
+  {
+    key: 1,
+    name: 'تست شخصیتی',
+  },
+  {
+    key: 2,
+    name: 'تست فنی اول',
+  },
+];

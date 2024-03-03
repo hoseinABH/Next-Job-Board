@@ -1,4 +1,3 @@
-'use client';
 // Common components
 import { Card, CardContent } from '@/components/ui/card';
 // Utilities
