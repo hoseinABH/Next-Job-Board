@@ -4,3 +4,6 @@ export const COMPANIES = '/companies';
 export const CV_MAKER = '/cv-maker';
 export const LOGIN = '/login';
 export const REGISTER = '/register';
+export const DASHBOARD = '/dashboard';
+export const DASHBOARD_POSITIONS = `${DASHBOARD}/positions`;
+export const DASHBOARD_APPLICATIONS = `${DASHBOARD}/applications`;

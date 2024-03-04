@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 // UI Frameworks
-import { LayoutDashboard, Package } from 'lucide-react';
+import { Package, ClipboardList, Home, LucideIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 // Common components
 import Logo from '@/components/logo';
@@ -18,23 +18,29 @@ import ThemeToggle from '@/components/theme-toggle';
 // Utilities
 import { getVersion } from '@/lib/version';
 import { cn } from '@/lib/utils';
-
+// Configs
+import * as Routes from '@/config/routes';
 interface Menu {
   title: string;
   href: string;
-  icon: JSX.Element;
+  icon: LucideIcon;
 }
 
 const menuItems: Menu[] = [
   {
     title: 'داشبورد',
-    href: '/dashboard',
-    icon: <LayoutDashboard />,
+    href: Routes.DASHBOARD,
+    icon: Home,
   },
   {
-    title: 'موقعیت های شغلی',
-    href: '/dashboard/positions',
-    icon: <Package />,
+    title: 'موقعیت شغلی',
+    href: Routes.DASHBOARD_POSITIONS,
+    icon: Package,
+  },
+  {
+    title: 'درخواست ها',
+    href: Routes.DASHBOARD_APPLICATIONS,
+    icon: ClipboardList,
   },
 ];
 
@@ -67,16 +73,13 @@ function MenuItem(menu: Menu) {
     <Link
       key={menu.href}
       href={menu.href}
-      className={cn(
-        'flex h-20 items-center justify-center gap-x-2 cursor-pointer',
-        {
-          ['bg-primary/5 text-primary dark:bg-primary/15']:
-            menu.href === pathname,
-        }
-      )}
+      className={cn('flex h-20 items-center gap-x-2 transition-all px-8', {
+        ['bg-primary/5 text-primary dark:bg-primary/15']:
+          menu.href === pathname,
+      })}
     >
-      {menu.icon}
-      <p className="text-inherit w-[50%]">{menu.title}</p>
+      <menu.icon className="w-5 h-5" />
+      <p className="w-[50%]">{menu.title}</p>
     </Link>
   );
 }
