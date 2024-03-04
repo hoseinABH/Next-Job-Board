@@ -1,9 +1,15 @@
+// Local components
+import StatisticCard from './_components/statistic-card';
+// Data
+import { statistics } from './data';
+
 export default function DashboardPage() {
   return (
-    <div className="flex justify-center h-full">
-      <div className="space-y-4 mt-[20%]">
-        <h1 className="text-4xl font-bold">خوش آمدید✌</h1>
-        <p className="text-xl font-semibold">صفحه داشبورد</p>
+    <div className="h-full container pt-24">
+      <div className="grid grid-cols-4 gap-6">
+        {statistics.map((statistic) => (
+          <StatisticCard key={statistic.key} statistic={statistic} />
+        ))}
       </div>
     </div>
   );

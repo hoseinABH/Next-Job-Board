@@ -22,7 +22,7 @@ export default function Logo({ className, onClick }: Props) {
       >
         <Image
           priority
-          src="/github.webp"
+          src="/logo.webp"
           width={40}
           height={40}
           alt={configs.appData.appName}
