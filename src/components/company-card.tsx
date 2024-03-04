@@ -46,9 +46,7 @@ export default function CompanyCard({
             <div className="my-4 sm:my-0">
               <h4 className="font-semibold mb-2">{company.name}</h4>
               <span className="flex items-center  text-muted-foreground">
-                <MapPin className="w-4 h-4 ml-1" />{' '}
-                {company?.geolocation?.latitude}-
-                {company?.geolocation?.latitude}
+                <MapPin className="w-4 h-4 ml-1" /> {company.city}
               </span>
             </div>
           </div>

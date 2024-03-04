@@ -16,8 +16,7 @@ export default function CompanyHeader({ company }: Props) {
       <h1 className="text-2xl font-bold">{company.name}</h1>
       <div className="flex items-center flex-wrap gap-4">
         <span className="flex items-center  text-muted-foreground">
-          <MapPin className={iconClassName} /> {company.geolocation.longitude}-
-          {company.geolocation.latitude}
+          <MapPin className={iconClassName} /> {company.city}
         </span>
         <span className="flex items-center  text-muted-foreground">
           <Briefcase className={iconClassName} /> فناوری اطلاعات
