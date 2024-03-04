@@ -3,7 +3,6 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 // Common components
 import SocialLinks from './social-links';
-import Logo from './logo';
 // Config
 import * as appConfig from '@/config/app';
 
@@ -11,6 +10,7 @@ import * as appConfig from '@/config/app';
  * * Warning: Prop className did not match.
  */
 const ThemeToggle = dynamic(() => import('./theme-toggle'), { ssr: false });
+const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
 
 export default function Footer() {
   return (

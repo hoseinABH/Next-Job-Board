@@ -1,9 +1,9 @@
 'use client';
 import { Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
 // UI frameworks
 import { AlignJustify } from 'lucide-react';
 // Common components
-import Logo from './logo';
 import AppVersion from './app-version';
 import NavigationItems from './navigation-items';
 import { Button } from './ui/button';
@@ -16,6 +16,11 @@ import {
   SheetPortal,
   SheetTitle,
 } from './ui/sheet';
+
+/** If we don't do this, we get the following warning:
+ * * Warning: Prop className did not match.
+ */
+const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
 
 export default function NavigationDrawer() {
   const [open, setOpen] = useState(false);

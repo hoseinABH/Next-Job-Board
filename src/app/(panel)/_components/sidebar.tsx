@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 // UI Frameworks
 import { Package, ClipboardList, Home, LucideIcon } from 'lucide-react';
 // Common components
-import Logo from '@/components/logo';
 import {
   Card,
   CardContent,
@@ -27,6 +26,7 @@ import * as Routes from '@/config/routes';
 const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), {
   ssr: false,
 });
+const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
 
 interface Menu {
   title: string;
