@@ -31,6 +31,7 @@ export default function Logo({ className, onClick }: Props) {
       >
         <Image
           priority
+          objectFit="contain"
           src={imgSrc}
           width={100}
           height={60}
