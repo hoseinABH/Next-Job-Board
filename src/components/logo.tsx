@@ -17,7 +17,7 @@ interface Props {
 export default function Logo({ className, onClick }: Props) {
   const { theme } = useTheme();
   const imgSrc = useMemo(
-    () => (theme === 'dark' ? '/logo-white.webp' : '/logo.webp'),
+    () => (theme === 'light' ? '/logo.webp' : '/logo-white.webp'),
     [theme]
   );
   return (
