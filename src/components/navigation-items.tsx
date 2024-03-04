@@ -22,7 +22,7 @@ export default function NavigationItems({ className, onSelect }: Props) {
           key={href}
           href={href}
           className={cn('text-md transition-colors', {
-            [' font-medium']: href === pathname,
+            ['font-medium']: href === pathname,
           })}
         >
           {name}
