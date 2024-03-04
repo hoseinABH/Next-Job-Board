@@ -1,7 +1,11 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 // Utilities
 import { cn } from '@/lib/utils';
+// Hooks
+import { useTheme } from 'next-themes';
+import { useMemo } from 'react';
 // Config
 import * as configs from '@/config/app';
 import * as Routes from '@/config/routes';
@@ -11,6 +15,11 @@ interface Props {
   onClick?: () => void;
 }
 export default function Logo({ className, onClick }: Props) {
+  const { theme } = useTheme();
+  const imgSrc = useMemo(
+    () => (theme === 'dark' ? '/logo-white.webp' : '/logo.webp'),
+    [theme]
+  );
   return (
     <Link href={Routes.HOME}>
       <div
@@ -22,14 +31,11 @@ export default function Logo({ className, onClick }: Props) {
       >
         <Image
           priority
-          src="/logo.webp"
-          width={40}
-          height={40}
+          src={imgSrc}
+          width={100}
+          height={60}
           alt={configs.appData.appName}
         />
-        <span className="font-bold inline-block">
-          {configs.appData.appName}
-        </span>
       </div>
     </Link>
   );

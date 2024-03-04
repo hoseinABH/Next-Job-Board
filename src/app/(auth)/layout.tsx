@@ -12,7 +12,7 @@ export default function AuthLayout({
           {children}
           <div className="bg-zinc-950 dark:bg-secondary/40 hidden lg:flex items-center justify-center">
             <Image
-              src="/javascript.webp"
+              src="/hero.webp"
               alt="صفحه ورود"
               height={400}
               width={400}
