@@ -1,12 +1,12 @@
 'use client';
 // Local components
-import PositionTable from './_components/positions-table';
+import PositionsTable from './_components/positions-table';
 // Common components
 import CreatePositionModal from '@/components/modal/panel/create-position';
 // Hooks
 import { useAppSelector } from '@/hooks/store';
 // Data
-import { positions } from '../data';
+import { positions } from './data';
 import { ConfirmDeleteDialog } from '@/components/modal';
 
 export default function DashboardPositionsPage() {
@@ -18,7 +18,7 @@ export default function DashboardPositionsPage() {
   }
   return (
     <>
-      <PositionTable positions={positions} />
+      <PositionsTable positions={positions} />
       <CreatePositionModal />
       <ConfirmDeleteDialog
         open={modals.confirmDelete}

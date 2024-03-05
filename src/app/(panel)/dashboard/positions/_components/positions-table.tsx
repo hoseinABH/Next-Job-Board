@@ -20,7 +20,7 @@ import { useAppDispatch } from '@/hooks/store';
 import PanelActions from '@/store/Panel/panel.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Types
-import type { Position } from '../../data';
+import type { Position } from '../data';
 // Constants
 import { mapEducationLevel } from '@/constants';
 
@@ -29,7 +29,7 @@ interface Props {
   positions: Position[];
 }
 
-export default function PositionTable({ className, positions }: Props) {
+export default function PositionsTable({ className, positions }: Props) {
   const dispatch = useAppDispatch();
   function openCreatePositionModal() {
     dispatch(PanelActions.setModalOpen(true, 'createPosition'));
@@ -49,7 +49,7 @@ export default function PositionTable({ className, positions }: Props) {
   }
   return (
     <div className={cn('bg-card p-6', className)}>
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row  gap-4 sm:gap-0 justify-between">
         <div>
           <h1 className="text-2xl font-bold">موقعیت های شغلی</h1>
           <p className="text-md text-muted-foreground">
@@ -59,7 +59,7 @@ export default function PositionTable({ className, positions }: Props) {
         <Button onClick={openCreatePositionModal}>موقعیت شغلی جدید</Button>
       </div>
       <div className="rounded-md border mt-8">
-        <Table>
+        <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">
               <TableHead className="text-center">عنوان شغل</TableHead>

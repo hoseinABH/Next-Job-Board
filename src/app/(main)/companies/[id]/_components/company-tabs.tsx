@@ -15,7 +15,7 @@ export default function CompanyTabs({ company }: Props) {
     <Tabs defaultValue="about" className="w-full">
       <TabsList className="flex max-w-lg mx-auto">
         <TabsTrigger value="about">معرفی شرکت</TabsTrigger>
-        <TabsTrigger value="positions">فرصت‌های شغلی</TabsTrigger>
+        <TabsTrigger value="positions">فرصت‌های کارآموزی</TabsTrigger>
       </TabsList>
       <TabsContent value="about">
         <div className="py-4 px-4 sm:px-0">

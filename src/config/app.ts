@@ -9,7 +9,7 @@ export const appData = {
 
 export const navigationLinks = [
   {
-    name: 'فرصت‌های شغلی',
+    name: 'فرصت‌های کارآموزی',
     href: Routes.JOBS,
   },
   {

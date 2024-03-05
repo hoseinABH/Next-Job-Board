@@ -117,7 +117,7 @@ export default function CreatePositionModal() {
             <ControlledInput
               control={form.control}
               name="description"
-              label="فرصت شغلی من"
+              label="توضیحات فرصت شغلی"
               isTextArea
               inputProps={{ rows: 6 }}
               description="حداکثر 400 کاراکتر"
