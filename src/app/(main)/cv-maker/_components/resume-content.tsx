@@ -34,6 +34,7 @@ export default function ResumeContent({ className }: Props) {
   useEffect(() => {
     if (!isLoggedIn) {
       router.push(Routes.LOGIN);
+      return;
     }
     dispatch(ResumeActions.fillResumeData(null, { sagas: true }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
