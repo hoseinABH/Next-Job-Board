@@ -24,8 +24,7 @@ export default function WorkExperience() {
   }
   function handleDeleteWorkExperience(experience: Experience) {
     dispatch(
-      ResumeActions.setDeleteAlertData({
-        key: 'workExperience',
+      ResumeActions.setDialogData({
         title: 'حذف تجربه کاری',
         message: `آیا از حذف تجربه کاری خود در ${experience.companyName} مطمئن هستید؟`,
         model: {

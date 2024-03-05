@@ -9,7 +9,7 @@ import { updateState } from '@/lib/store';
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
 import type {
-  DeleteAlertData,
+  DialogData,
   ResumeData,
   ResumeLoading,
   ResumeModals,
@@ -21,7 +21,7 @@ import * as types from './resume.constants';
 export interface ResumeState {
   loading: ResumeLoading;
   modals: ResumeModals;
-  deleteAlertData: Nullable<DeleteAlertData>;
+  dialogData: Nullable<DialogData>;
   resumeData: Nullable<ResumeData>;
 }
 
@@ -43,7 +43,7 @@ export const initialState: ResumeState = {
     language: false,
     skill: false,
   },
-  deleteAlertData: null,
+  dialogData: null,
   resumeData: null,
 };
 
@@ -65,9 +65,9 @@ const reducer: Reducer<ResumeState, Action> = (
           [action.payload.key]: action.payload.status,
         }),
       });
-    case types.SET_DELETE_DATA:
+    case types.SET_DIALOG_DATA:
       return update({
-        deleteAlertData: action.payload,
+        dialogData: action.payload,
       });
     case types.SET_RESUME_DATA:
       return update({

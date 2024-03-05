@@ -10,7 +10,7 @@ import type {
   CreateExperienceDto,
   CreateLanguageDto,
   CreateSkillDto,
-  DeleteAlertData,
+  DialogData,
   LoadingKeys,
   ModalKeys,
   ResumeData,
@@ -50,13 +50,13 @@ class Actions {
     };
   }
   /**
-   * set delete alert data
-   * @param {DeleteAlertData} data
-   * @return {Action<DeleteAlertData>}
+   * set dialog data
+   * @param {DialogData} data
+   * @return {Action<DialogData>}
    */
-  public setDeleteAlertData(data: DeleteAlertData): Action<DeleteAlertData> {
+  public setDialogData(data: DialogData): Action<DialogData> {
     return {
-      type: types.SET_DELETE_DATA,
+      type: types.SET_DIALOG_DATA,
       payload: data,
     };
   }
@@ -125,13 +125,11 @@ class Actions {
   }
   /**
    * remove a field
-   * @param {string} id
-   * @return {Action<string>}
+   * @return {Action}
    */
-  public removeField(id: string): Action<string> {
+  public removeField(): Action {
     return {
       type: types.SAGAS_REMOVE_RESUME_FIELD,
-      payload: id,
     };
   }
   /**

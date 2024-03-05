@@ -24,8 +24,7 @@ export type LoadingKeys =
   | 'getMyResume';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
-export interface DeleteAlertData {
-  key: ModalKeys;
+export interface DialogData {
   title: string;
   message: string;
   model: {

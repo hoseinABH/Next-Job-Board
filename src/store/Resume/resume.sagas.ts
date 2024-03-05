@@ -196,31 +196,31 @@ function* createSkill(action: Action<CreateSkillDto>) {
     yield put(ResumeActions.setLoading(false, 'createSkill'));
   }
 }
-function* removeField(action: Action<string>) {
+function* removeField() {
   try {
     yield put(ResumeActions.setLoading(true, 'removeEntity'));
-    const { deleteAlertData, resumeData }: ResumeState = yield select(
+    const { dialogData, resumeData }: ResumeState = yield select(
       (state) => state.resume
     );
-    const id = action.payload!;
-    const entity = deleteAlertData?.model.entity;
+    const entity = dialogData?.model.entity;
+    const entityId = dialogData?.model.id!;
     let response: BaseApiResponse<unknown> | null = null;
     let entityTitle = '';
     switch (entity) {
       case 'education':
-        response = yield call(() => ResumeService.deleteEducation(id));
+        response = yield call(() => ResumeService.deleteEducation(entityId));
         entityTitle = 'سابقه تحصیلی';
         break;
       case 'language':
-        response = yield call(() => ResumeService.deleteLanguage(id));
+        response = yield call(() => ResumeService.deleteLanguage(entityId));
         entityTitle = 'زبان';
         break;
       case 'skill':
-        response = yield call(() => ResumeService.deleteSkill(id));
+        response = yield call(() => ResumeService.deleteSkill(entityId));
         entityTitle = 'مهارت';
         break;
       case 'workExperience':
-        response = yield call(() => ResumeService.deleteExperience(id));
+        response = yield call(() => ResumeService.deleteExperience(entityId));
         entityTitle = 'سابقه شغلی';
         break;
       default:
@@ -235,7 +235,7 @@ function* removeField(action: Action<string>) {
       switch (entity) {
         case 'education':
           const newEducations = resumeData?.education.filter(
-            (item) => item.educationId !== id
+            (item) => item.educationId !== entityId
           );
           yield put(
             ResumeActions.fillResumeData({

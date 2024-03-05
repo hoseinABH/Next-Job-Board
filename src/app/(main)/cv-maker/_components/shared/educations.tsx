@@ -24,8 +24,7 @@ export default function Educations() {
   }
   function handleDeleteEducation(education: Education) {
     dispatch(
-      ResumeActions.setDeleteAlertData({
-        key: 'education',
+      ResumeActions.setDialogData({
         title: 'حذف تجربه تحصیلی',
         message: `آیا از حذف تجربه تحصیلی خود در ${education.institution} مطمئن هستید؟`,
         model: {

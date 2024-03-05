@@ -21,9 +21,9 @@ export const SET_OPEN_MODAL = prefix('SET_OPEN_MODAL');
 
 /**
  * @module RESUME
- * @desc set delete modal data
+ * @desc set dialog data
  */
-export const SET_DELETE_DATA = prefix('SET_DELETE_DATA');
+export const SET_DIALOG_DATA = prefix('SET_DIALOG_DATA');
 
 /**
  * @module RESUME

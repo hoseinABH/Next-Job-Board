@@ -27,8 +27,7 @@ export default function Languages() {
   }
   function handleDeleteLanguage(language: Language) {
     dispatch(
-      ResumeActions.setDeleteAlertData({
-        key: 'language',
+      ResumeActions.setDialogData({
         title: 'حذف زبان',
         message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
         model: {

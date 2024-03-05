@@ -27,8 +27,7 @@ export default function Skills() {
   }
   function handleDeleteSkill(skill: Skill) {
     dispatch(
-      ResumeActions.setDeleteAlertData({
-        key: 'skill',
+      ResumeActions.setDialogData({
         title: 'حذف مهارت',
         message: `آیا از حذف مهارت ${skill.name} مطمئن هستید؟`,
         model: {

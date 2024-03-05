@@ -26,10 +26,10 @@ export default function ResumeContent({ className }: Props) {
   const router = useRouter();
   const { modals } = useAppSelector((state) => state.common);
   const { isLoggedIn } = useAppSelector((state) => state.user);
-  const { deleteAlertData, loading } = useAppSelector((state) => state.resume);
+  const { dialogData, loading } = useAppSelector((state) => state.resume);
 
-  function submitDeleteAction(id: string) {
-    dispatch(ResumeActions.removeField(id));
+  function submitDeleteAction() {
+    dispatch(ResumeActions.removeField());
   }
   useEffect(() => {
     if (!isLoggedIn) {
@@ -51,11 +51,11 @@ export default function ResumeContent({ className }: Props) {
       </div>
       <ConfirmDeleteDialog
         open={modals.confirmDelete}
-        title={deleteAlertData?.title}
-        onSubmit={() => submitDeleteAction(deleteAlertData?.model.id!)}
+        title={dialogData?.title}
+        onSubmit={submitDeleteAction}
         loading={loading.removeEntity}
       >
-        {deleteAlertData?.message ?? ''}
+        {dialogData?.message ?? ''}
       </ConfirmDeleteDialog>
     </>
   );
