@@ -78,7 +78,7 @@ function SidebarContent({ className }: { className: string }) {
             />
           </Link>
         </CardTitle>
-        <CardDescription className="font-lg">
+        <CardDescription className="text-lg">
           به پنل مدیریت خوش آمدید
         </CardDescription>
       </CardHeader>
