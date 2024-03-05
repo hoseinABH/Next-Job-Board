@@ -31,11 +31,11 @@ export default function Logo({ className, onClick }: Props) {
       >
         <Image
           priority
-          objectFit="contain"
           src={imgSrc}
           width={100}
           height={60}
           alt={configs.appData.appName}
+          className="w-auto h-auto"
         />
       </div>
     </Link>
