@@ -14,6 +14,10 @@ import {
 } from '@/components/ui/table';
 // Utilities
 import { cn } from '@/lib/utils';
+// Hooks
+import { useAppDispatch } from '@/hooks/store';
+// Actions
+import PanelActions from '@/store/Panel/panel.actions';
 // Types
 import type { Position } from '../../data';
 // Constants
@@ -25,6 +29,10 @@ interface Props {
 }
 
 export default function PositionTable({ className, positions }: Props) {
+  const dispatch = useAppDispatch();
+  function openCreatePositionModal() {
+    dispatch(PanelActions.setModalOpen(true, 'createPosition'));
+  }
   return (
     <div className={cn('bg-card p-6', className)}>
       <div className="flex justify-between">
@@ -34,7 +42,7 @@ export default function PositionTable({ className, positions }: Props) {
             لیست موقعیت های شغلی شرکت
           </p>
         </div>
-        <Button>موقعیت شغلی جدید</Button>
+        <Button onClick={openCreatePositionModal}>موقعیت شغلی جدید</Button>
       </div>
       <div className="rounded-md border mt-8">
         <Table>

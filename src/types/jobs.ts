@@ -1,4 +1,3 @@
-import type { Company } from './company';
 import type { EducationDegree } from './resume';
 
 interface Content {
