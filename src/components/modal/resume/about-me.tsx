@@ -1,3 +1,4 @@
+'use client';
 // Common components
 import ControlledInput from '@/components/controlled-input';
 import { Form } from '@/components/ui/form';

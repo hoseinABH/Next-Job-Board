@@ -9,7 +9,7 @@ import { updateState } from '@/lib/store';
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
 import type {
-  DialogData,
+  DeleteDialogData,
   ResumeData,
   ResumeLoading,
   ResumeModals,
@@ -21,7 +21,7 @@ import * as types from './resume.constants';
 export interface ResumeState {
   loading: ResumeLoading;
   modals: ResumeModals;
-  dialogData: Nullable<DialogData>;
+  dialogData: Nullable<DeleteDialogData>;
   resumeData: Nullable<ResumeData>;
 }
 

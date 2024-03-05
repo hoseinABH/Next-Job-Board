@@ -8,13 +8,19 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { PanelLoading, PanelModals } from '@/types/panel';
+import type {
+  DeleteDialogData,
+  PanelLoading,
+  PanelModals,
+} from '@/types/panel';
 // Constants
 import * as types from './panel.constants';
+import { Nullable } from '@/types/common';
 
 export interface PanelState {
   loading: PanelLoading;
   modals: PanelModals;
+  dialogData: Nullable<DeleteDialogData>;
 }
 
 export const initialState: PanelState = {
@@ -24,6 +30,7 @@ export const initialState: PanelState = {
   modals: {
     createPosition: false,
   },
+  dialogData: null,
 };
 
 const reducer: Reducer<PanelState, Action> = (state = initialState, action) => {
@@ -40,6 +47,10 @@ const reducer: Reducer<PanelState, Action> = (state = initialState, action) => {
         modals: updateState<PanelModals>(state.modals)({
           [action.payload.key]: action.payload.open,
         }),
+      });
+    case types.SET_DIALOG_DATA:
+      return update({
+        dialogData: action.payload,
       });
     case RESET_FACTORY:
       return initialState;

@@ -4,7 +4,7 @@
  */
 import * as types from './panel.constants';
 // Types
-import type { LoadingKeys, ModalKeys } from '@/types/panel';
+import type { DeleteDialogData, LoadingKeys, ModalKeys } from '@/types/panel';
 import type { Action } from '@/types/store';
 
 class Actions {
@@ -36,6 +36,18 @@ class Actions {
     return {
       type: types.SET_OPEN_MODAL,
       payload: { open, key },
+    };
+  }
+
+  /**
+   * set dialog data
+   * @param {DialogData} data
+   * @return {Action<DialogData>}
+   */
+  public setDialogData(data: DeleteDialogData): Action<DeleteDialogData> {
+    return {
+      type: types.SET_DIALOG_DATA,
+      payload: data,
     };
   }
 }

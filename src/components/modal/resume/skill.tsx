@@ -1,3 +1,4 @@
+'use client';
 // Common components
 import ControlledInput from '@/components/controlled-input';
 import ControlledSelect from '@/components/controlled-select';

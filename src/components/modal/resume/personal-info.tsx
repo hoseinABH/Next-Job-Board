@@ -1,3 +1,4 @@
+'use client';
 import { useEffect } from 'react';
 // Common components
 import ControlledInput from '@/components/controlled-input';

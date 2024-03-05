@@ -10,7 +10,7 @@ import type {
   CreateExperienceDto,
   CreateLanguageDto,
   CreateSkillDto,
-  DialogData,
+  DeleteDialogData,
   LoadingKeys,
   ModalKeys,
   ResumeData,
@@ -51,10 +51,10 @@ class Actions {
   }
   /**
    * set dialog data
-   * @param {DialogData} data
-   * @return {Action<DialogData>}
+   * @param {DeleteDialogData} data
+   * @return {Action<DeleteDialogData>}
    */
-  public setDialogData(data: DialogData): Action<DialogData> {
+  public setDialogData(data: DeleteDialogData): Action<DeleteDialogData> {
     return {
       type: types.SET_DIALOG_DATA,
       payload: data,

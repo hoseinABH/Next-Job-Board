@@ -1,3 +1,5 @@
+import type { DialogData } from './common';
+
 export interface Skill {
   name: string;
   level: LanguageLevel;
@@ -24,14 +26,9 @@ export type LoadingKeys =
   | 'getMyResume';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
-export interface DialogData {
-  title: string;
-  message: string;
-  model: {
-    id: string;
-    entity: Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>;
-  };
-}
+export type DeleteDialogData = DialogData<
+  Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>
+>;
 
 export type MaritalStatus = 'single' | 'married' | 'unknown';
 export type Gender = 'female' | 'male' | 'other';

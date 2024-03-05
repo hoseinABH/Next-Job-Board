@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { useAppDispatch } from '@/hooks/store';
 // Actions
 import PanelActions from '@/store/Panel/panel.actions';
+import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Position } from '../../data';
 // Constants
@@ -32,6 +33,19 @@ export default function PositionTable({ className, positions }: Props) {
   const dispatch = useAppDispatch();
   function openCreatePositionModal() {
     dispatch(PanelActions.setModalOpen(true, 'createPosition'));
+  }
+  function openDeleteModal() {
+    dispatch(
+      PanelActions.setDialogData({
+        title: 'حذف موقعیت شغلی',
+        message: 'آیا از حذف این موقعیت شغلی مطمئن هستید؟',
+        model: {
+          id: '',
+          entity: 'position',
+        },
+      })
+    );
+    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <div className={cn('bg-card p-6', className)}>
@@ -75,7 +89,7 @@ export default function PositionTable({ className, positions }: Props) {
                   )}
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton title="حذف">
+                  <IconButton title="حذف" onClick={openDeleteModal}>
                     <Trash2 className="w-4 h-4" />
                   </IconButton>
                 </TableCell>
