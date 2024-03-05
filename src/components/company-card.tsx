@@ -39,8 +39,9 @@ export default function CompanyCard({
           >
             <Image
               src="/javascript.webp"
-              width={80}
-              height={80}
+              className="rounded-sm drop-shadow-md"
+              width={60}
+              height={60}
               alt={company.name}
             />
             <div className="my-4 sm:my-0">

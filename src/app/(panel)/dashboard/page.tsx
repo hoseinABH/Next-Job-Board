@@ -6,7 +6,7 @@ import { statistics } from './data';
 export default function DashboardPage() {
   return (
     <div className="h-full container pt-24">
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         {statistics.map((statistic) => (
           <StatisticCard key={statistic.key} statistic={statistic} />
         ))}

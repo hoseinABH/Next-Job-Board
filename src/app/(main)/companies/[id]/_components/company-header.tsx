@@ -12,7 +12,13 @@ const iconClassName = 'ml-1 w-5 h-5';
 export default function CompanyHeader({ company }: Props) {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
-      <Image src="/javascript.webp" width={80} height={80} alt={company.name} />
+      <Image
+        src="/javascript.webp"
+        className="rounded-sm drop-shadow-md"
+        width={60}
+        height={60}
+        alt={company.name}
+      />
       <h1 className="text-2xl font-bold">{company.name}</h1>
       <div className="flex items-center flex-wrap gap-4">
         <span className="flex items-center  text-muted-foreground">

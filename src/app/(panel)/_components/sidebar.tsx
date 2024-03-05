@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 // UI Frameworks
@@ -14,8 +15,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import AppVersion from '@/components/app-version';
 // Utilities
-import { getVersion } from '@/lib/version';
 import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
@@ -26,7 +27,6 @@ import * as Routes from '@/config/routes';
 const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), {
   ssr: false,
 });
-const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
 
 interface Menu {
   title: string;
@@ -53,13 +53,32 @@ const menuItems: Menu[] = [
 ];
 
 export default function SideBar() {
+  // Should be handle for mobile users later
+  return <SidebarContent className="fixed hidden md:flex w-[280px] top-0 " />;
+}
+
+function SidebarContent({ className }: { className: string }) {
   return (
-    <Card className="fixed top-0 h-full w-[280px] rounded-none flex flex-col justify-between">
+    <Card
+      className={cn(
+        'h-full rounded-none flex flex-col justify-between',
+        className
+      )}
+    >
       <CardHeader>
         <CardTitle>
-          <Logo />
+          <Image
+            priority
+            src="/javascript.webp"
+            className="rounded-sm drop-shadow-md"
+            width={60}
+            height={60}
+            alt="شرکت ایرانسل"
+          />
         </CardTitle>
-        <CardDescription>به پنل مدیریت خوش آمدید</CardDescription>
+        <CardDescription className="font-lg">
+          به پنل مدیریت خوش آمدید
+        </CardDescription>
       </CardHeader>
       <Separator />
       <CardContent className="p-0">
@@ -69,7 +88,7 @@ export default function SideBar() {
       </CardContent>
       <CardFooter className="mt-auto flex justify-between w-full">
         <ThemeToggle />
-        نسخه:{getVersion()}
+        <AppVersion />
       </CardFooter>
     </Card>
   );
