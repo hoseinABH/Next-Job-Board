@@ -55,7 +55,11 @@ export default function ApplicationsTable({ className, applications }: Props) {
                   </IconButton>
                 </TableCell>
                 <TableCell align="center">
-                  <Badge variant="destructive">رد شده</Badge>
+                  {application.status === 'confirm' ? (
+                    <Badge variant="destructive">رد شده</Badge>
+                  ) : (
+                    <Badge variant="success">تایید برای مصاحبه</Badge>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
