@@ -67,14 +67,16 @@ function SidebarContent({ className }: { className: string }) {
     >
       <CardHeader>
         <CardTitle>
-          <Image
-            priority
-            src="/javascript.webp"
-            className="rounded-sm drop-shadow-md"
-            width={60}
-            height={60}
-            alt="شرکت ایرانسل"
-          />
+          <Link href="/dashboard">
+            <Image
+              priority
+              src="/javascript.webp"
+              className="rounded-sm drop-shadow-md"
+              width={60}
+              height={60}
+              alt="شرکت ایرانسل"
+            />
+          </Link>
         </CardTitle>
         <CardDescription className="font-lg">
           به پنل مدیریت خوش آمدید
