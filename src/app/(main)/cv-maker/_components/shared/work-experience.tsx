@@ -28,7 +28,7 @@ export default function WorkExperience() {
         title: 'حذف تجربه کاری',
         message: `آیا از حذف تجربه کاری خود در ${experience.companyName} مطمئن هستید؟`,
         model: {
-          id: experience.companyName,
+          id: experience.experienceId,
           entity: 'workExperience',
         },
       })

@@ -1,10 +1,12 @@
 import type { DialogData } from './common';
 
 export interface Skill {
+  skillId: string;
   name: string;
   level: LanguageLevel;
 }
 export interface Language {
+  languageId: string;
   name: string;
   level: LanguageLevel;
 }
@@ -75,7 +77,10 @@ export interface Education extends CreateEducationDto {
   educationId: string;
 }
 
-export interface Experience {
+export interface Experience extends CreateExperienceDto {
+  experienceId: string;
+}
+export interface CreateExperienceDto {
   companyName: string;
   position: string;
   startDate: string;
@@ -83,7 +88,6 @@ export interface Experience {
   description: string;
   isCurrent: boolean;
 }
-export interface CreateExperienceDto extends Experience {}
 
 export type LanguageLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 

@@ -18,7 +18,10 @@ import type {
   CreateLanguageDto,
   CreateSkillDto,
   Education,
+  Experience,
+  Language,
   ResumeData,
+  Skill,
   UpdatePersonalDto,
 } from '@/types/resume';
 import type { Action } from '@/types/store';
@@ -67,7 +70,7 @@ function* createExperience(action: Action<CreateExperienceDto>) {
     yield put(ResumeActions.setLoading(true, 'createExperience'));
     const { resumeData }: ResumeState = yield select((state) => state.resume);
     const experience = action.payload!;
-    const response: BaseApiResponse<unknown> = yield call(() =>
+    const response: BaseApiResponse<Experience[]> = yield call(() =>
       ResumeService.createExperience(experience)
     );
     if (response.message === 'Success') {
@@ -76,13 +79,10 @@ function* createExperience(action: Action<CreateExperienceDto>) {
         description: 'سابقه شغلی با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'workExperience'));
-      const newExperiences = resumeData?.workExperience.length
-        ? [...resumeData.workExperience, experience]
-        : [experience];
       yield put(
         ResumeActions.fillResumeData({
           ...resumeData!,
-          workExperience: newExperiences,
+          workExperience: response.data,
         })
       );
     }
@@ -100,7 +100,7 @@ function* createEducation(action: Action<CreateEducationDto>) {
     yield put(ResumeActions.setLoading(true, 'createEducation'));
     const { resumeData }: ResumeState = yield select((state) => state.resume);
     const education = action.payload!;
-    const response: BaseApiResponse<unknown> = yield call(() =>
+    const response: BaseApiResponse<Education[]> = yield call(() =>
       ResumeService.createEducation(education)
     );
     if (response.message === 'Success') {
@@ -109,15 +109,10 @@ function* createEducation(action: Action<CreateEducationDto>) {
         description: 'مقطع تحصیلی با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'education'));
-      const newEducations = (
-        resumeData?.education.length
-          ? [...resumeData.education, education]
-          : [education]
-      ) as Education[];
       yield put(
         ResumeActions.fillResumeData({
           ...resumeData!,
-          education: newEducations,
+          education: response.data,
         })
       );
     }
@@ -135,7 +130,7 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
     yield put(ResumeActions.setLoading(true, 'createLanguage'));
     const { resumeData }: ResumeState = yield select((state) => state.resume);
     const language = action.payload!;
-    const response: BaseApiResponse<unknown> = yield call(() =>
+    const response: BaseApiResponse<Language[]> = yield call(() =>
       ResumeService.createLanguage(language)
     );
     if (response.message === 'Success') {
@@ -144,13 +139,10 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
         description: 'زبان با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'language'));
-      const newLanguages = resumeData?.languages.length
-        ? [...resumeData.languages, language]
-        : [language];
       yield put(
         ResumeActions.fillResumeData({
           ...resumeData!,
-          languages: newLanguages,
+          languages: response.data,
         })
       );
     }
@@ -168,7 +160,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
     yield put(ResumeActions.setLoading(true, 'createSkill'));
     const { resumeData }: ResumeState = yield select((state) => state.resume);
     const skill = action.payload!;
-    const response: BaseApiResponse<unknown> = yield call(() =>
+    const response: BaseApiResponse<Skill[]> = yield call(() =>
       ResumeService.createSkill(skill)
     );
     if (response.message === 'Success') {
@@ -177,13 +169,10 @@ function* createSkill(action: Action<CreateSkillDto>) {
         description: 'مهارت با موفقیت ثبت شد',
       });
       yield put(ResumeActions.setModalOpen(false, 'skill'));
-      const newSkills = resumeData?.skills.length
-        ? [...resumeData.skills, skill]
-        : [skill];
       yield put(
         ResumeActions.fillResumeData({
           ...resumeData!,
-          skills: newSkills,
+          skills: response.data,
         })
       );
     }
@@ -204,7 +193,7 @@ function* removeField() {
     );
     const entity = dialogData?.model.entity;
     const entityId = dialogData?.model.id!;
-    let response: BaseApiResponse<unknown> | null = null;
+    let response: BaseApiResponse | null = null;
     let entityTitle = '';
     switch (entity) {
       case 'education':
@@ -233,14 +222,39 @@ function* removeField() {
       });
       yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
       switch (entity) {
-        case 'education':
-          const newEducations = resumeData?.education.filter(
-            (item) => item.educationId !== entityId
-          );
+        case 'workExperience':
+          const newExperience: Experience[] = response.data;
           yield put(
             ResumeActions.fillResumeData({
               ...resumeData!,
-              education: newEducations!,
+              workExperience: newExperience,
+            })
+          );
+          break;
+        case 'education':
+          const newEducations: Education[] = response.data;
+          yield put(
+            ResumeActions.fillResumeData({
+              ...resumeData!,
+              education: newEducations,
+            })
+          );
+          break;
+        case 'language':
+          const newLanguages: Language[] = response.data;
+          yield put(
+            ResumeActions.fillResumeData({
+              ...resumeData!,
+              languages: newLanguages,
+            })
+          );
+          break;
+        case 'skill':
+          const newSkills: Skill[] = response.data;
+          yield put(
+            ResumeActions.fillResumeData({
+              ...resumeData!,
+              skills: newSkills,
             })
           );
           break;

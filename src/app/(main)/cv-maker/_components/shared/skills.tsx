@@ -31,7 +31,7 @@ export default function Skills() {
         title: 'حذف مهارت',
         message: `آیا از حذف مهارت ${skill.name} مطمئن هستید؟`,
         model: {
-          id: skill.level,
+          id: skill.skillId,
           entity: 'skill',
         },
       })

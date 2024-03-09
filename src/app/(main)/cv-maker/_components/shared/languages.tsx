@@ -31,7 +31,7 @@ export default function Languages() {
         title: 'حذف زبان',
         message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
         model: {
-          id: language.level,
+          id: language.languageId,
           entity: 'language',
         },
       })
