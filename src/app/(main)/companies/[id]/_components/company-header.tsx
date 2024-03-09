@@ -1,6 +1,6 @@
 import Image from 'next/image';
 // UI Frameworks
-import { Briefcase, Mail, MapPin, Phone, Network } from 'lucide-react';
+import { Briefcase, MapPin, Phone, Network } from 'lucide-react';
 // Types
 import type { Company } from '@/types/company';
 
