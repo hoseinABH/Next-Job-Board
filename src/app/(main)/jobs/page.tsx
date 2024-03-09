@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Jobs() {
-  await new Promise((res) => setTimeout(res, 4000));
   const positions = await getAllPositions();
   return (
     <section className="py-12">
