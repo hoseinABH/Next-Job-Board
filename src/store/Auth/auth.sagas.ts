@@ -12,6 +12,7 @@ import AuthenticationService from '@/services/endpoints/authentication';
 // Actions
 import AuthActions from './auth.actions';
 import UserActions from '../User/user.actions';
+import { navigate } from '@/actions/navigation';
 // Types
 import type {
   LoggedInUserInfo,
@@ -93,7 +94,7 @@ function* logout() {
   removeToken();
   yield put(UserActions.setIsLoggedIn(false));
   yield put(UserActions.setUserInfo(null));
-  window.location.reload();
+  yield call(() => navigate(Routes.LOGIN));
 }
 
 export default function* networkListeners() {
