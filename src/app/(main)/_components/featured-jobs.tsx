@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
