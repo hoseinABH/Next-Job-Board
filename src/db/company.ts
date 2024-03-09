@@ -2,7 +2,7 @@ import type { Company } from '@/types/company';
 
 const baseUrl = `${process.env.API_URL}/api/v1/company`;
 
-export async function getCompanies() {
+export async function getAllCompanies() {
   const data = await fetch(baseUrl, {
     cache: 'no-cache',
   });

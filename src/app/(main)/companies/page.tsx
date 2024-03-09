@@ -3,7 +3,7 @@ import CompanyCard from '@/components/company-card';
 // Local components
 import FilterSection from './_components/filter-section';
 // Services
-import { getCompanies } from '@/db/company';
+import { getAllCompanies } from '@/db/company';
 // Types
 import type { Metadata } from 'next';
 // Configs
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Companies() {
-  const companies = await getCompanies();
+  const companies = await getAllCompanies();
 
   return (
     <section className="py-12">

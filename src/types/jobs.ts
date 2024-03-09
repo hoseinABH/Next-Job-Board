@@ -1,19 +1,29 @@
-import type { EducationDegree } from './resume';
+import type { MilitaryStatus } from './resume';
+import type { Company } from './company';
 
-interface Content {
-  id: string;
-  title: string;
-  items: string[];
-}
+export type PositionStatus = 'Draft' | 'Active' | 'Inactive';
+export type RequiredEducationLevel =
+  | 'None'
+  | 'HighSchool'
+  | 'Diploma'
+  | 'Bachelor'
+  | 'Master'
+  | 'PhD'
+  | 'PostDoctoral';
 
 export interface Job {
   id: string;
+  companyId: string;
   title: string;
-  salary: string;
-  isUrgent: boolean;
-  level: EducationDegree;
-  content: Content[];
-  major: string[];
+  description: string;
+  salary: number;
+  requiredEducationLevels: RequiredEducationLevel[];
+  fieldOfStudy: string;
+  applicationDeadline: Date;
+  status: PositionStatus;
+  militaryServiceStatus: MilitaryStatus[];
+  badges: string[];
+  company: Company;
 }
 
 export type ModalKeys = 'filter' | 'jobApplication';

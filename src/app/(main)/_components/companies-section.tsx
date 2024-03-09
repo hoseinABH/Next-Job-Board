@@ -1,13 +1,13 @@
 // Common components
 import CompanyCard from '@/components/company-card';
 // Services
-import { getCompanies } from '@/db/company';
+import { getAllCompanies } from '@/db/company';
 // Configs
 import { appData } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 export default async function CompaniesSection() {
-  const companies = await getCompanies();
+  const companies = await getAllCompanies();
   return (
     <div className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
