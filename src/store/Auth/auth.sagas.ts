@@ -16,9 +16,9 @@ import { navigate } from '@/actions/navigation';
 // Types
 import type {
   LoggedInUserInfo,
-  LoginActionPayload,
+  LoginDto,
   LoginResponse,
-  RegisterActionPayload,
+  RegisterDto,
 } from '@/types/auth';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
@@ -27,10 +27,10 @@ import * as types from './auth.constants';
 import * as Routes from '@/config/routes';
 import * as messages from '@/constants/messages';
 
-function* login(action: Action<LoginActionPayload>) {
+function* login(action: Action<LoginDto>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
-    const { loginDto, router } = action.payload!;
+    const loginDto = action.payload!;
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.loginWithEmail(loginDto)
     );
@@ -39,7 +39,7 @@ function* login(action: Action<LoginActionPayload>) {
       Database.store('refreshToken', response.data.refreshToken);
       yield put(UserActions.setUserInfo(response.data.user));
       yield put(UserActions.setIsLoggedIn(true));
-      router.push(Routes.CV_MAKER);
+      navigate(Routes.CV_MAKER);
     }
   } catch (error) {
     toast({
@@ -50,12 +50,12 @@ function* login(action: Action<LoginActionPayload>) {
     yield put(AuthActions.setLoading(false, 'login'));
   }
 }
-function* register(action: Action<RegisterActionPayload>) {
+function* register(action: Action<RegisterDto>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
-    const { registerDto, router } = action.payload!;
+    const registerDto = action.payload!;
     yield call(() => AuthenticationService.registerWithEmail(registerDto));
-    router.push(Routes.LOGIN);
+    navigate(Routes.LOGIN);
     toast({
       variant: 'success',
       title: 'عملیات موفق',
@@ -94,7 +94,7 @@ function* logout() {
   removeToken();
   yield put(UserActions.setIsLoggedIn(false));
   yield put(UserActions.setUserInfo(null));
-  yield call(() => navigate(Routes.LOGIN));
+  navigate(Routes.LOGIN);
 }
 
 export default function* networkListeners() {

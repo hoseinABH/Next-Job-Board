@@ -5,14 +5,7 @@
 import * as types from './auth.constants';
 // Types
 import type { Action } from '@/types/store';
-import type {
-  LoadingKeys,
-  LoginActionPayload,
-  LoginDto,
-  RegisterActionPayload,
-  RegisterDto,
-} from '@/types/auth';
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import type { LoadingKeys, LoginDto, RegisterDto } from '@/types/auth';
 
 class Actions {
   /**
@@ -34,32 +27,24 @@ class Actions {
   /**
    * call login service
    * @param {LoginDto} loginDto
-   * @param {AppRouterInstance} router
-   * @return {Action<LoginActionPayload>}
+   * @return {Action<LoginDto>}
    */
-  public login(
-    loginDto: LoginDto,
-    router: AppRouterInstance
-  ): Action<LoginActionPayload> {
+  public login(loginDto: LoginDto): Action<LoginDto> {
     return {
       type: types.SAGAS_LOGIN,
-      payload: { loginDto, router },
+      payload: loginDto,
     };
   }
 
   /**
    * call register service
    * @param {RegisterDto} registerDto
-   * @param {AppRouterInstance} router
-   * @return {Action<LoginActionPayload>}
+   * @return {Action<RegisterDto>}
    */
-  public register(
-    registerDto: RegisterDto,
-    router: AppRouterInstance
-  ): Action<RegisterActionPayload> {
+  public register(registerDto: RegisterDto): Action<RegisterDto> {
     return {
       type: types.SAGAS_REGISTER,
-      payload: { registerDto, router },
+      payload: registerDto,
     };
   }
 

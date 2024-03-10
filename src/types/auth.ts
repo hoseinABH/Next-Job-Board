@@ -1,5 +1,4 @@
 import type { Nullable } from './common';
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 export interface LoginDto {
   email: string;
@@ -32,16 +31,7 @@ export type LoadingKeys = 'login' | 'register' | 'fetchMe';
 
 export type AuthLoading = Record<LoadingKeys, boolean>;
 
-export interface LoginActionPayload {
-  loginDto: LoginDto;
-  router: AppRouterInstance;
-}
-
 export interface RegisterDto extends LoginDto {
   firstName: string;
   lastName: string;
-}
-export interface RegisterActionPayload {
-  registerDto: RegisterDto;
-  router: AppRouterInstance;
 }
