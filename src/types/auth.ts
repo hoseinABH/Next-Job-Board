@@ -24,6 +24,7 @@ export interface LoggedInUserInfo {
 export interface LoginResponse {
   refreshToken: string;
   token: string;
+  tokenExpires: Date;
   user: LoggedInUserInfo;
 }
 

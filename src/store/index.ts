@@ -30,7 +30,7 @@ sagaMiddleware.run(sagas);
 
 if (!isServer()) {
   window.addEventListener('unauthorizedError', () => {
-    appStore.dispatch(AuthActions.logout());
+    // run refresh token strategy
   });
 }
 

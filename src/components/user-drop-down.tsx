@@ -44,9 +44,7 @@ const userMenuItems = [
 export default function UserDropDown() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { isLoggedIn, loggedInUserInfo } = useAppSelector(
-    (state) => state.user
-  );
+  const { loggedInUserInfo } = useAppSelector((state) => state.user);
   const { loading } = useAppSelector((state) => state.auth);
   const fullName = useMemo(
     () => `${loggedInUserInfo?.firstName} ${loggedInUserInfo?.lastName}`,
@@ -65,13 +63,10 @@ export default function UserDropDown() {
         break;
     }
   }
-
   useEffect(() => {
-    if (isLoggedIn && !loggedInUserInfo) {
-      dispatch(AuthActions.fetchMe());
-    }
+    dispatch(AuthActions.fetchMe());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <>
@@ -79,7 +74,7 @@ export default function UserDropDown() {
         <Spinner />
       ) : (
         <>
-          <Maybe condition={isLoggedIn}>
+          <Maybe condition={Boolean(loggedInUserInfo)}>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-x-2 outline-none">
                 <Avatar>
@@ -101,7 +96,7 @@ export default function UserDropDown() {
               </DropdownMenuContent>
             </DropdownMenu>
           </Maybe>
-          <Maybe condition={!isLoggedIn}>
+          <Maybe condition={!Boolean(loggedInUserInfo)}>
             <Link href={Routes.LOGIN} className={buttonVariants()}>
               <Fingerprint className="ml-2 w-4 h-4" />
               <span>ورود | ثبت نام</span>

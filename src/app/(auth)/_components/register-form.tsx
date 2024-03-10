@@ -31,7 +31,6 @@ export default function RegisterForm() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { loading } = useAppSelector((state) => state.auth);
-  const { isLoggedIn } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -42,16 +41,8 @@ export default function RegisterForm() {
     },
   });
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(AuthActions.register(values, router));
+    dispatch(AuthActions.register(values));
   }
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <Form {...form}>
       <form

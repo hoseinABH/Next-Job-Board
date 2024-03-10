@@ -5,14 +5,13 @@
 // Utilities
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
-import { removeToken, storeToken } from '@/lib/token';
-import Database from '@/lib/database';
 // Services
 import AuthenticationService from '@/services/endpoints/authentication';
 // Actions
 import AuthActions from './auth.actions';
 import UserActions from '../User/user.actions';
 import { navigate } from '@/actions/navigation';
+import { clearSession, setCookie } from '@/actions/cookie';
 // Types
 import type {
   LoggedInUserInfo,
@@ -34,11 +33,9 @@ function* login(action: Action<LoginDto>) {
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.loginWithEmail(loginDto)
     );
-    if (response.data) {
-      storeToken(response.data.token);
-      Database.store('refreshToken', response.data.refreshToken);
+    if (response.message === 'Success') {
       yield put(UserActions.setUserInfo(response.data.user));
-      yield put(UserActions.setIsLoggedIn(true));
+      setCookie(response.data.token, new Date(response.data.tokenExpires));
       navigate(Routes.CV_MAKER);
     }
   } catch (error) {
@@ -77,9 +74,8 @@ function* fetchMe() {
     const response: BaseApiResponse<LoggedInUserInfo> = yield call(() =>
       AuthenticationService.fetchMe()
     );
-    if (!response.data) return;
+    if (response.message !== 'Success') return;
     yield put(UserActions.setUserInfo(response.data));
-    yield put(UserActions.setIsLoggedIn(true));
   } catch (error) {
     toast({
       description: messages.fetchDataError,
@@ -90,10 +86,8 @@ function* fetchMe() {
 }
 
 function* logout() {
-  Database.delete('refreshToken');
-  removeToken();
-  yield put(UserActions.setIsLoggedIn(false));
   yield put(UserActions.setUserInfo(null));
+  clearSession();
   navigate(Routes.LOGIN);
 }
 

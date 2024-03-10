@@ -1,6 +1,4 @@
 'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
 import { Input } from '@/components/ui/input';
@@ -27,9 +25,7 @@ const loginFormSchema = z.object({
 type FormData = typeof loginFormSchema;
 export default function LoginForm() {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const { loading } = useAppSelector((state) => state.auth);
-  const { isLoggedIn } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -38,16 +34,8 @@ export default function LoginForm() {
     },
   });
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(AuthActions.login(values, router));
+    dispatch(AuthActions.login(values));
   }
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <Form {...form}>
       <form

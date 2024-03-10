@@ -1,8 +1,7 @@
 import axios from 'axios';
-// Utilities
-import { readToken } from '@/lib/token';
 // Types
 import type { AxiosInstance } from 'axios';
+import { getSession } from '@/actions/cookie';
 
 interface Config {
   suffix?: string;
@@ -38,7 +37,7 @@ abstract class BaseAPI {
           const serverErrorEvent = new Event('serverError');
           window.dispatchEvent(serverErrorEvent);
         }
-        if (error.response.status === 401 && readToken()) {
+        if (error.response.status === 401) {
           const unauthorizedErrorEvent = new Event('unauthorizedError');
           window.dispatchEvent(unauthorizedErrorEvent);
         }
@@ -52,9 +51,9 @@ abstract class BaseAPI {
   }
   private requestInterceptors() {
     this.httpService.interceptors.request.use(
-      (config) => {
+      async (config) => {
         if (!config.headers.Authorization) {
-          const token = readToken();
+          const token = await getSession();
           if (token) {
             config.headers.Authorization = `Bearer ${token}`;
           }
