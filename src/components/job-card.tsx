@@ -5,7 +5,6 @@ import { MapPin, Building2 } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
-import { addCommas, digitsEnToFa } from '@persian-tools/persian-tools';
 // Types
 import type { Job } from '@/types/jobs';
 
@@ -35,7 +34,7 @@ export default function JobCard({ className, job, href = '/' }: Props) {
                 </p>
               </div>
               <p className="text-muted-foreground flex items-baseline">
-                حقوق {digitsEnToFa(addCommas(job.salary))} ریال
+                حقوق {job.salary}
               </p>
             </div>
           </div>

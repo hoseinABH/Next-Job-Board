@@ -14,22 +14,9 @@ export default function PositionContent({ className, job }: Props) {
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
-        <div className="space-y-10">
-          {job.content.map((section) => (
-            <div key={section.id}>
-              <h6 className="text-lg sm:text-xl font-medium mb-4">
-                {section.title}
-              </h6>
-              <ul className="space-y-2 list-disc  mr-4 sm:mr-12">
-                {section.items.map((item) => (
-                  <li key={item} className="text-md sm:text-lg">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <h1>درباره موقعیت شغلی: </h1>
+        <br />
+        <p>{job.description}</p>
       </CardContent>
     </Card>
   );

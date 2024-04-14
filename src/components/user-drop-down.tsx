@@ -63,10 +63,6 @@ export default function UserDropDown() {
         break;
     }
   }
-  useEffect(() => {
-    dispatch(AuthActions.fetchMe());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>

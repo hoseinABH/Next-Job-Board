@@ -13,7 +13,7 @@ export default function CompanyHeader({ company }: Props) {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <Image
-        src="/javascript.webp"
+        src={company.image}
         className="rounded-sm drop-shadow-md"
         width={60}
         height={60}

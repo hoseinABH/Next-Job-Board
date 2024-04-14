@@ -1,21 +1,30 @@
 import type { Job } from '@/types/jobs';
+// data
+import { positions } from '@/data';
 
-const baseUrl = `${process.env.API_URL}/api/v1/positions`;
-
-export async function getAllPositions() {
-  const data = await fetch(baseUrl, {
-    cache: 'no-cache',
-  });
-  const response = await data.json();
-  const positions: Job[] = response.data.data;
+export async function getAllPositions(): Promise<Job[]> {
   return positions;
 }
 
-export async function getPositionById(id: string) {
-  const data = await fetch(`${baseUrl}/${id}`, {
-    cache: 'no-cache',
-  });
-  const response = await data.json();
-  const position: Job = response.data;
-  return position;
+export async function getPositionById(id: string): Promise<Job> {
+  const position = positions.find((position) => position.id === id);
+  if (position) return position;
+  return positions[0];
+}
+
+export async function getFeaturedJobs(): Promise<Job[]> {
+  let featuredPositions: Job[] = [];
+  for (let i = 0; i < 4; i++) {
+    featuredPositions.push(positions[i]);
+  }
+  return featuredPositions;
+}
+
+export async function getPositionsByCompanyId(
+  companyId: string
+): Promise<Job[]> {
+  const companyPositions = positions.filter(
+    (position) => position.company.id === companyId
+  );
+  return companyPositions;
 }

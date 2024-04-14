@@ -1,21 +1,13 @@
 import type { Company } from '@/types/company';
+// data
+import { companies } from '@/data';
 
-const baseUrl = `${process.env.API_URL}/api/v1/company`;
-
-export async function getAllCompanies() {
-  const data = await fetch(baseUrl, {
-    cache: 'no-cache',
-  });
-  const response = await data.json();
-  const companies: Company[] = response.data.data;
+export async function getAllCompanies(): Promise<Company[]> {
   return companies;
 }
 
-export async function getCompanyById(id: string) {
-  const data = await fetch(`${baseUrl}/${id}`, {
-    cache: 'no-cache',
-  });
-  const response = await data.json();
-  const company: Company = response.data;
-  return company;
+export async function getCompanyById(id: string): Promise<Company> {
+  const company = companies.find((company) => company.id === id);
+  if (company) return company;
+  return companies[0];
 }

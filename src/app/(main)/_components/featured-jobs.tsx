@@ -2,11 +2,13 @@ import Link from 'next/link';
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
 import { buttonVariants } from '@/components/ui/button';
+// Services
+import { getFeaturedJobs } from '@/db/positions';
 // Configs
-import { landingJobs } from '@/config/app';
 import * as Routes from '@/config/routes';
 
-export default function FeaturedJobs() {
+export default async function FeaturedJobs() {
+  const featuredJobs = await getFeaturedJobs();
   return (
     <section className="flex flex-col justify-center items-center my-12">
       <div className="text-center">
@@ -19,7 +21,7 @@ export default function FeaturedJobs() {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-2 mt-10">
-        {landingJobs.map((job) => (
+        {featuredJobs.map((job) => (
           <FeaturedJobCard
             key={job.title}
             job={job}
