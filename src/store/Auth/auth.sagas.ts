@@ -3,7 +3,7 @@
  * @desc All Auth sagas
  */
 // Utilities
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
 // Services
 import AuthenticationService from '@/services/endpoints/authentication';
@@ -30,14 +30,36 @@ function* login(action: Action<LoginDto>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
     const loginDto = action.payload!;
-    const response: BaseApiResponse<LoginResponse> = yield call(() =>
-      AuthenticationService.loginWithEmail(loginDto)
+    // const response: BaseApiResponse<LoginResponse> = yield call(() =>
+    //   AuthenticationService.loginWithEmail(loginDto)
+    // );
+    // if (response.message === 'Success') {
+    //   yield put(UserActions.setUserInfo(response.data.user));
+    //   setCookie(response.data.token, new Date(response.data.tokenExpires));
+    //   navigate(Routes.CV_MAKER);
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(
+      UserActions.setUserInfo({
+        id: '22232',
+        email: 'hosein@mail.com',
+        provider: 'email',
+        socialId: '',
+        firstName: 'حسین',
+        lastName: 'ابوالحسنی',
+        role: {
+          id: 12,
+        },
+        status: {
+          id: 1,
+        },
+        createdAt: new Date().toString(),
+        updatedAt: new Date().toString(),
+      })
     );
-    if (response.message === 'Success') {
-      yield put(UserActions.setUserInfo(response.data.user));
-      setCookie(response.data.token, new Date(response.data.tokenExpires));
-      navigate(Routes.CV_MAKER);
-    }
+    navigate(Routes.CV_MAKER);
+    /** TEST CODE */
   } catch (error) {
     toast({
       title: 'خطایی رخ داده است',

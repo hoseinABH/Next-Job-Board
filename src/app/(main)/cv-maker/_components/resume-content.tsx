@@ -22,7 +22,6 @@ interface Props {
 }
 export default function ResumeContent({ className }: Props) {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const { modals } = useAppSelector((state) => state.common);
   const { dialogData, loading } = useAppSelector((state) => state.resume);
 
