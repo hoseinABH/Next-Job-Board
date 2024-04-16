@@ -8,10 +8,11 @@ import { persianDate } from '@/lib/date';
 import type { Education } from '@/types/resume';
 // Constants
 import { mapEducationLevel } from '@/constants';
+import Maybe from './maybe';
 
 interface Props {
   education: Education;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 
 export default function EducationCard({ education, onDelete }: Props) {
@@ -29,9 +30,11 @@ export default function EducationCard({ education, onDelete }: Props) {
             : persianDate(education.degree)}
         </p>
       </div>
-      <IconButton title="حذف" onClick={onDelete}>
-        <Trash2 className="w-5 h-4" />
-      </IconButton>
+      <Maybe condition={Boolean(onDelete)}>
+        <IconButton title="حذف" onClick={onDelete}>
+          <Trash2 className="w-5 h-4" />
+        </IconButton>
+      </Maybe>
     </div>
   );
 }

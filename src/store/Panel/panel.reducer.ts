@@ -29,6 +29,7 @@ export const initialState: PanelState = {
   },
   modals: {
     createPosition: false,
+    resumePreview: false,
   },
   dialogData: null,
 };

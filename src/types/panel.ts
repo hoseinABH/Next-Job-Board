@@ -1,6 +1,6 @@
 import type { DialogData } from './common';
 
-export type ModalKeys = 'createPosition';
+export type ModalKeys = 'createPosition' | 'resumePreview';
 export type PanelModals = Record<ModalKeys, boolean>;
 
 export type LoadingKeys = 'getAllPositions';

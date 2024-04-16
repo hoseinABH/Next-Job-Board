@@ -5,10 +5,11 @@ import IconButton from './icon-button';
 // Types
 import type { Experience } from '@/types/resume';
 import { persianDate } from '@/lib/date';
+import Maybe from './maybe';
 
 interface Props {
   experience: Experience;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 
 export default function WorkExperienceCard({ experience, onDelete }: Props) {
@@ -23,9 +24,11 @@ export default function WorkExperienceCard({ experience, onDelete }: Props) {
         </p>
         <p className="text-sm mt-2">{experience.description}</p>
       </div>
-      <IconButton title="حذف" onClick={onDelete}>
-        <Trash2 className="w-5 h-4" />
-      </IconButton>
+      <Maybe condition={Boolean(onDelete)}>
+        <IconButton title="حذف" onClick={onDelete}>
+          <Trash2 className="w-5 h-4" />
+        </IconButton>
+      </Maybe>
     </div>
   );
 }

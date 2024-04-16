@@ -13,6 +13,10 @@ import {
 } from '@/components/ui/table';
 // Utilities
 import { cn } from '@/lib/utils';
+// Actions
+import PanelActions from '@/store/Panel/panel.actions';
+// Hooks
+import { useAppDispatch } from '@/hooks/store';
 // Types
 import type { Application } from '../data';
 
@@ -22,6 +26,10 @@ interface Props {
 }
 
 export default function ApplicationsTable({ className, applications }: Props) {
+  const dispatch = useAppDispatch();
+  function openResume() {
+    dispatch(PanelActions.setModalOpen(true, 'resumePreview'));
+  }
   return (
     <div className={cn('bg-card p-6', className)}>
       <div>
@@ -50,7 +58,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
                   {application.requestDate.toLocaleDateString('fa-IR')}
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton variant="outline">
+                  <IconButton variant="outline" onClick={openResume}>
                     <Eye className="w-4 h-4" />
                   </IconButton>
                 </TableCell>
