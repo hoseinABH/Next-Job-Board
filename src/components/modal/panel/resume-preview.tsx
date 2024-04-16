@@ -22,7 +22,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-6">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-white">
+              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
                 اطلاعات شخصی
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-white">
+              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
                 سوابق شغلی
               </h1>
             </div>
@@ -79,7 +79,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-white">
+              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
                 سوابق تحصیلی
               </h1>
             </div>
@@ -98,7 +98,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-white">
+              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
                 مهارت‌ها
               </h1>
             </div>
@@ -109,7 +109,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-white">
+              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
                 زبان‌ها
               </h1>
             </div>
