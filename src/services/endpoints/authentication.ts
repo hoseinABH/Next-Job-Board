@@ -2,7 +2,6 @@ import HttpService from '../base';
 // Types
 import type { BaseApiResponse } from '@/types/http';
 import type {
-  LoggedInUserInfo,
   LoginDto,
   LoginResponse,
   RegisterDto,
@@ -21,9 +20,6 @@ class AuthenticationProvider extends HttpService {
   }
   public registerWithEmail(data: RegisterDto): Promise<BaseApiResponse> {
     return this.httpService.post('register', data);
-  }
-  public fetchMe(): Promise<BaseApiResponse<LoggedInUserInfo>> {
-    return this.httpService.get('me');
   }
 }
 

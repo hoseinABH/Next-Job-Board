@@ -88,12 +88,10 @@ export default function UserDropDown() {
               </DropdownMenuContent>
             </DropdownMenu>
           </Maybe> */}
-          {/* <Maybe condition={!Boolean(loggedInUserInfo)}> */}
             <Link href={Routes.LOGIN} className={buttonVariants()}>
               <Fingerprint className="ml-2 w-4 h-4" />
               <span>ورود | ثبت نام</span>
             </Link>
-          {/* </Maybe> */}
         </>
       )}
     </>

@@ -5,27 +5,11 @@ export interface LoginDto {
   password: string;
 }
 
-export interface LoggedInUserInfo {
-  id: string;
-  email: string;
-  provider: 'email';
-  socialId: Nullable<string>;
-  firstName: string;
-  lastName: string;
-  role: {
-    id: number;
-  };
-  status: {
-    id: number;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
 export interface LoginResponse {
   refreshToken: string;
   token: string;
   tokenExpires: Date;
-  user: LoggedInUserInfo;
+  user: any;
 }
 
 export type LoadingKeys = 'login' | 'register' | 'fetchMe';

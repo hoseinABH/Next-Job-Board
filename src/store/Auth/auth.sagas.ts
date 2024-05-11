@@ -13,7 +13,6 @@ import { navigate } from '@/actions/navigation';
 import { clearSession, setCookie } from '@/actions/cookie';
 // Types
 import type {
-  LoggedInUserInfo,
   LoginDto,
   LoginResponse,
   RegisterDto,
@@ -71,10 +70,6 @@ function* register(action: Action<RegisterDto>) {
 function* fetchMe() {
   try {
     yield put(AuthActions.setLoading(true, 'fetchMe'));
-    const response: BaseApiResponse<LoggedInUserInfo> = yield call(() =>
-      AuthenticationService.fetchMe()
-    );
-    if (response.message !== 'Success') return;
     // yield put(UserActions.setUserInfo(response.data));
   } catch (error) {
     toast({
