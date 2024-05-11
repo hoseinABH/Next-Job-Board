@@ -51,17 +51,15 @@ export function LanguageModal() {
   }
   return (
     <Dialog open={modals.language} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto">
         <DialogHeader>
           <DialogTitle>زبان ها</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="language"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <ControlledSelect
@@ -85,11 +83,7 @@ export function LanguageModal() {
             />
           </form>
           <DialogFooter>
-            <Button
-              form="language"
-              type="submit"
-              loading={loading.createLanguage}
-            >
+            <Button form="language" type="submit" loading={loading.createLanguage}>
               ذخیره تغییرات
             </Button>
           </DialogFooter>

@@ -4,11 +4,7 @@
 
 @layer base {
   :root {
-    --gradient-background: linear-gradient(
-        180deg,
-        #fff,
-        hsla(0, 0%, 100%, 0) 15.59%
-      ),
+    --gradient-background: linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0) 15.59%),
       linear-gradient(90.32deg, #fdf5e0 -2.35%, #fff 45.56%, #e2f7f9 99.81%);
     --background: 195, 40%, 98.04%;
     --foreground: 226.67, 77.14%, 6.86%, 0.75;
@@ -33,11 +29,7 @@
   }
 
   .dark {
-    --gradient-background: linear-gradient(
-        to top,
-        #000 0,
-        hsla(0, 0%, 100%, 0) 100%
-      ),
+    --gradient-background: linear-gradient(to top, #000 0, hsla(0, 0%, 100%, 0) 100%),
       linear-gradient(90deg, rgb(0 112 243/0.2) 0, rgb(248 28 229/0.2) 100%);
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -81,13 +73,13 @@
     @apply border-border;
   }
   body {
-    @apply relative bg-gradientBackground text-foreground bg-no-repeat bg-top bg-cover;
+    @apply relative bg-gradientBackground bg-cover bg-top bg-no-repeat text-foreground;
   }
   .search-input {
-    @apply h-12 bg-transparent outline-none border lg:border-none w-full pl-4 pr-10 rounded-md;
+    @apply h-12 w-full rounded-md border bg-transparent pl-4 pr-10 outline-none lg:border-none;
   }
   .right-input-adornment {
-    @apply text-muted-foreground w-6 h-6 absolute top-[25%] right-2;
+    @apply absolute right-2 top-[25%] h-6 w-6 text-muted-foreground;
   }
 }
 

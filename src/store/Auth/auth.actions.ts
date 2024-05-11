@@ -16,7 +16,7 @@ class Actions {
    */
   public setLoading(
     status: boolean,
-    key: LoadingKeys
+    key: LoadingKeys,
   ): Action<{ status: boolean; key: LoadingKeys }> {
     return {
       type: types.SET_LOADING,

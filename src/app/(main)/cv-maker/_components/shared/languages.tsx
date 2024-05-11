@@ -34,7 +34,7 @@ export default function Languages() {
           id: language.languageId,
           entity: 'language',
         },
-      })
+      }),
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
@@ -47,13 +47,13 @@ export default function Languages() {
         actionHandler={openCreateModal}
       >
         {!languages?.length ? (
-          <div className="flex items-center justify-center h-28">
+          <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن زبان
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 gap-2 xl:grid-cols-3">
             {loading.getMyResume ? (
               <>
                 {[1, 2].map((skeleton) => (
@@ -65,14 +65,11 @@ export default function Languages() {
                 {languages?.map((lang) => (
                   <div
                     key={lang.name}
-                    className="flex items-center border justify-between gap-x-2 rounded-lg p-4"
+                    className="flex items-center justify-between gap-x-2 rounded-lg border p-4"
                   >
                     <div className="flex items-center gap-x-2">
-                      <IconButton
-                        title="حذف"
-                        onClick={() => handleDeleteLanguage(lang)}
-                      >
-                        <RemoveIcon className="w-4 h-4" />
+                      <IconButton title="حذف" onClick={() => handleDeleteLanguage(lang)}>
+                        <RemoveIcon className="h-4 w-4" />
                       </IconButton>
                       <p className="text-muted-foreground">{lang.name}</p>
                     </div>

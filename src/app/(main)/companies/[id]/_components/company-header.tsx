@@ -11,7 +11,7 @@ const iconClassName = 'ml-1 w-5 h-5';
 
 export default function CompanyHeader({ company }: Props) {
   return (
-    <div className="flex flex-col justify-center items-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4">
       <Image
         src={company.image}
         className="rounded-sm drop-shadow-md"
@@ -20,17 +20,14 @@ export default function CompanyHeader({ company }: Props) {
         alt={company.name}
       />
       <h1 className="text-2xl font-bold">{company.name}</h1>
-      <div className="flex items-center flex-wrap gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <span className="flex items-center  text-muted-foreground">
           <MapPin className={iconClassName} /> {company.city}
         </span>
         <span className="flex items-center  text-muted-foreground">
           <Briefcase className={iconClassName} /> فناوری اطلاعات
         </span>
-        <a
-          href={`tel:02125521149`}
-          className="flex items-center text-muted-foreground"
-        >
+        <a href={`tel:02125521149`} className="flex items-center text-muted-foreground">
           <Phone className={iconClassName} />
           021-2552-1149
         </a>

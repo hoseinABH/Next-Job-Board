@@ -1,11 +1,11 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
 // Utilities
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 // Config
-import * as configs from "@/config/app";
-import * as Routes from "@/config/routes";
+import * as configs from '@/config/app';
+import * as Routes from '@/config/routes';
 
 interface Props {
   className?: string;
@@ -14,12 +14,7 @@ interface Props {
 export default function Logo({ className, onClick }: Props) {
   return (
     <Link href={Routes.HOME}>
-      <div
-        className={cn(
-          "group flex items-center w-fit text-nowrap gap-x-2",
-          className
-        )}
-      >
+      <div className={cn('group flex w-fit items-center gap-x-2 text-nowrap', className)}>
         <Image
           onClick={onClick}
           priority
@@ -27,7 +22,7 @@ export default function Logo({ className, onClick }: Props) {
           width={40}
           height={40}
           alt={configs.appData.appName}
-          className="w-auto h-auto"
+          className="h-auto w-auto"
         />
       </div>
     </Link>

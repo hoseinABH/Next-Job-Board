@@ -36,7 +36,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
         <h1 className="text-2xl font-bold">درخواست های شغلی</h1>
         <p className="text-md text-muted-foreground">لیست درخواست های شغلی</p>
       </div>
-      <div className="rounded-md border mt-8">
+      <div className="mt-8 rounded-md border">
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">
@@ -59,7 +59,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
                 </TableCell>
                 <TableCell align="center">
                   <IconButton variant="outline" onClick={openResume}>
-                    <Eye className="w-4 h-4" />
+                    <Eye className="h-4 w-4" />
                   </IconButton>
                 </TableCell>
                 <TableCell align="center">

@@ -23,13 +23,7 @@ export interface Props {
   onChange?: (input: OptionValue) => void;
 }
 
-export default function SelectBox({
-  options,
-  placeholder,
-  className,
-  value,
-  onChange,
-}: Props) {
+export default function SelectBox({ options, placeholder, className, value, onChange }: Props) {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className={cn('flex w-full sm:w-36', className)}>
@@ -37,10 +31,7 @@ export default function SelectBox({
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
-          <SelectItem
-            key={`${option.title}_${option.value}`}
-            value={option.value}
-          >
+          <SelectItem key={`${option.title}_${option.value}`} value={option.value}>
             {option.title}
           </SelectItem>
         ))}

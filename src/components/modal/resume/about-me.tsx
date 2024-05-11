@@ -23,18 +23,14 @@ import { useEffect } from 'react';
 
 const aboutMeFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
-  aboutMe: z
-    .string()
-    .max(400, { message: 'حداکثر کارکتر درباره من 400 می باشد' }),
+  aboutMe: z.string().max(400, { message: 'حداکثر کارکتر درباره من 400 می باشد' }),
 });
 
 type FormData = typeof aboutMeFormSchema;
 
 export function AboutMeModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading, resumeData } = useAppSelector(
-    (state) => state.resume
-  );
+  const { modals, loading, resumeData } = useAppSelector((state) => state.resume);
   const state = resumeData?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(aboutMeFormSchema),
@@ -50,7 +46,7 @@ export function AboutMeModal() {
         ...state!,
         aboutMe: values.aboutMe,
         jobTitle: values.title,
-      })
+      }),
     );
     form.reset();
   }
@@ -75,21 +71,11 @@ export function AboutMeModal() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>درباره من</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            id="aboutMe"
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6"
-          >
-            <ControlledInput
-              control={form.control}
-              name="title"
-              label="عنوان"
-            />
+          <form id="aboutMe" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <ControlledInput control={form.control} name="title" label="عنوان" />
             <ControlledInput
               control={form.control}
               name="aboutMe"
@@ -100,11 +86,7 @@ export function AboutMeModal() {
             />
           </form>
           <DialogFooter>
-            <Button
-              form="aboutMe"
-              type="submit"
-              loading={loading.updatePersonal}
-            >
+            <Button form="aboutMe" type="submit" loading={loading.updatePersonal}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

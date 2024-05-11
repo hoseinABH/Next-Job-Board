@@ -21,11 +21,10 @@ export default function JobListHeader({ count }: Props) {
   return (
     <>
       <div className="flex items-center justify-between ">
-        <p className="text-muted-foreground hidden sm:block">
-          <span className="font-semibold ml-1">{count}</span> فرصت کارآموزی یافت
-          شد
+        <p className="hidden text-muted-foreground sm:block">
+          <span className="ml-1 font-semibold">{count}</span> فرصت کارآموزی یافت شد
         </p>
-        <div className="flex w-full sm:w-max items-center gap-x-2">
+        <div className="flex w-full items-center gap-x-2 sm:w-max">
           <SelectBox
             options={[
               { title: 'مرتبط ترین', value: 'mostRelevant' },

@@ -7,16 +7,14 @@ import Logo from './logo';
 // Config
 import * as appConfig from '@/config/app';
 
-
-
 export default function Footer() {
   return (
     <footer className="w-full border-t bg-card">
       <div className="container py-6">
         {/* Top Section */}
-        <div className="flex flex-col lg:flex-row items-center">
+        <div className="flex flex-col items-center lg:flex-row">
           {/* Footer Links */}
-          <div className="flex flex-wrap items-center gap-y-6 gap-x-14 flex-1">
+          <div className="flex flex-1 flex-wrap items-center gap-x-14 gap-y-6">
             {appConfig.footerLinks.map((footerCol) => (
               <ul key={footerCol.id} className="flex flex-col space-y-4">
                 <span className="font-semibold">{footerCol.title}</span>
@@ -24,7 +22,7 @@ export default function Footer() {
                   <Link
                     key={navItem.id}
                     href={navItem.href}
-                    className="text-md transition-colors hover:text-foreground/80 text-foreground/60"
+                    className="text-md text-foreground/60 transition-colors hover:text-foreground/80"
                   >
                     {navItem.name}
                   </Link>
@@ -33,15 +31,15 @@ export default function Footer() {
             ))}
           </div>
           {/* Footer Description */}
-          <div className="max-w-sm mt-8 lg:mt-auto">
+          <div className="mt-8 max-w-sm lg:mt-auto">
             <Logo />
-            <p className="text-base text-muted-foreground text-justify mt-4">
+            <p className="mt-4 text-justify text-base text-muted-foreground">
               {appConfig.footerDescription}
             </p>
           </div>
         </div>
         {/* Bottom Section */}
-        <div className="flex items-center justify-between mt-10 flex-col-reverse sm:flex-row">
+        <div className="mt-10 flex flex-col-reverse items-center justify-between sm:flex-row">
           <div className="mt-6 md:mt-0">
             <span className="text-sm text-muted-foreground">
               © ۱۴۰۲ - تمامی حقوق برای {appConfig.appData.appName} محفوظ است.

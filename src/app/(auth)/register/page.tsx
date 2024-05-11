@@ -8,17 +8,16 @@ import * as Routes from '@/config/routes';
 // Types
 import type { Metadata } from 'next';
 
-
 export const metadata: Metadata = {
   title: 'ثبت‌نام',
 };
 
 export default function RegisterPage() {
   return (
-    <div className="w-full flex flex-col items-center justify-center py-8 px-4">
+    <div className="flex w-full flex-col items-center justify-center px-4 py-8">
       <Logo className="mb-4" />
-      <h1 className="font-bold text-2xl">یک حساب کاربری بسازید</h1>
-      <p className="text-muted-foreground mt-2 text-center md:text-right">
+      <h1 className="text-2xl font-bold">یک حساب کاربری بسازید</h1>
+      <p className="mt-2 text-center text-muted-foreground md:text-right">
         برای ساخت حساب کاربری ایمیل و رمزعبور خود را در زیر وارد کنید
       </p>
       <RegisterForm />

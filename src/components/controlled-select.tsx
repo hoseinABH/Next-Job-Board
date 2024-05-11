@@ -1,19 +1,7 @@
 // Common components
 import Maybe from './maybe';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 // Types
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import type { Option } from './controlled-radio';
@@ -26,7 +14,7 @@ interface Props<TFieldValues extends FieldValues, TContext> {
 }
 export default function ControlledSelect<
   TFieldValues extends FieldValues = FieldValues,
-  TContext = any
+  TContext = any,
 >({ control, name, label, options }: Props<TFieldValues, TContext>) {
   return (
     <FormField
@@ -37,11 +25,7 @@ export default function ControlledSelect<
           <Maybe condition={!!label}>
             <FormLabel>{label}</FormLabel>
           </Maybe>
-          <Select
-            value={field.value}
-            onValueChange={field.onChange}
-            defaultValue={field.value}
-          >
+          <Select value={field.value} onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={label} />

@@ -28,9 +28,7 @@ export type LoadingKeys =
   | 'getMyResume';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
-export type DeleteDialogData = DialogData<
-  Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>
->;
+export type DeleteDialogData = DialogData<Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>>;
 
 export type MaritalStatus = 'single' | 'married' | 'unknown';
 export type Gender = 'female' | 'male' | 'other';

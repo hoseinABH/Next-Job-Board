@@ -14,11 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/User/user.actions';
 // Constants
-import {
-  mapGenderTitle,
-  mapMaritalStatus,
-  mapMilitaryStatus,
-} from '@/constants';
+import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants';
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
@@ -51,16 +47,14 @@ export default function PersonalInfo() {
       },
       {
         title: 'تاریخ تولد',
-        value: personalInfo?.birthDate
-          ? persianDate(personalInfo?.birthDate)
-          : '',
+        value: personalInfo?.birthDate ? persianDate(personalInfo?.birthDate) : '',
       },
       {
         title: 'شماره تلفن',
         value: personalInfo?.phone,
       },
     ],
-    [personalInfo]
+    [personalInfo],
   );
   return (
     <>
@@ -73,7 +67,7 @@ export default function PersonalInfo() {
         actionHandler={openEditModal}
       >
         {!personalInfo?.firstName ? (
-          <div className="flex items-center justify-center h-28">
+          <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openEditModal}>
               ثبت اطلاعات فردی
             </Button>
@@ -86,9 +80,7 @@ export default function PersonalInfo() {
               <div className="flex flex-col gap-y-4">
                 {infoRows.map((info) => (
                   <div key={info.title} className="flex items-center">
-                    <p className="text-muted-foreground w-32 sm:w-52">
-                      {info.title}
-                    </p>
+                    <p className="w-32 text-muted-foreground sm:w-52">{info.title}</p>
                     <p>{info.value}</p>
                   </div>
                 ))}
@@ -107,7 +99,7 @@ function SkeletonLoading() {
     <div className="flex flex-col gap-y-4">
       {[1, 2, 3, 4, 5].map((item) => (
         <div key={item} className="flex items-center">
-          <Skeleton className="w-32 h-4 ml-16" />
+          <Skeleton className="ml-16 h-4 w-32" />
           <Skeleton className="h-4 w-60" />
         </div>
       ))}

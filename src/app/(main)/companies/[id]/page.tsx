@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Company({ params }: Props) {
   const company = await getCompanyById(params.id);
   return (
-    <section className="py-12 space-y-8">
+    <section className="space-y-8 py-12">
       <CompanyHeader company={company} />
       <CompanyTabs company={company} />
     </section>

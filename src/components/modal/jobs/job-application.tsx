@@ -37,15 +37,15 @@ export function JobApplicationModal() {
         <div className="space-y-4">
           <h5 className="text-md">تست های لازم برای این موقعیت کارآموزی</h5>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {requestTests.map((test) => (
             <Card
               key={test.key}
               className={cn(
-                'flex items-center justify-center h-32 cursor-pointer hover:border-foreground hover:border transition-all',
+                'flex h-32 cursor-pointer items-center justify-center transition-all hover:border hover:border-foreground',
                 {
                   ['border border-primary']: selectedTest === test.key,
-                }
+                },
               )}
               onClick={() => setSelectedTest(test.key)}
             >

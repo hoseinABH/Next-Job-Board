@@ -47,7 +47,7 @@ abstract class BaseAPI {
           window.dispatchEvent(timeoutErrorEvent);
         }
         return Promise.reject(error);
-      }
+      },
     );
   }
   private requestInterceptors() {
@@ -61,7 +61,7 @@ abstract class BaseAPI {
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
   }
 }

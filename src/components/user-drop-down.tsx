@@ -46,7 +46,6 @@ export default function UserDropDown() {
   const router = useRouter();
   const { loading } = useAppSelector((state) => state.auth);
 
-
   function handleSelectMenu(menuKey: string) {
     switch (menuKey) {
       case 'Resume':
@@ -88,10 +87,10 @@ export default function UserDropDown() {
               </DropdownMenuContent>
             </DropdownMenu>
           </Maybe> */}
-            <Link href={Routes.LOGIN} className={buttonVariants()}>
-              <Fingerprint className="ml-2 w-4 h-4" />
-              <span>ورود | ثبت نام</span>
-            </Link>
+          <Link href={Routes.LOGIN} className={buttonVariants()}>
+            <Fingerprint className="ml-2 h-4 w-4" />
+            <span>ورود | ثبت نام</span>
+          </Link>
         </>
       )}
     </>

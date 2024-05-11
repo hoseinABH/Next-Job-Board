@@ -47,17 +47,12 @@ const menuItems: Menu[] = [
 
 export default function SideBar() {
   // Should be handle for mobile users later
-  return <SidebarContent className="fixed hidden md:flex w-[280px] top-0 " />;
+  return <SidebarContent className="fixed top-0 hidden w-[280px] md:flex " />;
 }
 
 function SidebarContent({ className }: { className: string }) {
   return (
-    <Card
-      className={cn(
-        'h-full rounded-none flex flex-col justify-between',
-        className
-      )}
-    >
+    <Card className={cn('flex h-full flex-col justify-between rounded-none', className)}>
       <CardHeader>
         <CardTitle>
           <Link href="/dashboard">
@@ -71,9 +66,7 @@ function SidebarContent({ className }: { className: string }) {
             />
           </Link>
         </CardTitle>
-        <CardDescription className="text-lg">
-          به پنل مدیریت خوش آمدید
-        </CardDescription>
+        <CardDescription className="text-lg">به پنل مدیریت خوش آمدید</CardDescription>
       </CardHeader>
       <Separator />
       <CardContent className="p-0">
@@ -81,7 +74,7 @@ function SidebarContent({ className }: { className: string }) {
           <MenuItem key={menu.href} {...menu} />
         ))}
       </CardContent>
-      <CardFooter className="mt-auto flex justify-between w-full">
+      <CardFooter className="mt-auto flex w-full justify-between">
         <ThemeToggle />
         <AppVersion />
       </CardFooter>
@@ -95,12 +88,11 @@ function MenuItem(menu: Menu) {
     <Link
       key={menu.href}
       href={menu.href}
-      className={cn('flex h-20 items-center gap-x-2 transition-all px-8', {
-        ['bg-primary/5 text-primary dark:bg-primary/15']:
-          menu.href === pathname,
+      className={cn('flex h-20 items-center gap-x-2 px-8 transition-all', {
+        ['bg-primary/5 text-primary dark:bg-primary/15']: menu.href === pathname,
       })}
     >
-      <menu.icon className="w-5 h-5" />
+      <menu.icon className="h-5 w-5" />
       <p className="w-[50%]">{menu.title}</p>
     </Link>
   );

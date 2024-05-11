@@ -23,7 +23,7 @@ function* getAllCompanies() {
     yield put(CompanyActions.setLoading(true, 'getAllCompanies'));
 
     const response: BaseApiResponse<{ data: Company[] }> = yield call(() =>
-      CompanyService.getAllCompanies()
+      CompanyService.getAllCompanies(),
     );
     if (response.message === 'Success') {
       yield put(CompanyActions.fillCompanies(response.data.data));
@@ -42,7 +42,7 @@ function* getCompanyById(action: Action<string>) {
     yield put(CompanyActions.setLoading(true, 'getCompanyById'));
     const companyId = action.payload!;
     const response: BaseApiResponse<Company> = yield call(() =>
-      CompanyService.getCompanyById(companyId)
+      CompanyService.getCompanyById(companyId),
     );
     if (response.message === 'Success') {
       yield put(CompanyActions.selectCompany(response.data, null));

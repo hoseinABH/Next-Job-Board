@@ -17,12 +17,12 @@ export default function ResumePreview() {
   }
   return (
     <Dialog open={modals.resumePreview} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-full pt-12 pb-4 sm:pt-4 overflow-auto">
-        <div className="py-12 space-y-8">
+      <DialogContent className="max-h-full max-w-4xl overflow-auto pb-4 pt-12 sm:pt-4">
+        <div className="space-y-8 py-12">
           <div>
             <div className="relative mb-6">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
+              <h1 className="absolute -translate-x-5 -translate-y-3 bg-background text-xl font-bold">
                 اطلاعات شخصی
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
+              <h1 className="absolute -translate-x-5 -translate-y-3 bg-background text-xl font-bold">
                 سوابق شغلی
               </h1>
             </div>
@@ -79,7 +79,7 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
+              <h1 className="absolute -translate-x-5 -translate-y-3 bg-background text-xl font-bold">
                 سوابق تحصیلی
               </h1>
             </div>
@@ -98,18 +98,16 @@ export default function ResumePreview() {
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
+              <h1 className="absolute -translate-x-5 -translate-y-3 bg-background text-xl font-bold">
                 مهارت‌ها
               </h1>
             </div>
-            <p>
-              {['حل مسئله', 'توسعه نرم افزار', 'استاندارد‌های وب'].join('-')}
-            </p>
+            <p>{['حل مسئله', 'توسعه نرم افزار', 'استاندارد‌های وب'].join('-')}</p>
           </div>
           <div>
             <div className="relative mb-8">
               <div className="h-px w-full bg-muted-foreground"></div>
-              <h1 className="absolute -translate-y-3 -translate-x-5 text-xl font-bold bg-background">
+              <h1 className="absolute -translate-x-5 -translate-y-3 bg-background text-xl font-bold">
                 زبان‌ها
               </h1>
             </div>

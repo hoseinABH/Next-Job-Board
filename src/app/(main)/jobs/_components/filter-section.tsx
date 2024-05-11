@@ -23,10 +23,7 @@ interface Props {
   className?: string;
   visibleHeader?: boolean;
 }
-export default function FilterSection({
-  className,
-  visibleHeader = true,
-}: Props) {
+export default function FilterSection({ className, visibleHeader = true }: Props) {
   const optionLabelClassName =
     'text-sm w-full font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70';
   return (
@@ -40,33 +37,17 @@ export default function FilterSection({
       <CardContent className="p-0">
         <Accordion type="multiple">
           {data.map((item) => (
-            <AccordionItem
-              key={item.key}
-              value={item.key}
-              className="px-6 py-2"
-            >
-              <AccordionTrigger className="text-md font-normal">
-                {item.title}
-              </AccordionTrigger>
+            <AccordionItem key={item.key} value={item.key} className="px-6 py-2">
+              <AccordionTrigger className="text-md font-normal">{item.title}</AccordionTrigger>
               <AccordionContent>
                 <Maybe condition={item.searchable}>
                   <div className="space-y-2 pt-2">
-                    <Input
-                      className="w-[99%] mx-auto"
-                      placeholder="جستجو..."
-                      type="search"
-                    />
+                    <Input className="mx-auto w-[99%]" placeholder="جستجو..." type="search" />
                     <ScrollArea className="h-72">
                       {item.options.map((option) => (
-                        <div
-                          key={option.id}
-                          className="flex items-center gap-x-2 h-12 "
-                        >
+                        <div key={option.id} className="flex h-12 items-center gap-x-2 ">
                           <Checkbox id={option.id} />
-                          <Label
-                            htmlFor={option.id}
-                            className={optionLabelClassName}
-                          >
+                          <Label htmlFor={option.id} className={optionLabelClassName}>
                             {option.title}
                           </Label>
                         </div>
@@ -77,15 +58,9 @@ export default function FilterSection({
                 <Maybe condition={!item.searchable}>
                   <RadioGroup>
                     {item.options.map((option) => (
-                      <div
-                        key={option.id}
-                        className="flex items-center gap-x-2 h-12"
-                      >
+                      <div key={option.id} className="flex h-12 items-center gap-x-2">
                         <RadioGroupItem id={option.id} value={option.title} />
-                        <Label
-                          htmlFor={option.id}
-                          className={optionLabelClassName}
-                        >
+                        <Label htmlFor={option.id} className={optionLabelClassName}>
                           {option.title}
                         </Label>
                       </div>

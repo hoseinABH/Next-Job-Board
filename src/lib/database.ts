@@ -58,8 +58,7 @@ class DatabaseProvider extends CryptoProvider {
    */
   public store(key: string, value: any) {
     try {
-      const $value =
-        isObject(value) || isArray(value) ? JSON.stringify(value) : value;
+      const $value = isObject(value) || isArray(value) ? JSON.stringify(value) : value;
 
       if (this.shouldBeHashed) {
         const hashValue = this.hash($value);
@@ -116,12 +115,7 @@ class DatabaseProvider extends CryptoProvider {
       }
 
       let result;
-      if (
-        isObject(value) ||
-        isArray(value) ||
-        isBoolean(value) ||
-        isNumber(value)
-      ) {
+      if (isObject(value) || isArray(value) || isBoolean(value) || isNumber(value)) {
         result = value;
       } else {
         try {
@@ -233,10 +227,7 @@ class DatabaseProvider extends CryptoProvider {
         const readFromExternalDB = LocalStorage.read(hashKey);
         if (readFromExternalDB) {
           // Key is existing in the External DB such as LocalStorage
-          const decrypted = this.decrypt(
-            this.trim(readFromExternalDB),
-            this.secretKey
-          ) as string;
+          const decrypted = this.decrypt(this.trim(readFromExternalDB), this.secretKey) as string;
           if (decrypted || decrypted === null) {
             this.keyToValue.set(key, decrypted);
 
@@ -274,10 +265,7 @@ class DatabaseProvider extends CryptoProvider {
    * @param event
    * @param callback
    */
-  public addEventListener(
-    event: DatabaseEvents,
-    callback: DatabaseListenerCallback
-  ): void {
+  public addEventListener(event: DatabaseEvents, callback: DatabaseListenerCallback): void {
     if (!this.events.has(event)) {
       this.events.set(event, callback);
     }
@@ -298,10 +286,7 @@ class DatabaseProvider extends CryptoProvider {
    * @param {DatabaseEvents} event
    * @param {DatabaseChanges} details
    */
-  private emit(
-    event: DatabaseEvents,
-    details?: Omit<DatabaseChangesEvent, 'event' | 'encrypted'>
-  ) {
+  private emit(event: DatabaseEvents, details?: Omit<DatabaseChangesEvent, 'event' | 'encrypted'>) {
     const hasEvent = this.events.has(event);
     if (hasEvent || this.events.has('all')) {
       const callback = this.events.get(hasEvent ? event : 'all');

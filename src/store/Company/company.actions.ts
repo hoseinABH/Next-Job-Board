@@ -17,7 +17,7 @@ class Actions {
    */
   public setLoading(
     status: boolean,
-    key: LoadingKeys
+    key: LoadingKeys,
   ): Action<{ status: boolean; key: LoadingKeys }> {
     return {
       type: types.SET_LOADING,
@@ -32,7 +32,7 @@ class Actions {
    */
   public fillCompanies(
     companies: Nullable<Company[]>,
-    options?: ExtraActionInfo
+    options?: ExtraActionInfo,
   ): Action<Nullable<Company[]>> {
     return {
       type: options?.sagas ? types.SAGAS_GET_ALL_COMPANY : types.SET_COMPANIES,
@@ -49,12 +49,10 @@ class Actions {
   public selectCompany(
     company: Nullable<Company>,
     id: Nullable<string>,
-    options?: ExtraActionInfo
+    options?: ExtraActionInfo,
   ): Action<Nullable<Company | string>> {
     return {
-      type: options?.sagas
-        ? types.SAGAS_GET_COMPANY_DETAILS
-        : types.SET_COMPANY_DETAILS,
+      type: options?.sagas ? types.SAGAS_GET_COMPANY_DETAILS : types.SET_COMPANY_DETAILS,
       payload: options?.sagas ? id : company,
     };
   }

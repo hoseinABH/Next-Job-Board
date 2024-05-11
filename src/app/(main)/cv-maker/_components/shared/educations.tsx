@@ -31,7 +31,7 @@ export default function Educations() {
           id: education.educationId,
           entity: 'education',
         },
-      })
+      }),
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
@@ -45,7 +45,7 @@ export default function Educations() {
         actionHandler={openCreateModal}
       >
         {!educations?.length ? (
-          <div className="flex items-center justify-center h-28">
+          <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن تجربه تحصیلی
             </Button>

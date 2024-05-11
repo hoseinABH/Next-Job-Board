@@ -1,10 +1,4 @@
-import {
-  CalendarDays,
-  FileText,
-  LucideIcon,
-  MessagesSquare,
-  UsersRound,
-} from 'lucide-react';
+import { CalendarDays, FileText, LucideIcon, MessagesSquare, UsersRound } from 'lucide-react';
 export interface Statistic {
   key: string;
   value: string;

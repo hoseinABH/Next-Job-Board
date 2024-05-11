@@ -19,7 +19,7 @@ export default async function Companies() {
     <section className="py-12">
       <div className="space-y-8">
         <FilterSection />
-        <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {companies.map((company) => (
             <CompanyCard
               key={company.id}

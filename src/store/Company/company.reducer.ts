@@ -28,10 +28,7 @@ export const initialState: CompanyState = {
   companyDetails: null,
 };
 
-const reducer: Reducer<CompanyState, Action> = (
-  state = initialState,
-  action
-) => {
+const reducer: Reducer<CompanyState, Action> = (state = initialState, action) => {
   const update = updateState<CompanyState>(state);
   switch (action.type) {
     case types.SET_LOADING:

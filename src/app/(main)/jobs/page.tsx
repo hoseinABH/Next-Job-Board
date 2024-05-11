@@ -15,12 +15,12 @@ export default async function Jobs() {
   const positions = await getAllPositions();
   return (
     <section className="py-12">
-      <div className="flex gap-6 relative">
-        <FilterSection className="hidden lg:block col-span-3 sticky top-[100px] w-[300px] h-fit" />
+      <div className="relative flex gap-6">
+        <FilterSection className="sticky top-[100px] col-span-3 hidden h-fit w-[300px] lg:block" />
         <JobsListSection positions={positions} className="flex-1" />
       </div>
       <FilterSheet>
-        <FilterSection visibleHeader={false} className="my-4 mx-2" />
+        <FilterSection visibleHeader={false} className="mx-2 my-4" />
       </FilterSheet>
     </section>
   );

@@ -10,8 +10,7 @@ const badgeVariants = cva(
       variant: {
         default: 'border-transparent bg-primary text-primary-foreground shadow',
         secondary: 'border-transparent bg-secondary text-secondary-foreground',
-        destructive:
-          'border-transparent bg-destructive text-destructive-foreground shadow',
+        destructive: 'border-transparent bg-destructive text-destructive-foreground shadow',
         success: 'border-transparent bg-[#e6f4ea] text-[#188038] shadow',
         warning: 'border-transparent bg-[#fef7e0] text-[#3c4043]  shadow',
         outline: 'text-foreground',
@@ -20,7 +19,7 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 );
 
 export interface BadgeProps
@@ -28,9 +27,7 @@ export interface BadgeProps
     VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
-  );
+  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
 }
 
 export { Badge, badgeVariants };

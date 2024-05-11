@@ -8,11 +8,7 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type {
-  DeleteDialogData,
-  PanelLoading,
-  PanelModals,
-} from '@/types/panel';
+import type { DeleteDialogData, PanelLoading, PanelModals } from '@/types/panel';
 // Constants
 import * as types from './panel.constants';
 import { Nullable } from '@/types/common';

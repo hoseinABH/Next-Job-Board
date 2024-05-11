@@ -27,17 +27,10 @@ import { educationDegreeOptions } from '@/constants';
 const educationFormSchema = z.object({
   institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
   degree: z.enum(
-    [
-      'Bachelor',
-      'Master',
-      'Doctoral',
-      'MiddleSchoolDiploma',
-      'Associate',
-      'Professional',
-    ],
+    ['Bachelor', 'Master', 'Doctoral', 'MiddleSchoolDiploma', 'Associate', 'Professional'],
     {
       required_error: 'مقطع را انتخاب کنید',
-    }
+    },
   ),
   fieldOfStudy: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
   startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
@@ -49,9 +42,7 @@ type FormData = typeof educationFormSchema;
 
 export function EducationModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading, resumeData } = useAppSelector(
-    (state) => state.resume
-  );
+  const { modals, loading, resumeData } = useAppSelector((state) => state.resume);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
@@ -73,17 +64,15 @@ export function EducationModal() {
   }
   return (
     <Dialog open={modals.education} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>سوابق تحصیلی</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="education"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <ControlledInput
@@ -91,11 +80,7 @@ export function EducationModal() {
               name="fieldOfStudy"
               label="رشته تحصیلی و گرایش"
             />
-            <ControlledInput
-              control={form.control}
-              name="institution"
-              label="نام دانشگاه"
-            />
+            <ControlledInput control={form.control} name="institution" label="نام دانشگاه" />
             <ControlledSelect
               control={form.control}
               name="degree"
@@ -122,11 +107,7 @@ export function EducationModal() {
             />
           </form>
           <DialogFooter>
-            <Button
-              form="education"
-              type="submit"
-              loading={loading.createEducation}
-            >
+            <Button form="education" type="submit" loading={loading.createEducation}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

@@ -1,12 +1,7 @@
 'use client';
 // Common components
 import { Button } from '@/components/ui/button';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-} from '@/components/ui/drawer';
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter } from '@/components/ui/drawer';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions

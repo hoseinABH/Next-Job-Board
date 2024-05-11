@@ -26,7 +26,7 @@ interface Props<TFieldProps, TFieldValues extends FieldValues, TContext> {
 export default function ControlledInput<
   TFieldProps = InputProps,
   TFieldValues extends FieldValues = FieldValues,
-  TContext = any
+  TContext = any,
 >({
   inputProps,
   control,

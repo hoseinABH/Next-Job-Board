@@ -24,12 +24,7 @@ interface Props extends AlertDialogProps {
   children: string;
   onSubmit: () => void;
 }
-export function ConfirmDeleteDialog({
-  title,
-  children,
-  loading = false,
-  onSubmit,
-}: Props) {
+export function ConfirmDeleteDialog({ title, children, loading = false, onSubmit }: Props) {
   const dispatch = useAppDispatch();
   const { modals } = useAppSelector((state) => state.common);
   function onOpenChange(open: boolean) {
@@ -45,7 +40,7 @@ export function ConfirmDeleteDialog({
       <AlertDialogContent onDismiss={dismiss}>
         <AlertDialogHeader>
           <AlertDialogTitle className="flex gap-x-2">
-            <XOctagon className="w-6 h-6 text-destructive" />
+            <XOctagon className="h-6 w-6 text-destructive" />
             {title || 'حذف'}
           </AlertDialogTitle>
           <AlertDialogDescription>

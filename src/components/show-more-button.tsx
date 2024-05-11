@@ -8,23 +8,19 @@ interface Props {
   collapsed: boolean;
   className?: string;
 }
-export default function ShowMoreButton({
-  toggle,
-  collapsed,
-  className,
-}: Props) {
+export default function ShowMoreButton({ toggle, collapsed, className }: Props) {
   return (
     <button
       onClick={toggle}
       className={cn(
-        'cursor-pointer text-muted-foreground absolute bottom-2 left-5 flex items-center select-none',
-        className
+        'absolute bottom-2 left-5 flex cursor-pointer select-none items-center text-muted-foreground',
+        className,
       )}
     >
       نمایش
       <div className="relative mr-1">
         <p
-          className={cn('transition-all absolute duration-500', {
+          className={cn('absolute transition-all duration-500', {
             ['translate-y-10']: !collapsed,
           })}
         >
@@ -39,7 +35,7 @@ export default function ShowMoreButton({
         </p>
       </div>
       <ChevronDown
-        className={cn('transition-all w-5 h-5 mr-2 duration-500', {
+        className={cn('mr-2 h-5 w-5 transition-all duration-500', {
           ['rotate-180 duration-500']: collapsed,
         })}
       />

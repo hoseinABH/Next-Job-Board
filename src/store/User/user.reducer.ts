@@ -8,12 +8,7 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type {
-  DeleteDialogData,
-  ResumeData,
-  ResumeLoading,
-  ResumeModals,
-} from '@/types/user';
+import type { DeleteDialogData, ResumeData, ResumeLoading, ResumeModals } from '@/types/user';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
@@ -47,10 +42,7 @@ export const initialState: UserState = {
   resumeData: null,
 };
 
-const reducer: Reducer<UserState, Action> = (
-  state = initialState,
-  action
-) => {
+const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
   const update = updateState<UserState>(state);
   switch (action.type) {
     case types.SET_OPEN_MODAL:

@@ -57,29 +57,19 @@ export function WorkExperienceModal() {
   }
   return (
     <Dialog open={modals.workExperience} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen pb-4 pt-12 sm:pt-4 overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>سوابق شغلی</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="workExperience"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <ControlledInput
-              control={form.control}
-              name="position"
-              label="عنوان شغلی"
-            />
-            <ControlledInput
-              control={form.control}
-              name="companyName"
-              label="نام شرکت"
-            />
+            <ControlledInput control={form.control} name="position" label="عنوان شغلی" />
+            <ControlledInput control={form.control} name="companyName" label="نام شرکت" />
             <ControlledInput
               control={form.control}
               name="startDate"
@@ -107,11 +97,7 @@ export function WorkExperienceModal() {
             />
           </form>
           <DialogFooter>
-            <Button
-              form="workExperience"
-              type="submit"
-              loading={loading.createExperience}
-            >
+            <Button form="workExperience" type="submit" loading={loading.createExperience}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

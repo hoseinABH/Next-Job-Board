@@ -18,14 +18,14 @@ export default function FilterSection({ className }: Props) {
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
-        <form className="flex justify-between gap-4 items-center flex-col sm:flex-row">
-          <div className="w-full gap-4 flex flex-col sm:flex-row flex-1 items-center">
+        <form className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex w-full flex-1 flex-col items-center gap-4 sm:flex-row">
             <div className="relative w-full sm:w-auto">
-              <Search className={cn('right-input-adornment', 'w-4 h-4')} />
+              <Search className={cn('right-input-adornment', 'h-4 w-4')} />
               <Input className="pr-8" placeholder="جستجو کلمات کلیدی" />
             </div>
             <div className="relative w-full sm:w-auto">
-              <MapPin className={cn('right-input-adornment', 'w-4 h-4')} />
+              <MapPin className={cn('right-input-adornment', 'h-4 w-4')} />
               <Input className="pr-8" placeholder="موقعیت مکانی" />
             </div>
             <SelectBox

@@ -39,34 +39,26 @@ export default function SectionWrapper({
     <Card
       id={id}
       className={cn(
-        'relative p-6 max-h-full xl:max-h-72 overflow-hidden transition-[max-height] duration-500',
+        'relative max-h-full overflow-hidden p-6 transition-[max-height] duration-500 xl:max-h-72',
         {
-          ['max-h-full xl:max-h-full transition-[max-height] duration-500']:
-            collapsed,
+          ['max-h-full transition-[max-height] duration-500 xl:max-h-full']: collapsed,
         },
-        className
+        className,
       )}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-3">
-          {SectionIcon ? <SectionIcon className="w-6 h-6" /> : null}
+          {SectionIcon ? <SectionIcon className="h-6 w-6" /> : null}
           <p className="text-lg">{title}</p>
         </div>
-        <IconButton
-          title={actionType === 'create' ? 'افزودن' : 'ویرایش'}
-          onClick={actionHandler}
-        >
-          <ActionIcon className="w-4 h-4" />
+        <IconButton title={actionType === 'create' ? 'افزودن' : 'ویرایش'} onClick={actionHandler}>
+          <ActionIcon className="h-4 w-4" />
         </IconButton>
       </div>
       <Separator className="my-3" />
       {children}
       {hasShowMore ? (
-        <ShowMoreButton
-          className="lg:flex hidden"
-          toggle={toggleAccordion}
-          collapsed={collapsed}
-        />
+        <ShowMoreButton className="hidden lg:flex" toggle={toggleAccordion} collapsed={collapsed} />
       ) : null}
     </Card>
   );

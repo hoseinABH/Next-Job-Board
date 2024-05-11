@@ -37,16 +37,10 @@ const personalInfoFormSchema = z.object({
     required_error: 'جنسیت را انتخاب کنید',
   }),
   militaryStatus: z.enum(
-    [
-      'EducationalExemption',
-      'ActiveService',
-      'ExemptionCard',
-      'ServiceCompletionCard',
-      'Absent',
-    ],
+    ['EducationalExemption', 'ActiveService', 'ExemptionCard', 'ServiceCompletionCard', 'Absent'],
     {
       required_error: 'وضعیت خدمت را انتخاب کنید',
-    }
+    },
   ),
   address: z.string().min(1, { message: 'محل سکونت را وارد کنید' }),
   birthDate: z.string().min(1, { message: 'تاریخ تولد را وارد کنید' }),
@@ -57,9 +51,7 @@ type FormData = typeof personalInfoFormSchema;
 
 export function PersonalInfoModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading, resumeData } = useAppSelector(
-    (state) => state.resume
-  );
+  const { modals, loading, resumeData } = useAppSelector((state) => state.resume);
   const state = resumeData?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(personalInfoFormSchema),
@@ -126,29 +118,19 @@ export function PersonalInfoModal() {
 
   return (
     <Dialog open={modals.personalInfo} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>مشخصات فردی</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="personalInfo"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <ControlledInput
-              control={form.control}
-              name="firstName"
-              label="نام"
-            />
-            <ControlledInput
-              control={form.control}
-              name="lastName"
-              label="نام خانوادگی"
-            />
+            <ControlledInput control={form.control} name="firstName" label="نام" />
+            <ControlledInput control={form.control} name="lastName" label="نام خانوادگی" />
             <ControlledRadio
               control={form.control}
               name="gender"
@@ -173,11 +155,7 @@ export function PersonalInfoModal() {
               label="تاریخ تولد"
               inputProps={{ dir: 'ltr', type: 'date' }}
             />
-            <ControlledInput
-              control={form.control}
-              name="address"
-              label="محل سکونت"
-            />
+            <ControlledInput control={form.control} name="address" label="محل سکونت" />
             <ControlledSelect
               control={form.control}
               name="militaryStatus"
@@ -192,11 +170,7 @@ export function PersonalInfoModal() {
             />
           </form>
           <DialogFooter>
-            <Button
-              form="personalInfo"
-              type="submit"
-              loading={loading.updatePersonal}
-            >
+            <Button form="personalInfo" type="submit" loading={loading.updatePersonal}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

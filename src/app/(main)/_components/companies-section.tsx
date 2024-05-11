@@ -9,9 +9,9 @@ import * as Routes from '@/config/routes';
 export default async function CompaniesSection() {
   const companies = await getAllCompanies();
   return (
-    <div className="flex flex-col justify-center items-center my-12">
+    <div className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="text-2xl  md:text-3xl font-bold mb-4">
+        <h1 className="mb-4  text-2xl font-bold md:text-3xl">
           استخدام شرکت های برتر در <span className="">{appData.appName}</span>
         </h1>
         <p className="text-muted-foreground">
@@ -19,7 +19,7 @@ export default async function CompaniesSection() {
         </p>
       </div>
       {/* Companies Section */}
-      <div className="grid grid-cols-1 w-full gap-2 mt-10 lg:grid-cols-2">
+      <div className="mt-10 grid w-full grid-cols-1 gap-2 lg:grid-cols-2">
         {companies.map((company) => (
           <CompanyCard
             key={company.id}

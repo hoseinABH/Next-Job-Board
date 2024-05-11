@@ -26,7 +26,7 @@ export default function CompanyCard({
     <Link href={href}>
       <Card className={cn('', className)}>
         <CardContent
-          className={cn('flex flex-col sm:flex-row p-6 items-center', {
+          className={cn('flex flex-col items-center p-6 sm:flex-row', {
             ['justify-between']: visibleOpenPositions,
             ['justify-center']: !visibleOpenPositions,
           })}
@@ -45,9 +45,9 @@ export default function CompanyCard({
               alt={company.name}
             />
             <div className="my-4 sm:my-0">
-              <h4 className="font-semibold mb-2">{company.name}</h4>
+              <h4 className="mb-2 font-semibold">{company.name}</h4>
               <span className="flex items-center  text-muted-foreground">
-                <MapPin className="w-4 h-4 ml-1" /> {company.city}
+                <MapPin className="ml-1 h-4 w-4" /> {company.city}
               </span>
             </div>
           </div>

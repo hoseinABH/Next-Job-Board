@@ -27,7 +27,7 @@ class Actions {
    */
   public setLoading(
     status: boolean,
-    key: LoadingKeys
+    key: LoadingKeys,
   ): Action<{ status: boolean; key: LoadingKeys }> {
     return {
       type: types.SET_LOADING,
@@ -40,10 +40,7 @@ class Actions {
    * @param {ModalKeys} key
    * @return {Action<{ open: boolean; key: ModalKeys }>}
    */
-  public setModalOpen(
-    open: boolean,
-    key: ModalKeys
-  ): Action<{ open: boolean; key: ModalKeys }> {
+  public setModalOpen(open: boolean, key: ModalKeys): Action<{ open: boolean; key: ModalKeys }> {
     return {
       type: types.SET_OPEN_MODAL,
       payload: { open, key },
@@ -65,9 +62,7 @@ class Actions {
    * @param {UpdatePersonalDto} data
    * @return {Action<UpdatePersonalDto>}
    */
-  public updatePersonalInfo(
-    personalInfo: UpdatePersonalDto
-  ): Action<UpdatePersonalDto> {
+  public updatePersonalInfo(personalInfo: UpdatePersonalDto): Action<UpdatePersonalDto> {
     return {
       type: types.SAGAS_UPDATE_PERSONAL,
       payload: personalInfo,
@@ -78,9 +73,7 @@ class Actions {
    * @param {CreateExperienceDto} experience
    * @return {Action<CreateExperienceDto>}
    */
-  public createExperience(
-    experience: CreateExperienceDto
-  ): Action<CreateExperienceDto> {
+  public createExperience(experience: CreateExperienceDto): Action<CreateExperienceDto> {
     return {
       type: types.SAGAS_CREATE_EXPERIENCE,
       payload: experience,
@@ -91,9 +84,7 @@ class Actions {
    * @param {CreateEducationDto} education
    * @return {Action<CreateEducationDto>}
    */
-  public createEducation(
-    education: CreateEducationDto
-  ): Action<CreateEducationDto> {
+  public createEducation(education: CreateEducationDto): Action<CreateEducationDto> {
     return {
       type: types.SAGAS_CREATE_EDUCATION,
       payload: education,
@@ -104,9 +95,7 @@ class Actions {
    * @param {CreateLanguageDto} language
    * @return {Action<CreateLanguageDto>}
    */
-  public createLanguage(
-    language: CreateLanguageDto
-  ): Action<CreateLanguageDto> {
+  public createLanguage(language: CreateLanguageDto): Action<CreateLanguageDto> {
     return {
       type: types.SAGAS_CREATE_LANGUAGE,
       payload: language,
@@ -140,12 +129,10 @@ class Actions {
    */
   public fillResumeData(
     data: Nullable<ResumeData>,
-    options?: ExtraActionInfo
+    options?: ExtraActionInfo,
   ): Action<Nullable<ResumeData>> {
     return {
-      type: options?.sagas
-        ? types.SAGAS_GET_RESUME_DATA
-        : types.SET_RESUME_DATA,
+      type: options?.sagas ? types.SAGAS_GET_RESUME_DATA : types.SET_RESUME_DATA,
       payload: data,
     };
   }

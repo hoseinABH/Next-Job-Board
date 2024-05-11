@@ -1,12 +1,6 @@
 // Common components
 import Maybe from './maybe';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './ui/form';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 // Types
 import type { Control, FieldValues, Path } from 'react-hook-form';
@@ -24,7 +18,7 @@ interface Props<TFieldValues extends FieldValues, TContext> {
 }
 export default function ControlledRadio<
   TFieldValues extends FieldValues = FieldValues,
-  TContext = any
+  TContext = any,
 >({ control, name, label, options }: Props<TFieldValues, TContext>) {
   return (
     <FormField
@@ -36,16 +30,9 @@ export default function ControlledRadio<
             <FormLabel>{label}</FormLabel>
           </Maybe>
           <FormControl>
-            <RadioGroup
-              defaultValue={field.value}
-              onValueChange={field.onChange}
-              className="flex"
-            >
+            <RadioGroup defaultValue={field.value} onValueChange={field.onChange} className="flex">
               {options.map((option) => (
-                <FormItem
-                  key={option.value}
-                  className="flex items-center gap-x-2"
-                >
+                <FormItem key={option.value} className="flex items-center gap-x-2">
                   <FormControl>
                     <RadioGroupItem value={option.value} />
                   </FormControl>

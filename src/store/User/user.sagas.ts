@@ -63,7 +63,7 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
       UserActions.fillResumeData({
         ...resumeData!,
         personalInfo: { ...resumeData?.personalInfo, ...personalData },
-      })
+      }),
     );
     toast({
       variant: 'success',
@@ -106,7 +106,7 @@ function* createExperience(action: Action<CreateExperienceDto>) {
       UserActions.fillResumeData({
         ...resumeData!,
         workExperience: [...resumeData?.workExperience!, experience as any],
-      })
+      }),
     );
     yield put(UserActions.setModalOpen(false, 'workExperience'));
     toast({
@@ -150,7 +150,7 @@ function* createEducation(action: Action<CreateEducationDto>) {
       UserActions.fillResumeData({
         ...resumeData!,
         education: [...resumeData?.education!, education as any],
-      })
+      }),
     );
     yield put(UserActions.setModalOpen(false, 'education'));
     toast({
@@ -194,7 +194,7 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
       UserActions.fillResumeData({
         ...resumeData!,
         languages: [...resumeData?.languages!, language as any],
-      })
+      }),
     );
     yield put(UserActions.setModalOpen(false, 'language'));
     toast({
@@ -238,7 +238,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
       UserActions.fillResumeData({
         ...resumeData!,
         skills: [...resumeData?.skills!, skill as any],
-      })
+      }),
     );
     yield put(UserActions.setModalOpen(false, 'skill'));
     toast({
@@ -258,9 +258,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
 function* removeField() {
   try {
     yield put(UserActions.setLoading(true, 'removeEntity'));
-    const { dialogData, resumeData }: UserState = yield select(
-      (state) => state.resume
-    );
+    const { dialogData, resumeData }: UserState = yield select((state) => state.resume);
     const entity = dialogData?.model.entity;
     const entityId = dialogData?.model.id!;
     let response: BaseApiResponse | null = null;
@@ -298,7 +296,7 @@ function* removeField() {
             UserActions.fillResumeData({
               ...resumeData!,
               workExperience: newExperience,
-            })
+            }),
           );
           break;
         case 'education':
@@ -307,7 +305,7 @@ function* removeField() {
             UserActions.fillResumeData({
               ...resumeData!,
               education: newEducations,
-            })
+            }),
           );
           break;
         case 'language':
@@ -316,7 +314,7 @@ function* removeField() {
             UserActions.fillResumeData({
               ...resumeData!,
               languages: newLanguages,
-            })
+            }),
           );
           break;
         case 'skill':
@@ -325,7 +323,7 @@ function* removeField() {
             UserActions.fillResumeData({
               ...resumeData!,
               skills: newSkills,
-            })
+            }),
           );
           break;
         default:
@@ -408,7 +406,7 @@ function* getResumeData() {
             level: 'Beginner',
           },
         ],
-      })
+      }),
     );
     yield delay(3000);
     /** TEST CODE */

@@ -29,15 +29,13 @@ export default function JobSearch({ className }: Props) {
   }
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push(
-      `${Routes.JOBS}?q=${searchValues.query}&l=${searchValues.location}`
-    );
+    router.push(`${Routes.JOBS}?q=${searchValues.query}&l=${searchValues.location}`);
   }
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col md:flex-row items-center gap-2">
+          <div className="flex flex-col items-center gap-2 md:flex-row">
             <div className="relative w-full">
               <Search className="right-input-adornment" />
               <input
@@ -58,7 +56,7 @@ export default function JobSearch({ className }: Props) {
                 onChange={handleChange}
               />
             </div>
-            <Button type="submit" className="w-full md:w-auto mt-4 md:mt-0">
+            <Button type="submit" className="mt-4 w-full md:mt-0 md:w-auto">
               جستجو در مشاغل
             </Button>
           </div>

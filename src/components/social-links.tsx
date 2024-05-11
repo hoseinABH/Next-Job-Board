@@ -18,13 +18,13 @@ export default function SocialLinks(props: Props) {
   return (
     <div
       {...props}
-      className={cn('flex items-center justify-center sm:justify-start gap-x-4', props.className)}
+      className={cn('flex items-center justify-center gap-x-4 sm:justify-start', props.className)}
     >
       {appConfig.socials.map((social) => (
         <a
           key={social.key}
           href={social.href}
-          className="text-muted-foreground hover:text-foreground transition-colors"
+          className="text-muted-foreground transition-colors hover:text-foreground"
           target="_blank"
         >
           {mapSocialKeyToIcon[social.key]}

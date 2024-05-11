@@ -10,23 +10,19 @@ import * as Routes from '@/config/routes';
 export default async function FeaturedJobs() {
   const featuredJobs = await getFeaturedJobs();
   return (
-    <section className="flex flex-col justify-center items-center my-12">
+    <section className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 ">
+        <h1 className="mb-4 text-xl font-bold sm:text-2xl md:text-3xl ">
           تازه‌ترین آگهی‌های شغلی برای شما{' '}
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse ml-2 absolute"></span>
+          <span className="absolute ml-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
         </h1>
         <p className="text-muted-foreground">
           ارزش خود را بدانید و شغلی را پیدا کنید که شرایط زندگی شما را فراهم کند
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-2 mt-10">
+      <div className="mt-10 grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
         {featuredJobs.map((job) => (
-          <FeaturedJobCard
-            key={job.title}
-            job={job}
-            href={`${Routes.JOBS}/${job.id}`}
-          />
+          <FeaturedJobCard key={job.title} job={job} href={`${Routes.JOBS}/${job.id}`} />
         ))}
       </div>
       <Link

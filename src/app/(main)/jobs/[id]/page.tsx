@@ -28,12 +28,12 @@ export default async function Job({ params }: Props) {
     <>
       <section className="py-12">
         <BackButton>بازگشت به موقعیت‌ها</BackButton>
-        <h1 className="text-2xl font-bold my-4">{job.title}</h1>
-        <div className="flex flex-col-reverse lg:flex-row gap-6 relative">
+        <h1 className="my-4 text-2xl font-bold">{job.title}</h1>
+        <div className="relative flex flex-col-reverse gap-6 lg:flex-row">
           <PositionContent job={job} className="flex-1" />
           <PositionDescription
             job={job}
-            className="col-span-3 relative top-auto lg:sticky lg:top-[100px] w-full lg:w-[300px] h-fit"
+            className="relative top-auto col-span-3 h-fit w-full lg:sticky lg:top-[100px] lg:w-[300px]"
           />
         </div>
       </section>

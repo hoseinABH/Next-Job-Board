@@ -12,11 +12,11 @@ export default function RootError() {
     router.push(Routes.HOME);
   }
   return (
-    <div className="pt-[15%] flex flex-col gap-y-6 justify-center items-center">
-      <div className="flex item-center gap-x-2">
-        <AlertTriangle className="text-destructive animate-pulse" />
+    <div className="flex flex-col items-center justify-center gap-y-6 pt-[15%]">
+      <div className="item-center flex gap-x-2">
+        <AlertTriangle className="animate-pulse text-destructive" />
         <h2 className="text-2xl font-bold">مشکلی پیش آمده است</h2>
-        <AlertTriangle className="text-destructive animate-pulse" />
+        <AlertTriangle className="animate-pulse text-destructive" />
       </div>
       <BackButton onClick={redirectToHome}>صفحه اصلی</BackButton>
     </div>

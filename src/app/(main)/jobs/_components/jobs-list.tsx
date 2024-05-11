@@ -17,7 +17,7 @@ export default async function JobsList({ className, positions }: Props) {
   return (
     <div className={cn('space-y-4', className)}>
       <JobListHeader count={positions.length} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {positions.map((job) => (
           <JobCard key={job.id} job={job} href={`${Routes.JOBS}/${job.id}`} />
         ))}

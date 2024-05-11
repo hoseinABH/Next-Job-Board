@@ -5,13 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 // Utilities
 import { z } from 'zod';
 // Actions
@@ -45,10 +39,7 @@ export default function RegisterForm() {
   }
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-8 max-w-sm w-full space-y-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 w-full max-w-sm space-y-8">
         <FormField
           control={form.control}
           name="email"
@@ -111,7 +102,7 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button className="w-full mt-4" loading={loading.login}>
+        <Button className="mt-4 w-full" loading={loading.login}>
           ثبت نام
         </Button>
       </form>

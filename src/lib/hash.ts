@@ -9,8 +9,7 @@ import UTF8Encoding from 'crypto-js/enc-utf8';
 
 export const MD5 = (str: string): string => MD5Crypt(str).toString();
 export const SHA1 = (str: string) => SHA1Crypt(str).toString(HexEncoding);
-export const hmacSha1 = (str: string, secret: string) =>
-  hmacSha1Crypt(str, secret);
+export const hmacSha1 = (str: string, secret: string) => hmacSha1Crypt(str, secret);
 export const AesEncrypt = (str: string, salt: string): string =>
   AESCrypt.encrypt(str, salt).toString();
 export const AesDecrypt = (hash: string, salt: string): string =>

@@ -19,23 +19,19 @@ export default function JobCard({ className, job, href = '/' }: Props) {
   return (
     <Link href={href} className={cn('', className)}>
       <Card>
-        <CardContent className="p-6 flex flex-col sm:flex-row  justify-center md:justify-between">
-          <div className="flex flex-col md:flex-row items-center gap-x-4">
-            <div className="flex flex-col items-center md:items-start gap-y-2">
-              <h2 className="font-semibold text-lg  transition-all">
-                {job.title}
-              </h2>
-              <div className="flex items-center flex-wrap sm:flex-wrap gap-2 text-muted-foreground mt-1">
+        <CardContent className="flex flex-col justify-center p-6  sm:flex-row md:justify-between">
+          <div className="flex flex-col items-center gap-x-4 md:flex-row">
+            <div className="flex flex-col items-center gap-y-2 md:items-start">
+              <h2 className="text-lg font-semibold  transition-all">{job.title}</h2>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-muted-foreground sm:flex-wrap">
                 <p className="flex items-center">
-                  <Building2 className="w-4 h-4 ml-1" /> {job.company.name}
+                  <Building2 className="ml-1 h-4 w-4" /> {job.company.name}
                 </p>
                 <p className="flex items-center">
-                  <MapPin className="w-4 h-4 ml-1" /> {job.company.city}
+                  <MapPin className="ml-1 h-4 w-4" /> {job.company.city}
                 </p>
               </div>
-              <p className="text-muted-foreground flex items-baseline">
-                حقوق {job.salary}
-              </p>
+              <p className="flex items-baseline text-muted-foreground">حقوق {job.salary}</p>
             </div>
           </div>
         </CardContent>

@@ -53,11 +53,9 @@ export default function ContentSidebar({ className }: Props) {
       <CardContent>
         <ul className="flex flex-col">
           {resumeSections.map((section) => (
-            <li key={section.name} className="h-12 flex items-center px-2">
+            <li key={section.name} className="flex h-12 items-center px-2">
               <Link href={{ hash: section.hash }} className="flex items-center">
-                {urlHash === section.hash ? (
-                  <LucidLink className="w-5 h-5" />
-                ) : null}
+                {urlHash === section.hash ? <LucidLink className="h-5 w-5" /> : null}
                 <span
                   className={cn('-translate-x-0 transition-all duration-300', {
                     ['-translate-x-2 duration-300 ']: urlHash === section.hash,

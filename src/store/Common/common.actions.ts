@@ -25,10 +25,7 @@ class Actions {
    * @param {ModalKeys} key
    * @return {Action<{ open: boolean; key: ModalKeys }>}
    */
-  public setModalOpen(
-    open: boolean,
-    key: ModalKeys
-  ): Action<{ open: boolean; key: ModalKeys }> {
+  public setModalOpen(open: boolean, key: ModalKeys): Action<{ open: boolean; key: ModalKeys }> {
     return {
       type: types.SET_OPEN_MODAL,
       payload: { open, key },

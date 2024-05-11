@@ -55,21 +55,18 @@ export default function ThemeToggle() {
 
     document.documentElement.animate(
       {
-        clipPath: [
-          `circle(0px at ${x}px ${y}px)`,
-          `circle(${maxRadius}px at ${x}px ${y}px)`,
-        ],
+        clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${maxRadius}px at ${x}px ${y}px)`],
       },
       {
         duration: 500,
         easing: 'ease-in-out',
         pseudoElement: '::view-transition-new(root)',
-      }
+      },
     );
   }
 
   return (
-    <div className="border rounded-3xl p-1">
+    <div className="rounded-3xl border p-1">
       {availableThemes.map((item) => {
         const ThemeIcon = item.icon;
         return (
@@ -83,7 +80,7 @@ export default function ThemeToggle() {
             onClick={() => toggleTheme(item.key)}
             ref={ref}
           >
-            <ThemeIcon className="w-4 h-4" />
+            <ThemeIcon className="h-4 w-4" />
             <p className="sr-only">{item.key}</p>
           </Button>
         );

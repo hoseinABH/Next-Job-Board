@@ -24,10 +24,7 @@ export const initialState: CommonState = {
   },
 };
 
-const reducer: Reducer<CommonState, Action> = (
-  state = initialState,
-  action
-) => {
+const reducer: Reducer<CommonState, Action> = (state = initialState, action) => {
   const update = updateState<CommonState>(state);
   switch (action.type) {
     case types.SET_APP_LOADING:

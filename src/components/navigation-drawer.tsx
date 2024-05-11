@@ -8,14 +8,7 @@ import AppVersion from './app-version';
 import NavigationItems from './navigation-items';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetPortal,
-  SheetTitle,
-} from './ui/sheet';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetPortal, SheetTitle } from './ui/sheet';
 
 export default function NavigationDrawer() {
   const [open, setOpen] = useState(false);
@@ -32,7 +25,7 @@ export default function NavigationDrawer() {
   return (
     <Fragment>
       <Button size="icon" variant="ghost" onClick={openDrawer}>
-        <AlignJustify className="w-4 h-4" />
+        <AlignJustify className="h-4 w-4" />
       </Button>
       <Sheet onOpenChange={openChange} open={open}>
         <SheetPortal>
@@ -43,10 +36,7 @@ export default function NavigationDrawer() {
               </SheetTitle>
             </SheetHeader>
             <Separator className="mt-4" />
-            <NavigationItems
-              className="flex flex-col gap-4 mt-4"
-              onSelect={closeDrawer}
-            />
+            <NavigationItems className="mt-4 flex flex-col gap-4" onSelect={closeDrawer} />
             <SheetFooter className="absolute bottom-4">
               <AppVersion />
             </SheetFooter>

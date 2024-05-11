@@ -20,11 +20,7 @@ export async function getFeaturedJobs(): Promise<Job[]> {
   return featuredPositions;
 }
 
-export async function getPositionsByCompanyId(
-  companyId: string
-): Promise<Job[]> {
-  const companyPositions = positions.filter(
-    (position) => position.company.id === companyId
-  );
+export async function getPositionsByCompanyId(companyId: string): Promise<Job[]> {
+  const companyPositions = positions.filter((position) => position.company.id === companyId);
   return companyPositions;
 }

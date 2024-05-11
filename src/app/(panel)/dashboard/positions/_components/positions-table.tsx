@@ -43,22 +43,20 @@ export default function PositionsTable({ className, positions }: Props) {
           id: '',
           entity: 'position',
         },
-      })
+      }),
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <div className={cn('bg-card p-6', className)}>
-      <div className="flex flex-col sm:flex-row  gap-4 sm:gap-0 justify-between">
+      <div className="flex flex-col justify-between  gap-4 sm:flex-row sm:gap-0">
         <div>
           <h1 className="text-2xl font-bold">موقعیت های شغلی</h1>
-          <p className="text-md text-muted-foreground">
-            لیست موقعیت های شغلی شرکت
-          </p>
+          <p className="text-md text-muted-foreground">لیست موقعیت های شغلی شرکت</p>
         </div>
         <Button onClick={openCreatePositionModal}>موقعیت شغلی جدید</Button>
       </div>
-      <div className="rounded-md border mt-8">
+      <div className="mt-8 rounded-md border">
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">
@@ -78,9 +76,7 @@ export default function PositionsTable({ className, positions }: Props) {
                 </TableCell>
                 <TableCell align="center">{position.contract}</TableCell>
                 <TableCell align="center">{position.salary} ریال</TableCell>
-                <TableCell align="center">
-                  {mapEducationLevel[position.educationDegree]}
-                </TableCell>
+                <TableCell align="center">{mapEducationLevel[position.educationDegree]}</TableCell>
                 <TableCell align="center">
                   {position.isUrgent ? (
                     <Badge variant="destructive">فوری</Badge>
@@ -90,7 +86,7 @@ export default function PositionsTable({ className, positions }: Props) {
                 </TableCell>
                 <TableCell align="center">
                   <IconButton title="حذف" onClick={openDeleteModal}>
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="h-4 w-4" />
                   </IconButton>
                 </TableCell>
               </TableRow>

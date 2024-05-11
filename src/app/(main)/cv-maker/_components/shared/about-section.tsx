@@ -29,7 +29,7 @@ export default function AboutSection() {
         actionHandler={openEditModal}
       >
         {isEmpty ? (
-          <div className="flex items-center justify-center h-28">
+          <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openEditModal}>
               ثبت درباره من
             </Button>
@@ -40,13 +40,11 @@ export default function AboutSection() {
               <SkeletonLoading />
             ) : (
               <div className="flex flex-col items-center md:items-start">
-                <p className="text-2xl mb-0">
+                <p className="mb-0 text-2xl">
                   {personalInfo?.firstName} {personalInfo?.lastName}
                 </p>
-                <p className="flex items-center text-muted-foreground">
-                  {personalInfo?.jobTitle}
-                </p>
-                <p className="text-muted-foreground leading-8 text-center md:text-right mt-2">
+                <p className="flex items-center text-muted-foreground">{personalInfo?.jobTitle}</p>
+                <p className="mt-2 text-center leading-8 text-muted-foreground md:text-right">
                   {personalInfo?.aboutMe}
                 </p>
               </div>
@@ -61,7 +59,7 @@ export default function AboutSection() {
 
 function SkeletonLoading() {
   return (
-    <div className="flex flex-col items-center sm:items-start space-y-3">
+    <div className="flex flex-col items-center space-y-3 sm:items-start">
       <Skeleton className="h-6 w-[140px]" />
       <Skeleton className="h-4 w-[120px]" />
       <Skeleton className="h-3 w-full" />

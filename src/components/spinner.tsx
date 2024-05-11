@@ -22,13 +22,5 @@ export default function Spinner({ buttonChild = false }: Props) {
   const buttonColor = mapThemeToButtonSpinnerColor[theme as Theme];
   const defaultColor = mapThemeToSpinnerColor[theme as Theme];
   const spinnerColor = buttonChild ? buttonColor : defaultColor;
-  return (
-    <ThreeDots
-      visible={true}
-      height="100%"
-      width={40}
-      radius="9"
-      color={spinnerColor}
-    />
-  );
+  return <ThreeDots visible={true} height="100%" width={40} radius="9" color={spinnerColor} />;
 }

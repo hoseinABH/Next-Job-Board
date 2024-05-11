@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="w-full flex flex-col items-center justify-center py-8 px-4">
+    <div className="flex w-full flex-col items-center justify-center px-4 py-8">
       <Logo className="mb-4" />
-      <h1 className="font-bold text-2xl">ورود به حساب کاربری</h1>
-      <p className="text-muted-foreground mt-2 text-center md:text-right">
+      <h1 className="text-2xl font-bold">ورود به حساب کاربری</h1>
+      <p className="mt-2 text-center text-muted-foreground md:text-right">
         برای ورود به حساب کاربری ایمیل و رمزعبور خود را در زیر وارد کنید
       </p>
       <LoginForm />

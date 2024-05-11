@@ -12,11 +12,7 @@ import AuthActions from './auth.actions';
 import { navigate } from '@/actions/navigation';
 import { clearSession, setCookie } from '@/actions/cookie';
 // Types
-import type {
-  LoginDto,
-  LoginResponse,
-  RegisterDto,
-} from '@/types/auth';
+import type { LoginDto, LoginResponse, RegisterDto } from '@/types/auth';
 import type { Action } from '@/types/store';
 import type { BaseApiResponse } from '@/types/http';
 // Constants
@@ -29,9 +25,9 @@ function* login(action: Action<LoginDto>) {
     yield put(AuthActions.setLoading(true, 'login'));
     const loginDto = action.payload!;
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
-      AuthenticationService.loginWithEmail(loginDto)
+      AuthenticationService.loginWithEmail(loginDto),
     );
-    console.log(response)
+    console.log(response);
     if (response.message === 'Success') {
       // yield put(UserActions.setUserInfo(response.data.user));
       setCookie(response.data.token, new Date(response.data.tokenExpires));

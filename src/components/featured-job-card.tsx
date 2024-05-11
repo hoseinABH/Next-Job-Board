@@ -17,11 +17,11 @@ export default function FeaturedJobCard({ className, job, href }: Props) {
   return (
     <Link href={href}>
       <Card className={cn('relative', className)}>
-        <CardContent className="flex flex-col p-6 justify-center items-center w-full">
-          <span className="text-sm mt-4">{job.title}</span>
-          <p className="font-semibold  text-md">{job.company.name}</p>
+        <CardContent className="flex w-full flex-col items-center justify-center p-6">
+          <span className="mt-4 text-sm">{job.title}</span>
+          <p className="text-md  font-semibold">{job.company.name}</p>
           <p className="flex items-center text-muted-foreground">
-            <MapPin className="w-4 h-4 ml-1" /> {job.company.city}
+            <MapPin className="ml-1 h-4 w-4" /> {job.company.city}
           </p>
         </CardContent>
       </Card>

@@ -24,9 +24,7 @@ class UserProvider extends HttpService {
   public updatePersonal(data: UpdatePersonalDto): Promise<BaseApiResponse> {
     return this.httpService.put('personal', data);
   }
-  public createEducation(
-    education: CreateEducationDto
-  ): Promise<BaseApiResponse> {
+  public createEducation(education: CreateEducationDto): Promise<BaseApiResponse> {
     return this.httpService.post('education', education);
   }
   public deleteEducation(educationId: string): Promise<BaseApiResponse> {
@@ -35,9 +33,7 @@ class UserProvider extends HttpService {
   public getAllEducations(): Promise<BaseApiResponse> {
     return this.httpService.get('educations');
   }
-  public createExperience(
-    experience: CreateExperienceDto
-  ): Promise<BaseApiResponse> {
+  public createExperience(experience: CreateExperienceDto): Promise<BaseApiResponse> {
     return this.httpService.post('experience', experience);
   }
   public deleteExperience(experienceId: string): Promise<BaseApiResponse> {

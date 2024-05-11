@@ -52,17 +52,15 @@ export function SkillModal() {
   }
   return (
     <Dialog open={modals.skill} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto">
         <DialogHeader>
           <DialogTitle>مهارت ها</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="skill"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <ControlledInput control={form.control} name="name" label="مهارت" />

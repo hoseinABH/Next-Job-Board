@@ -27,25 +27,14 @@ import { educationDegreeOptions } from '@/constants';
 const educationFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان فرصت شغلی را وارد کنید' }),
   requiredDegree: z.enum(
-    [
-      'Bachelor',
-      'Master',
-      'Doctoral',
-      'MiddleSchoolDiploma',
-      'Associate',
-      'Professional',
-    ],
+    ['Bachelor', 'Master', 'Doctoral', 'MiddleSchoolDiploma', 'Associate', 'Professional'],
     {
       required_error: 'مقطع تحصیلی مورد نیاز را انتخاب کنید',
-    }
+    },
   ),
-  applicationDeadline: z
-    .string()
-    .min(1, { message: 'تاریخ مهلت درخواست را وارد کنید' }),
+  applicationDeadline: z.string().min(1, { message: 'تاریخ مهلت درخواست را وارد کنید' }),
   salary: z.string().min(1, { message: 'حقوق پیشنهادی را وارد کنید' }),
-  description: z
-    .string()
-    .min(1, { message: 'توضیحات موقعیت شغلی را وارد کنید' }),
+  description: z.string().min(1, { message: 'توضیحات موقعیت شغلی را وارد کنید' }),
   isUrgent: z.boolean(),
 });
 
@@ -74,24 +63,18 @@ export default function CreatePositionModal() {
   }
   return (
     <Dialog open={modals.createPosition} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-screen pt-12 pb-4 sm:pt-4 overflow-auto">
+      <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>موقعیت شغلی جدید</DialogTitle>
-          <DialogDescription>
-            لطفا فیلد های مورد نظر را تکمیل نمایید
-          </DialogDescription>
+          <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
             id="createPosition"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <ControlledInput
-              control={form.control}
-              name="title"
-              label="عنوان موقعیت شغلی"
-            />
+            <ControlledInput control={form.control} name="title" label="عنوان موقعیت شغلی" />
             <ControlledSelect
               control={form.control}
               name="requiredDegree"

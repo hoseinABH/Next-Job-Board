@@ -31,23 +31,21 @@ export default function WorkExperience() {
           id: experience.experienceId,
           entity: 'workExperience',
         },
-      })
+      }),
     );
     dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <>
       <SectionWrapper
-        hasShowMore={
-          workExperiences?.length ? workExperiences.length > 1 : false
-        }
+        hasShowMore={workExperiences?.length ? workExperiences.length > 1 : false}
         icon={Briefcase}
         title="سوابق شغلی"
         id="work-experience"
         actionHandler={openCreateModal}
       >
         {!workExperiences?.length ? (
-          <div className="flex items-center justify-center h-28">
+          <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openCreateModal}>
               افزودن تجربه شغلی
             </Button>
