@@ -1,7 +1,7 @@
 import { all, fork } from 'redux-saga/effects';
 // Sagas entities
 import CommonSagas from './Common/common.sagas';
-import ResumeSagas from './Resume/resume.sagas';
+import ResumeSagas from './User/user.sagas';
 import JobsSagas from './Jobs/jobs.sagas';
 import AuthSagas from './Auth/auth.sagas';
 import UserSagas from './User/user.sagas';

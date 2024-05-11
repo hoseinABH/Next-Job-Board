@@ -9,7 +9,7 @@ import SectionWrapper from './section-wrapper';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();

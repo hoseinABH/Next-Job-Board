@@ -7,12 +7,12 @@ import type {
   CreateLanguageDto,
   CreateSkillDto,
   UpdatePersonalDto,
-} from '@/types/resume';
+} from '@/types/user';
 
-class ResumeProvider extends HttpService {
+class UserProvider extends HttpService {
   constructor() {
     super({
-      suffix: 'resume',
+      suffix: 'user',
     });
   }
   public getMyResume(): Promise<BaseApiResponse> {
@@ -66,6 +66,6 @@ class ResumeProvider extends HttpService {
   }
 }
 
-const ResumeService = new ResumeProvider();
+const UserServices = new UserProvider();
 
-export default ResumeService;
+export default UserServices;

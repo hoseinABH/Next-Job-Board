@@ -3,7 +3,7 @@ import { Trash2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
 // Types
-import type { Experience } from '@/types/resume';
+import type { Experience } from '@/types/user';
 import { persianDate } from '@/lib/date';
 import Maybe from './maybe';
 

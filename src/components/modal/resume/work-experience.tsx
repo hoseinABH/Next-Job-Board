@@ -16,7 +16,7 @@ import { Form } from '@/components/ui/form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';

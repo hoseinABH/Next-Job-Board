@@ -5,7 +5,7 @@ import IconButton from './icon-button';
 // Utilities
 import { persianDate } from '@/lib/date';
 // Types
-import type { Education } from '@/types/resume';
+import type { Education } from '@/types/user';
 // Constants
 import { mapEducationLevel } from '@/constants';
 import Maybe from './maybe';

@@ -4,7 +4,7 @@ import type {
   LanguageLevel,
   MaritalStatus,
   Gender,
-} from '@/types/resume';
+} from '@/types/user';
 
 export const mapEducationLevel: Record<EducationDegree, string> = {
   Bachelor: 'کارشناسی',

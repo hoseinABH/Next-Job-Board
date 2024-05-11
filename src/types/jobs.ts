@@ -1,4 +1,4 @@
-import type { EducationDegree, MilitaryStatus } from './resume';
+import type { EducationDegree, MilitaryStatus } from './user';
 import type { Company } from './company';
 
 export type PositionStatus = 'Draft' | 'Active' | 'Inactive';

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 // Reducers
 import common from './Common/common.reducer';
-import resume from './Resume/resume.reducer';
+import resume from './User/user.reducer';
 import jobs from './Jobs/jobs.reducer';
 import auth from './Auth/auth.reducer';
 import user from './User/user.reducer';

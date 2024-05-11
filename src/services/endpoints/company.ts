@@ -10,10 +10,10 @@ class CompanyProvider extends HttpService {
     });
   }
   public getAllCompanies(): Promise<BaseApiResponse<Company[]>> {
-    return this.httpService.get('');
+    return this.httpService.get('get-all-companies');
   }
-  public getCompanyById(id: string): Promise<BaseApiResponse<Company>> {
-    return this.httpService.get(`/${id}`);
+  public getCompanyById(companyId: string): Promise<BaseApiResponse<Company>> {
+    return this.httpService.get(`get-company-details?${companyId}`);
   }
 }
 

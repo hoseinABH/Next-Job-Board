@@ -12,7 +12,7 @@ import { persianDate } from '@/lib/date';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 // Constants
 import {
   mapGenderTitle,

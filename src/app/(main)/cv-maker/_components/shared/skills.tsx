@@ -11,12 +11,12 @@ import SectionWrapper from './section-wrapper';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Constants
 import { mapLanguageLevel } from '@/constants';
 // Types
-import type { Skill } from '@/types/resume';
+import type { Skill } from '@/types/user';
 
 export default function Skills() {
   const dispatch = useAppDispatch();

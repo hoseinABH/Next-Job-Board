@@ -8,24 +8,71 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { LoggedInUserInfo } from '@/types/auth';
+import type {
+  DeleteDialogData,
+  ResumeData,
+  ResumeLoading,
+  ResumeModals,
+} from '@/types/user';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
 
 export interface UserState {
-  loggedInUserInfo: Nullable<LoggedInUserInfo>;
+  loading: ResumeLoading;
+  modals: ResumeModals;
+  dialogData: Nullable<DeleteDialogData>;
+  resumeData: Nullable<ResumeData>;
 }
 
 export const initialState: UserState = {
-  loggedInUserInfo: null,
+  loading: {
+    updatePersonal: false,
+    createExperience: false,
+    createEducation: false,
+    createLanguage: false,
+    createSkill: false,
+    removeEntity: false,
+    getMyResume: false,
+  },
+  modals: {
+    aboutMe: false,
+    personalInfo: false,
+    workExperience: false,
+    education: false,
+    language: false,
+    skill: false,
+  },
+  dialogData: null,
+  resumeData: null,
 };
 
-const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
+const reducer: Reducer<UserState, Action> = (
+  state = initialState,
+  action
+) => {
   const update = updateState<UserState>(state);
   switch (action.type) {
-    case types.SET_USER_INFO:
-      return update({ loggedInUserInfo: action.payload });
+    case types.SET_OPEN_MODAL:
+      return update({
+        modals: updateState<ResumeModals>(state.modals)({
+          [action.payload.key]: action.payload.open,
+        }),
+      });
+    case types.SET_LOADING:
+      return update({
+        loading: updateState<ResumeLoading>(state.loading)({
+          [action.payload.key]: action.payload.status,
+        }),
+      });
+    case types.SET_DIALOG_DATA:
+      return update({
+        dialogData: action.payload,
+      });
+    case types.SET_RESUME_DATA:
+      return update({
+        resumeData: action.payload,
+      });
     case RESET_FACTORY:
       return initialState;
     default:

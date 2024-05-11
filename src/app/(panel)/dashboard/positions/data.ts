@@ -1,4 +1,4 @@
-import type { EducationDegree } from '@/types/resume';
+import type { EducationDegree } from '@/types/user';
 
 export interface Position {
   title: string;

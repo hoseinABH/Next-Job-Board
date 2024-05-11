@@ -10,10 +10,10 @@ import SectionWrapper from './section-wrapper';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 import CommonActions from '@/store/Common/common.actions';
 // Types
-import type { Education } from '@/types/resume';
+import type { Education } from '@/types/user';
 
 export default function Educations() {
   const dispatch = useAppDispatch();

@@ -13,7 +13,7 @@ import Languages from './shared/languages';
 // Utilities
 import { cn } from '@/lib/utils';
 // Actions
-import ResumeActions from '@/store/Resume/resume.actions';
+import ResumeActions from '@/store/User/user.actions';
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
