@@ -1,13 +1,10 @@
-import dynamic from 'next/dynamic';
 // Common components
 import NavigationDrawer from './navigation-drawer';
 import NavigationItems from './navigation-items';
+import Logo from './logo';
+import UserDropDown from './user-drop-down';
 
-/** If we don't do this, we get the following warning:
- * * Warning: Prop className did not match.
- */
-const UserDropDown = dynamic(() => import('./user-drop-down'), { ssr: false });
-const Logo = dynamic(() => import('./logo'), { ssr: false });
+
 
 export default function Header() {
   return (

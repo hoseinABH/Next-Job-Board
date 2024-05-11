@@ -1,8 +1,8 @@
 import * as Routes from './routes';
 
 export const appData = {
-  appName: 'نمایشکار',
-  appDescription: 'نمایشکار بهترین راه ارتباطی کارجویان و کارفرمایان',
+  appName: 'کارینو',
+  appDescription: 'کارینو بهترین راه ارتباطی کارجویان و کارفرمایان',
 };
 
 export const navigationLinks = [

@@ -44,12 +44,8 @@ const userMenuItems = [
 export default function UserDropDown() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loggedInUserInfo } = useAppSelector((state) => state.user);
   const { loading } = useAppSelector((state) => state.auth);
-  const fullName = useMemo(
-    () => `${loggedInUserInfo?.firstName} ${loggedInUserInfo?.lastName}`,
-    [loggedInUserInfo?.lastName, loggedInUserInfo?.firstName]
-  );
+
 
   function handleSelectMenu(menuKey: string) {
     switch (menuKey) {
@@ -70,7 +66,7 @@ export default function UserDropDown() {
         <Spinner />
       ) : (
         <>
-          <Maybe condition={Boolean(loggedInUserInfo)}>
+          {/* <Maybe condition={Boolean(loggedInUserInfo)}>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-x-2 outline-none">
                 <Avatar>
@@ -91,13 +87,13 @@ export default function UserDropDown() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-          </Maybe>
-          <Maybe condition={!Boolean(loggedInUserInfo)}>
+          </Maybe> */}
+          {/* <Maybe condition={!Boolean(loggedInUserInfo)}> */}
             <Link href={Routes.LOGIN} className={buttonVariants()}>
               <Fingerprint className="ml-2 w-4 h-4" />
               <span>ورود | ثبت نام</span>
             </Link>
-          </Maybe>
+          {/* </Maybe> */}
         </>
       )}
     </>

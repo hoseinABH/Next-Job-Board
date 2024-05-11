@@ -1,16 +1,13 @@
 'use client';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 // Common components
+import ThemeToggle from './theme-toggle';
 import SocialLinks from './social-links';
+import Logo from './logo';
 // Config
 import * as appConfig from '@/config/app';
 
-/** If we don't do this, we get the following warning:
- * * Warning: Prop className did not match.
- */
-const ThemeToggle = dynamic(() => import('./theme-toggle'), { ssr: false });
-const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
+
 
 export default function Footer() {
   return (

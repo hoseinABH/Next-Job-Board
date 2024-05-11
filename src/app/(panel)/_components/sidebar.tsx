@@ -1,11 +1,13 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 // UI Frameworks
 import { Package, ClipboardList, Home, LucideIcon } from 'lucide-react';
 // Common components
+import ThemeToggle from '@/components/theme-toggle';
+import AppVersion from '@/components/app-version';
+import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
@@ -14,19 +16,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import AppVersion from '@/components/app-version';
 // Utilities
 import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
-
-/** If we don't do this, we get the following warning:
- * * Warning: Prop className did not match.
- */
-const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), {
-  ssr: false,
-});
 
 interface Menu {
   title: string;

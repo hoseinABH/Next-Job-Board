@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+// Common components
+import Logo from '@/components/logo';
 // Local components
 import RegisterForm from '../_components/register-form';
 // Configs
@@ -7,13 +8,9 @@ import * as Routes from '@/config/routes';
 // Types
 import type { Metadata } from 'next';
 
-/** If we don't do this, we get the following warning:
- * * Warning: Prop className did not match.
- */
-const Logo = dynamic(() => import('@/components/logo'), { ssr: false });
 
 export const metadata: Metadata = {
-  title: 'ورود',
+  title: 'ثبت‌نام',
 };
 
 export default function RegisterPage() {

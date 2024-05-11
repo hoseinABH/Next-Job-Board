@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server';
 // Configs
-// import * as Routes from '@/config/routes';
+import * as Routes from '@/config/routes';
 
-// const privateRoutes = [Routes.CV_MAKER];
-// const authenticationRoutes = [Routes.LOGIN, Routes.REGISTER];
+const privateRoutes = [Routes.CV_MAKER];
+const authenticationRoutes = [Routes.LOGIN, Routes.REGISTER];
 
 export default async function middleware(req: NextRequest) {
   // const token = req.cookies.get('session')?.value;
