@@ -12,7 +12,7 @@ import type { Metadata, Viewport } from 'next';
 // Styles
 import '@/app/globals.css';
 
-const appFont = localFont({ src: 'MorabbaVF.ttf' });
+const appFont = localFont({ src: 'IranSans.woff' });
 
 export const metadata: Metadata = {
   title: {
