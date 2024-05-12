@@ -30,8 +30,8 @@ type FormData = typeof aboutMeFormSchema;
 
 export function AboutMeModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading, resumeData } = useAppSelector((state) => state.resume);
-  const state = resumeData?.personalInfo;
+  const { modals, loading, userResume } = useAppSelector((state) => state.resume);
+  const state = userResume?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(aboutMeFormSchema),
     defaultValues: {

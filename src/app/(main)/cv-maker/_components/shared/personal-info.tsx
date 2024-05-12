@@ -18,8 +18,8 @@ import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
-  const { resumeData, loading } = useAppSelector((state) => state.resume);
-  const personalInfo = resumeData?.personalInfo;
+  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const personalInfo = userResume?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
   }
@@ -74,7 +74,7 @@ export default function PersonalInfo() {
           </div>
         ) : (
           <>
-            {loading.getMyResume ? (
+            {loading.getUserResume ? (
               <SkeletonLoading />
             ) : (
               <div className="flex flex-col gap-y-4">

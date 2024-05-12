@@ -27,9 +27,7 @@ function* login(action: Action<LoginDto>) {
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.login(loginDto),
     );
-    console.log(response);
     if (response.message === 'Success') {
-      // yield put(UserActions.setUserInfo(response.data.user));
       setCookie(response.data.token, new Date(response.data.tokenExpires));
       navigate(Routes.CV_MAKER);
     }

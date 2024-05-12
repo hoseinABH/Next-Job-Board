@@ -48,7 +48,6 @@ export default function RegisterForm() {
                 <Input
                   type="email"
                   dir="ltr"
-                  autoComplete="username"
                   placeholder="ایمیل"
                   className="placeholder:text-right"
                   {...field}
@@ -66,6 +65,7 @@ export default function RegisterForm() {
               <FormControl>
                 <Input
                   dir="ltr"
+                  autoComplete="username"
                   placeholder="نام کاربری"
                   className="placeholder:text-right"
                   {...field}

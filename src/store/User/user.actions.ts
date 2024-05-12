@@ -13,8 +13,8 @@ import type {
   DeleteDialogData,
   LoadingKeys,
   ModalKeys,
-  ResumeData,
   UpdatePersonalDto,
+  UserResume,
 } from '@/types/user';
 import type { Nullable } from '@/types/common';
 
@@ -127,10 +127,7 @@ class Actions {
    * @param {ExtraActionInfo} options
    * @return {Action<Nullable<any>>}
    */
-  public prepareUserProfile(
-    data: Nullable<ResumeData>,
-    options?: ExtraActionInfo,
-  ): Action<Nullable<ResumeData>> {
+  public prepareUserProfile(data: Nullable<any>, options?: ExtraActionInfo): Action<Nullable<any>> {
     return {
       type: options?.sagas ? types.SAGAS_GET_USER_PROFILE : types.SET_USER_PROFILE,
       payload: data,
@@ -138,16 +135,16 @@ class Actions {
   }
   /**
    * get/set user resume
-   * @param {Nullable<ResumeData>} data
+   * @param {Nullable<UserResume>} data
    * @param {ExtraActionInfo} options
-   * @return {Action<Nullable<ResumeData>>}
+   * @return {Action<Nullable<UserResume>>}
    */
   public prepareUserResume(
-    data: Nullable<ResumeData>,
+    data: Nullable<UserResume>,
     options?: ExtraActionInfo,
-  ): Action<Nullable<ResumeData>> {
+  ): Action<Nullable<UserResume>> {
     return {
-      type: options?.sagas ? types.SAGAS_GET_RESUME_DATA : types.SET_RESUME_DATA,
+      type: options?.sagas ? types.SAGAS_GET_USER_RESUME : types.SET_USER_RESUME,
       payload: data,
     };
   }

@@ -15,8 +15,11 @@ class UserProvider extends HttpService {
       suffix: 'user',
     });
   }
-  public getMyResume(): Promise<BaseApiResponse> {
-    return this.httpService.get('me');
+  public getUserProfile(): Promise<BaseApiResponse> {
+    return this.httpService.get('get-minimal-profile');
+  }
+  public getUserResume(): Promise<BaseApiResponse> {
+    return this.httpService.get('get-profile');
   }
   public submitPersonal(data: UpdatePersonalDto): Promise<BaseApiResponse> {
     return this.httpService.post('personal', data);

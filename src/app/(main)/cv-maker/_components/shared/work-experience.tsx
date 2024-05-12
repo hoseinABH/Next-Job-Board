@@ -17,8 +17,8 @@ import type { Experience } from '@/types/user';
 
 export default function WorkExperience() {
   const dispatch = useAppDispatch();
-  const { resumeData, loading } = useAppSelector((state) => state.resume);
-  const workExperiences = resumeData?.workExperience;
+  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const workExperiences = userResume?.workExperience;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));
   }
@@ -52,7 +52,7 @@ export default function WorkExperience() {
           </div>
         ) : (
           <div className="flex flex-col gap-y-6">
-            {loading.getMyResume ? (
+            {loading.getUserResume ? (
               <>
                 {[1, 2].map((item) => (
                   <SkeletonLoading key={item} />

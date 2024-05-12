@@ -20,8 +20,8 @@ import type { Language } from '@/types/user';
 
 export default function Languages() {
   const dispatch = useAppDispatch();
-  const { resumeData, loading } = useAppSelector((state) => state.resume);
-  const languages = resumeData?.languages;
+  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const languages = userResume?.languages;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));
   }
@@ -54,7 +54,7 @@ export default function Languages() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-2 xl:grid-cols-3">
-            {loading.getMyResume ? (
+            {loading.getUserResume ? (
               <>
                 {[1, 2].map((skeleton) => (
                   <Skeleton key={skeleton} className="h-16 w-full" />

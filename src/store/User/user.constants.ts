@@ -61,8 +61,8 @@ export const SAGAS_REMOVE_RESUME_FIELD = prefix('SAGAS_REMOVE_RESUME_FIELD');
  * @module USER
  * @desc get/set resume data
  */
-export const SAGAS_GET_RESUME_DATA = prefix('SAGAS_GET_RESUME_DATA');
-export const SET_RESUME_DATA = prefix('SET_RESUME_DATA');
+export const SAGAS_GET_USER_RESUME = prefix('SAGAS_GET_USER_RESUME');
+export const SET_USER_RESUME = prefix('SET_USER_RESUME');
 
 /**
  * @module USER

@@ -17,8 +17,8 @@ import type { Education } from '@/types/user';
 
 export default function Educations() {
   const dispatch = useAppDispatch();
-  const { resumeData, loading } = useAppSelector((state) => state.resume);
-  const educations = resumeData?.education;
+  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const educations = userResume?.education;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));
   }
@@ -52,7 +52,7 @@ export default function Educations() {
           </div>
         ) : (
           <div className="flex flex-col gap-y-6">
-            {loading.getMyResume ? (
+            {loading.getUserResume ? (
               <>
                 {[1, 2].map((item) => (
                   <SkeletonLoading key={item} />

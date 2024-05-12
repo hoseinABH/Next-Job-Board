@@ -30,305 +30,13 @@ import type { UserState } from './user.reducer';
 import * as types from './user.constants';
 import * as messages from '@/constants/messages';
 
-function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
+function* getUserProfile() {
   try {
-    yield put(UserActions.setLoading(true, 'updatePersonal'));
-    const { resumeData }: UserState = yield select((state) => state.resume);
-    const personalData = action.payload!;
-    // let response: BaseApiResponse;
-    // if (resumeData?.personalInfo) {
-    //   response = yield call(() => ResumeService.updatePersonal(personalData));
-    // } else {
-    //   response = yield call(() => ResumeService.submitPersonal(personalData));
-    // }
-    // if (response.message === 'Success') {
-    //   toast({
-    //     variant: 'success',
-    //     description: 'مشخصات شخصی با موفقیت ثبت شد',
-    //   });
-    //   yield put(UserActions.setModalOpen(false, 'aboutMe'));
-    //   yield put(UserActions.setModalOpen(false, 'personalInfo'));
-    //   yield put(
-    //     UserActions.prepareUserResume({
-    //       ...resumeData!,
-    //       personalInfo: { ...resumeData?.personalInfo, ...personalData },
-    //     })
-    //   );
-    // }
-    /** TEST CODE */
-    yield delay(3000);
-    yield put(UserActions.setModalOpen(false, 'aboutMe'));
-    yield put(UserActions.setModalOpen(false, 'personalInfo'));
-    yield put(
-      UserActions.prepareUserResume({
-        ...resumeData!,
-        personalInfo: { ...resumeData?.personalInfo, ...personalData },
-      }),
-    );
-    toast({
-      variant: 'success',
-      description: 'مشخصات شخصی با موفقیت ثبت شد',
-    });
-    /** TEST CODE */
-  } catch (error) {
-    toast({
-      title: 'خطایی رخ داده است',
-      description: messages.commonError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'updatePersonal'));
-  }
-}
-function* createExperience(action: Action<CreateExperienceDto>) {
-  try {
-    yield put(UserActions.setLoading(true, 'createExperience'));
-    const { resumeData }: UserState = yield select((state) => state.resume);
-    const experience = action.payload!;
-    // const response: BaseApiResponse<Experience[]> = yield call(() =>
-    //   ResumeService.createExperience(experience)
-    // );
-    // if (response.message === 'Success') {
-    //   toast({
-    //     variant: 'success',
-    //     description: 'سابقه شغلی با موفقیت ثبت شد',
-    //   });
-    //   yield put(UserActions.setModalOpen(false, 'workExperience'));
-    //   yield put(
-    //     UserActions.prepareUserResume({
-    //       ...resumeData!,
-    //       workExperience: response.data,
-    //     })
-    //   );
-    // }
-    /** TEST CODE */
-    yield delay(3000);
-    yield put(
-      UserActions.prepareUserResume({
-        ...resumeData!,
-        workExperience: [...resumeData?.workExperience!, experience as any],
-      }),
-    );
-    yield put(UserActions.setModalOpen(false, 'workExperience'));
-    toast({
-      variant: 'success',
-      description: 'سابقه شغلی با موفقیت ثبت شد',
-    });
-    /** TEST CODE */
-  } catch (error) {
-    toast({
-      title: 'خطایی رخ داده است',
-      description: messages.commonError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'createExperience'));
-  }
-}
-function* createEducation(action: Action<CreateEducationDto>) {
-  try {
-    yield put(UserActions.setLoading(true, 'createEducation'));
-    const { resumeData }: UserState = yield select((state) => state.resume);
-    const education = action.payload!;
-    // const response: BaseApiResponse<Education[]> = yield call(() =>
-    //   ResumeService.createEducation(education)
-    // );
-    // if (response.message === 'Success') {
-    //   toast({
-    //     variant: 'success',
-    //     description: 'مقطع تحصیلی با موفقیت ثبت شد',
-    //   });
-    //   yield put(UserActions.setModalOpen(false, 'education'));
-    //   yield put(
-    //     UserActions.prepareUserResume({
-    //       ...resumeData!,
-    //       education: response.data,
-    //     })
-    //   );
-    // }
-    /** TEST CODE */
-    yield delay(3000);
-    yield put(
-      UserActions.prepareUserResume({
-        ...resumeData!,
-        education: [...resumeData?.education!, education as any],
-      }),
-    );
-    yield put(UserActions.setModalOpen(false, 'education'));
-    toast({
-      variant: 'success',
-      description: 'مقطع تحصیلی با موفقیت ثبت شد',
-    });
-    /** TEST CODE */
-  } catch (error) {
-    toast({
-      title: 'خطایی رخ داده است',
-      description: messages.commonError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'createEducation'));
-  }
-}
-function* createLanguage(action: Action<CreateLanguageDto>) {
-  try {
-    yield put(UserActions.setLoading(true, 'createLanguage'));
-    const { resumeData }: UserState = yield select((state) => state.resume);
-    const language = action.payload!;
-    // const response: BaseApiResponse<Language[]> = yield call(() =>
-    //   ResumeService.createLanguage(language)
-    // );
-    // if (response.message === 'Success') {
-    //   toast({
-    //     variant: 'success',
-    //     description: 'زبان با موفقیت ثبت شد',
-    //   });
-    //   yield put(UserActions.setModalOpen(false, 'language'));
-    //   yield put(
-    //     UserActions.prepareUserResume({
-    //       ...resumeData!,
-    //       languages: response.data,
-    //     })
-    //   );
-    // }
-    /** TEST CODE */
-    yield delay(3000);
-    yield put(
-      UserActions.prepareUserResume({
-        ...resumeData!,
-        languages: [...resumeData?.languages!, language as any],
-      }),
-    );
-    yield put(UserActions.setModalOpen(false, 'language'));
-    toast({
-      variant: 'success',
-      description: 'زبان با موفقیت ثبت شد',
-    });
-    /** TEST CODE */
-  } catch (error) {
-    toast({
-      title: 'خطایی رخ داده است',
-      description: messages.commonError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'createLanguage'));
-  }
-}
-function* createSkill(action: Action<CreateSkillDto>) {
-  try {
-    yield put(UserActions.setLoading(true, 'createSkill'));
-    const { resumeData }: UserState = yield select((state) => state.resume);
-    const skill = action.payload!;
-    // const response: BaseApiResponse<Skill[]> = yield call(() =>
-    //   ResumeService.createSkill(skill)
-    // );
-    // if (response.message === 'Success') {
-    //   toast({
-    //     variant: 'success',
-    //     description: 'مهارت با موفقیت ثبت شد',
-    //   });
-    //   yield put(UserActions.setModalOpen(false, 'skill'));
-    //   yield put(
-    //     UserActions.prepareUserResume({
-    //       ...resumeData!,
-    //       skills: response.data,
-    //     })
-    //   );
-    // }
-    /** TEST CODE */
-    yield delay(3000);
-    yield put(
-      UserActions.prepareUserResume({
-        ...resumeData!,
-        skills: [...resumeData?.skills!, skill as any],
-      }),
-    );
-    yield put(UserActions.setModalOpen(false, 'skill'));
-    toast({
-      variant: 'success',
-      description: 'مهارت با موفقیت ثبت شد',
-    });
-    /** TEST CODE */
-  } catch (error) {
-    toast({
-      title: 'خطایی رخ داده است',
-      description: messages.commonError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'createSkill'));
-  }
-}
-function* removeField() {
-  try {
-    yield put(UserActions.setLoading(true, 'removeEntity'));
-    const { dialogData, resumeData }: UserState = yield select((state) => state.resume);
-    const entity = dialogData?.model.entity;
-    const entityId = dialogData?.model.id!;
-    let response: BaseApiResponse | null = null;
-    let entityTitle = '';
-    switch (entity) {
-      case 'education':
-        response = yield call(() => ResumeService.deleteEducation(entityId));
-        entityTitle = 'سابقه تحصیلی';
-        break;
-      case 'language':
-        response = yield call(() => ResumeService.deleteLanguage(entityId));
-        entityTitle = 'زبان';
-        break;
-      case 'skill':
-        response = yield call(() => ResumeService.deleteSkill(entityId));
-        entityTitle = 'مهارت';
-        break;
-      case 'workExperience':
-        response = yield call(() => ResumeService.deleteExperience(entityId));
-        entityTitle = 'سابقه شغلی';
-        break;
-      default:
-        break;
-    }
-    if (response?.message === 'Success') {
-      toast({
-        variant: 'success',
-        description: `${entityTitle} با موفقیت حذف شد`,
-      });
+    yield put(UserActions.setLoading(true, 'getUserProfile'));
+    const response: BaseApiResponse<any> = yield call(() => ResumeService.getUserProfile());
+    if (response.message === 'Success') {
       yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
-      switch (entity) {
-        case 'workExperience':
-          const newExperience: Experience[] = response.data;
-          yield put(
-            UserActions.prepareUserResume({
-              ...resumeData!,
-              workExperience: newExperience,
-            }),
-          );
-          break;
-        case 'education':
-          const newEducations: Education[] = response.data;
-          yield put(
-            UserActions.prepareUserResume({
-              ...resumeData!,
-              education: newEducations,
-            }),
-          );
-          break;
-        case 'language':
-          const newLanguages: Language[] = response.data;
-          yield put(
-            UserActions.prepareUserResume({
-              ...resumeData!,
-              languages: newLanguages,
-            }),
-          );
-          break;
-        case 'skill':
-          const newSkills: Skill[] = response.data;
-          yield put(
-            UserActions.prepareUserResume({
-              ...resumeData!,
-              skills: newSkills,
-            }),
-          );
-          break;
-        default:
-          break;
-      }
+      yield put(UserActions.prepareUserResume(response.data));
     }
   } catch (error) {
     toast({
@@ -336,15 +44,15 @@ function* removeField() {
       description: messages.commonError,
     });
   } finally {
-    yield put(UserActions.setLoading(false, 'removeEntity'));
+    yield put(UserActions.setLoading(false, 'getUserProfile'));
   }
 }
-function* getResumeData() {
+function* getUserResume() {
   try {
-    yield put(UserActions.setLoading(true, 'getMyResume'));
+    yield put(UserActions.setLoading(true, 'getUserResume'));
 
-    // const response: BaseApiResponse<ResumeData> = yield call(() =>
-    //   ResumeService.getMyResume()
+    // const response: BaseApiResponse<userResume> = yield call(() =>
+    //   ResumeService.getUserResume()
     // );
     // if (response.message === 'Success') {
     //   yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
@@ -416,18 +124,328 @@ function* getResumeData() {
       description: messages.commonError,
     });
   } finally {
-    yield put(UserActions.setLoading(false, 'getMyResume'));
+    yield put(UserActions.setLoading(false, 'getUserResume'));
   }
 }
 
+function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
+  try {
+    yield put(UserActions.setLoading(true, 'updatePersonal'));
+    const { userResume }: UserState = yield select((state) => state.resume);
+    const personalData = action.payload!;
+    // let response: BaseApiResponse;
+    // if (userResume?.personalInfo) {
+    //   response = yield call(() => ResumeService.updatePersonal(personalData));
+    // } else {
+    //   response = yield call(() => ResumeService.submitPersonal(personalData));
+    // }
+    // if (response.message === 'Success') {
+    //   toast({
+    //     variant: 'success',
+    //     description: 'مشخصات شخصی با موفقیت ثبت شد',
+    //   });
+    //   yield put(UserActions.setModalOpen(false, 'aboutMe'));
+    //   yield put(UserActions.setModalOpen(false, 'personalInfo'));
+    //   yield put(
+    //     UserActions.prepareUserResume({
+    //       ...userResume!,
+    //       personalInfo: { ...userResume?.personalInfo, ...personalData },
+    //     })
+    //   );
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(UserActions.setModalOpen(false, 'aboutMe'));
+    yield put(UserActions.setModalOpen(false, 'personalInfo'));
+    yield put(
+      UserActions.prepareUserResume({
+        ...userResume!,
+        personalInfo: { ...userResume?.personalInfo, ...personalData },
+      }),
+    );
+    toast({
+      variant: 'success',
+      description: 'مشخصات شخصی با موفقیت ثبت شد',
+    });
+    /** TEST CODE */
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'updatePersonal'));
+  }
+}
+function* createExperience(action: Action<CreateExperienceDto>) {
+  try {
+    yield put(UserActions.setLoading(true, 'createExperience'));
+    const { userResume }: UserState = yield select((state) => state.resume);
+    const experience = action.payload!;
+    // const response: BaseApiResponse<Experience[]> = yield call(() =>
+    //   ResumeService.createExperience(experience)
+    // );
+    // if (response.message === 'Success') {
+    //   toast({
+    //     variant: 'success',
+    //     description: 'سابقه شغلی با موفقیت ثبت شد',
+    //   });
+    //   yield put(UserActions.setModalOpen(false, 'workExperience'));
+    //   yield put(
+    //     UserActions.prepareUserResume({
+    //       ...userResume!,
+    //       workExperience: response.data,
+    //     })
+    //   );
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(
+      UserActions.prepareUserResume({
+        ...userResume!,
+        workExperience: [...userResume?.workExperience!, experience as any],
+      }),
+    );
+    yield put(UserActions.setModalOpen(false, 'workExperience'));
+    toast({
+      variant: 'success',
+      description: 'سابقه شغلی با موفقیت ثبت شد',
+    });
+    /** TEST CODE */
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'createExperience'));
+  }
+}
+function* createEducation(action: Action<CreateEducationDto>) {
+  try {
+    yield put(UserActions.setLoading(true, 'createEducation'));
+    const { userResume }: UserState = yield select((state) => state.resume);
+    const education = action.payload!;
+    // const response: BaseApiResponse<Education[]> = yield call(() =>
+    //   ResumeService.createEducation(education)
+    // );
+    // if (response.message === 'Success') {
+    //   toast({
+    //     variant: 'success',
+    //     description: 'مقطع تحصیلی با موفقیت ثبت شد',
+    //   });
+    //   yield put(UserActions.setModalOpen(false, 'education'));
+    //   yield put(
+    //     UserActions.prepareUserResume({
+    //       ...userResume!,
+    //       education: response.data,
+    //     })
+    //   );
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(
+      UserActions.prepareUserResume({
+        ...userResume!,
+        education: [...userResume?.education!, education as any],
+      }),
+    );
+    yield put(UserActions.setModalOpen(false, 'education'));
+    toast({
+      variant: 'success',
+      description: 'مقطع تحصیلی با موفقیت ثبت شد',
+    });
+    /** TEST CODE */
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'createEducation'));
+  }
+}
+function* createLanguage(action: Action<CreateLanguageDto>) {
+  try {
+    yield put(UserActions.setLoading(true, 'createLanguage'));
+    const { userResume }: UserState = yield select((state) => state.resume);
+    const language = action.payload!;
+    // const response: BaseApiResponse<Language[]> = yield call(() =>
+    //   ResumeService.createLanguage(language)
+    // );
+    // if (response.message === 'Success') {
+    //   toast({
+    //     variant: 'success',
+    //     description: 'زبان با موفقیت ثبت شد',
+    //   });
+    //   yield put(UserActions.setModalOpen(false, 'language'));
+    //   yield put(
+    //     UserActions.prepareUserResume({
+    //       ...userResume!,
+    //       languages: response.data,
+    //     })
+    //   );
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(
+      UserActions.prepareUserResume({
+        ...userResume!,
+        languages: [...userResume?.languages!, language as any],
+      }),
+    );
+    yield put(UserActions.setModalOpen(false, 'language'));
+    toast({
+      variant: 'success',
+      description: 'زبان با موفقیت ثبت شد',
+    });
+    /** TEST CODE */
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'createLanguage'));
+  }
+}
+function* createSkill(action: Action<CreateSkillDto>) {
+  try {
+    yield put(UserActions.setLoading(true, 'createSkill'));
+    const { userResume }: UserState = yield select((state) => state.resume);
+    const skill = action.payload!;
+    // const response: BaseApiResponse<Skill[]> = yield call(() =>
+    //   ResumeService.createSkill(skill)
+    // );
+    // if (response.message === 'Success') {
+    //   toast({
+    //     variant: 'success',
+    //     description: 'مهارت با موفقیت ثبت شد',
+    //   });
+    //   yield put(UserActions.setModalOpen(false, 'skill'));
+    //   yield put(
+    //     UserActions.prepareUserResume({
+    //       ...userResume!,
+    //       skills: response.data,
+    //     })
+    //   );
+    // }
+    /** TEST CODE */
+    yield delay(3000);
+    yield put(
+      UserActions.prepareUserResume({
+        ...userResume!,
+        skills: [...userResume?.skills!, skill as any],
+      }),
+    );
+    yield put(UserActions.setModalOpen(false, 'skill'));
+    toast({
+      variant: 'success',
+      description: 'مهارت با موفقیت ثبت شد',
+    });
+    /** TEST CODE */
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'createSkill'));
+  }
+}
+function* removeField() {
+  try {
+    yield put(UserActions.setLoading(true, 'removeEntity'));
+    const { dialogData, userResume }: UserState = yield select((state) => state.resume);
+    const entity = dialogData?.model.entity;
+    const entityId = dialogData?.model.id!;
+    let response: BaseApiResponse | null = null;
+    let entityTitle = '';
+    switch (entity) {
+      case 'education':
+        response = yield call(() => ResumeService.deleteEducation(entityId));
+        entityTitle = 'سابقه تحصیلی';
+        break;
+      case 'language':
+        response = yield call(() => ResumeService.deleteLanguage(entityId));
+        entityTitle = 'زبان';
+        break;
+      case 'skill':
+        response = yield call(() => ResumeService.deleteSkill(entityId));
+        entityTitle = 'مهارت';
+        break;
+      case 'workExperience':
+        response = yield call(() => ResumeService.deleteExperience(entityId));
+        entityTitle = 'سابقه شغلی';
+        break;
+      default:
+        break;
+    }
+    if (response?.message === 'Success') {
+      toast({
+        variant: 'success',
+        description: `${entityTitle} با موفقیت حذف شد`,
+      });
+      yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
+      switch (entity) {
+        case 'workExperience':
+          const newExperience: Experience[] = response.data;
+          yield put(
+            UserActions.prepareUserResume({
+              ...userResume!,
+              workExperience: newExperience,
+            }),
+          );
+          break;
+        case 'education':
+          const newEducations: Education[] = response.data;
+          yield put(
+            UserActions.prepareUserResume({
+              ...userResume!,
+              education: newEducations,
+            }),
+          );
+          break;
+        case 'language':
+          const newLanguages: Language[] = response.data;
+          yield put(
+            UserActions.prepareUserResume({
+              ...userResume!,
+              languages: newLanguages,
+            }),
+          );
+          break;
+        case 'skill':
+          const newSkills: Skill[] = response.data;
+          yield put(
+            UserActions.prepareUserResume({
+              ...userResume!,
+              skills: newSkills,
+            }),
+          );
+          break;
+        default:
+          break;
+      }
+    }
+  } catch (error) {
+    toast({
+      title: 'خطایی رخ داده است',
+      description: messages.commonError,
+    });
+  } finally {
+    yield put(UserActions.setLoading(false, 'removeEntity'));
+  }
+}
 export default function* networkListeners() {
   yield all([
+    takeLatest(types.SAGAS_GET_USER_PROFILE, getUserProfile),
+    takeLatest(types.SAGAS_GET_USER_RESUME, getUserResume),
     takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo),
     takeLatest(types.SAGAS_CREATE_EXPERIENCE, createExperience),
     takeLatest(types.SAGAS_CREATE_EDUCATION, createEducation),
     takeLatest(types.SAGAS_CREATE_LANGUAGE, createLanguage),
     takeLatest(types.SAGAS_CREATE_SKILL, createSkill),
     takeLatest(types.SAGAS_REMOVE_RESUME_FIELD, removeField),
-    takeLatest(types.SAGAS_GET_RESUME_DATA, getResumeData),
   ]);
 }

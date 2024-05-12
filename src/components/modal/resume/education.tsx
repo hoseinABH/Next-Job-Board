@@ -42,7 +42,7 @@ type FormData = typeof educationFormSchema;
 
 export function EducationModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading, resumeData } = useAppSelector((state) => state.resume);
+  const { modals, loading, userResume } = useAppSelector((state) => state.resume);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {

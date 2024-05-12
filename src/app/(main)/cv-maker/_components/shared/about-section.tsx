@@ -13,8 +13,8 @@ import ResumeActions from '@/store/User/user.actions';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();
-  const { resumeData, loading } = useAppSelector((state) => state.resume);
-  const personalInfo = resumeData?.personalInfo;
+  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const personalInfo = userResume?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
   }
@@ -36,7 +36,7 @@ export default function AboutSection() {
           </div>
         ) : (
           <>
-            {loading.getMyResume ? (
+            {loading.getUserResume ? (
               <SkeletonLoading />
             ) : (
               <div className="flex flex-col items-center md:items-start">

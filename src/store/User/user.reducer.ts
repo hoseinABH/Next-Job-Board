@@ -8,7 +8,7 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { DeleteDialogData, ResumeData, ResumeLoading, ResumeModals } from '@/types/user';
+import type { DeleteDialogData, UserResume, ResumeLoading, ResumeModals } from '@/types/user';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
@@ -17,19 +17,19 @@ export interface UserState {
   loading: ResumeLoading;
   modals: ResumeModals;
   dialogData: Nullable<DeleteDialogData>;
-  resumeData: Nullable<ResumeData>;
+  userResume: Nullable<UserResume>;
 }
 
 export const initialState: UserState = {
   loading: {
     getUserProfile: false,
+    getUserResume: false,
     updatePersonal: false,
     createExperience: false,
     createEducation: false,
     createLanguage: false,
     createSkill: false,
     removeEntity: false,
-    getMyResume: false,
   },
   modals: {
     aboutMe: false,
@@ -40,7 +40,7 @@ export const initialState: UserState = {
     skill: false,
   },
   dialogData: null,
-  resumeData: null,
+  userResume: null,
 };
 
 const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
@@ -62,9 +62,9 @@ const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
       return update({
         dialogData: action.payload,
       });
-    case types.SET_RESUME_DATA:
+    case types.SET_USER_RESUME:
       return update({
-        resumeData: action.payload,
+        userResume: action.payload,
       });
     case RESET_FACTORY:
       return initialState;

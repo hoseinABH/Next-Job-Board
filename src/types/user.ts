@@ -20,13 +20,13 @@ export type ModalKeys =
 export type ResumeModals = Record<ModalKeys, boolean>;
 export type LoadingKeys =
   | 'getUserProfile'
+  | 'getUserResume'
   | 'updatePersonal'
   | 'createExperience'
   | 'createEducation'
   | 'createLanguage'
   | 'createSkill'
-  | 'removeEntity'
-  | 'getMyResume';
+  | 'removeEntity';
 export type ResumeLoading = Record<LoadingKeys, boolean>;
 
 export type DeleteDialogData = DialogData<Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>>;
@@ -96,7 +96,7 @@ export interface CreateLanguageDto {
 }
 export interface CreateSkillDto extends CreateLanguageDto {}
 
-export interface ResumeData {
+export interface UserResume {
   id: string;
   personalInfo: PersonalInfo;
   education: Education[];
