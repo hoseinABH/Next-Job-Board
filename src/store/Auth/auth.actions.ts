@@ -38,23 +38,15 @@ class Actions {
 
   /**
    * call register service
-   * @param {RegisterDto} registerDto
-   * @return {Action<RegisterDto>}
+   * @param {Omit<RegisterDto, 'userType'>} registerDto
+   * @return {Action<Omit<RegisterDto, 'userType'>>}
    */
-  public register(registerDto: RegisterDto): Action<RegisterDto> {
+  public register(
+    registerDto: Omit<RegisterDto, 'userType'>,
+  ): Action<Omit<RegisterDto, 'userType'>> {
     return {
       type: types.SAGAS_REGISTER,
       payload: registerDto,
-    };
-  }
-
-  /**
-   * fetch logged in user information
-   * @return {Action}
-   */
-  public fetchMe(): Action {
-    return {
-      type: types.SAGAS_FETCH_ME,
     };
   }
   /**

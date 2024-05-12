@@ -19,6 +19,7 @@ export type ModalKeys =
   | 'skill';
 export type ResumeModals = Record<ModalKeys, boolean>;
 export type LoadingKeys =
+  | 'getUserProfile'
   | 'updatePersonal'
   | 'createExperience'
   | 'createEducation'

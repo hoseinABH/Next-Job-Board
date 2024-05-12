@@ -25,7 +25,7 @@ function* login(action: Action<LoginDto>) {
     yield put(AuthActions.setLoading(true, 'login'));
     const loginDto = action.payload!;
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
-      AuthenticationService.loginWithEmail(loginDto),
+      AuthenticationService.login(loginDto),
     );
     console.log(response);
     if (response.message === 'Success') {
@@ -42,11 +42,13 @@ function* login(action: Action<LoginDto>) {
     yield put(AuthActions.setLoading(false, 'login'));
   }
 }
-function* register(action: Action<RegisterDto>) {
+function* register(action: Action<Omit<RegisterDto, 'userType'>>) {
   try {
     yield put(AuthActions.setLoading(true, 'login'));
     const registerDto = action.payload!;
-    yield call(() => AuthenticationService.registerWithEmail(registerDto));
+    const response: BaseApiResponse<LoginResponse> = yield call(() =>
+      AuthenticationService.register({ ...registerDto, userType: 'InnerUser' }),
+    );
     navigate(Routes.LOGIN);
     toast({
       variant: 'success',
@@ -63,19 +65,6 @@ function* register(action: Action<RegisterDto>) {
   }
 }
 
-function* fetchMe() {
-  try {
-    yield put(AuthActions.setLoading(true, 'fetchMe'));
-    // yield put(UserActions.setUserInfo(response.data));
-  } catch (error) {
-    toast({
-      description: messages.fetchDataError,
-    });
-  } finally {
-    yield put(AuthActions.setLoading(false, 'fetchMe'));
-  }
-}
-
 function* logout() {
   // yield put(UserActions.setUserInfo(null));
   clearSession();
@@ -86,7 +75,6 @@ export default function* networkListeners() {
   yield all([
     takeLatest(types.SAGAS_LOGIN, login),
     takeLatest(types.SAGAS_REGISTER, register),
-    takeLatest(types.SAGAS_FETCH_ME, fetchMe),
     takeLatest(types.SAGAS_LOGOUT, logout),
   ]);
 }

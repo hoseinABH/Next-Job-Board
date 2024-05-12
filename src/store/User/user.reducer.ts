@@ -22,6 +22,7 @@ export interface UserState {
 
 export const initialState: UserState = {
   loading: {
+    getUserProfile: false,
     updatePersonal: false,
     createExperience: false,
     createEducation: false,

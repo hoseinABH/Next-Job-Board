@@ -20,7 +20,7 @@ abstract class BaseAPI {
 
   protected constructor({ suffix, version = 'api' }: Config) {
     this.httpService = axios.create({
-      baseURL: `http://10.81.15.72:8082/${version}${suffix ? `/${suffix}` : ''}`,
+      baseURL: `${process.env.API_URL}/${version}${suffix ? `/${suffix}` : ''}`,
       timeout: 60 * (Number(process.env.REACT_APP_HTTP_TIMEOUT) || 1.5) * 1000,
       validateStatus(status) {
         return status >= 200 && status < 300;

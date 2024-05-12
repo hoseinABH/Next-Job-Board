@@ -49,7 +49,7 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
     //   yield put(UserActions.setModalOpen(false, 'aboutMe'));
     //   yield put(UserActions.setModalOpen(false, 'personalInfo'));
     //   yield put(
-    //     UserActions.fillResumeData({
+    //     UserActions.prepareUserResume({
     //       ...resumeData!,
     //       personalInfo: { ...resumeData?.personalInfo, ...personalData },
     //     })
@@ -60,7 +60,7 @@ function* updatePersonalInfo(action: Action<UpdatePersonalDto>) {
     yield put(UserActions.setModalOpen(false, 'aboutMe'));
     yield put(UserActions.setModalOpen(false, 'personalInfo'));
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         ...resumeData!,
         personalInfo: { ...resumeData?.personalInfo, ...personalData },
       }),
@@ -94,7 +94,7 @@ function* createExperience(action: Action<CreateExperienceDto>) {
     //   });
     //   yield put(UserActions.setModalOpen(false, 'workExperience'));
     //   yield put(
-    //     UserActions.fillResumeData({
+    //     UserActions.prepareUserResume({
     //       ...resumeData!,
     //       workExperience: response.data,
     //     })
@@ -103,7 +103,7 @@ function* createExperience(action: Action<CreateExperienceDto>) {
     /** TEST CODE */
     yield delay(3000);
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         ...resumeData!,
         workExperience: [...resumeData?.workExperience!, experience as any],
       }),
@@ -138,7 +138,7 @@ function* createEducation(action: Action<CreateEducationDto>) {
     //   });
     //   yield put(UserActions.setModalOpen(false, 'education'));
     //   yield put(
-    //     UserActions.fillResumeData({
+    //     UserActions.prepareUserResume({
     //       ...resumeData!,
     //       education: response.data,
     //     })
@@ -147,7 +147,7 @@ function* createEducation(action: Action<CreateEducationDto>) {
     /** TEST CODE */
     yield delay(3000);
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         ...resumeData!,
         education: [...resumeData?.education!, education as any],
       }),
@@ -182,7 +182,7 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
     //   });
     //   yield put(UserActions.setModalOpen(false, 'language'));
     //   yield put(
-    //     UserActions.fillResumeData({
+    //     UserActions.prepareUserResume({
     //       ...resumeData!,
     //       languages: response.data,
     //     })
@@ -191,7 +191,7 @@ function* createLanguage(action: Action<CreateLanguageDto>) {
     /** TEST CODE */
     yield delay(3000);
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         ...resumeData!,
         languages: [...resumeData?.languages!, language as any],
       }),
@@ -226,7 +226,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
     //   });
     //   yield put(UserActions.setModalOpen(false, 'skill'));
     //   yield put(
-    //     UserActions.fillResumeData({
+    //     UserActions.prepareUserResume({
     //       ...resumeData!,
     //       skills: response.data,
     //     })
@@ -235,7 +235,7 @@ function* createSkill(action: Action<CreateSkillDto>) {
     /** TEST CODE */
     yield delay(3000);
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         ...resumeData!,
         skills: [...resumeData?.skills!, skill as any],
       }),
@@ -293,7 +293,7 @@ function* removeField() {
         case 'workExperience':
           const newExperience: Experience[] = response.data;
           yield put(
-            UserActions.fillResumeData({
+            UserActions.prepareUserResume({
               ...resumeData!,
               workExperience: newExperience,
             }),
@@ -302,7 +302,7 @@ function* removeField() {
         case 'education':
           const newEducations: Education[] = response.data;
           yield put(
-            UserActions.fillResumeData({
+            UserActions.prepareUserResume({
               ...resumeData!,
               education: newEducations,
             }),
@@ -311,7 +311,7 @@ function* removeField() {
         case 'language':
           const newLanguages: Language[] = response.data;
           yield put(
-            UserActions.fillResumeData({
+            UserActions.prepareUserResume({
               ...resumeData!,
               languages: newLanguages,
             }),
@@ -320,7 +320,7 @@ function* removeField() {
         case 'skill':
           const newSkills: Skill[] = response.data;
           yield put(
-            UserActions.fillResumeData({
+            UserActions.prepareUserResume({
               ...resumeData!,
               skills: newSkills,
             }),
@@ -348,11 +348,11 @@ function* getResumeData() {
     // );
     // if (response.message === 'Success') {
     //   yield put(CommonActions.setModalOpen(false, 'confirmDelete'));
-    //   yield put(UserActions.fillResumeData(response.data));
+    //   yield put(UserActions.prepareUserResume(response.data));
     // }
     /** TEST CODE */
     yield put(
-      UserActions.fillResumeData({
+      UserActions.prepareUserResume({
         id: '32323',
         personalInfo: {
           firstName: 'حسین',

@@ -1,21 +1,20 @@
 'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 // Utilities
 import { z } from 'zod';
 // Actions
 import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
-import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useForm } from 'react-hook-form';
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: 'ساختار ایمیل معتبر نیست' }),
+  username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
   password: z.string().min(6, { message: 'رمزعبور حداقل باید 6 کاراکتر باشد' }),
   firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
   lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
@@ -23,12 +22,12 @@ const registerFormSchema = z.object({
 type FormData = typeof registerFormSchema;
 export default function RegisterForm() {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const { loading } = useAppSelector((state) => state.auth);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
       email: '',
+      username: '',
       password: '',
       firstName: '',
       lastName: '',
@@ -51,6 +50,23 @@ export default function RegisterForm() {
                   dir="ltr"
                   autoComplete="username"
                   placeholder="ایمیل"
+                  className="placeholder:text-right"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input
+                  dir="ltr"
+                  placeholder="نام کاربری"
                   className="placeholder:text-right"
                   {...field}
                 />

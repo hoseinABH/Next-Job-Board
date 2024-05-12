@@ -122,12 +122,27 @@ class Actions {
     };
   }
   /**
-   * fill resume data
+   * get/set user profile
+   * @param {Nullable<any>} data
+   * @param {ExtraActionInfo} options
+   * @return {Action<Nullable<any>>}
+   */
+  public prepareUserProfile(
+    data: Nullable<ResumeData>,
+    options?: ExtraActionInfo,
+  ): Action<Nullable<ResumeData>> {
+    return {
+      type: options?.sagas ? types.SAGAS_GET_USER_PROFILE : types.SET_USER_PROFILE,
+      payload: data,
+    };
+  }
+  /**
+   * get/set user resume
    * @param {Nullable<ResumeData>} data
    * @param {ExtraActionInfo} options
    * @return {Action<Nullable<ResumeData>>}
    */
-  public fillResumeData(
+  public prepareUserResume(
     data: Nullable<ResumeData>,
     options?: ExtraActionInfo,
   ): Action<Nullable<ResumeData>> {

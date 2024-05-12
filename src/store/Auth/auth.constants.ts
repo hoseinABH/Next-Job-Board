@@ -27,12 +27,6 @@ export const SAGAS_REGISTER = prefix('SAGAS_REGISTER');
 
 /**
  * @module AUTH
- * @desc fetch logged in user information
- */
-export const SAGAS_FETCH_ME = prefix('SAGAS_FETCH_ME');
-
-/**
- * @module AUTH
  * @desc logout user
  */
 export const SAGAS_LOGOUT = prefix('SAGAS_LOGOUT');

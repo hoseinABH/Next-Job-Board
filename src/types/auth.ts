@@ -1,5 +1,3 @@
-import type { Nullable } from './common';
-
 export interface LoginDto {
   username: string;
   password: string;
@@ -11,8 +9,14 @@ export interface LoginResponse {
   tokenExpires: Date;
   user: any;
 }
+export interface RegisterResponse {
+  refreshToken: string;
+  token: string;
+  tokenExpires: Date;
+  user: any;
+}
 
-export type LoadingKeys = 'login' | 'register' | 'fetchMe';
+export type LoadingKeys = 'login' | 'register';
 
 export type AuthLoading = Record<LoadingKeys, boolean>;
 
@@ -22,6 +26,6 @@ export interface RegisterDto extends LoginDto {
   firstName: string;
   lastName: string;
   email: string;
-  companyName: string;
+  companyName?: string;
   userType: UserType;
 }

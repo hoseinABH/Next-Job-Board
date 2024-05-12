@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 const loginFormSchema = z.object({
-  email: z.string().email({ message: 'ساختار ایمیل معتبر نیست' }),
+  username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
   password: z.string().min(6, { message: 'رمزعبور حداقل باید 6 کارکتر باشد' }),
 });
 type FormData = typeof loginFormSchema;
@@ -23,7 +23,7 @@ export default function LoginForm() {
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -35,15 +35,14 @@ export default function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 w-full max-w-sm space-y-8">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <Input
-                  type="email"
                   dir="ltr"
                   autoComplete="username"
-                  placeholder="ایمیل"
+                  placeholder="نام کاربری"
                   className="placeholder:text-right"
                   {...field}
                 />

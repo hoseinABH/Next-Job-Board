@@ -9,10 +9,10 @@ class AuthenticationProvider extends HttpService {
       suffix: 'auth',
     });
   }
-  public loginWithEmail(data: LoginDto): Promise<BaseApiResponse<LoginResponse>> {
+  public login(data: LoginDto): Promise<BaseApiResponse<LoginResponse>> {
     return this.httpService.post('login', data);
   }
-  public registerWithEmail(data: RegisterDto): Promise<BaseApiResponse> {
+  public register(data: RegisterDto): Promise<BaseApiResponse> {
     return this.httpService.post('register', data);
   }
 }

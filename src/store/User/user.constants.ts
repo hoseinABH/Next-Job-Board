@@ -1,6 +1,6 @@
 /**
  * @module Constants/User
- * @desc All resume constant variables
+ * @desc All user constant variables
  */
 
 import { createReduxConstant } from '@/lib/store';
@@ -59,7 +59,14 @@ export const SAGAS_CREATE_SKILL = prefix('SAGAS_CREATE_SKILL');
 export const SAGAS_REMOVE_RESUME_FIELD = prefix('SAGAS_REMOVE_RESUME_FIELD');
 /**
  * @module USER
- * @desc fill resume data
+ * @desc get/set resume data
  */
 export const SAGAS_GET_RESUME_DATA = prefix('SAGAS_GET_RESUME_DATA');
 export const SET_RESUME_DATA = prefix('SET_RESUME_DATA');
+
+/**
+ * @module USER
+ * @desc get/set user profile
+ */
+export const SAGAS_GET_USER_PROFILE = prefix('SAGAS_GET_USER_PROFILE');
+export const SET_USER_PROFILE = prefix('SET_USER_PROFILE');
