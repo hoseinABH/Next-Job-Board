@@ -103,3 +103,5 @@ export const mapMilitaryStatus: Record<MilitaryStatus, string> = {
   ServiceCompletionCard: 'پایان خدمت',
   Absent: 'غایب',
 };
+
+export const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;

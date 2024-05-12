@@ -14,7 +14,10 @@ import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 const loginFormSchema = z.object({
   username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
-  password: z.string().min(6, { message: 'رمزعبور حداقل باید 6 کارکتر باشد' }),
+  password: z
+    .string()
+    .min(6, { message: 'رمزعبور حداقل باید 6 کارکتر باشد' })
+    .regex(passwordPattern, 'رمز عبور باید شامل اعداد، نماد و حروف انگلیسی(بزرگ/کوچک) باشد'),
 });
 type FormData = typeof loginFormSchema;
 export default function LoginForm() {
