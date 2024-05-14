@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import { Job } from '@/types/jobs';
+import { Job } from '@/types/internship';
 
 interface Props {
   className?: string;

@@ -1,5 +1,5 @@
 import type { Company } from '@/types/company';
-import type { Job } from '@/types/jobs';
+import type { Job } from '@/types/internship';
 
 export const companies: Company[] = [
   {

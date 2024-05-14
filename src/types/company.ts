@@ -10,3 +10,5 @@ export interface Company {
   website: string;
   image: string;
 }
+
+export interface GetCompanyDashboardResponse {}

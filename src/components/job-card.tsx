@@ -6,7 +6,7 @@ import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import type { Job } from '@/types/jobs';
+import type { Job } from '@/types/internship';
 
 interface Props {
   job: Job;

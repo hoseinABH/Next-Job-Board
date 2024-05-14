@@ -15,7 +15,7 @@ import { useAppDispatch } from '@/hooks/store';
 import { mapEducationLevel } from '@/constants';
 import { requestTests } from '@/config/app';
 // Types
-import type { Job } from '@/types/jobs';
+import type { Job } from '@/types/internship';
 
 interface Props {
   className?: string;

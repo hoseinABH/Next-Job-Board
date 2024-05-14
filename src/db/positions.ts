@@ -1,4 +1,4 @@
-import type { Job } from '@/types/jobs';
+import type { Job } from '@/types/internship';
 // data
 import { positions } from '@/data';
 

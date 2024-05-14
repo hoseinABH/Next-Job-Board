@@ -5,7 +5,7 @@
 import * as types from './jobs.constants';
 // Types
 import type { Action } from '@/types/store';
-import type { ModalKeys } from '@/types/jobs';
+import type { ModalKeys } from '@/types/internship';
 
 class Actions {
   /**

@@ -1,5 +1,6 @@
 import type { DialogData } from './common';
 
+export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
 export interface Skill {
   skillId: string;
   name: string;

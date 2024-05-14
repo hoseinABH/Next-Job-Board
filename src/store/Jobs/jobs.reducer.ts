@@ -8,7 +8,7 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { JobsModals } from '@/types/jobs';
+import type { JobsModals } from '@/types/internship';
 // Constants
 import * as types from './jobs.constants';
 

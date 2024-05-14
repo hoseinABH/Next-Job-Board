@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
 // Types
-import type { Job } from '@/types/jobs';
+import type { Job } from '@/types/internship';
 
 interface Props {
   className?: string;
