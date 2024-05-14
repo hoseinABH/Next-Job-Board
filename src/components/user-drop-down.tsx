@@ -44,7 +44,6 @@ const userMenuItems = [
 export default function UserDropDown() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loading } = useAppSelector((state) => state.auth);
 
   function handleSelectMenu(menuKey: string) {
     switch (menuKey) {
@@ -61,7 +60,7 @@ export default function UserDropDown() {
 
   return (
     <>
-      {loading.fetchMe ? (
+      {false ? (
         <Spinner />
       ) : (
         <>
