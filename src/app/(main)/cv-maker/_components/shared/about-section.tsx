@@ -44,7 +44,7 @@ export default function AboutSection() {
                   {personalInfo?.firstName} {personalInfo?.lastName}
                 </p>
                 <p className="flex items-center text-muted-foreground">{personalInfo?.jobTitle}</p>
-                <p className="mt-2 text-center leading-8 text-muted-foreground md:text-right">
+                <p className="mt-2 text-center text-sm leading-6 text-muted-foreground md:text-right">
                   {personalInfo?.aboutMe}
                 </p>
               </div>

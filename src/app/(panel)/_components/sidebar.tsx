@@ -1,13 +1,12 @@
 'use client';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 // UI Frameworks
-import { Package, ClipboardList, Home, LucideIcon } from 'lucide-react';
+import { ClipboardList, Home, LucideIcon, Package } from 'lucide-react';
 // Common components
-import ThemeToggle from '@/components/theme-toggle';
 import AppVersion from '@/components/app-version';
-import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
@@ -16,10 +15,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
+
+const ThemeToggle = dynamic(() => import('@/components/theme-toggle'));
 
 interface Menu {
   title: string;

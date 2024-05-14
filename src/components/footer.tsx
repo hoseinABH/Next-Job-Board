@@ -1,11 +1,13 @@
 'use client';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 // Common components
-import ThemeToggle from './theme-toggle';
-import SocialLinks from './social-links';
 import Logo from './logo';
+import SocialLinks from './social-links';
 // Config
 import * as appConfig from '@/config/app';
+
+const ThemeToggle = dynamic(() => import('@/components/theme-toggle'));
 
 export default function Footer() {
   return (
