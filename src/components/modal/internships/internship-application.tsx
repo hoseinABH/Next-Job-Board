@@ -13,23 +13,23 @@ import { Button } from '@/components/ui/button';
 // Utilities
 import { cn } from '@/lib/utils';
 // Actions
-import JobsActions from '@/store/Jobs/jobs.actions';
+import InternshipsActions from '@/store/internship/internships.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 // Configs
 import { requestTests } from '@/config/app';
 
-export function JobApplicationModal() {
+export function InternshipApplicationModal() {
   const dispatch = useAppDispatch();
   const [selectedTest, setSelectedTest] = useState<null | number>(null);
-  const { modals } = useAppSelector((state) => state.jobs);
+  const { modals } = useAppSelector((state) => state.internships);
 
   function onOpenChange(open: boolean) {
-    dispatch(JobsActions.setModalOpen(open, 'jobApplication'));
+    dispatch(InternshipsActions.setModalOpen(open, 'internshipApplication'));
   }
 
   return (
-    <Dialog open={modals.jobApplication} onOpenChange={onOpenChange}>
+    <Dialog open={modals.internshipApplication} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>ارسال درخواست موقعیت کارآموزی</DialogTitle>

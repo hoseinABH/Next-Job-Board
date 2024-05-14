@@ -8,7 +8,7 @@ export const appData = {
 export const navigationLinks = [
   {
     name: 'فرصت‌های کارآموزی',
-    href: Routes.JOBS,
+    href: Routes.INTERNSHIPS,
   },
   {
     name: 'شرکت‌ها',

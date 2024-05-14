@@ -2,7 +2,7 @@ import { all, fork } from 'redux-saga/effects';
 // Sagas entities
 import CommonSagas from './Common/common.sagas';
 import ResumeSagas from './User/user.sagas';
-import JobsSagas from './Jobs/jobs.sagas';
+import InternshipsSagas from './internship/internships.sagas';
 import AuthSagas from './Auth/auth.sagas';
 import UserSagas from './User/user.sagas';
 import CompanySagas from './Company/company.sagas';
@@ -16,7 +16,7 @@ export default function* root() {
   yield all([
     fork(CommonSagas),
     fork(ResumeSagas),
-    fork(JobsSagas),
+    fork(InternshipsSagas),
     fork(AuthSagas),
     fork(UserSagas),
     fork(CompanySagas),

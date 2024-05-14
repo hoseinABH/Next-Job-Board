@@ -3,20 +3,20 @@ import { Card, CardContent } from '@/components/ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import { Job } from '@/types/internship';
+import { Position } from '@/types/internship';
 
 interface Props {
   className?: string;
-  job: Job;
+  position: Position;
 }
 
-export default function PositionContent({ className, job }: Props) {
+export default function PositionContent({ className, position }: Props) {
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
         <h1 className="text-xl font-semibold">درباره موقعیت شغلی: </h1>
         <br />
-        <p className="leading-10">{job.description}</p>
+        {/* <p className="leading-10">{position.description}</p> */}
       </CardContent>
     </Card>
   );

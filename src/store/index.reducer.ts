@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 // Reducers
 import common from './Common/common.reducer';
 import resume from './User/user.reducer';
-import jobs from './Jobs/jobs.reducer';
+import internships from './internship/internships.reducer';
 import auth from './Auth/auth.reducer';
 import user from './User/user.reducer';
 import company from './Company/company.reducer';
@@ -12,7 +12,7 @@ import panel from './Panel/panel.reducer';
 const rootReducer = combineReducers({
   common,
   resume,
-  jobs,
+  internships,
   auth,
   user,
   company,

@@ -2,9 +2,9 @@ import type { UserRole } from './user';
 
 export interface Position {}
 
-export type ModalKeys = 'filter' | 'jobApplication';
+export type ModalKeys = 'filter' | 'internshipApplication';
 
-export type JobsModals = Record<ModalKeys, boolean>;
+export type InternshipsModal = Record<ModalKeys, boolean>;
 
 export interface CreatePositionDto {
   title: string;

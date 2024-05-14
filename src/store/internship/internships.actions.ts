@@ -1,8 +1,8 @@
 /**
- * @module Actions/Jobs
- * @desc All Jobs actions
+ * @module Actions/Internships
+ * @desc All Internships actions
  */
-import * as types from './jobs.constants';
+import * as types from './internships.constants';
 // Types
 import type { Action } from '@/types/store';
 import type { ModalKeys } from '@/types/internship';
@@ -22,6 +22,6 @@ class Actions {
   }
 }
 
-const JobsActions = new Actions();
+const InternshipsActions = new Actions();
 
-export default JobsActions;
+export default InternshipsActions;

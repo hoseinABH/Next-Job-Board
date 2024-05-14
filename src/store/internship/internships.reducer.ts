@@ -1,6 +1,6 @@
 /**
- * @module Reducer/Jobs
- * @desc All Jobs reducers
+ * @module Reducer/Internships
+ * @desc All Internships reducers
  */
 import { RESET_FACTORY } from '../index.constants';
 // Utilities
@@ -8,27 +8,27 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { JobsModals } from '@/types/internship';
+import type { InternshipsModal } from '@/types/internship';
 // Constants
-import * as types from './jobs.constants';
+import * as types from './internships.constants';
 
-export interface JobsState {
-  modals: JobsModals;
+export interface InternshipsState {
+  modals: InternshipsModal;
 }
 
-export const initialState: JobsState = {
+export const initialState: InternshipsState = {
   modals: {
     filter: false,
-    jobApplication: false,
+    internshipApplication: false,
   },
 };
 
-const reducer: Reducer<JobsState, Action> = (state = initialState, action) => {
-  const update = updateState<JobsState>(state);
+const reducer: Reducer<InternshipsState, Action> = (state = initialState, action) => {
+  const update = updateState<InternshipsState>(state);
   switch (action.type) {
     case types.SET_OPEN_MODAL:
       return update({
-        modals: updateState<JobsModals>(state.modals)({
+        modals: updateState<InternshipsModal>(state.modals)({
           [action.payload.key]: action.payload.open,
         }),
       });

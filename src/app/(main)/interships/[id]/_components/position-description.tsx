@@ -8,45 +8,45 @@ import { Button } from '@/components/ui/button';
 // Utilities
 import { cn } from '@/lib/utils';
 // Actions
-import JobsActions from '@/store/Jobs/jobs.actions';
+import InternshipsActions from '@/store/internship/internships.actions';
 // Hooks
 import { useAppDispatch } from '@/hooks/store';
 // Constants
 import { mapEducationLevel } from '@/constants';
 import { requestTests } from '@/config/app';
 // Types
-import type { Job } from '@/types/internship';
+import type { Position } from '@/types/internship';
 
 interface Props {
   className?: string;
-  job: Job;
+  position: Position;
 }
-export default function PositionDescription({ className, job }: Props) {
+export default function PositionDescription({ className, position }: Props) {
   const dispatch = useAppDispatch();
   function applicationRequest() {
-    dispatch(JobsActions.setModalOpen(true, 'jobApplication'));
+    dispatch(InternshipsActions.setModalOpen(true, 'internshipApplication'));
   }
   return (
     <Card className={cn('', className)}>
-      <CardContent className="p-6">
+      {/* <CardContent className="p-6">
         <ul className="space-y-6">
           <li className="space-y-2">
             <h6 className="flex items-center font-normal text-muted-foreground">
               <MapPinIcon className="ml-1 h-4 w-4 text-primary" /> محل کارآموزی:
             </h6>
-            <p>{job.company.city}</p>
+            <p>{position.company.city}</p>
           </li>
           <li className="space-y-2">
             <h6 className="flex items-center font-normal text-muted-foreground">
               <GraduationCap className="ml-1 h-4 w-4 text-primary" /> مقطع تحصیلی:
             </h6>
-            <p>{job.requiredEducationLevels.map((level) => mapEducationLevel[level]).join('،')}</p>
+            <p>{position.requiredEducationLevels.map((level) => mapEducationLevel[level]).join('،')}</p>
           </li>
           <li className="space-y-2">
             <h6 className="flex items-center font-normal text-muted-foreground">
               <BookText className="ml-1 h-4 w-4 text-primary" /> رشته تحصیلی:
             </h6>
-            <p>{job.fieldOfStudy.join('،')}</p>
+            <p>{position.fieldOfStudy.join('،')}</p>
           </li>
         </ul>
         <Separator className="my-4" />
@@ -66,7 +66,7 @@ export default function PositionDescription({ className, job }: Props) {
         <Button size="lg" className="mt-4 w-full" onClick={applicationRequest}>
           ارسال درخواست
         </Button>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 }

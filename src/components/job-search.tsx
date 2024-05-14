@@ -29,7 +29,7 @@ export default function JobSearch({ className }: Props) {
   }
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push(`${Routes.JOBS}?q=${searchValues.query}&l=${searchValues.location}`);
+    router.push(`${Routes.INTERNSHIPS}?q=${searchValues.query}&l=${searchValues.location}`);
   }
   return (
     <Card className={cn('', className)}>

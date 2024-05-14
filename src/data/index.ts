@@ -1,5 +1,5 @@
 import type { Company } from '@/types/company';
-import type { Job } from '@/types/internship';
+import type { Position } from '@/types/internship';
 
 export const companies: Company[] = [
   {
@@ -67,7 +67,7 @@ export const companies: Company[] = [
   },
 ];
 
-export const positions: Job[] = [
+export const positions: Position[] = [
   {
     id: '1',
     title: 'برنامه نویس دات نت',

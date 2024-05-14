@@ -1,5 +1,5 @@
 export const HOME = '/';
-export const JOBS = '/jobs';
+export const INTERNSHIPS = '/internships';
 export const COMPANIES = '/companies';
 export const CV_MAKER = '/cv-maker';
 export const LOGIN = '/login';
