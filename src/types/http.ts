@@ -1,5 +1,5 @@
 export interface BaseApiResponse<T = any> {
-  code: number;
+  status: number;
   message: any;
   data: T;
 }

@@ -27,8 +27,9 @@ function* login(action: Action<LoginDto>) {
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.login(loginDto),
     );
-    if (response.message === 'Success') {
-      setCookie(response.data.token, new Date(response.data.tokenExpires));
+    if (response.data.token) {
+      const expirationDate = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
+      setCookie(response.data.token, expirationDate);
       navigate(Routes.CV_MAKER);
     }
   } catch (error) {
@@ -47,12 +48,14 @@ function* register(action: Action<Omit<RegisterDto, 'userType'>>) {
     const response: BaseApiResponse<LoginResponse> = yield call(() =>
       AuthenticationService.register({ ...registerDto, userType: 'InnerUser' }),
     );
-    navigate(Routes.LOGIN);
-    toast({
-      variant: 'success',
-      title: 'عملیات موفق',
-      description: `${registerDto.firstName} عزیز حساب کاربری شما با موفقیت ساخته شد`,
-    });
+    if (response.status === 201) {
+      navigate(Routes.LOGIN);
+      toast({
+        variant: 'success',
+        title: 'عملیات موفق',
+        description: `${registerDto.firstName} عزیز حساب کاربری شما با موفقیت ساخته شد`,
+      });
+    }
   } catch (error) {
     toast({
       title: 'خطایی رخ داده است',
@@ -64,7 +67,6 @@ function* register(action: Action<Omit<RegisterDto, 'userType'>>) {
 }
 
 function* logout() {
-  // yield put(UserActions.setUserInfo(null));
   clearSession();
   navigate(Routes.LOGIN);
 }

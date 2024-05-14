@@ -4,10 +4,7 @@ export interface LoginDto {
 }
 
 export interface LoginResponse {
-  refreshToken: string;
   token: string;
-  tokenExpires: Date;
-  user: any;
 }
 export interface RegisterResponse {
   refreshToken: string;

@@ -1,16 +1,18 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 // Utilities
 import { z } from 'zod';
 // Actions
 import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
-import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useForm } from 'react-hook-form';
+// Constants
+import { passwordPattern } from '@/constants';
 
 const loginFormSchema = z.object({
   username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
