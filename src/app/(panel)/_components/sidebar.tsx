@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
 
-const ThemeToggle = dynamic(() => import('@/components/theme-toggle'));
+const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), { ssr: false });
 
 interface Menu {
   title: string;

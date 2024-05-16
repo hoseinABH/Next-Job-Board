@@ -7,7 +7,7 @@ import SocialLinks from './social-links';
 // Config
 import * as appConfig from '@/config/app';
 
-const ThemeToggle = dynamic(() => import('@/components/theme-toggle'));
+const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), { ssr: false });
 
 export default function Footer() {
   return (
