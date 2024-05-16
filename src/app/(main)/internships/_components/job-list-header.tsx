@@ -8,7 +8,7 @@ import SelectBox from '@/components/select-box';
 // Hooks
 import { useAppDispatch } from '@/hooks/store';
 // Actions
-import InternshipsActions from '@/store/internship/internships.actions';
+import InternshipsActions from '@/store/Internship/internships.actions';
 
 interface Props {
   count: number;

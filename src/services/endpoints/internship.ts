@@ -1,15 +1,14 @@
 import HttpService from '../base';
 // Types
+import type { BaseApiResponse } from '@/types/http';
 import type {
   ApplicationDto,
   ApplicationResponse,
   CreatePositionDto,
   CreatePositionResponse,
-  Position,
   UpdatePositionStatusDto,
   UpdatePositionStatusResponse,
 } from '@/types/internship';
-import type { BaseApiResponse } from '@/types/http';
 
 class InternShipProvider extends HttpService {
   constructor() {
@@ -26,21 +25,6 @@ class InternShipProvider extends HttpService {
     applicationRequest: ApplicationDto,
   ): Promise<BaseApiResponse<ApplicationResponse>> {
     return this.httpService.post('apply-for-position', applicationRequest);
-  }
-  public getAllPositions(): Promise<BaseApiResponse<Position[]>> {
-    return this.httpService.get('get-all-positions');
-  }
-  public getPositionDetails(positionId: string): Promise<BaseApiResponse<Position>> {
-    return this.httpService.get(`get-company-details?id=${positionId}`);
-  }
-  public getPositionTests(positionId: string): Promise<BaseApiResponse<unknown>> {
-    return this.httpService.get(`get-request-tests?id=${positionId}`);
-  }
-  public getTestQuestions(testId: string): Promise<BaseApiResponse<unknown>> {
-    return this.httpService.get(`get-test-questions?testId=${testId}`);
-  }
-  public getTestAnswers(testId: string): Promise<BaseApiResponse<unknown>> {
-    return this.httpService.get(`get-test-answers?testId=${testId}`);
   }
   public updatePositionStatus(
     data: UpdatePositionStatusDto,

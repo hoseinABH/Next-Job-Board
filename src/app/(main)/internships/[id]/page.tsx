@@ -1,13 +1,7 @@
 // Common components
-import BackButton from '@/components/back-button';
 import { InternshipApplicationModal } from '@/components/modal/internships/internship-application';
 // Local components
-import PositionContent from './_components/position-content';
-import PositionDescription from './_components/position-description';
-// Services
-import { getPositionById } from '@/db/positions';
 // Types
-import type { Metadata } from 'next';
 
 interface Props {
   params: {
@@ -23,7 +17,6 @@ interface Props {
 // }
 
 export default async function Job({ params }: Props) {
-  const job = await getPositionById(params.id);
   return (
     <>
       {/* <section className="py-12">

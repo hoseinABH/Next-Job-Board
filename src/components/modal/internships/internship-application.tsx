@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 // Utilities
 import { cn } from '@/lib/utils';
 // Actions
-import InternshipsActions from '@/store/internship/internships.actions';
+import InternshipsActions from '@/store/Internship/internships.actions';
 // Hooks
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 // Configs
