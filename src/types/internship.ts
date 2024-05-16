@@ -1,6 +1,22 @@
 import type { UserRole } from './user';
 
+export interface GetAllPositionsQueries {
+  page: string;
+  query?: string;
+  companyId?: string;
+  sortType?: string;
+  sortByField?: string;
+  city?: string;
+}
+
 export interface Position {}
+
+export interface GetAllPositionsResponse {
+  totalCount: number;
+  currentPage: number;
+  countPerPage: number;
+  data: Position[];
+}
 
 export type ModalKeys = 'filter' | 'internshipApplication';
 
