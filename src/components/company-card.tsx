@@ -1,16 +1,16 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 // Common components
 import { MapPin } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
 import Maybe from './maybe';
+import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import type { Company } from '@/types/company';
+import type { CompanyListItem } from '@/types/company';
 
 interface Props {
-  company: Company;
+  company: CompanyListItem;
   className?: string;
   href?: string;
   visibleOpenPositions?: boolean;

@@ -1,5 +1,4 @@
 // Common components
-import CompanyCard from '@/components/company-card';
 // Services
 // Configs
 import { appData } from '@/config/app';
