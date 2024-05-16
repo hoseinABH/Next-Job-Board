@@ -22,7 +22,7 @@ import { requestTests } from '@/config/app';
 export function InternshipApplicationModal() {
   const dispatch = useAppDispatch();
   const [selectedTest, setSelectedTest] = useState<null | number>(null);
-  const { modals } = useAppSelector((state) => state.internships);
+  const { modals } = useAppSelector((state) => state.internship);
 
   function onOpenChange(open: boolean) {
     dispatch(InternshipsActions.setModalOpen(open, 'internshipApplication'));
