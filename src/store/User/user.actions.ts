@@ -14,6 +14,7 @@ import type {
   LoadingKeys,
   ModalKeys,
   UpdatePersonalDto,
+  UserMinimalProfile,
   UserResume,
 } from '@/types/user';
 import type { Nullable } from '@/types/common';
@@ -123,11 +124,14 @@ class Actions {
   }
   /**
    * get/set user profile
-   * @param {Nullable<any>} data
+   * @param {Nullable<UserMinimalProfile>} data
    * @param {ExtraActionInfo} options
-   * @return {Action<Nullable<any>>}
+   * @return {Action<Nullable<UserMinimalProfile>>}
    */
-  public prepareUserProfile(data: Nullable<any>, options?: ExtraActionInfo): Action<Nullable<any>> {
+  public prepareUserProfile(
+    data: Nullable<UserMinimalProfile>,
+    options?: ExtraActionInfo,
+  ): Action<Nullable<any>> {
     return {
       type: options?.sagas ? types.SAGAS_GET_USER_PROFILE : types.SET_USER_PROFILE,
       payload: data,

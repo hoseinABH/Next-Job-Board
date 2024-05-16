@@ -18,9 +18,9 @@ interface Config {
 abstract class BaseAPI {
   protected httpService: AxiosInstance;
 
-  protected constructor({ suffix, version = 'api' }: Config) {
+  protected constructor({ suffix }: Config) {
     this.httpService = axios.create({
-      baseURL: `${process.env.API_URL}/${version}${suffix ? `/${suffix}` : ''}`,
+      baseURL: `${process.env.API_URL}${suffix ? `/${suffix}` : ''}`,
       timeout: 60 * (Number(process.env.REACT_APP_HTTP_TIMEOUT) || 1.5) * 1000,
       validateStatus(status) {
         return status >= 200 && status < 300;

@@ -8,7 +8,13 @@ import { updateState } from '@/lib/store';
 // Types
 import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
-import type { DeleteDialogData, UserResume, ResumeLoading, ResumeModals } from '@/types/user';
+import type {
+  DeleteDialogData,
+  UserResume,
+  ResumeLoading,
+  ResumeModals,
+  UserMinimalProfile,
+} from '@/types/user';
 import type { Nullable } from '@/types/common';
 // Constants
 import * as types from './user.constants';
@@ -18,6 +24,7 @@ export interface UserState {
   modals: ResumeModals;
   dialogData: Nullable<DeleteDialogData>;
   userResume: Nullable<UserResume>;
+  profile: Nullable<UserMinimalProfile>;
 }
 
 export const initialState: UserState = {
@@ -41,6 +48,7 @@ export const initialState: UserState = {
   },
   dialogData: null,
   userResume: null,
+  profile: null,
 };
 
 const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
@@ -65,6 +73,10 @@ const reducer: Reducer<UserState, Action> = (state = initialState, action) => {
     case types.SET_USER_RESUME:
       return update({
         userResume: action.payload,
+      });
+    case types.SET_USER_PROFILE:
+      return update({
+        profile: action.payload,
       });
     case RESET_FACTORY:
       return initialState;

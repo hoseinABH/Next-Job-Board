@@ -18,7 +18,7 @@ export default function HeroSection() {
       <Image
         className="hidden drop-shadow-2xl lg:block"
         src="/hero.webp"
-        alt="نمایشکار"
+        alt="hero image"
         height={400}
         width={400}
         priority={true}

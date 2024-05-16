@@ -1,10 +1,13 @@
 // Common components
+import Logo from './logo';
 import NavigationDrawer from './navigation-drawer';
 import NavigationItems from './navigation-items';
-import Logo from './logo';
 import UserDropDown from './user-drop-down';
+// Database
+import { getUserMinimalProfile } from '@/db/user';
 
-export default function Header() {
+export default async function Header() {
+  const profileData = await getUserMinimalProfile();
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container flex h-14 items-center justify-between px-2 sm:px-8">
@@ -18,7 +21,7 @@ export default function Header() {
         </div>
         {/* Left Part */}
         <div className="flex flex-1 items-center justify-end">
-          <UserDropDown />
+          <UserDropDown profileData={profileData} />
         </div>
       </div>
     </header>

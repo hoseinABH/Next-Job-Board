@@ -1,6 +1,16 @@
 import type { DialogData } from './common';
 
 export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
+
+export interface UserMinimalProfile {
+  userId: string;
+  profileId: number;
+  firstName: string;
+  lastName: string;
+}
+
+// OLD Types
+
 export interface Skill {
   skillId: string;
   name: string;

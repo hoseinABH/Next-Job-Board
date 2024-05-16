@@ -16,3 +16,7 @@ export function isNumber(value: any) {
 export function isServer() {
   return typeof window === 'undefined';
 }
+
+export function getBaseApiUrl() {
+  return process.env.API_URL;
+}
