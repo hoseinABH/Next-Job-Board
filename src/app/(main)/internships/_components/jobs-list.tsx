@@ -1,11 +1,9 @@
 // Common components
-import JobCard from '@/components/job-card';
 // Local components
 import JobListHeader from './job-list-header';
 // Utilities
 import { cn } from '@/lib/utils';
 // Configs
-import * as Routes from '@/config/routes';
 // Types
 import type { Position } from '@/types/internship';
 

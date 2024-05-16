@@ -1,11 +1,10 @@
 import { all, fork } from 'redux-saga/effects';
 // Sagas entities
-import CommonSagas from './Common/common.sagas';
-import ResumeSagas from './User/user.sagas';
-import InternshipsSagas from './Internship/internships.sagas';
 import AuthSagas from './Auth/auth.sagas';
-import UserSagas from './User/user.sagas';
+import CommonSagas from './Common/common.sagas';
+import InternshipSagas from './Internship/internship.sagas';
 import PanelSagas from './Panel/panel.sagas';
+import UserSagas from './User/user.sagas';
 
 /**
  * rootSaga
@@ -14,10 +13,9 @@ import PanelSagas from './Panel/panel.sagas';
 export default function* root() {
   yield all([
     fork(CommonSagas),
-    fork(ResumeSagas),
-    fork(InternshipsSagas),
-    fork(AuthSagas),
     fork(UserSagas),
+    fork(InternshipSagas),
+    fork(AuthSagas),
     fork(PanelSagas),
   ]);
 }

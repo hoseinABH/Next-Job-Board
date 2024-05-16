@@ -5,7 +5,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerFooter } from '@/components/u
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 // Actions
-import InternshipsActions from '@/store/Internship/internships.actions';
+import InternshipActions from '@/store/Internship/internship.actions';
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export default function FilterSheet({ children }: Props) {
   const { modals } = useAppSelector((state) => state.internship);
 
   function onOpenChange(open: boolean) {
-    dispatch(InternshipsActions.setModalOpen(open, 'filter'));
+    dispatch(InternshipActions.setModalOpen(open, 'filter'));
   }
   return (
     <Drawer open={modals.filter} onOpenChange={onOpenChange}>

@@ -1,12 +1,11 @@
 /**
- * @module Constants/Internships
- * @desc All Internships constant variables
+ * @module Constants/Internship
+ * @desc All Internship constant variables
  */
 
 import { createReduxConstant } from '@/lib/store';
 
-const prefix = createReduxConstant('INTERNSHIPS');
-
+const prefix = createReduxConstant('INTERNSHIP');
 /**
  * @module INTERNSHIPS
  * @desc set modals open

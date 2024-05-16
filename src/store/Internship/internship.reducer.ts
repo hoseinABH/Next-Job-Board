@@ -1,6 +1,6 @@
 /**
- * @module Reducer/Internships
- * @desc All Internships reducers
+ * @module Reducer/Internship
+ * @desc All Internship reducers
  */
 import { RESET_FACTORY } from '../index.constants';
 // Utilities
@@ -10,7 +10,7 @@ import type { Reducer } from 'react';
 import type { Action } from '@/types/store';
 import type { InternshipsModal } from '@/types/internship';
 // Constants
-import * as types from './internships.constants';
+import * as types from './internship.constants';
 
 export interface InternshipsState {
   modals: InternshipsModal;

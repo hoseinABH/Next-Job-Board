@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 // Utilities
 import { cn } from '@/lib/utils';
 // Actions
-import InternshipsActions from '@/store/Internship/internships.actions';
+import InternshipsActions from '@/store/Internship/internship.actions';
 // Hooks
 import { useAppDispatch } from '@/hooks/store';
 // Constants

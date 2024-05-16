@@ -1,6 +1,6 @@
 /**
- * @module Sagas/Internships
- * @desc All Internships sagas
+ * @module Sagas/Internship
+ * @desc All Internship sagas
  */
 
 // Utilities

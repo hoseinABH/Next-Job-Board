@@ -8,7 +8,7 @@ import SelectBox from '@/components/select-box';
 // Hooks
 import { useAppDispatch } from '@/hooks/store';
 // Actions
-import InternshipsActions from '@/store/Internship/internships.actions';
+import InternshipActions from '@/store/Internship/internship.actions';
 
 interface Props {
   count: number;
@@ -16,7 +16,7 @@ interface Props {
 export default function JobListHeader({ count }: Props) {
   const dispatch = useAppDispatch();
   function openFilterSheet() {
-    dispatch(InternshipsActions.setModalOpen(true, 'filter'));
+    dispatch(InternshipActions.setModalOpen(true, 'filter'));
   }
   return (
     <>
