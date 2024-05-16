@@ -16,7 +16,9 @@ export default async function CompanyTabs({ company }: Props) {
       </TabsList>
       <TabsContent value="about">
         <div className="px-4 py-4 sm:px-0">
-          <p className="text-md text-center leading-8 sm:text-justify">{company.aboutUs}</p>
+          <p className="text-md text-center leading-8 sm:text-justify">
+            {company.description ?? '-'}
+          </p>
         </div>
       </TabsContent>
       <TabsContent value="positions">

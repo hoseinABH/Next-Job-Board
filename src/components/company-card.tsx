@@ -38,16 +38,17 @@ export default function CompanyCard({
             })}
           >
             <Image
-              src={company.image}
+              // src={company.logo}
+              src="/companies/alibaba.webp"
               className="rounded-sm drop-shadow-md"
               width={60}
               height={60}
-              alt={company.name}
+              alt={company.title}
             />
             <div className="my-4 sm:my-0">
-              <h4 className="mb-2 font-semibold">{company.name}</h4>
+              <h4 className="mb-2 font-semibold">{company.title}</h4>
               <span className="flex items-center  text-muted-foreground">
-                <MapPin className="ml-1 h-4 w-4" /> {company.city}
+                <MapPin className="ml-1 h-4 w-4" /> {company.city ?? '-'}
               </span>
             </div>
           </div>
