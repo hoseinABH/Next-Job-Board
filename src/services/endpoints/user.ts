@@ -7,7 +7,6 @@ import type {
   CreateLanguageDto,
   CreateSkillDto,
   UpdatePersonalDto,
-  UserMinimalProfile,
 } from '@/types/user';
 
 class UserProvider extends HttpService {
@@ -15,9 +14,6 @@ class UserProvider extends HttpService {
     super({
       suffix: 'user',
     });
-  }
-  public getUserProfile(): Promise<BaseApiResponse<UserMinimalProfile>> {
-    return this.httpService.get('get-minimal-profile');
   }
   public getUserResume(): Promise<BaseApiResponse> {
     return this.httpService.get('get-profile');

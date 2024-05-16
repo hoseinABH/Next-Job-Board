@@ -4,14 +4,16 @@
  */
 
 // Utilities
-import { all, call, delay, put, select, takeLatest } from 'redux-saga/effects';
 import { toast } from '@/components/ui/use-toast';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 // Services
 import UserServices from '@/services/endpoints/user';
 // Actions
-import UserActions from './user.actions';
 import CommonActions from '../Common/common.actions';
+import UserActions from './user.actions';
 // Types
+import type { BaseApiResponse } from '@/types/http';
+import type { Action } from '@/types/store';
 import type {
   CreateEducationDto,
   CreateExperienceDto,
@@ -22,33 +24,12 @@ import type {
   Language,
   Skill,
   UpdatePersonalDto,
-  UserMinimalProfile,
 } from '@/types/user';
-import type { Action } from '@/types/store';
-import type { BaseApiResponse } from '@/types/http';
 import type { UserState } from './user.reducer';
 // Constants
-import * as types from './user.constants';
 import * as messages from '@/constants/messages';
+import * as types from './user.constants';
 
-function* getUserProfile() {
-  try {
-    yield put(UserActions.setLoading(true, 'getUserProfile'));
-    const response: BaseApiResponse<UserMinimalProfile> = yield call(() =>
-      UserServices.getUserProfile(),
-    );
-    if (response.status === 200) {
-      yield put(UserActions.prepareUserProfile(response.data));
-    }
-  } catch (error) {
-    toast({
-      title: 'خطا',
-      description: messages.fetchDataError,
-    });
-  } finally {
-    yield put(UserActions.setLoading(false, 'getUserProfile'));
-  }
-}
 function* getUserResume() {
   try {
     yield put(UserActions.setLoading(true, 'getUserResume'));
@@ -310,7 +291,6 @@ function* removeField() {
 }
 export default function* networkListeners() {
   yield all([
-    takeLatest(types.SAGAS_GET_USER_PROFILE, getUserProfile),
     takeLatest(types.SAGAS_GET_USER_RESUME, getUserResume),
     takeLatest(types.SAGAS_UPDATE_PERSONAL, updatePersonalInfo),
     takeLatest(types.SAGAS_CREATE_EXPERIENCE, createExperience),

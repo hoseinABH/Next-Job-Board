@@ -10,7 +10,6 @@ export interface UserMinimalProfile {
 }
 
 // OLD Types
-
 export interface Skill {
   skillId: string;
   name: string;
@@ -30,7 +29,6 @@ export type ModalKeys =
   | 'skill';
 export type ResumeModals = Record<ModalKeys, boolean>;
 export type LoadingKeys =
-  | 'getUserProfile'
   | 'getUserResume'
   | 'updatePersonal'
   | 'createExperience'

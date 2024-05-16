@@ -123,21 +123,6 @@ class Actions {
     };
   }
   /**
-   * get/set user profile
-   * @param {Nullable<UserMinimalProfile>} data
-   * @param {ExtraActionInfo} options
-   * @return {Action<Nullable<UserMinimalProfile>>}
-   */
-  public prepareUserProfile(
-    data: Nullable<UserMinimalProfile>,
-    options?: ExtraActionInfo,
-  ): Action<Nullable<any>> {
-    return {
-      type: options?.sagas ? types.SAGAS_GET_USER_PROFILE : types.SET_USER_PROFILE,
-      payload: data,
-    };
-  }
-  /**
    * get/set user resume
    * @param {Nullable<UserResume>} data
    * @param {ExtraActionInfo} options
