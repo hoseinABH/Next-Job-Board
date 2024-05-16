@@ -20,7 +20,7 @@ import type { Skill } from '@/types/user';
 
 export default function Skills() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const skills = userResume?.skills;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'skill'));

@@ -34,7 +34,7 @@ type FormData = typeof workExperienceFormSchema;
 
 export function WorkExperienceModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.resume);
+  const { modals, loading } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(workExperienceFormSchema),
     defaultValues: {

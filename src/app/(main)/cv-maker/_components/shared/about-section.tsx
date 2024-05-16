@@ -13,7 +13,7 @@ import ResumeActions from '@/store/User/user.actions';
 
 export default function AboutSection() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const personalInfo = userResume?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));

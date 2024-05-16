@@ -17,7 +17,7 @@ import type { Education } from '@/types/user';
 
 export default function Educations() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const educations = userResume?.education;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'education'));

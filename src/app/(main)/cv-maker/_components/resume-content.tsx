@@ -22,7 +22,7 @@ interface Props {
 export default function ResumeContent({ className }: Props) {
   const dispatch = useAppDispatch();
   const { modals } = useAppSelector((state) => state.common);
-  const { dialogData, loading } = useAppSelector((state) => state.resume);
+  const { dialogData, loading } = useAppSelector((state) => state.user);
 
   function submitDeleteAction() {
     dispatch(ResumeActions.removeField());

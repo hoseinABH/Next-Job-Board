@@ -17,7 +17,7 @@ import type { Experience } from '@/types/user';
 
 export default function WorkExperience() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const workExperiences = userResume?.workExperience;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'workExperience'));

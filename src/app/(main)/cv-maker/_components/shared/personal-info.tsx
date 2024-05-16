@@ -18,7 +18,7 @@ import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants
 
 export default function PersonalInfo() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const personalInfo = userResume?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));

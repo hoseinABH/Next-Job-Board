@@ -20,7 +20,7 @@ import type { Language } from '@/types/user';
 
 export default function Languages() {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.resume);
+  const { userResume, loading } = useAppSelector((state) => state.user);
   const languages = userResume?.languages;
   function openCreateModal() {
     dispatch(ResumeActions.setModalOpen(true, 'language'));

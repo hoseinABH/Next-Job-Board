@@ -34,7 +34,7 @@ type FormData = typeof languageFormSchema;
 
 export function SkillModal() {
   const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.resume);
+  const { modals, loading } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(languageFormSchema),
     defaultValues: {
