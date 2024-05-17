@@ -1,45 +1,47 @@
+'use client';
+import { Fragment } from 'react';
 // UI Frameworks
 import { Languages as LanguagesIcon, X as RemoveIcon } from 'lucide-react';
 // Common components
 import IconButton from '@/components/icon-button';
-import { Badge } from '@/components/ui/badge';
 import { LanguageModal } from '@/components/modal';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/User/user.actions';
-import CommonActions from '@/store/Common/common.actions';
+import UserActions from '@/store/User/user.actions';
 // Constants
 import { mapLanguageLevel } from '@/constants';
 // Types
 import type { Language } from '@/types/user';
 
-export default function Languages() {
+interface Props {
+  languages: Language[];
+}
+
+export default function Languages({ languages }: Props) {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.user);
-  const languages = userResume?.languages;
   function openCreateModal() {
-    dispatch(ResumeActions.setModalOpen(true, 'language'));
+    dispatch(UserActions.setModalOpen(true, 'language'));
   }
   function handleDeleteLanguage(language: Language) {
     dispatch(
-      ResumeActions.setDialogData({
+      UserActions.setDialogData({
         title: 'حذف زبان',
-        message: `آیا از حذف زبان ${language.name} مطمئن هستید؟`,
+        message: `آیا از حذف زبان ${language.title} مطمئن هستید؟`,
         model: {
-          id: language.languageId,
+          id: String(language.id),
           entity: 'language',
         },
       }),
     );
-    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
-    <>
+    <Fragment>
       <SectionWrapper
         icon={LanguagesIcon}
         title="زبان ها"
@@ -54,34 +56,24 @@ export default function Languages() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-2 xl:grid-cols-3">
-            {loading.getUserResume ? (
-              <>
-                {[1, 2].map((skeleton) => (
-                  <Skeleton key={skeleton} className="h-16 w-full" />
-                ))}
-              </>
-            ) : (
-              <>
-                {languages?.map((lang) => (
-                  <div
-                    key={lang.name}
-                    className="flex items-center justify-between gap-x-2 rounded-lg border p-4"
-                  >
-                    <div className="flex items-center gap-x-2">
-                      <IconButton title="حذف" onClick={() => handleDeleteLanguage(lang)}>
-                        <RemoveIcon className="h-4 w-4" />
-                      </IconButton>
-                      <p className="text-muted-foreground">{lang.name}</p>
-                    </div>
-                    <Badge>{mapLanguageLevel[lang.level]}</Badge>
-                  </div>
-                ))}
-              </>
-            )}
+            {languages?.map((lang) => (
+              <div
+                key={lang.id}
+                className="flex items-center justify-between gap-x-2 rounded-lg border p-4"
+              >
+                <div className="flex items-center gap-x-2">
+                  <IconButton title="حذف" onClick={() => handleDeleteLanguage(lang)}>
+                    <RemoveIcon className="h-4 w-4" />
+                  </IconButton>
+                  <p className="text-muted-foreground">{lang.title}</p>
+                </div>
+                <Badge>{mapLanguageLevel[lang.level]}</Badge>
+              </div>
+            ))}
           </div>
         )}
       </SectionWrapper>
       <LanguageModal />
-    </>
+    </Fragment>
   );
 }

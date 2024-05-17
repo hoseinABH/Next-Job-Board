@@ -31,6 +31,7 @@ export const initialState: UserState = {
     removeEntity: false,
   },
   modals: {
+    confirmDelete: false,
     aboutMe: false,
     personalInfo: false,
     workExperience: false,

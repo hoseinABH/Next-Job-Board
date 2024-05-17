@@ -1,3 +1,3 @@
-export function persianDate(date: string) {
+export function persianDate(date: Date) {
   return new Date(date).toLocaleDateString('fa-IR');
 }

@@ -1,8 +1,6 @@
-'use client';
-import { useEffect } from 'react';
 // Common components
 import { ConfirmDeleteDialog } from '@/components/modal';
-// Shared Components
+// Local Components
 import AboutSection from './shared/about-section';
 import Educations from './shared/educations';
 import Languages from './shared/languages';
@@ -11,43 +9,27 @@ import Skills from './shared/skills';
 import WorkExperience from './shared/work-experience';
 // Utilities
 import { cn } from '@/lib/utils';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
-// Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { normalizeProfileData } from './utils';
+// Database
+import { getUserProfile } from '@/db/user';
 
 interface Props {
   className?: string;
 }
-export default function ResumeContent({ className }: Props) {
-  const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.common);
-  const { dialogData, loading } = useAppSelector((state) => state.user);
 
-  function submitDeleteAction() {
-    dispatch(ResumeActions.removeField());
-  }
-  useEffect(() => {
-    dispatch(ResumeActions.prepareUserResume(null, { sagas: true }));
-  }, []);
+export default async function ResumeContent({ className }: Props) {
+  const userProfile = await getUserProfile();
+  const { aboutData, personalData, workExperiences, educations, skills, languages } =
+    normalizeProfileData(userProfile)!;
   return (
-    <>
-      <div className={cn('flex flex-col gap-y-4', className)}>
-        <AboutSection />
-        <PersonalInfo />
-        <WorkExperience />
-        <Educations />
-        <Skills />
-        <Languages />
-      </div>
-      <ConfirmDeleteDialog
-        open={modals.confirmDelete}
-        title={dialogData?.title}
-        onSubmit={submitDeleteAction}
-        loading={loading.removeEntity}
-      >
-        {dialogData?.message ?? ''}
-      </ConfirmDeleteDialog>
-    </>
+    <div className={cn('flex flex-col gap-y-4', className)}>
+      <AboutSection aboutData={aboutData} />
+      <PersonalInfo personalData={personalData} />
+      <WorkExperience workExperiences={workExperiences} />
+      <Educations educations={educations} />
+      <Skills skills={skills} />
+      <Languages languages={languages} />
+      <ConfirmDeleteDialog />
+    </div>
   );
 }

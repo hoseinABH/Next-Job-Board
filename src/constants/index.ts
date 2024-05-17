@@ -1,107 +1,98 @@
-import type {
-  EducationDegree,
-  MilitaryStatus,
-  LanguageLevel,
-  MaritalStatus,
-  Gender,
-} from '@/types/user';
-
-export const mapEducationLevel: Record<EducationDegree, string> = {
-  Bachelor: 'کارشناسی',
-  Doctoral: 'دکترا',
-  Master: 'کارشناسی‌ارشد',
-  MiddleSchoolDiploma: 'دیپلم',
-  Associate: 'فوق دیپلم',
-  Professional: 'پرفسورا',
+export const mapEducationLevel: Record<number, string> = {
+  1: 'کارشناسی',
+  2: 'دکترا',
+  3: 'کارشناسی‌ارشد',
+  5: 'دیپلم',
+  4: 'فوق دیپلم',
+  0: 'پرفسورا',
 };
 
-export const mapLanguageLevel: Record<LanguageLevel, string> = {
-  Beginner: 'مبتدی',
-  Intermediate: 'متوسط',
-  Expert: 'متخصص',
-  Advanced: 'حرفه ای',
+export const mapLanguageLevel: Record<number, string> = {
+  1: 'مبتدی',
+  2: 'متوسط',
+  3: 'کارشناس',
+  4: 'متخصص',
+  5: 'حرفه ای',
 };
 
 interface MilitaryStatusOption {
-  value: MilitaryStatus;
+  value: number;
   title: string;
 }
 export const militaryStatusOptions: MilitaryStatusOption[] = [
   {
-    value: 'EducationalExemption',
+    value: 1,
     title: 'معافیت تحصیلی',
   },
   {
-    value: 'ActiveService',
+    value: 2,
     title: 'درحال انجام',
   },
   {
-    value: 'ExemptionCard',
+    value: 3,
     title: 'معافیت دائم',
   },
   {
-    value: 'ServiceCompletionCard',
+    value: 4,
     title: 'پایان خدمت',
   },
   {
-    value: 'Absent',
+    value: 5,
     title: 'غایب',
   },
 ];
 
 interface LanguageLevelOption {
-  value: LanguageLevel;
+  value: number;
   title: string;
 }
 export const levelOptions: LanguageLevelOption[] = [
   {
-    value: 'Beginner',
+    value: 1,
     title: 'مبتدی',
   },
   {
-    value: 'Intermediate',
+    value: 2,
     title: 'متوسط',
   },
   {
-    value: 'Advanced',
+    value: 3,
     title: 'پیشرفته',
   },
   {
-    value: 'Expert',
+    value: 4,
     title: 'حرفه ای',
   },
 ];
 
 interface EducationDegreeOption {
-  value: EducationDegree;
+  value: number;
   title: string;
 }
 export const educationDegreeOptions: EducationDegreeOption[] = [
-  { title: 'کارشناسی', value: 'Bachelor' },
-  { title: 'کارشناسی ارشد', value: 'Master' },
-  { title: 'دکترا', value: 'Doctoral' },
-  { title: 'فوق دیپلم', value: 'Associate' },
-  { title: 'دیپلم', value: 'MiddleSchoolDiploma' },
-  { title: 'پرفسورا', value: 'Professional' },
+  { title: 'کارشناسی', value: 1 },
+  { title: 'کارشناسی ارشد', value: 2 },
+  { title: 'دکترا', value: 3 },
+  { title: 'فوق دیپلم', value: 4 },
+  { title: 'دیپلم', value: 5 },
+  { title: 'پرفسورا', value: 6 },
 ];
 
-export const mapMaritalStatus: Record<MaritalStatus, string> = {
-  single: 'مجرد',
-  married: 'متاهل',
-  unknown: 'نا مشخص',
+export const mapMaritalStatus: Record<number, string> = {
+  1: 'مجرد',
+  2: 'متاهل',
 };
-export const mapGenderTitle: Record<Gender, string> = {
-  male: 'آقا',
-  female: 'خانم',
-  other: 'دیگر',
+export const mapGenderTitle: Record<number, string> = {
+  0: 'آقا',
+  1: 'خانم',
 };
 
-export const mapMilitaryStatus: Record<MilitaryStatus, string> = {
-  EducationalExemption: 'معافیت تحصیلی',
-  ActiveService: 'درحال انجام',
-  ExemptionCard: 'معافیت دائم',
-  ServiceCompletionCard: 'پایان خدمت',
-  Absent: 'غایب',
+export const mapMilitaryStatus: Record<number, string> = {
+  1: 'معافیت تحصیلی',
+  2: 'درحال انجام',
+  3: 'معافیت دائم',
+  4: 'پایان خدمت',
+  5: 'غایب',
 };
 
 export const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;

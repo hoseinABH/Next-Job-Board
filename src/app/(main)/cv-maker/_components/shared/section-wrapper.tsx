@@ -1,11 +1,12 @@
+'use client';
 import { ReactNode, useState } from 'react';
 // UI Frameworks
 import { LucideIcon, Pencil, Plus } from 'lucide-react';
 // Common components
-import { Separator } from '@/components/ui/separator';
-import { Card } from '@/components/ui/card';
 import IconButton from '@/components/icon-button';
 import ShowMoreButton from '@/components/show-more-button';
+import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
 

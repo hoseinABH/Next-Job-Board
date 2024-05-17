@@ -1,108 +1,99 @@
-import { useMemo } from 'react';
+'use client';
+import { Fragment, useMemo } from 'react';
 // UI Frameworks
 import { User } from 'lucide-react';
 // Common components
 import { PersonalInfoModal } from '@/components/modal';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Utilities
-import { persianDate } from '@/lib/date';
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store';
 // Actions
 import ResumeActions from '@/store/User/user.actions';
 // Constants
 import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants';
+// Types
+import type { PersonalData } from '@/types/user';
 
-export default function PersonalInfo() {
+interface Props {
+  personalData: PersonalData;
+}
+
+export default function PersonalInfo({ personalData }: Props) {
+  const { firstName, lastName, maritalStatus, militaryService, gender, city } = personalData;
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.user);
-  const personalInfo = userResume?.personalInfo;
   function openEditModal() {
     dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
   }
-  const infoRows = useMemo(
-    () => [
+  const { userData, isEmpty } = useMemo(() => {
+    const userData = [
       {
         title: 'نام و نام خانوادگی',
-        value: `${personalInfo?.firstName} ${personalInfo?.lastName}`,
+        value: `${firstName} ${lastName}`,
       },
       {
         title: 'وضعیت تاهل',
-        value: mapMaritalStatus[personalInfo?.maritalStatus!],
+        value: mapMaritalStatus[maritalStatus],
       },
       {
         title: 'جنسیت',
-        value: mapGenderTitle[personalInfo?.gender!],
+        value: mapGenderTitle[gender],
       },
       {
         title: 'وضعیت نظام وظیفه',
-        value: mapMilitaryStatus[personalInfo?.militaryStatus!],
+        value: mapMilitaryStatus[militaryService],
       },
       {
         title: 'محل سکونت',
-        value: personalInfo?.address,
+        value: city,
       },
       {
         title: 'تاریخ تولد',
-        value: personalInfo?.birthDate ? persianDate(personalInfo?.birthDate) : '',
+        // value: birthDate,
       },
       {
         title: 'شماره تلفن',
-        value: personalInfo?.phone,
+        // value: phoneNumber,
       },
-    ],
-    [personalInfo],
-  );
+    ];
+    const isEmpty = !Boolean(
+      city || firstName || gender || lastName || maritalStatus || militaryService,
+    );
+    return {
+      userData,
+      isEmpty,
+    };
+  }, [city, firstName, gender, lastName, maritalStatus, militaryService]);
+
   return (
-    <>
+    <Fragment>
       <SectionWrapper
         icon={User}
         actionType="edit"
         title="مشخصات فردی"
         id="personal-info"
-        hasShowMore={!!personalInfo}
+        hasShowMore={!isEmpty}
         actionHandler={openEditModal}
       >
-        {!personalInfo?.firstName ? (
+        {isEmpty ? (
           <div className="flex h-28 items-center justify-center">
             <Button variant="secondary" onClick={openEditModal}>
               ثبت اطلاعات فردی
             </Button>
           </div>
         ) : (
-          <>
-            {loading.getUserResume ? (
-              <SkeletonLoading />
-            ) : (
-              <div className="flex flex-col gap-y-4">
-                {infoRows.map((info) => (
-                  <div key={info.title} className="flex items-center">
-                    <p className="w-32 text-muted-foreground sm:w-52">{info.title}</p>
-                    <p>{info.value}</p>
-                  </div>
-                ))}
+          <div className="flex flex-col gap-y-4">
+            {userData.map((row) => (
+              <div key={row.title} className="flex items-center">
+                <p className="w-32 text-muted-foreground sm:w-52">{row.title}</p>
+                <p>{row.value}</p>
               </div>
-            )}
-          </>
+            ))}
+          </div>
         )}
       </SectionWrapper>
       <PersonalInfoModal />
-    </>
-  );
-}
-
-function SkeletonLoading() {
-  return (
-    <div className="flex flex-col gap-y-4">
-      {[1, 2, 3, 4, 5].map((item) => (
-        <div key={item} className="flex items-center">
-          <Skeleton className="ml-16 h-4 w-32" />
-          <Skeleton className="h-4 w-60" />
-        </div>
-      ))}
-    </div>
+    </Fragment>
   );
 }

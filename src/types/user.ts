@@ -1,4 +1,4 @@
-import type { DialogData } from './common';
+import type { DialogData, Nullable } from './common';
 
 export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
 
@@ -9,18 +9,32 @@ export interface UserMinimalProfile {
   lastName: string;
 }
 
-// OLD Types
-export interface Skill {
-  skillId: string;
-  name: string;
-  level: LanguageLevel;
+export interface UserProfile {
+  title: string;
+  aboutMe: string;
+  firstName: string;
+  lastName: string;
+  maritalStatus: number;
+  militaryService: number;
+  gender: number;
+  city: string;
+  skills: Skill[];
+  languages: Language[];
+  workExperiences: WorkExperience[];
+  educations: Education[];
 }
+
+export interface Skill extends Language {}
 export interface Language {
-  languageId: string;
-  name: string;
-  level: LanguageLevel;
+  title: string;
+  level: number;
+  userProfiles: unknown;
+  id: number;
+  createdDate: string;
+  updatedDate: string;
 }
 export type ModalKeys =
+  | 'confirmDelete'
   | 'aboutMe'
   | 'personalInfo'
   | 'workExperience'
@@ -48,22 +62,21 @@ export type MilitaryStatus =
   | 'ExemptionCard'
   | 'ServiceCompletionCard'
   | 'Absent';
-export interface PersonalInfo {
+export interface PersonalData {
   firstName: string;
   lastName: string;
-  photo: {
-    id: string;
-  };
-  maritalStatus: MaritalStatus;
-  gender: Gender;
-  militaryStatus: MilitaryStatus;
-  address: string;
-  birthDate: string;
-  phone: string;
-  aboutMe: string;
-  jobTitle: string;
+  maritalStatus: number;
+  militaryService: number;
+  gender: number;
+  city: string;
 }
-export interface UpdatePersonalDto extends PersonalInfo {}
+export interface AboutData {
+  firstName: string;
+  aboutMe: string;
+  lastName: string;
+  title: string;
+}
+export interface UpdatePersonalDto extends PersonalData {}
 export type EducationDegree =
   | 'Bachelor'
   | 'Master'
@@ -81,12 +94,35 @@ export interface CreateEducationDto {
   currentlyEnrolled: boolean;
 }
 
-export interface Education extends CreateEducationDto {
-  educationId: string;
+export interface Education {
+  fieldOfEducation: string;
+  educationalInstitution: string;
+  grade: number;
+  startDate: Date;
+  endDate: Nullable<Date>;
+  stillEducating: boolean;
+  description: string;
+  userProfileId: number;
+  userProfile: unknown;
+  id: number;
+  createdDate: Date;
+  updatedDate: Date;
 }
 
-export interface Experience extends CreateExperienceDto {
-  experienceId: string;
+export interface WorkExperience {
+  title: string;
+  companyTitle: string;
+  companyProfileId: number;
+  companyProfile: number;
+  startDate: Date;
+  endDate: Nullable<Date>;
+  stillWorking: boolean;
+  description: string;
+  userProfileId: number;
+  userProfile: unknown;
+  id: number;
+  createdDate: Date;
+  updatedDate: Date;
 }
 export interface CreateExperienceDto {
   companyName: string;
@@ -107,9 +143,9 @@ export interface CreateSkillDto extends CreateLanguageDto {}
 
 export interface UserResume {
   id: string;
-  personalInfo: PersonalInfo;
+  personalInfo: PersonalData;
   education: Education[];
-  workExperience: Experience[];
+  workExperience: WorkExperience[];
   skills: Skill[];
   languages: Language[];
 }

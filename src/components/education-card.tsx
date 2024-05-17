@@ -19,13 +19,13 @@ export default function EducationCard({ education, onDelete }: Props) {
   return (
     <div className="flex justify-between">
       <div className="space-y-1">
-        <h6 className="text-lg font-semibold ">{education.fieldOfStudy}</h6>
+        <h6 className="text-lg font-semibold ">{education.fieldOfEducation}</h6>
         <div className="flex items-center">
-          {mapEducationLevel[education.degree]} - <p>{education.institution}</p>
+          {mapEducationLevel[education.grade]} - <p>{education.educationalInstitution}</p>
         </div>
         <p className="text-muted-foreground">
           {persianDate(education.startDate)} -{' '}
-          {education.currentlyEnrolled ? 'اکنون' : persianDate(education.degree)}
+          {education.stillEducating ? 'اکنون' : persianDate(education.endDate!)}
         </p>
       </div>
       <Maybe condition={Boolean(onDelete)}>

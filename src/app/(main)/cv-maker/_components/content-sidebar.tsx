@@ -42,7 +42,6 @@ interface Props {
 }
 export default function ContentSidebar({ className }: Props) {
   const urlHash = useHashValue();
-
   return (
     <Card className={cn('', className)}>
       <CardHeader className="flex-row items-center ">

@@ -1,42 +1,44 @@
+'use client';
+import { Fragment } from 'react';
 // UI Frameworks
 import { GraduationCap } from 'lucide-react';
 // Common components
 import EducationCard from '@/components/education-card';
 import { EducationModal } from '@/components/modal';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store';
 // Actions
-import ResumeActions from '@/store/User/user.actions';
-import CommonActions from '@/store/Common/common.actions';
+import UserActions from '@/store/User/user.actions';
 // Types
 import type { Education } from '@/types/user';
 
-export default function Educations() {
+interface Props {
+  educations: Education[];
+}
+
+export default function Educations({ educations }: Props) {
   const dispatch = useAppDispatch();
-  const { userResume, loading } = useAppSelector((state) => state.user);
-  const educations = userResume?.education;
   function openCreateModal() {
-    dispatch(ResumeActions.setModalOpen(true, 'education'));
+    dispatch(UserActions.setModalOpen(true, 'education'));
   }
   function handleDeleteEducation(education: Education) {
     dispatch(
-      ResumeActions.setDialogData({
+      UserActions.setDialogData({
         title: 'حذف تجربه تحصیلی',
-        message: `آیا از حذف تجربه تحصیلی خود در ${education.institution} مطمئن هستید؟`,
+        message: `آیا از حذف تجربه تحصیلی خود در ${education.educationalInstitution} مطمئن هستید؟`,
         model: {
-          id: education.educationId,
+          id: String(education.id),
           entity: 'education',
         },
       }),
     );
-    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
-    <>
+    <Fragment>
       <SectionWrapper
         hasShowMore={educations?.length ? educations?.length > 1 : false}
         icon={GraduationCap}
@@ -52,37 +54,17 @@ export default function Educations() {
           </div>
         ) : (
           <div className="flex flex-col gap-y-6">
-            {loading.getUserResume ? (
-              <>
-                {[1, 2].map((item) => (
-                  <SkeletonLoading key={item} />
-                ))}
-              </>
-            ) : (
-              <>
-                {educations?.map((education) => (
-                  <EducationCard
-                    key={education.educationId}
-                    education={education}
-                    onDelete={() => handleDeleteEducation(education)}
-                  />
-                ))}
-              </>
-            )}
+            {educations?.map((education) => (
+              <EducationCard
+                key={education.id}
+                education={education}
+                onDelete={() => handleDeleteEducation(education)}
+              />
+            ))}
           </div>
         )}
       </SectionWrapper>
       <EducationModal />
-    </>
-  );
-}
-
-function SkeletonLoading() {
-  return (
-    <div className="flex flex-col space-y-3">
-      <Skeleton className="h-4 w-[140px]" />
-      <Skeleton className="h-3 w-[120px]" />
-      <Skeleton className="h-3 w-[140px]" />
-    </div>
+    </Fragment>
   );
 }
