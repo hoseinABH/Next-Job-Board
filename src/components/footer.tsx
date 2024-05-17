@@ -11,7 +11,7 @@ const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), { ssr: fa
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t bg-card">
+    <footer className="w-full border-t bg-background">
       <div className="container py-6">
         {/* Top Section */}
         <div className="flex flex-col items-center lg:flex-row">

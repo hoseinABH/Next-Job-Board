@@ -5,10 +5,10 @@ import { Card, CardContent } from './ui/card';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import type { Position } from '@/types/internship';
+import type { PositionItem } from '@/types/internship';
 
 interface Props {
-  position: Position;
+  position: PositionItem;
   className?: string;
   href: string;
 }
@@ -18,11 +18,11 @@ export default function FeaturedJobCard({ className, position, href }: Props) {
     <Link href={href}>
       <Card className={cn('relative', className)}>
         <CardContent className="flex w-full flex-col items-center justify-center p-6">
-          {/* <span className="mt-4 text-sm">{position.title}</span>
-          <p className="text-md  font-semibold">{position.company.name}</p>
+          <span className="mt-4 text-sm">{position.title}</span>
+          <p className="text-md  font-semibold">{position.companyProfile.title}</p>
           <p className="flex items-center text-muted-foreground">
-            <MapPin className="ml-1 h-4 w-4" /> {position.company.city}
-          </p> */}
+            <MapPin className="ml-1 h-4 w-4" /> {position.companyProfile.city}
+          </p>
         </CardContent>
       </Card>
     </Link>

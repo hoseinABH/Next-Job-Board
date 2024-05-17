@@ -1,7 +1,7 @@
 import type { Nullable } from '@/types/common';
 
 export interface GetCompaniesQueries {
-  page: string;
+  page: number;
   keyword?: string;
   city?: string;
   category?: string;

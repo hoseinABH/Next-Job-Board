@@ -1,6 +1,10 @@
 // Common components
+import FeaturedJobCard from '@/components/featured-job-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+// Database
+import { getAllPositions } from '@/db/positions';
 // Configs
+import * as Routes from '@/config/routes';
 // Types
 import type { Company } from '@/types/company';
 
@@ -8,6 +12,7 @@ interface Props {
   company: Company;
 }
 export default async function CompanyTabs({ company }: Props) {
+  const companyPositions = await getAllPositions({ page: 1, companyId: company.id });
   return (
     <Tabs defaultValue="about" className="w-full">
       <TabsList className="mx-auto flex max-w-lg">
@@ -22,11 +27,15 @@ export default async function CompanyTabs({ company }: Props) {
         </div>
       </TabsContent>
       <TabsContent value="positions">
-        {/* <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2 lg:grid-cols-4">
-          {companyPositions.map((job) => (
-            <FeaturedJobCard key={job.id} job={job} href={`${Routes.JOBS}/${job.id}`} />
+        <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2 lg:grid-cols-4">
+          {companyPositions.map((position) => (
+            <FeaturedJobCard
+              key={position.id}
+              position={position}
+              href={`${Routes.INTERNSHIPS}/${position.id}`}
+            />
           ))}
-        </div> */}
+        </div>
       </TabsContent>
     </Tabs>
   );

@@ -2,9 +2,9 @@ import type { Company } from './company';
 import type { UserRole } from './user';
 
 export interface GetAllPositionsQueries {
-  page: string;
+  page: number;
   query?: string;
-  companyId?: string;
+  companyId?: number;
   sortType?: string;
   sortByField?: string;
   city?: string;
