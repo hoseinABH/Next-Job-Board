@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props {
   className?: string;
@@ -19,6 +20,7 @@ interface Props {
   icon?: LucideIcon;
   hasShowMore?: boolean;
   actionHandler?: () => void;
+  loading?: boolean;
 }
 export default function SectionWrapper({
   children,
@@ -28,6 +30,7 @@ export default function SectionWrapper({
   title,
   actionType = 'create',
   hasShowMore = false,
+  loading = false,
   actionHandler,
 }: Props) {
   const [collapsed, setCollapsed] = useState(false);
@@ -49,12 +52,17 @@ export default function SectionWrapper({
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-3">
+          {loading ? <Skeleton className="h-6 w-6" /> : null}
           {SectionIcon ? <SectionIcon className="h-6 w-6" /> : null}
           <p className="text-lg">{title}</p>
         </div>
-        <IconButton title={actionType === 'create' ? 'افزودن' : 'ویرایش'} onClick={actionHandler}>
-          <ActionIcon className="h-4 w-4" />
-        </IconButton>
+
+        {loading ? <Skeleton className="h-6 w-6" /> : null}
+        {actionHandler ? (
+          <IconButton title={actionType === 'create' ? 'افزودن' : 'ویرایش'} onClick={actionHandler}>
+            <ActionIcon className="h-4 w-4" />
+          </IconButton>
+        ) : null}
       </div>
       <Separator className="my-3" />
       {children}
