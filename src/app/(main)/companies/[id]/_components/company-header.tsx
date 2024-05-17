@@ -33,9 +33,10 @@ export default function CompanyHeader({ company }: Props) {
           {company.phoneNumber ?? '-'}
         </a>
         <a
-          href={company.website ?? 'nowhere.com'}
+          href={`//${company.website}` ?? 'nowhere.com'}
           className="flex items-center text-muted-foreground"
           target="_blank"
+          referrerPolicy="no-referrer"
         >
           <Network className={iconClassName} /> {company.website}
         </a>

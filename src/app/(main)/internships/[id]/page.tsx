@@ -23,7 +23,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Job({ params }: Props) {
-  await new Promise((res) => setTimeout(res, 4000));
   const position = await getPositionById(params.id);
   return (
     <section className="py-12">
