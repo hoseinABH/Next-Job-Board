@@ -8,7 +8,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           {children}
           <div className="hidden items-center justify-center bg-secondary dark:bg-secondary/40 lg:flex">
             <Image
-              src="/lock.png"
+              src="/auth.png"
               alt="صفحه ورود"
               height={400}
               width={400}

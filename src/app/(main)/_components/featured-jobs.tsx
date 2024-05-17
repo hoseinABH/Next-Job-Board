@@ -1,10 +1,14 @@
 import Link from 'next/link';
 // Common components
 import { buttonVariants } from '@/components/ui/button';
+import FeaturedJobCard from '@/components/featured-job-card';
+// Database
+import { getAllPositions } from '@/db/positions';
 // Configs
 import * as Routes from '@/config/routes';
 
-export default function FeaturedJobs() {
+export default async function FeaturedJobs() {
+  const featuredPositions = await getAllPositions({ page: 1 });
   return (
     <section className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">
@@ -16,11 +20,15 @@ export default function FeaturedJobs() {
           ارزش خود را بدانید و شغلی را پیدا کنید که شرایط زندگی شما را فراهم کند
         </p>
       </div>
-      {/* <div className="mt-10 grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-        {featuredJobs.map((job) => (
-          <FeaturedJobCard key={job.title} job={job} href={`${Routes.JOBS}/${job.id}`} />
+      <div className="mt-10 grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
+        {featuredPositions.map((position) => (
+          <FeaturedJobCard
+            key={position.id}
+            position={position}
+            href={`${Routes.INTERNSHIPS}/${position.id}`}
+          />
         ))}
-      </div> */}
+      </div>
       <Link
         className={buttonVariants({ variant: 'outline', className: 'mt-14' })}
         href={Routes.INTERNSHIPS}
