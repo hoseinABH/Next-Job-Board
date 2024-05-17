@@ -60,7 +60,7 @@ function SidebarContent({ className }: { className: string }) {
           <Link href="/dashboard">
             <Image
               priority
-              src="/javascript.webp"
+              src="/logo.png"
               className="rounded-sm drop-shadow-md"
               width={60}
               height={60}

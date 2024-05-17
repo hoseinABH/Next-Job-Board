@@ -17,10 +17,10 @@ export default function HeroSection() {
       </div>
       <Image
         className="hidden drop-shadow-2xl lg:block"
-        src="/hero.webp"
+        src="/hero.png"
         alt="hero image"
-        height={400}
-        width={400}
+        height={300}
+        width={300}
         priority={true}
       />
     </section>

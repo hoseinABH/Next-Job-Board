@@ -18,7 +18,7 @@ export default function Logo({ className, onClick }: Props) {
         <Image
           onClick={onClick}
           priority
-          src="/companies/irancell.webp"
+          src="/logo.png"
           width={40}
           height={40}
           alt={configs.appData.appName}
