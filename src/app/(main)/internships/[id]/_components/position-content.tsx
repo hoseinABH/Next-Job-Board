@@ -16,7 +16,7 @@ export default function PositionContent({ className, position }: Props) {
       <CardContent className="p-6">
         <h1 className="text-xl font-semibold">درباره موقعیت شغلی: </h1>
         <br />
-        {/* <p className="leading-10">{position.description}</p> */}
+        <p className="leading-10">{position.description}</p>
       </CardContent>
     </Card>
   );

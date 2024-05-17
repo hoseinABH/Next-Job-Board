@@ -1,3 +1,4 @@
+import type { Company } from './company';
 import type { UserRole } from './user';
 
 export interface GetAllPositionsQueries {
@@ -9,13 +10,30 @@ export interface GetAllPositionsQueries {
   city?: string;
 }
 
-export interface Position {}
+export interface Position extends PositionItem {
+  grade: number;
+  submissionDeadline: Date;
+  description: string;
+  companyProfileId: number;
+  internshipRequests: unknown;
+  userRole: UserRole;
+  updatedDate: Date;
+}
+
+export interface PositionItem {
+  id: number;
+  companyProfile: Company;
+  title: string;
+  salary: string;
+  createdDate: Date;
+  immediateRecruitment: boolean;
+}
 
 export interface GetAllPositionsResponse {
   totalCount: number;
   currentPage: number;
   countPerPage: number;
-  data: Position[];
+  data: PositionItem[];
 }
 
 export type ModalKeys = 'filter' | 'internshipApplication';

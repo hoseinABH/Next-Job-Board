@@ -1,19 +1,34 @@
+import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Loading() {
   return (
-    <section className="py-12">
-      <div className="relative flex gap-6">
-        <Skeleton className="sticky top-[100px] col-span-3 hidden h-72 w-[300px] lg:block" />
-        <div className="flex-1 space-y-4">
-          <Skeleton className="h-20 w-full" />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((skeleton) => (
-              <Skeleton key={skeleton} className="h-40 w-full" />
-            ))}
-          </div>
-        </div>
+    <div className="h-full w-full space-y-6 py-12">
+      <Skeleton className="h-5 w-36" />
+      <Skeleton className="h-6 w-52" />
+      <div className="relative flex h-[60vh] w-full flex-col-reverse gap-6 lg:flex-row">
+        <Card className="h-full w-full flex-1">
+          <CardContent className="space-y-4 p-6">
+            <Skeleton className="mb-8 h-6 w-44" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-[70%]" />
+          </CardContent>
+        </Card>
+        <Card className="relative top-auto col-span-3 h-full w-full lg:sticky lg:top-[100px] lg:w-[300px]">
+          <CardContent className="flex h-full flex-col justify-between p-6">
+            <div className="space-y-4">
+              <Skeleton className="mb-8 h-6 w-44" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-[70%]" />
+            </div>
+            <Skeleton className="h-12 w-full" />
+          </CardContent>
+        </Card>
       </div>
-    </section>
+    </div>
   );
 }
