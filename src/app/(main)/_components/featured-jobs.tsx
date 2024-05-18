@@ -2,8 +2,8 @@ import Link from 'next/link';
 // Common components
 import { buttonVariants } from '@/components/ui/button';
 import FeaturedJobCard from '@/components/featured-job-card';
-// Database
-import { getAllPositions } from '@/db/positions';
+// Actions
+import { getAllPositions } from '@/actions/positions';
 // Configs
 import * as Routes from '@/config/routes';
 

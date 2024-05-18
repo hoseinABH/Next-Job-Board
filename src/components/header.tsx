@@ -3,8 +3,8 @@ import Logo from './logo';
 import NavigationDrawer from './navigation-drawer';
 import NavigationItems from './navigation-items';
 import UserDropDown from './user-drop-down';
-// Database
-import { getUserMinimalProfile } from '@/db/user';
+// Actions
+import { getUserMinimalProfile } from '@/actions/user';
 
 export default async function Header() {
   const profileData = await getUserMinimalProfile();

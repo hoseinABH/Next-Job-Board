@@ -2,8 +2,8 @@
 import FilterSection from './_components/filter-section';
 import FilterSheet from './_components/filter-sheet';
 import JobsList from './_components/jobs-list';
-// Database
-import { getAllPositions } from '@/db/positions';
+// Actions
+import { getAllPositions } from '@/actions/positions';
 // Types
 import type { Metadata } from 'next';
 

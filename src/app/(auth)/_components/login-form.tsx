@@ -1,84 +1,43 @@
 'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
 // Common components
-import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import FieldError from '@/components/field-error';
+import SubmitButton from '@/components/submit-button';
 import { Input } from '@/components/ui/input';
-// Utilities
-import { z } from 'zod';
-// Actions
-import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
-import { useForm } from 'react-hook-form';
-// Constants
-import { passwordPattern } from '@/constants';
+import { useToastMessage } from '@/hooks/use-toast-message';
+import { useFormState } from 'react-dom';
+// Utilities
+import { EMPTY_FORM_STATE } from '@/lib/error';
+// Actions
+import { login } from '@/actions/auth';
 
-const loginFormSchema = z.object({
-  username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
-  password: z
-    .string()
-    .min(6, { message: 'رمزعبور حداقل باید 6 کارکتر باشد' })
-    .regex(passwordPattern, 'رمز عبور باید شامل اعداد، نماد و حروف انگلیسی(بزرگ/کوچک) باشد'),
-});
-type FormData = typeof loginFormSchema;
 export default function LoginForm() {
-  const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.auth);
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: {
-      username: '',
-      password: '',
-    },
-  });
-  function onSubmit(values: z.infer<FormData>) {
-    dispatch(AuthActions.login(values));
-  }
+  const [formState, action] = useFormState(login, EMPTY_FORM_STATE);
+  useToastMessage(formState);
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 w-full max-w-sm space-y-8">
-        <FormField
-          control={form.control}
+    <form action={action} className="mt-8 w-full max-w-sm space-y-8">
+      <div className="space-y-2">
+        <Input
           name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  dir="ltr"
-                  autoComplete="username"
-                  placeholder="نام کاربری"
-                  className="placeholder:text-right"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          dir="ltr"
+          autoComplete="username"
+          placeholder="نام کاربری"
+          className="placeholder:text-right"
         />
-        <FormField
-          control={form.control}
+        <FieldError formState={formState} name="username" />
+      </div>
+      <div className="space-y-2">
+        <Input
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  type="password"
-                  dir="ltr"
-                  autoComplete="current-password"
-                  placeholder="رمز عبور"
-                  className="placeholder:text-right"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          type="password"
+          dir="ltr"
+          autoComplete="current-password"
+          placeholder="رمز عبور"
+          className="placeholder:text-right"
         />
-        <Button className="mt-4 w-full" loading={loading.login}>
-          ورود به حساب کاربری
-        </Button>
-      </form>
-    </Form>
+        <FieldError formState={formState} name="password" />
+      </div>
+      <SubmitButton className="mt-4 w-full">ورود به حساب کاربری</SubmitButton>
+    </form>
   );
 }

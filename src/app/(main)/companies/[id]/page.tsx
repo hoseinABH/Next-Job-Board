@@ -1,8 +1,8 @@
 // Local components
 import CompanyHeader from './_components/company-header';
 import CompanyTabs from './_components/company-tabs';
-// Database
-import { getCompanyById } from '@/db/company';
+// Actions
+import { getCompanyById } from '@/actions/company';
 // Types
 import type { Metadata } from 'next';
 

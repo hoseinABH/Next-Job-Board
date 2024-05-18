@@ -12,15 +12,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-// Actions
-import AuthActions from '@/store/Auth/auth.actions';
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
 import { useRouter } from 'next/navigation';
 // Configs
 import * as Routes from '@/config/routes';
 // Types
-import type { Nullable } from '@/types/common';
 import type { UserMinimalProfile } from '@/types/user';
 
 const userMenuItems = [
@@ -43,11 +39,10 @@ const userMenuItems = [
 ];
 
 interface Props {
-  profileData: Nullable<UserMinimalProfile>;
+  profileData?: UserMinimalProfile;
 }
 
 export default function UserDropDown({ profileData }: Props) {
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   function handleSelectMenu(menuKey: string) {
@@ -56,7 +51,7 @@ export default function UserDropDown({ profileData }: Props) {
         router.push(Routes.CV_MAKER);
         break;
       case 'Logout':
-        dispatch(AuthActions.logout());
+        // dispatch(AuthActions.logout());
         break;
       default:
         break;

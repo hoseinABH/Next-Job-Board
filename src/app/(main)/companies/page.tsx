@@ -1,8 +1,9 @@
 // Common components
 import CompanyCard from '@/components/company-card';
 // Local components
-import { getAllCompanies } from '@/db/company';
 import FilterSection from './_components/filter-section';
+// Actions
+import { getAllCompanies } from '@/actions/company';
 // Types
 import type { Metadata } from 'next';
 // Configs

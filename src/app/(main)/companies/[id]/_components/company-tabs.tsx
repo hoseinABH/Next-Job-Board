@@ -1,8 +1,8 @@
 // Common components
 import FeaturedJobCard from '@/components/featured-job-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-// Database
-import { getAllPositions } from '@/db/positions';
+// Actions
+import { getAllPositions } from '@/actions/positions';
 // Configs
 import * as Routes from '@/config/routes';
 // Types

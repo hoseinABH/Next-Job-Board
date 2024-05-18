@@ -1,3 +1,4 @@
+'use server';
 // Utilities
 import { getBaseApiUrl } from '@/lib/common';
 // Types

@@ -4,8 +4,8 @@ import { InternshipApplicationModal } from '@/components/modal/internships/inter
 // Local components
 import PositionContent from './_components/position-content';
 import PositionDescription from './_components/position-description';
-// Services
-import { getPositionById } from '@/db/positions';
+// Actions
+import { getPositionById } from '@/actions/positions';
 // Types
 import type { Metadata } from 'next';
 

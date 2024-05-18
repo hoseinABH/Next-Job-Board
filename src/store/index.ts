@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 // Reducers
 import reducers from './index.reducer';
 // Sagas
@@ -6,10 +6,8 @@ import sagas from './index.sagas';
 // List of middleware
 import middlewares, { sagaMiddleware } from './index.middleware';
 // Utilities
-import { isDevelopment } from '@/lib/env';
 import { isServer } from '@/lib/common';
-// Actions
-import AuthActions from './Auth/auth.actions';
+import { isDevelopment } from '@/lib/env';
 
 /**
  * Running redux-devtools composer or if it doesn't installed on user's browser then we will use redux native composer function
@@ -23,12 +21,6 @@ const composeEnhancer =
 const appStore = createStore(reducers, {}, composeEnhancer(applyMiddleware(...middlewares)));
 // Run redux-saga middleware and apply all forked sagas that we have created
 sagaMiddleware.run(sagas);
-
-if (!isServer()) {
-  window.addEventListener('unauthorizedError', () => {
-    // run refresh token strategy
-  });
-}
 
 export default appStore;
 

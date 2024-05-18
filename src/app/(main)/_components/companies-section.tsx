@@ -1,7 +1,7 @@
 // Common components
 import CompanyCard from '@/components/company-card';
-// Database
-import { getAllCompanies } from '@/db/company';
+// Actions
+import { getAllCompanies } from '@/actions/company';
 // Configs
 import { appData } from '@/config/app';
 import * as Routes from '@/config/routes';

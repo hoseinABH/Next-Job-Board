@@ -10,8 +10,8 @@ import WorkExperience from './shared/work-experience';
 // Utilities
 import { cn } from '@/lib/utils';
 import { normalizeProfileData } from './utils';
-// Database
-import { getUserProfile } from '@/db/user';
+// Actions
+import { getUserProfile } from '@/actions/user';
 
 interface Props {
   className?: string;
