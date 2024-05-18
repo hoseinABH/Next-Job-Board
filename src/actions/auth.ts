@@ -15,6 +15,7 @@ import * as Routes from '@/config/routes';
 // Constants
 import { HttpStatus } from '@/constants/http-status';
 import * as messages from '@/constants/messages';
+import { isRedirectError } from 'next/dist/client/components/redirect';
 
 const prefix = 'auth';
 const endpoint = `${getBaseApiUrl()}/${prefix}`;
@@ -45,6 +46,10 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
     setCookie(response.data.token, tokenExpirationDate);
     redirect(Routes.CV_MAKER);
   } catch (error) {
+    /** This Condition Resolve Redirect issue **/
+    if (isRedirectError(error)) {
+      throw error;
+    }
     return fromErrorToFormState(error);
   }
 }
