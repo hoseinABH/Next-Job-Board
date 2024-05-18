@@ -8,10 +8,6 @@ import { Button } from '@/components/ui/button';
 import WorkExperienceCard from '@/components/work-experience-card';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import UserActions from '@/store/User/user.actions';
 // Types
 import type { WorkExperience } from '@/types/user';
 
@@ -20,22 +16,21 @@ interface Props {
 }
 
 export default function WorkExperience({ workExperiences }: Props) {
-  const dispatch = useAppDispatch();
   function openCreateModal() {
-    dispatch(UserActions.setModalOpen(true, 'workExperience'));
+    // dispatch(UserActions.setModalOpen(true, 'workExperience'));
   }
   function handleDeleteWorkExperience(experience: WorkExperience) {
-    dispatch(
-      UserActions.setDialogData({
-        title: 'حذف تجربه کاری',
-        message: `آیا از حذف تجربه کاری خود در ${experience.companyTitle} مطمئن هستید؟`,
-        model: {
-          id: String(experience.id),
-          entity: 'workExperience',
-        },
-      }),
-    );
-    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+    // dispatch(
+    //   UserActions.setDialogData({
+    //     title: 'حذف تجربه کاری',
+    //     message: `آیا از حذف تجربه کاری خود در ${experience.companyTitle} مطمئن هستید؟`,
+    //     model: {
+    //       id: String(experience.id),
+    //       entity: 'workExperience',
+    //     },
+    //   }),
+    // );
+    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <Fragment>
@@ -68,15 +63,3 @@ export default function WorkExperience({ workExperiences }: Props) {
     </Fragment>
   );
 }
-
-// function SkeletonLoading() {
-//   return (
-//     <div className="flex flex-col space-y-3">
-//       <Skeleton className="h-4 w-[140px]" />
-//       <Skeleton className="h-3 w-[120px]" />
-//       <Skeleton className="h-3 w-[140px]" />
-//       <Skeleton className="h-3 w-[80%]" />
-//       <Skeleton className="h-3 w-[70%]" />
-//     </div>
-//   );
-// }

@@ -1,7 +1,6 @@
 'use client';
 // Common components
 import ControlledInput from '@/components/controlled-input';
-import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,15 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 
 const aboutMeFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
@@ -29,9 +25,6 @@ const aboutMeFormSchema = z.object({
 type FormData = typeof aboutMeFormSchema;
 
 export function AboutMeModal() {
-  const dispatch = useAppDispatch();
-  const { modals, loading, userResume } = useAppSelector((state) => state.user);
-  const state = userResume?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(aboutMeFormSchema),
     defaultValues: {
@@ -41,33 +34,36 @@ export function AboutMeModal() {
   });
 
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(
-      ResumeActions.updatePersonalInfo({
-        ...state!,
-        aboutMe: values.aboutMe,
-        jobTitle: values.title,
-      }),
-    );
-    form.reset();
+    // dispatch(
+    //   ResumeActions.updatePersonalInfo({
+    //     ...state!,
+    //     aboutMe: values.aboutMe,
+    //     jobTitle: values.title,
+    //   }),
+    // );
+    // form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(ResumeActions.setModalOpen(open, 'aboutMe'));
+    // dispatch(ResumeActions.setModalOpen(open, 'aboutMe'));
     form.reset();
   }
 
-  useEffect(() => {
-    if (modals.aboutMe) {
-      if (state?.aboutMe) {
-        form.setValue('aboutMe', state?.aboutMe);
-      }
-      if (state?.jobTitle) {
-        form.setValue('title', state?.jobTitle);
-      }
-    }
-  }, [form, modals.aboutMe, state?.aboutMe, state?.jobTitle]);
+  // useEffect(() => {
+  //   if (modals.aboutMe) {
+  //     if (state?.aboutMe) {
+  //       form.setValue('aboutMe', state?.aboutMe);
+  //     }
+  //     if (state?.jobTitle) {
+  //       form.setValue('title', state?.jobTitle);
+  //     }
+  //   }
+  // }, [form, modals.aboutMe, state?.aboutMe, state?.jobTitle]);
 
   return (
-    <Dialog open={modals.aboutMe} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.aboutMe}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>درباره من</DialogTitle>
@@ -86,7 +82,7 @@ export function AboutMeModal() {
             />
           </form>
           <DialogFooter>
-            <Button form="aboutMe" type="submit" loading={loading.updatePersonal}>
+            <Button form="aboutMe" type="submit" loading={false}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

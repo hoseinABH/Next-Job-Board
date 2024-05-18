@@ -9,10 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import UserActions from '@/store/User/user.actions';
 // Constants
 import { mapLanguageLevel } from '@/constants';
 // Types
@@ -23,22 +19,21 @@ interface Props {
 }
 
 export default function Languages({ languages }: Props) {
-  const dispatch = useAppDispatch();
   function openCreateModal() {
-    dispatch(UserActions.setModalOpen(true, 'language'));
+    // dispatch(UserActions.setModalOpen(true, 'language'));
   }
   function handleDeleteLanguage(language: Language) {
-    dispatch(
-      UserActions.setDialogData({
-        title: 'حذف زبان',
-        message: `آیا از حذف زبان ${language.title} مطمئن هستید؟`,
-        model: {
-          id: String(language.id),
-          entity: 'language',
-        },
-      }),
-    );
-    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+    // dispatch(
+    //   UserActions.setDialogData({
+    //     title: 'حذف زبان',
+    //     message: `آیا از حذف زبان ${language.title} مطمئن هستید؟`,
+    //     model: {
+    //       id: String(language.id),
+    //       entity: 'language',
+    //     },
+    //   }),
+    // );
+    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <Fragment>

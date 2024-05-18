@@ -1,11 +1,9 @@
 'use client';
-import { useEffect } from 'react';
 // Common components
 import ControlledInput from '@/components/controlled-input';
 import ControlledRadio from '@/components/controlled-radio';
 import ControlledSelect from '@/components/controlled-select';
 import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
 import {
   Dialog,
   DialogContent,
@@ -14,18 +12,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
-// Types
-import type { UpdatePersonalDto } from '@/types/user';
-// Constants
-import { militaryStatusOptions } from '@/constants';
 
 const personalInfoFormSchema = z.object({
   firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
@@ -50,9 +42,6 @@ const personalInfoFormSchema = z.object({
 type FormData = typeof personalInfoFormSchema;
 
 export function PersonalInfoModal() {
-  const dispatch = useAppDispatch();
-  const { modals, loading, userResume } = useAppSelector((state) => state.user);
-  const state = userResume?.personalInfo;
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
@@ -64,60 +53,62 @@ export function PersonalInfoModal() {
     },
   });
   function onSubmit(values: z.infer<FormData>) {
-    const data = {
-      ...state,
-      ...values,
-    } as UpdatePersonalDto;
-    dispatch(ResumeActions.updatePersonalInfo(data));
+    // const data = {
+    //   ...state,
+    //   ...values,
+    // } as UpdatePersonalDto;
+    // dispatch(ResumeActions.updatePersonalInfo(data));
     form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(ResumeActions.setModalOpen(open, 'personalInfo'));
+    // dispatch(ResumeActions.setModalOpen(open, 'personalInfo'));
     form.reset();
   }
 
-  useEffect(() => {
-    if (modals.personalInfo) {
-      if (state?.address) {
-        form.setValue('address', state?.address);
-      }
-      if (state?.birthDate) {
-        form.setValue('birthDate', state?.birthDate);
-      }
-      if (state?.firstName) {
-        form.setValue('firstName', state?.firstName);
-      }
-      if (state?.lastName) {
-        form.setValue('lastName', state?.lastName);
-      }
-      if (state?.gender) {
-        form.setValue('gender', state?.gender);
-      }
-      if (state?.maritalStatus) {
-        form.setValue('maritalStatus', state?.maritalStatus);
-      }
-      if (state?.militaryStatus) {
-        form.setValue('militaryStatus', state?.militaryStatus);
-      }
-      if (state?.phone) {
-        form.setValue('phone', state?.phone);
-      }
-    }
-  }, [
-    form,
-    modals.personalInfo,
-    state?.address,
-    state?.birthDate,
-    state?.firstName,
-    state?.gender,
-    state?.lastName,
-    state?.maritalStatus,
-    state?.militaryStatus,
-    state?.phone,
-  ]);
+  // useEffect(() => {
+  //   if (modals.personalInfo) {
+  //     if (state?.address) {
+  //       form.setValue('address', state?.address);
+  //     }
+  //     if (state?.birthDate) {
+  //       form.setValue('birthDate', state?.birthDate);
+  //     }
+  //     if (state?.firstName) {
+  //       form.setValue('firstName', state?.firstName);
+  //     }
+  //     if (state?.lastName) {
+  //       form.setValue('lastName', state?.lastName);
+  //     }
+  //     if (state?.gender) {
+  //       form.setValue('gender', state?.gender);
+  //     }
+  //     if (state?.maritalStatus) {
+  //       form.setValue('maritalStatus', state?.maritalStatus);
+  //     }
+  //     if (state?.militaryStatus) {
+  //       form.setValue('militaryStatus', state?.militaryStatus);
+  //     }
+  //     if (state?.phone) {
+  //       form.setValue('phone', state?.phone);
+  //     }
+  //   }
+  // }, [
+  //   form,
+  //   state?.address,
+  //   state?.birthDate,
+  //   state?.firstName,
+  //   state?.gender,
+  //   state?.lastName,
+  //   state?.maritalStatus,
+  //   state?.militaryStatus,
+  //   state?.phone,
+  // ]);
 
   return (
-    <Dialog open={modals.personalInfo} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.personalInfo}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>مشخصات فردی</DialogTitle>
@@ -160,7 +151,7 @@ export function PersonalInfoModal() {
               control={form.control}
               name="militaryStatus"
               label="وضعیت خدمت"
-              options={militaryStatusOptions}
+              options={[]}
             />
             <ControlledInput
               control={form.control}
@@ -170,7 +161,7 @@ export function PersonalInfoModal() {
             />
           </form>
           <DialogFooter>
-            <Button form="personalInfo" type="submit" loading={loading.updatePersonal}>
+            <Button form="personalInfo" type="submit" loading={false}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

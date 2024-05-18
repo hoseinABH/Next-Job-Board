@@ -1,9 +1,8 @@
 'use client';
 // Common components
 import IconButton from '@/components/icon-button';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -12,17 +11,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Trash2 } from 'lucide-react';
 // Utilities
 import { cn } from '@/lib/utils';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import PanelActions from '@/store/Panel/panel.actions';
-import CommonActions from '@/store/Common/common.actions';
 // Types
 import type { Position } from '../data';
-// Constants
-import { mapEducationLevel } from '@/constants';
 
 interface Props {
   className?: string;
@@ -30,22 +23,21 @@ interface Props {
 }
 
 export default function PositionsTable({ className, positions }: Props) {
-  const dispatch = useAppDispatch();
   function openCreatePositionModal() {
-    dispatch(PanelActions.setModalOpen(true, 'createPosition'));
+    // dispatch(PanelActions.setModalOpen(true, 'createPosition'));
   }
   function openDeleteModal() {
-    dispatch(
-      PanelActions.setDialogData({
-        title: 'حذف موقعیت شغلی',
-        message: 'آیا از حذف این موقعیت شغلی مطمئن هستید؟',
-        model: {
-          id: '',
-          entity: 'position',
-        },
-      }),
-    );
-    dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+    // dispatch(
+    //   PanelActions.setDialogData({
+    //     title: 'حذف موقعیت شغلی',
+    //     message: 'آیا از حذف این موقعیت شغلی مطمئن هستید؟',
+    //     model: {
+    //       id: '',
+    //       entity: 'position',
+    //     },
+    //   }),
+    // );
+    // dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <div className={cn('bg-card p-6', className)}>
@@ -76,7 +68,7 @@ export default function PositionsTable({ className, positions }: Props) {
                 </TableCell>
                 <TableCell align="center">{position.contract}</TableCell>
                 <TableCell align="center">{position.salary} ریال</TableCell>
-                <TableCell align="center">{mapEducationLevel[position.educationDegree]}</TableCell>
+                {/* <TableCell align="center">{mapEducationLevel[position.educationDegree]}</TableCell> */}
                 <TableCell align="center">
                   {position.isUrgent ? (
                     <Badge variant="destructive">فوری</Badge>

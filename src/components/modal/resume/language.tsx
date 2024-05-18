@@ -1,7 +1,6 @@
 'use client';
 // Common components
 import ControlledSelect from '@/components/controlled-select';
-import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,16 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
-// Constants
-import { levelOptions } from '@/constants';
 
 const languageFormSchema = z.object({
   name: z.string().min(1, { message: 'زبان را انتخاب کنید' }),
@@ -32,8 +27,6 @@ const languageFormSchema = z.object({
 type FormData = typeof languageFormSchema;
 
 export function LanguageModal() {
-  const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(languageFormSchema),
     defaultValues: {
@@ -42,15 +35,18 @@ export function LanguageModal() {
   });
 
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(ResumeActions.createLanguage(values));
+    // dispatch(ResumeActions.createLanguage(values));
     form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(ResumeActions.setModalOpen(open, 'language'));
+    // dispatch(ResumeActions.setModalOpen(open, 'language'));
     form.reset();
   }
   return (
-    <Dialog open={modals.language} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.language}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-screen max-w-xl overflow-auto">
         <DialogHeader>
           <DialogTitle>زبان ها</DialogTitle>
@@ -75,15 +71,10 @@ export function LanguageModal() {
                 { title: 'فرانسوی', value: 'فرانسوی' },
               ]}
             />
-            <ControlledSelect
-              control={form.control}
-              name="level"
-              label="سطح"
-              options={levelOptions}
-            />
+            <ControlledSelect control={form.control} name="level" label="سطح" options={[]} />
           </form>
           <DialogFooter>
-            <Button form="language" type="submit" loading={loading.createLanguage}>
+            <Button form="language" type="submit" loading={false}>
               ذخیره تغییرات
             </Button>
           </DialogFooter>

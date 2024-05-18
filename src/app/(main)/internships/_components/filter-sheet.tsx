@@ -2,24 +2,20 @@
 // Common components
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerClose, DrawerContent, DrawerFooter } from '@/components/ui/drawer';
-// Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
-// Actions
-import InternshipActions from '@/store/Internship/internship.actions';
 
 interface Props {
   children: React.ReactNode;
 }
 
 export default function FilterSheet({ children }: Props) {
-  const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.internship);
-
   function onOpenChange(open: boolean) {
-    dispatch(InternshipActions.setModalOpen(open, 'filter'));
+    // dispatch(InternshipActions.setModalOpen(open, 'filter'));
   }
   return (
-    <Drawer open={modals.filter} onOpenChange={onOpenChange}>
+    <Drawer
+      //  open={modals.filter}
+      onOpenChange={onOpenChange}
+    >
       <DrawerContent>
         <div className="max-h-[96%] overflow-auto">{children}</div>
         <DrawerFooter>

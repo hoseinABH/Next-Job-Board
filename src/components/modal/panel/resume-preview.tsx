@@ -1,22 +1,16 @@
 'use client';
 // Common components
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import WorkExperienceCard from '@/components/work-experience-card';
-// Actions
-import PanelActions from '@/store/Panel/panel.actions';
-// Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
-import EducationCard from '@/components/education-card';
 
 export default function ResumePreview() {
-  const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.panel);
-
   function onOpenChange(open: boolean) {
-    dispatch(PanelActions.setModalOpen(open, 'resumePreview'));
+    // dispatch(PanelActions.setModalOpen(open, 'resumePreview'));
   }
   return (
-    <Dialog open={modals.resumePreview} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.resumePreview}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-full max-w-4xl overflow-auto pb-4 pt-12 sm:pt-4">
         <div className="space-y-8 py-12">
           <div>
@@ -64,17 +58,17 @@ export default function ResumePreview() {
                 سوابق شغلی
               </h1>
             </div>
-            <WorkExperienceCard
+            {/* <WorkExperienceCard
               experience={{
                 experienceId: '12',
                 companyName: 'ناسا',
                 position: 'مهندس نرم افزار',
-                startDate: new Date().toString(),
-                endDate: new Date().toString(),
+                startDate: new Date(),
+                endDate: new Date(),
                 description: 'ماه در ناسا به دنبال بقا در فضا هستیم',
                 isCurrent: true,
               }}
-            />
+            /> */}
           </div>
           <div>
             <div className="relative mb-8">
@@ -83,17 +77,17 @@ export default function ResumePreview() {
                 سوابق تحصیلی
               </h1>
             </div>
-            <EducationCard
+            {/* <EducationCard
               education={{
-                educationId: '12',
-                institution: 'دانشگاه تهران',
+                id: 1,
+                educationalInstitution: 'دانشگاه تهران',
                 degree: 'Bachelor',
                 fieldOfStudy: 'مهندسی نرم افزار',
-                startDate: new Date().toString(),
-                endDate: new Date().toString(),
+                startDate: new Date(),
+                endDate: new Date(),
                 currentlyEnrolled: true,
               }}
-            />
+            /> */}
           </div>
           <div>
             <div className="relative mb-8">

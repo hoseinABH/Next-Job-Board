@@ -1,9 +1,8 @@
 'use client';
 // Common components
+import ControlledCheckbox from '@/components/controlled-checkbox';
 import ControlledInput from '@/components/controlled-input';
 import ControlledSelect from '@/components/controlled-select';
-import ControlledCheckbox from '@/components/controlled-checkbox';
-import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -13,16 +12,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
-// Constants
-import { educationDegreeOptions } from '@/constants';
 
 const educationFormSchema = z.object({
   institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
@@ -41,8 +36,6 @@ const educationFormSchema = z.object({
 type FormData = typeof educationFormSchema;
 
 export function EducationModal() {
-  const dispatch = useAppDispatch();
-  const { modals, loading, userResume } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
@@ -55,15 +48,18 @@ export function EducationModal() {
   });
 
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(ResumeActions.createEducation(values));
+    // dispatch(ResumeActions.createEducation(values));
     form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(ResumeActions.setModalOpen(open, 'education'));
+    // dispatch(ResumeActions.setModalOpen(open, 'education'));
     form.reset();
   }
   return (
-    <Dialog open={modals.education} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.education}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>سوابق تحصیلی</DialogTitle>
@@ -85,7 +81,7 @@ export function EducationModal() {
               control={form.control}
               name="degree"
               label="مقطع تحصیلی"
-              options={educationDegreeOptions}
+              options={[]}
             />
             <ControlledInput
               control={form.control}
@@ -107,7 +103,7 @@ export function EducationModal() {
             />
           </form>
           <DialogFooter>
-            <Button form="education" type="submit" loading={loading.createEducation}>
+            <Button form="education" type="submit" loading={false}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

@@ -1,7 +1,7 @@
 'use client';
 // Common components
-import ControlledInput from '@/components/controlled-input';
 import ControlledCheckbox from '@/components/controlled-checkbox';
+import ControlledInput from '@/components/controlled-input';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -13,12 +13,9 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
 
 const workExperienceFormSchema = z.object({
@@ -33,8 +30,6 @@ const workExperienceFormSchema = z.object({
 type FormData = typeof workExperienceFormSchema;
 
 export function WorkExperienceModal() {
-  const dispatch = useAppDispatch();
-  const { modals, loading } = useAppSelector((state) => state.user);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(workExperienceFormSchema),
     defaultValues: {
@@ -48,15 +43,18 @@ export function WorkExperienceModal() {
   });
 
   function onSubmit(values: z.infer<FormData>) {
-    dispatch(ResumeActions.createExperience(values));
+    // dispatch(ResumeActions.createExperience(values));
     form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(ResumeActions.setModalOpen(open, 'workExperience'));
+    // dispatch(ResumeActions.setModalOpen(open, 'workExperience'));
     form.reset();
   }
   return (
-    <Dialog open={modals.workExperience} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.workExperience}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>سوابق شغلی</DialogTitle>
@@ -97,7 +95,7 @@ export function WorkExperienceModal() {
             />
           </form>
           <DialogFooter>
-            <Button form="workExperience" type="submit" loading={loading.createExperience}>
+            <Button form="workExperience" type="submit" loading={false}>
               ثبت اطلاعات
             </Button>
           </DialogFooter>

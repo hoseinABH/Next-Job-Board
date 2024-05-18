@@ -5,18 +5,13 @@ import { SlidersHorizontal } from 'lucide-react';
 import JobSearch from '@/components/job-search';
 import IconButton from '@/components/icon-button';
 import SelectBox from '@/components/select-box';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import InternshipActions from '@/store/Internship/internship.actions';
 
 interface Props {
   count: number;
 }
 export default function JobListHeader({ count }: Props) {
-  const dispatch = useAppDispatch();
   function openFilterSheet() {
-    dispatch(InternshipActions.setModalOpen(true, 'filter'));
+    // dispatch(InternshipActions.setModalOpen(true, 'filter'));
   }
   return (
     <>

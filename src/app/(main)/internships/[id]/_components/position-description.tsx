@@ -8,10 +8,6 @@ import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
-// Actions
-import InternshipsActions from '@/store/Internship/internship.actions';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
 // Types
 import type { Position } from '@/types/internship';
 
@@ -20,9 +16,8 @@ interface Props {
   position: Position;
 }
 export default function PositionDescription({ className, position }: Props) {
-  const dispatch = useAppDispatch();
   function applicationRequest() {
-    dispatch(InternshipsActions.setModalOpen(true, 'internshipApplication'));
+    // dispatch(InternshipsActions.setModalOpen(true, 'internshipApplication'));
   }
   const information = [
     {

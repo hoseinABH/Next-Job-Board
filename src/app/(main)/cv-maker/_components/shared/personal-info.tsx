@@ -7,10 +7,6 @@ import { PersonalInfoModal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import ResumeActions from '@/store/User/user.actions';
 // Constants
 import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants';
 // Types
@@ -22,9 +18,8 @@ interface Props {
 
 export default function PersonalInfo({ personalData }: Props) {
   const { firstName, lastName, maritalStatus, militaryService, gender, city } = personalData;
-  const dispatch = useAppDispatch();
   function openEditModal() {
-    dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
+    // dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
   }
   const { userData, isEmpty } = useMemo(() => {
     const userData = [

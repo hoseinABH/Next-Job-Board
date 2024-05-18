@@ -9,10 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import UserActions from '@/store/User/user.actions';
 // Constants
 import { mapLanguageLevel } from '@/constants';
 // Types
@@ -23,22 +19,21 @@ interface Props {
 }
 
 export default function Skills({ skills }: Props) {
-  const dispatch = useAppDispatch();
   function openCreateModal() {
-    dispatch(UserActions.setModalOpen(true, 'skill'));
+    // dispatch(UserActions.setModalOpen(true, 'skill'));
   }
   function handleDeleteSkill(skill: Skill) {
-    dispatch(
-      UserActions.setDialogData({
-        title: 'حذف مهارت',
-        message: `آیا از حذف مهارت ${skill.title} مطمئن هستید؟`,
-        model: {
-          id: String(skill.id),
-          entity: 'skill',
-        },
-      }),
-    );
-    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+    // dispatch(
+    //   UserActions.setDialogData({
+    //     title: 'حذف مهارت',
+    //     message: `آیا از حذف مهارت ${skill.title} مطمئن هستید؟`,
+    //     model: {
+    //       id: String(skill.id),
+    //       entity: 'skill',
+    //     },
+    //   }),
+    // );
+    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <Fragment>

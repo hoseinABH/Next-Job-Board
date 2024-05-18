@@ -1,9 +1,8 @@
 'use client';
 // Common components
+import ControlledCheckbox from '@/components/controlled-checkbox';
 import ControlledInput from '@/components/controlled-input';
 import ControlledSelect from '@/components/controlled-select';
-import ControlledCheckbox from '@/components/controlled-checkbox';
-import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -13,16 +12,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
 // Utilities
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Actions
-import PanelActions from '@/store/Panel/panel.actions';
+import { z } from 'zod';
 // Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useForm } from 'react-hook-form';
 // Constants
-import { educationDegreeOptions } from '@/constants';
 
 const educationFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان فرصت شغلی را وارد کنید' }),
@@ -41,8 +37,6 @@ const educationFormSchema = z.object({
 type FormData = typeof educationFormSchema;
 
 export default function CreatePositionModal() {
-  const dispatch = useAppDispatch();
-  const { modals } = useAppSelector((state) => state.panel);
   const form = useForm<z.infer<FormData>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
@@ -58,11 +52,14 @@ export default function CreatePositionModal() {
     form.reset();
   }
   function onOpenChange(open: boolean) {
-    dispatch(PanelActions.setModalOpen(open, 'createPosition'));
+    // dispatch(PanelActions.setModalOpen(open, 'createPosition'));
     form.reset();
   }
   return (
-    <Dialog open={modals.createPosition} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.createPosition}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>موقعیت شغلی جدید</DialogTitle>
@@ -79,7 +76,8 @@ export default function CreatePositionModal() {
               control={form.control}
               name="requiredDegree"
               label="مقطع تحصیلی مورد نیاز"
-              options={educationDegreeOptions}
+              options={[]}
+              // options={educationDegreeOptions}
             />
             <ControlledInput
               control={form.control}

@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 // Common components
+import { Button } from '@/components/ui/button';
+import { Card, CardTitle } from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -8,28 +10,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Card, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 // Utilities
 import { cn } from '@/lib/utils';
-// Actions
-import InternshipsActions from '@/store/Internship/internship.actions';
-// Hooks
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
 // Configs
 import { requestTests } from '@/config/app';
 
 export function InternshipApplicationModal() {
-  const dispatch = useAppDispatch();
   const [selectedTest, setSelectedTest] = useState<null | number>(null);
-  const { modals } = useAppSelector((state) => state.internship);
-
   function onOpenChange(open: boolean) {
-    dispatch(InternshipsActions.setModalOpen(open, 'internshipApplication'));
+    // dispatch(InternshipsActions.setModalOpen(open, 'internshipApplication'));
   }
 
   return (
-    <Dialog open={modals.internshipApplication} onOpenChange={onOpenChange}>
+    <Dialog
+      // open={modals.internshipApplication}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>ارسال درخواست موقعیت کارآموزی</DialogTitle>

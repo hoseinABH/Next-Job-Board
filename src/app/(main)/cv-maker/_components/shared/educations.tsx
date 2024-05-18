@@ -8,10 +8,6 @@ import { EducationModal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
-// Hooks
-import { useAppDispatch } from '@/hooks/store';
-// Actions
-import UserActions from '@/store/User/user.actions';
 // Types
 import type { Education } from '@/types/user';
 
@@ -20,22 +16,21 @@ interface Props {
 }
 
 export default function Educations({ educations }: Props) {
-  const dispatch = useAppDispatch();
   function openCreateModal() {
-    dispatch(UserActions.setModalOpen(true, 'education'));
+    // dispatch(UserActions.setModalOpen(true, 'education'));
   }
   function handleDeleteEducation(education: Education) {
-    dispatch(
-      UserActions.setDialogData({
-        title: 'حذف تجربه تحصیلی',
-        message: `آیا از حذف تجربه تحصیلی خود در ${education.educationalInstitution} مطمئن هستید؟`,
-        model: {
-          id: String(education.id),
-          entity: 'education',
-        },
-      }),
-    );
-    dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+    // dispatch(
+    //   UserActions.setDialogData({
+    //     title: 'حذف تجربه تحصیلی',
+    //     message: `آیا از حذف تجربه تحصیلی خود در ${education.educationalInstitution} مطمئن هستید؟`,
+    //     model: {
+    //       id: String(education.id),
+    //       entity: 'education',
+    //     },
+    //   }),
+    // );
+    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
     <Fragment>
