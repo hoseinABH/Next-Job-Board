@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import * as Routes from '@/config/routes';
 // Types
 import type { UserMinimalProfile } from '@/types/user';
+import { logout } from '@/actions/auth';
 
 const userMenuItems = [
   {
@@ -51,7 +52,7 @@ export default function UserDropDown({ profileData }: Props) {
         router.push(Routes.CV_MAKER);
         break;
       case 'Logout':
-        // dispatch(AuthActions.logout());
+        logout();
         break;
       default:
         break;

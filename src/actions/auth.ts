@@ -2,9 +2,10 @@
 // Utilities
 import { getBaseApiUrl } from '@/lib/common';
 import { FormState, fromErrorToFormState } from '@/lib/error';
+import { isRedirectError } from 'next/dist/client/components/redirect';
 // Actions
 import { redirect } from 'next/navigation';
-import { setCookie } from './cookie';
+import { clearSession, setCookie } from './cookie';
 // Schema
 import { LoginSchema } from '@/schema/auth';
 // Types
@@ -15,7 +16,6 @@ import * as Routes from '@/config/routes';
 // Constants
 import { HttpStatus } from '@/constants/http-status';
 import * as messages from '@/constants/messages';
-import { isRedirectError } from 'next/dist/client/components/redirect';
 
 const prefix = 'auth';
 const endpoint = `${getBaseApiUrl()}/${prefix}`;
@@ -24,6 +24,8 @@ const tokenExpirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 async function login(_: any, formData: FormData): Promise<FormState | undefined> {
   const username = formData.get('username');
   const password = formData.get('password');
+  const returnUrl = formData.get('returnUrl') as string;
+  const redirectUrl = returnUrl || Routes.CV_MAKER;
   const loginDto = { username, password } as LoginDto;
   try {
     const data = LoginSchema.parse(loginDto);
@@ -44,7 +46,7 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
       };
     }
     setCookie(response.data.token, tokenExpirationDate);
-    redirect(Routes.CV_MAKER);
+    redirect(redirectUrl);
   } catch (error) {
     /** This Condition Resolve Redirect issue **/
     if (isRedirectError(error)) {
@@ -54,4 +56,9 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
   }
 }
 
-export { login };
+async function logout() {
+  clearSession();
+  redirect(Routes.LOGIN);
+}
+
+export { login, logout };

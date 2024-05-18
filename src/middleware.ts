@@ -11,7 +11,7 @@ export default async function middleware(req: NextRequest) {
   const isAuthenticationRoute = authenticationRoutes.includes(path);
   const isPrivateRoute = privateRoutes.includes(path);
   if (!token && isPrivateRoute) {
-    const absoluteURL = new URL(Routes.LOGIN, req.nextUrl.origin);
+    const absoluteURL = new URL(`${Routes.LOGIN}?redirectUrl=${path}`, req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL);
   }
   if (token && isAuthenticationRoute) {
