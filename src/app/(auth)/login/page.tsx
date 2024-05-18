@@ -12,7 +12,13 @@ export const metadata: Metadata = {
   title: 'ورود',
 };
 
-export default function LoginPage() {
+interface SearchParams {
+  searchParams?: {
+    redirectUrl?: string;
+  };
+}
+
+export default async function LoginPage({ searchParams }: SearchParams) {
   return (
     <div className="flex w-full flex-col items-center justify-center px-4 py-8">
       <Logo className="mb-4" />
@@ -20,7 +26,7 @@ export default function LoginPage() {
       <p className="mt-2 text-center text-muted-foreground md:text-right">
         برای ورود به حساب کاربری ایمیل و رمزعبور خود را در زیر وارد کنید
       </p>
-      <LoginForm />
+      <LoginForm redirectUrl={searchParams?.redirectUrl} />
       <Link href={Routes.REGISTER} className="mt-8 text-muted-foreground">
         حساب کاربری ندارید؟
       </Link>

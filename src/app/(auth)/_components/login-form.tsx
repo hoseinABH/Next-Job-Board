@@ -5,18 +5,19 @@ import SubmitButton from '@/components/submit-button';
 import { Input } from '@/components/ui/input';
 // Hooks
 import { useToastMessage } from '@/hooks/use-toast-message';
-import { useSearchParams } from 'next/navigation';
 import { useFormState } from 'react-dom';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Actions
 import { login } from '@/actions/auth';
 
-export default function LoginForm() {
+interface LoginFormProps {
+  redirectUrl?: string;
+}
+
+export default function LoginForm({ redirectUrl = '/' }: LoginFormProps) {
   const [formState, action] = useFormState(login, EMPTY_FORM_STATE);
   useToastMessage(formState);
-  const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get('redirectUrl') || '';
   return (
     <form action={action} className="mt-8 w-full max-w-sm space-y-8">
       <div className="space-y-2">
