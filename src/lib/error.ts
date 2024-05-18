@@ -15,7 +15,15 @@ export const EMPTY_FORM_STATE: FormState = {
   timestamp: Date.now(),
 };
 
-export const fromErrorToFormState = (error: unknown) => {
+export function generateErrorFormState() {
+  return {
+    status: 'ERROR',
+    message: messages.commonError,
+    fieldErrors: {},
+    timestamp: Date.now(),
+  };
+}
+export function fromErrorToFormState(error: unknown) {
   if (error instanceof ZodError) {
     return {
       status: 'ERROR' as const,
@@ -38,4 +46,4 @@ export const fromErrorToFormState = (error: unknown) => {
       timestamp: Date.now(),
     };
   }
-};
+}
