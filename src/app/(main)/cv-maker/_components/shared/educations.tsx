@@ -8,6 +8,8 @@ import { EducationModal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import useUserStore from '@/store/user';
 // Types
 import type { Education } from '@/types/user';
 
@@ -16,8 +18,9 @@ interface Props {
 }
 
 export default function Educations({ educations }: Props) {
+  const { openModal } = useUserStore();
   function openCreateModal() {
-    // dispatch(UserActions.setModalOpen(true, 'education'));
+    openModal(true, 'education');
   }
   function handleDeleteEducation(education: Education) {
     // dispatch(

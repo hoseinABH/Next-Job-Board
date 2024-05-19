@@ -88,5 +88,11 @@ export interface WorkExperience {
   updatedDate: Date;
 }
 
-export type ModalKeys = 'aboutMe' | 'personalInfo';
+export type ModalKeys =
+  | 'aboutMe'
+  | 'personalInfo'
+  | 'workExperience'
+  | 'education'
+  | 'skill'
+  | 'language';
 export type UserModals = Record<ModalKeys, boolean>;

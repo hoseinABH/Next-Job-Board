@@ -15,6 +15,10 @@ const initialValues: UserValues = {
   modals: {
     aboutMe: false,
     personalInfo: false,
+    workExperience: false,
+    education: false,
+    skill: false,
+    language: false,
   },
 };
 

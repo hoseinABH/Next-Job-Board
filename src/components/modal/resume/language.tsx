@@ -1,7 +1,7 @@
 'use client';
 // Common components
-import ControlledSelect from '@/components/controlled-select';
-import { Button } from '@/components/ui/button';
+import SelectField from '@/components/select-field';
+import SubmitButton from '@/components/submit-button';
 import {
   Dialog,
   DialogContent,
@@ -10,56 +10,32 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
+// Actions
+import { updateAboutMe } from '@/actions/user';
 // Utilities
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
-import { useForm } from 'react-hook-form';
-
-const languageFormSchema = z.object({
-  name: z.string().min(1, { message: 'زبان را انتخاب کنید' }),
-  level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Expert'], {
-    required_error: 'سطح را انتخاب کنید',
-  }),
-});
-
-type FormData = typeof languageFormSchema;
+import { useToastMessage } from '@/hooks/use-toast-message';
+import useUserStore from '@/store/user';
+import { useFormState } from 'react-dom';
 
 export function LanguageModal() {
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(languageFormSchema),
-    defaultValues: {
-      name: '',
-    },
-  });
-
-  function onSubmit(values: z.infer<FormData>) {
-    // dispatch(ResumeActions.createLanguage(values));
-    form.reset();
-  }
+  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const { modals, openModal } = useUserStore();
+  useToastMessage(formState);
   function onOpenChange(open: boolean) {
-    // dispatch(ResumeActions.setModalOpen(open, 'language'));
-    form.reset();
+    openModal(open, 'language');
   }
   return (
-    <Dialog
-      // open={modals.language}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={modals.language} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-screen max-w-xl overflow-auto">
         <DialogHeader>
           <DialogTitle>زبان ها</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form
-            id="language"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <ControlledSelect
-              control={form.control}
+        <form action={action} className="space-y-12">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <SelectField
               name="name"
               label="زبان"
               options={[
@@ -70,15 +46,14 @@ export function LanguageModal() {
                 { title: 'آلمانی', value: 'آلمانی' },
                 { title: 'فرانسوی', value: 'فرانسوی' },
               ]}
+              formState={formState}
             />
-            <ControlledSelect control={form.control} name="level" label="سطح" options={[]} />
-          </form>
+            <SelectField name="level" label="سطح" options={[]} formState={formState} />
+          </div>
           <DialogFooter>
-            <Button form="language" type="submit" loading={false}>
-              ذخیره تغییرات
-            </Button>
+            <SubmitButton>ذخیره تغییرات</SubmitButton>
           </DialogFooter>
-        </Form>
+        </form>
       </DialogContent>
     </Dialog>
   );

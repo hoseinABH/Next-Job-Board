@@ -47,32 +47,41 @@ export function PersonalInfoModal({ defaultValues }: Props) {
           <DialogTitle>مشخصات فردی</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <form action={action} className="space-y-6">
+        <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <InputField defaultValue={defaultValues?.firstName} label="نام" name="firstName" />
             <InputField
               defaultValue={defaultValues?.lastName}
               label="نام خانوادگی"
               name="lastName"
+              formState={formState}
             />
             <SelectField
               defaultValue={String(defaultValues?.maritalStatus)}
               label="وضعیت تاهل"
               name="maritalStatus"
               options={martialOptions}
+              formState={formState}
             />
             <SelectField
               defaultValue={String(defaultValues?.gender)}
               label="جنسیت"
               name="gender"
               options={genderOptions}
+              formState={formState}
             />
-            <InputField defaultValue={defaultValues?.city} label="محل سکونت" name="city" />
+            <InputField
+              defaultValue={defaultValues?.city}
+              label="محل سکونت"
+              name="city"
+              formState={formState}
+            />
             <SelectField
               defaultValue={String(defaultValues?.militaryService)}
               name="militaryService"
               label="وضعیت خدمت"
               options={militaryServiceOptions}
+              formState={formState}
             />
           </div>
           <DialogFooter>

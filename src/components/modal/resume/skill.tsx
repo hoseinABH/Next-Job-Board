@@ -1,8 +1,8 @@
 'use client';
 // Common components
-import ControlledInput from '@/components/controlled-input';
-import ControlledSelect from '@/components/controlled-select';
-import { Button } from '@/components/ui/button';
+import InputField from '@/components/input-field';
+import SelectField from '@/components/select-field';
+import SubmitButton from '@/components/submit-button';
 import {
   Dialog,
   DialogContent,
@@ -11,63 +11,38 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
+// Actions
+import { updateAboutMe } from '@/actions/user';
 // Utilities
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
-import { useForm } from 'react-hook-form';
-
-const languageFormSchema = z.object({
-  name: z.string().min(1, { message: 'مهارت را وارد کنید' }),
-  level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Expert'], {
-    required_error: 'سطح را انتخاب کنید',
-  }),
-});
-
-type FormData = typeof languageFormSchema;
+import { useToastMessage } from '@/hooks/use-toast-message';
+import useUserStore from '@/store/user';
+import { useFormState } from 'react-dom';
 
 export function SkillModal() {
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(languageFormSchema),
-    defaultValues: {
-      name: '',
-    },
-  });
-
-  function onSubmit(values: z.infer<FormData>) {
-    // dispatch(ResumeActions.createSkill(values));
-    form.reset();
-  }
+  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const { modals, openModal } = useUserStore();
+  useToastMessage(formState);
   function onOpenChange(open: boolean) {
-    // dispatch(ResumeActions.setModalOpen(open, 'skill'));
-    form.reset();
+    openModal(open, 'skill');
   }
   return (
-    <Dialog
-      // open={modals.skill}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={modals.skill} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-screen max-w-xl overflow-auto">
         <DialogHeader>
           <DialogTitle>مهارت ها</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form
-            id="skill"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <ControlledInput control={form.control} name="name" label="مهارت" />
-            <ControlledSelect control={form.control} name="level" label="سطح" options={[]} />
-          </form>
+        <form action={action} className="space-y-12">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <InputField name="name" label="مهارت" formState={formState} />
+            <SelectField name="level" label="سطح" options={[]} formState={formState} />
+          </div>
           <DialogFooter>
-            <Button form="skill" type="submit" loading={false}>
-              ذخیره تغییرات
-            </Button>
+            <SubmitButton>ذخیره تغییرات</SubmitButton>
           </DialogFooter>
-        </Form>
+        </form>
       </DialogContent>
     </Dialog>
   );

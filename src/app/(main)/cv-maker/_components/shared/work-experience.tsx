@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import WorkExperienceCard from '@/components/work-experience-card';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import useUserStore from '@/store/user';
 // Types
 import type { WorkExperience } from '@/types/user';
 
@@ -16,8 +18,9 @@ interface Props {
 }
 
 export default function WorkExperience({ workExperiences }: Props) {
+  const { openModal } = useUserStore();
   function openCreateModal() {
-    // dispatch(UserActions.setModalOpen(true, 'workExperience'));
+    openModal(true, 'workExperience');
   }
   function handleDeleteWorkExperience(experience: WorkExperience) {
     // dispatch(

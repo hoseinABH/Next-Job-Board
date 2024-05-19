@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import useUserStore from '@/store/user';
 // Constants
 import { mapLanguageLevel } from '@/constants';
 // Types
@@ -19,8 +21,9 @@ interface Props {
 }
 
 export default function Skills({ skills }: Props) {
+  const { openModal } = useUserStore();
   function openCreateModal() {
-    // dispatch(UserActions.setModalOpen(true, 'skill'));
+    openModal(true, 'skill');
   }
   function handleDeleteSkill(skill: Skill) {
     // dispatch(

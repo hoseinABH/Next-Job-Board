@@ -1,8 +1,9 @@
 'use client';
 // Common components
-import ControlledCheckbox from '@/components/controlled-checkbox';
-import ControlledInput from '@/components/controlled-input';
-import { Button } from '@/components/ui/button';
+import CheckboxField from '@/components/checkbox-field';
+import InputField from '@/components/input-field';
+import SubmitButton from '@/components/submit-button';
+import TextAreaField from '@/components/text-area-field';
 import {
   Dialog,
   DialogContent,
@@ -11,95 +12,64 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
+// Actions
+import { updateAboutMe } from '@/actions/user';
 // Utilities
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
-import { useForm } from 'react-hook-form';
-
-const workExperienceFormSchema = z.object({
-  position: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
-  companyName: z.string().min(1, { message: 'نام شرکت را وارد کنید' }),
-  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
-  endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),
-  description: z.string().min(1, { message: 'توضیحات را وارد کنید' }),
-  isCurrent: z.boolean(),
-});
-
-type FormData = typeof workExperienceFormSchema;
+import { useToastMessage } from '@/hooks/use-toast-message';
+import useUserStore from '@/store/user';
+import { useFormState } from 'react-dom';
 
 export function WorkExperienceModal() {
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(workExperienceFormSchema),
-    defaultValues: {
-      position: '',
-      companyName: '',
-      startDate: '',
-      endDate: '',
-      description: '',
-      isCurrent: false,
-    },
-  });
-
-  function onSubmit(values: z.infer<FormData>) {
-    // dispatch(ResumeActions.createExperience(values));
-    form.reset();
-  }
+  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const { modals, openModal } = useUserStore();
+  useToastMessage(formState);
   function onOpenChange(open: boolean) {
-    // dispatch(ResumeActions.setModalOpen(open, 'workExperience'));
-    form.reset();
+    openModal(open, 'workExperience');
   }
   return (
-    <Dialog
-      // open={modals.workExperience}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={modals.workExperience} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-screen max-w-xl overflow-auto pb-4 pt-12 sm:pt-4">
         <DialogHeader>
           <DialogTitle>سوابق شغلی</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form
-            id="workExperience"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <ControlledInput control={form.control} name="position" label="عنوان شغلی" />
-            <ControlledInput control={form.control} name="companyName" label="نام شرکت" />
-            <ControlledInput
-              control={form.control}
+        <form action={action} className="space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <InputField name="position" label="عنوان شغلی" formState={formState} />
+            <InputField name="companyName" label="نام شرکت" formState={formState} />
+            <InputField
               name="startDate"
               label="تاریخ شروع"
-              inputProps={{ dir: 'ltr', type: 'date' }}
+              dir="ltr"
+              type="date"
+              formState={formState}
             />
-            <ControlledInput
-              control={form.control}
+            <InputField
               name="endDate"
               label="تاریخ پایان"
-              inputProps={{ dir: 'ltr', type: 'date' }}
+              dir="ltr"
+              type="date"
+              formState={formState}
             />
-            <ControlledCheckbox
-              control={form.control}
-              name="isCurrent"
+            <CheckboxField
+              name="stillWorking"
               label="در این شرکت مشغول به کار هستم"
+              formState={formState}
             />
-            <ControlledInput
-              className="sm:col-span-2"
-              control={form.control}
+            <TextAreaField
+              containerClassName="sm:col-span-2"
               name="description"
               label="توضیحات"
-              isTextArea
-              inputProps={{ rows: 5 }}
+              rows={6}
+              formState={formState}
             />
-          </form>
+          </div>
           <DialogFooter>
-            <Button form="workExperience" type="submit" loading={false}>
-              ثبت اطلاعات
-            </Button>
+            <SubmitButton>ثبت اطلاعات</SubmitButton>
           </DialogFooter>
-        </Form>
+        </form>
       </DialogContent>
     </Dialog>
   );
