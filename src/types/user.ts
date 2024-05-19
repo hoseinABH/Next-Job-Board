@@ -33,35 +33,7 @@ export interface Language {
   createdDate: string;
   updatedDate: string;
 }
-export type ModalKeys =
-  | 'confirmDelete'
-  | 'aboutMe'
-  | 'personalInfo'
-  | 'workExperience'
-  | 'education'
-  | 'language'
-  | 'skill';
-export type ResumeModals = Record<ModalKeys, boolean>;
-export type LoadingKeys =
-  | 'getUserResume'
-  | 'updatePersonal'
-  | 'createExperience'
-  | 'createEducation'
-  | 'createLanguage'
-  | 'createSkill'
-  | 'removeEntity';
-export type ResumeLoading = Record<LoadingKeys, boolean>;
 
-export type DeleteDialogData = DialogData<Exclude<ModalKeys, 'aboutMe' | 'personalInfo'>>;
-
-export type MaritalStatus = 'single' | 'married' | 'unknown';
-export type Gender = 'female' | 'male' | 'other';
-export type MilitaryStatus =
-  | 'EducationalExemption'
-  | 'ActiveService'
-  | 'ExemptionCard'
-  | 'ServiceCompletionCard'
-  | 'Absent';
 export interface PersonalData {
   firstName: string;
   lastName: string;
@@ -76,23 +48,11 @@ export interface AboutData {
   lastName: string;
   title: string;
 }
-export interface UpdatePersonalDto extends PersonalData {}
-export type EducationDegree =
-  | 'Bachelor'
-  | 'Master'
-  | 'Doctoral'
-  | 'MiddleSchoolDiploma'
-  | 'Associate'
-  | 'Professional';
-
-export interface CreateEducationDto {
-  institution: string;
-  degree: EducationDegree;
-  fieldOfStudy: string;
-  startDate: string;
-  endDate: string;
-  currentlyEnrolled: boolean;
+export interface UpdateAboutMeDto {
+  title: string;
+  aboutMe: string;
 }
+export interface UpdatePersonalDto extends PersonalData {}
 
 export interface Education {
   fieldOfEducation: string;
@@ -124,23 +84,6 @@ export interface WorkExperience {
   createdDate: Date;
   updatedDate: Date;
 }
-export interface CreateExperienceDto {
-  companyName: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  isCurrent: boolean;
-}
-
-export type LanguageLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
-
-export interface CreateLanguageDto {
-  name: string;
-  level: LanguageLevel;
-}
-export interface CreateSkillDto extends CreateLanguageDto {}
-
 export interface UserResume {
   id: string;
   personalInfo: PersonalData;

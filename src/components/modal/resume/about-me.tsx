@@ -1,7 +1,6 @@
 'use client';
+import FieldError from '@/components/field-error';
 // Common components
-import ControlledInput from '@/components/controlled-input';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,55 +9,24 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 // Utilities
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
-import { useForm } from 'react-hook-form';
-
-const aboutMeFormSchema = z.object({
-  title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
-  aboutMe: z.string().max(400, { message: 'حداکثر کارکتر درباره من 400 می باشد' }),
-});
-
-type FormData = typeof aboutMeFormSchema;
+import { useToastMessage } from '@/hooks/use-toast-message';
+import { useFormState } from 'react-dom';
+// Actions
+import { updateAboutMe } from '@/actions/user';
+import SubmitButton from '@/components/submit-button';
 
 export function AboutMeModal() {
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(aboutMeFormSchema),
-    defaultValues: {
-      title: '',
-      aboutMe: '',
-    },
-  });
-
-  function onSubmit(values: z.infer<FormData>) {
-    // dispatch(
-    //   ResumeActions.updatePersonalInfo({
-    //     ...state!,
-    //     aboutMe: values.aboutMe,
-    //     jobTitle: values.title,
-    //   }),
-    // );
-    // form.reset();
-  }
+  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  useToastMessage(formState);
   function onOpenChange(open: boolean) {
     // dispatch(ResumeActions.setModalOpen(open, 'aboutMe'));
-    form.reset();
   }
-
-  // useEffect(() => {
-  //   if (modals.aboutMe) {
-  //     if (state?.aboutMe) {
-  //       form.setValue('aboutMe', state?.aboutMe);
-  //     }
-  //     if (state?.jobTitle) {
-  //       form.setValue('title', state?.jobTitle);
-  //     }
-  //   }
-  // }, [form, modals.aboutMe, state?.aboutMe, state?.jobTitle]);
-
   return (
     <Dialog
       // open={modals.aboutMe}
@@ -69,24 +37,22 @@ export function AboutMeModal() {
           <DialogTitle>درباره من</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form id="aboutMe" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <ControlledInput control={form.control} name="title" label="عنوان" />
-            <ControlledInput
-              control={form.control}
-              name="aboutMe"
-              label="درباره من"
-              isTextArea
-              inputProps={{ rows: 6 }}
-              description="حداکثر 400 کاراکتر"
-            />
-          </form>
-          <DialogFooter>
-            <Button form="aboutMe" type="submit" loading={false}>
-              ثبت اطلاعات
-            </Button>
-          </DialogFooter>
-        </Form>
+        <form id="aboutMe" action={action} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="title">عنوان</Label>
+            <Input name="title" />
+            <FieldError formState={formState} name="title" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="aboutMe">درباره من</Label>
+            <Textarea name="aboutMe" rows={6} />
+
+            <FieldError formState={formState} name="aboutMe" />
+          </div>
+        </form>
+        <DialogFooter>
+          <SubmitButton form="aboutMe">ثبت اطلاعات</SubmitButton>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
