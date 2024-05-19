@@ -10,18 +10,18 @@ interface InputFieldProps extends InputProps {
   name: string;
   formState?: FormState;
   label?: string;
-  className?: string;
+  containerClassName?: string;
 }
 
 export default function InputField({
   name,
   label,
   formState,
-  className,
+  containerClassName,
   ...props
 }: InputFieldProps) {
   return (
-    <div className={cn('space-y-2', className)}>
+    <div className={cn('space-y-2', containerClassName)}>
       {label ? <Label htmlFor={name}>{label}</Label> : null}
       <Input name={name} {...props} />
       <FieldError formState={formState} name={name} />
