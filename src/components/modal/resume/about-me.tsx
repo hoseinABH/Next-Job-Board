@@ -44,7 +44,7 @@ export function AboutMeModal({ defaultValues }: Props) {
           <DialogTitle>درباره من</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <form id="aboutMe" action={action} className="space-y-6">
+        <form action={action} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="title">عنوان</Label>
             <Input name="title" defaultValue={defaultValues.title} />
@@ -55,10 +55,10 @@ export function AboutMeModal({ defaultValues }: Props) {
             <Textarea name="aboutMe" rows={6} defaultValue={defaultValues.aboutMe} />
             <FieldError formState={formState} name="aboutMe" />
           </div>
+          <DialogFooter>
+            <SubmitButton>ثبت اطلاعات</SubmitButton>
+          </DialogFooter>
         </form>
-        <DialogFooter>
-          <SubmitButton form="aboutMe">ثبت اطلاعات</SubmitButton>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

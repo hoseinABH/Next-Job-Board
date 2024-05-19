@@ -23,14 +23,6 @@ export function generateErrorFormState() {
     timestamp: Date.now(),
   };
 }
-export function generateSuccessFormState() {
-  return {
-    status: 'SUCCESS',
-    message: messages.commonSuccess,
-    fieldErrors: {},
-    timestamp: Date.now(),
-  };
-}
 export function fromErrorToFormState(error: unknown) {
   if (error instanceof ZodError) {
     return {

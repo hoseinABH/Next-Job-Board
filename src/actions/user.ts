@@ -2,17 +2,14 @@
 // Utilities
 import { mutate } from '@/lib/client';
 import { getBaseApiUrl } from '@/lib/common';
-import {
-  fromErrorToFormState,
-  generateErrorFormState,
-  generateSuccessFormState,
-  type FormState,
-} from '@/lib/error';
-import { isRedirectError } from 'next/dist/client/components/redirect';
+import { fromErrorToFormState, generateErrorFormState, type FormState } from '@/lib/error';
+import { revalidatePath } from 'next/cache';
 // Actions
 import { getSession } from '@/actions/cookie';
 // Constants
+import * as Routes from '@/config/routes';
 import { HttpStatus } from '@/constants/http-status';
+import * as messages from '@/constants/messages';
 // Schema
 import { AboutMeFormSchema } from '@/schema/user';
 // Types
@@ -57,12 +54,14 @@ async function updateAboutMe(_: any, formData: FormData): Promise<FormState | un
     if (response.status !== HttpStatus.OK) {
       generateErrorFormState();
     }
-    generateSuccessFormState();
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
   } catch (error) {
-    /** This Condition Resolve Redirect issue **/
-    if (isRedirectError(error)) {
-      throw error;
-    }
     return fromErrorToFormState(error);
   }
 }
