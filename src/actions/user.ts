@@ -135,15 +135,19 @@ async function createWorkExperience(_: any, formData: FormData): Promise<FormSta
     companyName,
     startDate,
     endDate,
-    stillWorking,
+    stillWorking: Boolean(stillWorking),
     description,
   };
   try {
-    const data: CreateWorkExperienceDto = WorkExperienceFormSchema.parse(createWorkExperienceDto);
+    const data = WorkExperienceFormSchema.parse(createWorkExperienceDto);
+    const normalizedDto = {
+      ...data,
+      endDate: data.endDate?.length ? data.endDate : null,
+    } as CreateWorkExperienceDto;
     const response = await mutate<CreateWorkExperienceDto>(
       `${endpoint}/save-work-experience`,
       'POST',
-      data,
+      normalizedDto,
     );
     if (response.status !== HttpStatus.OK) {
       generateErrorFormState();
@@ -166,20 +170,19 @@ async function createEducation(_: any, formData: FormData): Promise<FormState | 
   const startDate = formData.get('startDate');
   const endDate = formData.get('endDate');
   const stillEducating = formData.get('stillEducating');
-  const description = formData.get('description');
   const createEducationDto = {
     fieldOfEducation,
     educationalInstitution,
     grade,
     startDate,
     endDate,
-    stillEducating,
-    description,
+    stillEducating: Boolean(stillEducating),
   };
   try {
     const data = EducationFormSchema.parse(createEducationDto);
     const normalizedDto = {
       ...data,
+      endDate: data.endDate?.length ? data.endDate : null,
       grade: parseInt(data.grade),
     } as CreateEducationDto;
     const response = await mutate<CreateEducationDto>(

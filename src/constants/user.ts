@@ -84,3 +84,22 @@ export const militaryServiceOptions: SelectOption[] = [
     title: 'معافیت پزشکی',
   },
 ];
+
+export const seniorityLevelOptions: SelectOption[] = [
+  {
+    value: 0,
+    title: 'مبتدی',
+  },
+  {
+    value: 1,
+    title: 'کارشناس',
+  },
+  {
+    value: 2,
+    title: 'کارشناس ارشد',
+  },
+  {
+    value: 3,
+    title: 'متخصص',
+  },
+];

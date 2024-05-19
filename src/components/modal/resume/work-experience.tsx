@@ -37,7 +37,7 @@ export function WorkExperienceModal() {
         </DialogHeader>
         <form action={action} className="space-y-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="position" label="عنوان شغلی" formState={formState} />
+            <InputField name="title" label="عنوان شغلی" formState={formState} />
             <InputField name="companyName" label="نام شرکت" formState={formState} />
             <InputField
               name="startDate"
@@ -55,6 +55,7 @@ export function WorkExperienceModal() {
             />
             <CheckboxField
               name="stillWorking"
+              value="stillEducating"
               label="در این شرکت مشغول به کار هستم"
               formState={formState}
             />

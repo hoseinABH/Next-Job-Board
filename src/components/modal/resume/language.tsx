@@ -18,6 +18,8 @@ import { EMPTY_FORM_STATE } from '@/lib/error';
 import { useToastMessage } from '@/hooks/use-toast-message';
 import useUserStore from '@/store/user';
 import { useFormState } from 'react-dom';
+// Constants
+import { seniorityLevelOptions } from '@/constants/user';
 
 export function LanguageModal() {
   const [formState, action] = useFormState(createLanguage, EMPTY_FORM_STATE);
@@ -48,7 +50,12 @@ export function LanguageModal() {
               ]}
               formState={formState}
             />
-            <SelectField name="level" label="سطح" options={[]} formState={formState} />
+            <SelectField
+              name="level"
+              label="سطح"
+              options={seniorityLevelOptions}
+              formState={formState}
+            />
           </div>
           <DialogFooter>
             <SubmitButton>ذخیره تغییرات</SubmitButton>

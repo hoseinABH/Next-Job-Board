@@ -70,8 +70,8 @@ export interface CreateEducationDto {
   fieldOfEducation: string;
   educationalInstitution: string;
   grade: Grade;
-  startDate: Date;
-  endDate: Nullable<Date>;
+  startDate: string;
+  endDate: Nullable<string>;
   stillEducating: true;
   description: string;
 }
@@ -87,8 +87,8 @@ export interface Education extends CreateEducationDto {
 export interface CreateWorkExperienceDto {
   title: string;
   companyName: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   stillWorking: boolean;
   description: string;
 }

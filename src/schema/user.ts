@@ -26,8 +26,8 @@ export const PersonalInfoFormSchema = z.object({
 export const WorkExperienceFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
   companyName: z.string().min(1, { message: 'نام شرکت را وارد کنید' }),
-  startDate: z.date({ required_error: 'تاریخ شروع را وارد کنید' }),
-  endDate: z.date({ required_error: 'تاریخ پایان را وارد کنید' }),
+  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
+  endDate: z.string().nullable(),
   description: z.string().min(1, { message: 'توضیحات را وارد کنید' }),
   stillWorking: z.boolean(),
 });
@@ -38,8 +38,8 @@ export const EducationFormSchema = z.object({
     required_error: 'مقطع را انتخاب کنید',
   }),
   fieldOfEducation: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
-  startDate: z.date({ required_error: 'تاریخ شروع را وارد کنید' }),
-  endDate: z.date({ required_error: 'تاریخ پایان را وارد کنید' }),
+  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
+  endDate: z.string().nullable(),
   stillEducating: z.boolean(),
 });
 

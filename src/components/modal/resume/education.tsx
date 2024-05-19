@@ -20,6 +20,8 @@ import { EMPTY_FORM_STATE } from '@/lib/error';
 import { useToastMessage } from '@/hooks/use-toast-message';
 import useUserStore from '@/store/user';
 import { useFormState } from 'react-dom';
+// Constants
+import { educationGradeOptions } from '@/constants/user';
 
 export function EducationModal() {
   const [formState, action] = useFormState(createEducation, EMPTY_FORM_STATE);
@@ -37,9 +39,14 @@ export function EducationModal() {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="fieldOfStudy" label="رشته تحصیلی و گرایش" formState={formState} />
-            <InputField name="institution" label="نام دانشگاه" formState={formState} />
-            <SelectField name="degree" label="مقطع تحصیلی" options={[]} formState={formState} />
+            <InputField name="fieldOfEducation" label="رشته تحصیلی و گرایش" formState={formState} />
+            <InputField name="educationalInstitution" label="نام دانشگاه" formState={formState} />
+            <SelectField
+              name="grade"
+              label="مقطع تحصیلی"
+              options={educationGradeOptions}
+              formState={formState}
+            />
             <InputField
               name="startDate"
               label="تاریخ شروع"
@@ -55,7 +62,8 @@ export function EducationModal() {
               formState={formState}
             />
             <CheckboxField
-              name="currentlyEnrolled"
+              name="stillEducating"
+              value="stillEducating"
               label="در این مقطع مشغول به تحصیل هستم"
               containerClassName="sm:col-span-2"
               formState={formState}

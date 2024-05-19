@@ -19,6 +19,8 @@ import { EMPTY_FORM_STATE } from '@/lib/error';
 import { useToastMessage } from '@/hooks/use-toast-message';
 import useUserStore from '@/store/user';
 import { useFormState } from 'react-dom';
+// Constants
+import { seniorityLevelOptions } from '@/constants/user';
 
 export function SkillModal() {
   const [formState, action] = useFormState(createSkill, EMPTY_FORM_STATE);
@@ -37,7 +39,12 @@ export function SkillModal() {
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <InputField name="name" label="مهارت" formState={formState} />
-            <SelectField name="level" label="سطح" options={[]} formState={formState} />
+            <SelectField
+              name="level"
+              label="سطح"
+              options={seniorityLevelOptions}
+              formState={formState}
+            />
           </div>
           <DialogFooter>
             <SubmitButton>ذخیره تغییرات</SubmitButton>
