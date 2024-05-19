@@ -26,26 +26,32 @@ export const PersonalInfoFormSchema = z.object({
 export const WorkExperienceFormSchema = z.object({
   title: z.string().min(1, { message: 'عنوان شغلی را وارد کنید' }),
   companyName: z.string().min(1, { message: 'نام شرکت را وارد کنید' }),
-  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
-  endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),
+  startDate: z.date({ required_error: 'تاریخ شروع را وارد کنید' }),
+  endDate: z.date({ required_error: 'تاریخ پایان را وارد کنید' }),
   description: z.string().min(1, { message: 'توضیحات را وارد کنید' }),
   stillWorking: z.boolean(),
 });
 
+export const EducationFormSchema = z.object({
+  educationalInstitution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
+  grade: z.enum(['0', '1', '2', '3', '4', '5'], {
+    required_error: 'مقطع را انتخاب کنید',
+  }),
+  fieldOfEducation: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
+  startDate: z.date({ required_error: 'تاریخ شروع را وارد کنید' }),
+  endDate: z.date({ required_error: 'تاریخ پایان را وارد کنید' }),
+  stillEducating: z.boolean(),
+});
+
 export const LanguageFormSchema = z.object({
-  name: z.string().min(1, { message: 'مهارت را وارد کنید' }),
+  name: z.string().min(1, { message: 'زبان را وارد کنید' }),
   level: z.enum(['0', '1', '2', '3', '4', '5'], {
     required_error: 'سطح را انتخاب کنید',
   }),
 });
-
-export const EducationFormSchema = z.object({
-  institution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
-  degree: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'مقطع را انتخاب کنید',
+export const SkillFormSchema = z.object({
+  name: z.string().min(1, { message: 'مهارت را وارد کنید' }),
+  level: z.enum(['0', '1', '2', '3', '4', '5'], {
+    required_error: 'سطح را انتخاب کنید',
   }),
-  fieldOfStudy: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
-  startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
-  endDate: z.string().min(1, { message: 'تاریخ پایان را وارد کنید' }),
-  currentlyEnrolled: z.boolean(),
 });

@@ -1,5 +1,4 @@
 'use client';
-import { updateAboutMe } from '@/actions/user';
 import CheckboxField from '@/components/checkbox-field';
 // Common components
 import InputField from '@/components/input-field';
@@ -13,6 +12,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+// Actions
+import { createEducation } from '@/actions/user';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
@@ -21,7 +22,7 @@ import useUserStore from '@/store/user';
 import { useFormState } from 'react-dom';
 
 export function EducationModal() {
-  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const [formState, action] = useFormState(createEducation, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
   useToastMessage(formState);
   function onOpenChange(open: boolean) {

@@ -12,7 +12,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 // Actions
-import { updateAboutMe } from '@/actions/user';
+import { createSkill } from '@/actions/user';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
@@ -21,7 +21,7 @@ import useUserStore from '@/store/user';
 import { useFormState } from 'react-dom';
 
 export function SkillModal() {
-  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const [formState, action] = useFormState(createSkill, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
   useToastMessage(formState);
   function onOpenChange(open: boolean) {

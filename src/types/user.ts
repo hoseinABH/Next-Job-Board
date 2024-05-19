@@ -24,10 +24,19 @@ export interface UserProfile {
   educations: Education[];
 }
 
+export type SeniorityLevel = 0 | 1 | 2 | 3 | 4 | 5;
+
+export interface CreateSkillDto extends CreateLanguageDto {}
+
+export interface CreateLanguageDto {
+  name: string;
+  level: SeniorityLevel;
+}
+
 export interface Skill extends Language {}
 export interface Language {
   title: string;
-  level: number;
+  level: SeniorityLevel;
   userProfiles: unknown;
   id: number;
   createdDate: string;
@@ -57,19 +66,31 @@ export interface UpdateAboutMeDto {
 }
 export interface UpdatePersonalDto extends PersonalData {}
 
-export interface Education {
+export interface CreateEducationDto {
   fieldOfEducation: string;
   educationalInstitution: string;
   grade: Grade;
   startDate: Date;
   endDate: Nullable<Date>;
-  stillEducating: boolean;
+  stillEducating: true;
   description: string;
+}
+
+export interface Education extends CreateEducationDto {
   userProfileId: number;
   userProfile: unknown;
   id: number;
   createdDate: Date;
   updatedDate: Date;
+}
+
+export interface CreateWorkExperienceDto {
+  title: string;
+  companyName: string;
+  startDate: Date;
+  endDate: Date;
+  stillWorking: boolean;
+  description: string;
 }
 
 export interface WorkExperience {

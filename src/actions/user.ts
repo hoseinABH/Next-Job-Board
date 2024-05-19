@@ -11,10 +11,21 @@ import * as Routes from '@/config/routes';
 import { HttpStatus } from '@/constants/http-status';
 import * as messages from '@/constants/messages';
 // Schema
-import { AboutMeFormSchema, PersonalInfoFormSchema } from '@/schema/user';
+import {
+  AboutMeFormSchema,
+  EducationFormSchema,
+  LanguageFormSchema,
+  PersonalInfoFormSchema,
+  SkillFormSchema,
+  WorkExperienceFormSchema,
+} from '@/schema/user';
 // Types
 import type { BaseApiResponse } from '@/types/http';
 import type {
+  CreateEducationDto,
+  CreateLanguageDto,
+  CreateSkillDto,
+  CreateWorkExperienceDto,
   UpdateAboutMeDto,
   UpdatePersonalDto,
   UserMinimalProfile,
@@ -112,5 +123,152 @@ async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState
     return fromErrorToFormState(error);
   }
 }
+async function createWorkExperience(_: any, formData: FormData): Promise<FormState | undefined> {
+  const title = formData.get('title');
+  const companyName = formData.get('companyName');
+  const startDate = formData.get('startDate');
+  const endDate = formData.get('endDate');
+  const stillWorking = formData.get('stillWorking');
+  const description = formData.get('description');
+  const createWorkExperienceDto = {
+    title,
+    companyName,
+    startDate,
+    endDate,
+    stillWorking,
+    description,
+  };
+  try {
+    const data: CreateWorkExperienceDto = WorkExperienceFormSchema.parse(createWorkExperienceDto);
+    const response = await mutate<CreateWorkExperienceDto>(
+      `${endpoint}/save-work-experience`,
+      'POST',
+      data,
+    );
+    if (response.status !== HttpStatus.OK) {
+      generateErrorFormState();
+    }
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
+async function createEducation(_: any, formData: FormData): Promise<FormState | undefined> {
+  const fieldOfEducation = formData.get('fieldOfEducation');
+  const educationalInstitution = formData.get('educationalInstitution');
+  const grade = formData.get('grade');
+  const startDate = formData.get('startDate');
+  const endDate = formData.get('endDate');
+  const stillEducating = formData.get('stillEducating');
+  const description = formData.get('description');
+  const createEducationDto = {
+    fieldOfEducation,
+    educationalInstitution,
+    grade,
+    startDate,
+    endDate,
+    stillEducating,
+    description,
+  };
+  try {
+    const data = EducationFormSchema.parse(createEducationDto);
+    const normalizedDto = {
+      ...data,
+      grade: parseInt(data.grade),
+    } as CreateEducationDto;
+    const response = await mutate<CreateEducationDto>(
+      `${endpoint}/save-education`,
+      'POST',
+      normalizedDto,
+    );
+    if (response.status !== HttpStatus.OK) {
+      generateErrorFormState();
+    }
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
+async function createSkill(_: any, formData: FormData): Promise<FormState | undefined> {
+  const name = formData.get('name');
+  const level = formData.get('level');
+  const createSkillDto = {
+    name,
+    level,
+  };
+  try {
+    const data = SkillFormSchema.parse(createSkillDto);
+    const normalizedDto = {
+      ...data,
+      level: parseInt(data.level),
+    } as CreateSkillDto;
+    const response = await mutate<CreateSkillDto>(`${endpoint}/save-skill`, 'POST', normalizedDto);
+    if (response.status !== HttpStatus.OK) {
+      generateErrorFormState();
+    }
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
+async function createLanguage(_: any, formData: FormData): Promise<FormState | undefined> {
+  const name = formData.get('name');
+  const level = formData.get('level');
+  const createLanguageDto = {
+    name,
+    level,
+  };
+  try {
+    const data = LanguageFormSchema.parse(createLanguageDto);
+    const normalizedDto = {
+      ...data,
+      level: parseInt(data.level),
+    } as CreateLanguageDto;
+    const response = await mutate<CreateLanguageDto>(
+      `${endpoint}/save-language`,
+      'POST',
+      normalizedDto,
+    );
+    if (response.status !== HttpStatus.OK) {
+      generateErrorFormState();
+    }
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
 
-export { getUserMinimalProfile, getUserProfile, updateAboutMe, updatePersonalInfo };
+export {
+  getUserMinimalProfile,
+  getUserProfile,
+  updateAboutMe,
+  updatePersonalInfo,
+  createWorkExperience,
+  createEducation,
+  createLanguage,
+  createSkill,
+};
