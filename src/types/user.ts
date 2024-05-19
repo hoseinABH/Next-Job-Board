@@ -1,4 +1,4 @@
-import type { DialogData, Nullable } from './common';
+import type { Nullable } from './common';
 
 export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
 
@@ -14,9 +14,9 @@ export interface UserProfile {
   aboutMe: string;
   firstName: string;
   lastName: string;
-  maritalStatus: number;
-  militaryService: number;
-  gender: number;
+  maritalStatus: MaritalStatus;
+  militaryService: MilitaryService;
+  gender: Gender;
   city: string;
   skills: Skill[];
   languages: Language[];

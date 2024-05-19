@@ -1,6 +1,7 @@
 import { toast } from '@/components/ui/use-toast';
-import type { FormState } from '@/lib/error';
 import { useEffect, useRef } from 'react';
+// Types
+import type { FormState } from '@/lib/error';
 
 const useToastMessage = (formState?: FormState) => {
   const prevTimestamp = useRef(formState?.timestamp);
