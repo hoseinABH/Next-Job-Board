@@ -2,13 +2,13 @@
 import { Trash2 } from 'lucide-react';
 // Common components
 import IconButton from './icon-button';
+import Maybe from './maybe';
 // Utilities
 import { persianDate } from '@/lib/date';
 // Types
 import type { Education } from '@/types/user';
 // Constants
-import { mapEducationLevel } from '@/constants';
-import Maybe from './maybe';
+import { mapEducationGrade } from '@/constants/user';
 
 interface Props {
   education: Education;
@@ -21,7 +21,7 @@ export default function EducationCard({ education, onDelete }: Props) {
       <div className="space-y-1">
         <h6 className="text-lg font-semibold ">{education.fieldOfEducation}</h6>
         <div className="flex items-center">
-          {mapEducationLevel[education.grade]} - <p>{education.educationalInstitution}</p>
+          {mapEducationGrade[education.grade]} - <p>{education.educationalInstitution}</p>
         </div>
         <p className="text-muted-foreground">
           {persianDate(education.startDate)} -{' '}

@@ -33,13 +33,16 @@ export interface Language {
   createdDate: string;
   updatedDate: string;
 }
-
+export type MaritalStatus = 0 | 1;
+export type MilitaryService = 0 | 1 | 2 | 3 | 4 | 5;
+export type Gender = 0 | 1;
+export type Grade = 0 | 1 | 2 | 3 | 4 | 5;
 export interface PersonalData {
   firstName: string;
   lastName: string;
-  maritalStatus: number;
-  militaryService: number;
-  gender: number;
+  maritalStatus: MaritalStatus;
+  militaryService: MilitaryService;
+  gender: Gender;
   city: string;
 }
 export interface AboutData {
@@ -57,7 +60,7 @@ export interface UpdatePersonalDto extends PersonalData {}
 export interface Education {
   fieldOfEducation: string;
   educationalInstitution: string;
-  grade: number;
+  grade: Grade;
   startDate: Date;
   endDate: Nullable<Date>;
   stillEducating: boolean;
@@ -84,14 +87,6 @@ export interface WorkExperience {
   createdDate: Date;
   updatedDate: Date;
 }
-export interface UserResume {
-  id: string;
-  personalInfo: PersonalData;
-  education: Education[];
-  workExperience: WorkExperience[];
-  skills: Skill[];
-  languages: Language[];
-}
 
-export type ModalKeys = 'aboutMe';
+export type ModalKeys = 'aboutMe' | 'personalInfo';
 export type UserModals = Record<ModalKeys, boolean>;

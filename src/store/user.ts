@@ -14,6 +14,7 @@ export type UserState = UserValues & UserActions;
 const initialValues: UserValues = {
   modals: {
     aboutMe: false,
+    personalInfo: false,
   },
 };
 

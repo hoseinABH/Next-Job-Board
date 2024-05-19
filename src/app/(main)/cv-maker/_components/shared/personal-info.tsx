@@ -7,8 +7,10 @@ import { PersonalInfoModal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import useUserStore from '@/store/user';
 // Constants
-import { mapGenderTitle, mapMaritalStatus, mapMilitaryStatus } from '@/constants';
+import { mapGender, mapMaritalStatus, mapMilitaryService } from '@/constants/user';
 // Types
 import type { PersonalData } from '@/types/user';
 
@@ -18,8 +20,9 @@ interface Props {
 
 export default function PersonalInfo({ personalData }: Props) {
   const { firstName, lastName, maritalStatus, militaryService, gender, city } = personalData;
+  const { openModal } = useUserStore();
   function openEditModal() {
-    // dispatch(ResumeActions.setModalOpen(true, 'personalInfo'));
+    openModal(true, 'personalInfo');
   }
   const { userData, isEmpty } = useMemo(() => {
     const userData = [
@@ -33,11 +36,11 @@ export default function PersonalInfo({ personalData }: Props) {
       },
       {
         title: 'جنسیت',
-        value: mapGenderTitle[gender],
+        value: mapGender[gender],
       },
       {
         title: 'وضعیت نظام وظیفه',
-        value: mapMilitaryStatus[militaryService],
+        value: mapMilitaryService[militaryService],
       },
       {
         title: 'محل سکونت',
@@ -88,7 +91,9 @@ export default function PersonalInfo({ personalData }: Props) {
           </div>
         )}
       </SectionWrapper>
-      <PersonalInfoModal />
+      <PersonalInfoModal
+        defaultValues={{ firstName, lastName, maritalStatus, gender, militaryService, city }}
+      />
     </Fragment>
   );
 }
