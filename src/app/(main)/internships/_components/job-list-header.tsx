@@ -2,9 +2,9 @@
 // UI Frameworks
 import { SlidersHorizontal } from 'lucide-react';
 // Common components
-import JobSearch from '@/components/job-search';
 import IconButton from '@/components/icon-button';
-import SelectBox from '@/components/select-box';
+import JobSearch from '@/components/job-search';
+import SelectField from '@/components/select-field';
 
 interface Props {
   count: number;
@@ -20,13 +20,14 @@ export default function JobListHeader({ count }: Props) {
           <span className="ml-1 font-semibold">{count}</span> فرصت کارآموزی یافت شد
         </p>
         <div className="flex w-full items-center gap-x-2 sm:w-max">
-          <SelectBox
+          <SelectField
             options={[
               { title: 'مرتبط ترین', value: 'mostRelevant' },
               { title: 'جدید ترین', value: 'mostRecent' },
               { title: 'بالاترین حقوق', value: 'highestSalary' },
             ]}
             placeholder="مرتب سازی"
+            name="order"
           />
           <IconButton className="flex lg:hidden" onClick={openFilterSheet}>
             <SlidersHorizontal />

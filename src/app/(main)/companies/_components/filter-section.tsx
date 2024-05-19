@@ -2,10 +2,10 @@
 // UI Frameworks
 import { MapPin, Search } from 'lucide-react';
 // Common components
-import { Card, CardContent } from '@/components/ui/card';
+import SelectField from '@/components/select-field';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import SelectBox from '@/components/select-box';
 // Utilities
 import { cn } from '@/lib/utils';
 // Data
@@ -28,10 +28,11 @@ export default function FilterSection({ className }: Props) {
               <MapPin className={cn('right-input-adornment', 'h-4 w-4')} />
               <Input className="pr-8" placeholder="موقعیت مکانی" />
             </div>
-            <SelectBox
+            <SelectField
               placeholder="دسته‌بندی شغلی"
               options={data}
-              className="min-w-full sm:min-w-fit"
+              containerClassName="min-w-full sm:min-w-fit"
+              name="category"
             />
           </div>
           <Button className="w-full sm:w-auto">جستجو شرکت</Button>

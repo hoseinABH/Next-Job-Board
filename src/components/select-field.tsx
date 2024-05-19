@@ -17,7 +17,7 @@ interface SelectFieldProps extends SelectProps {
   formState?: FormState;
   label?: string;
   placeholder?: string;
-  className?: string;
+  containerClassName?: string;
   options: SelectOption[];
 }
 
@@ -26,15 +26,15 @@ export default function SelectField({
   label,
   options,
   formState,
-  className,
+  containerClassName,
   placeholder = 'انتخاب کنید',
   ...props
 }: SelectFieldProps) {
   return (
-    <div className={cn('space-y-2', className)}>
+    <div className={cn('space-y-2', containerClassName)}>
       {label ? <Label htmlFor={name}>{label}</Label> : null}
       <Select name={name} {...props}>
-        <SelectTrigger>
+        <SelectTrigger className={containerClassName}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
