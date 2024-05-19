@@ -98,8 +98,8 @@ export interface WorkExperience {
   companyTitle: string;
   companyProfileId: number;
   companyProfile: number;
-  startDate: Date;
-  endDate: Nullable<Date>;
+  startDate: string;
+  endDate: Nullable<string>;
   stillWorking: boolean;
   description: string;
   userProfileId: number;
