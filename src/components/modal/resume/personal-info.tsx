@@ -12,7 +12,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 // Actions
-import { updateAboutMe } from '@/actions/user';
+import { updatePersonalInfo } from '@/actions/user';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Hooks
@@ -34,7 +34,7 @@ interface Props {
 }
 
 export function PersonalInfoModal({ defaultValues }: Props) {
-  const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
+  const [formState, action] = useFormState(updatePersonalInfo, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
   useToastMessage(formState);
   function onOpenChange(open: boolean) {
@@ -74,7 +74,6 @@ export function PersonalInfoModal({ defaultValues }: Props) {
               label="وضعیت خدمت"
               options={militaryServiceOptions}
             />
-            {/* <InputField name="phone" label="شماره موبایل" dir="ltr" type="tel" /> */}
           </div>
           <DialogFooter>
             <SubmitButton>ثبت اطلاعات</SubmitButton>

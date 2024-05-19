@@ -23,7 +23,7 @@ export default function InputField({
   return (
     <div className={cn('space-y-2', className)}>
       {label ? <Label htmlFor={name}>{label}</Label> : null}
-      <Input {...props} />
+      <Input name={name} {...props} />
       <FieldError formState={formState} name={name} />
     </div>
   );

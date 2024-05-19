@@ -46,14 +46,6 @@ export default function PersonalInfo({ personalData }: Props) {
         title: 'محل سکونت',
         value: city,
       },
-      {
-        title: 'تاریخ تولد',
-        // value: birthDate,
-      },
-      {
-        title: 'شماره تلفن',
-        // value: phoneNumber,
-      },
     ];
     const isEmpty = !Boolean(
       city || firstName || gender || lastName || maritalStatus || militaryService,

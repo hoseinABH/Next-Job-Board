@@ -11,10 +11,15 @@ import * as Routes from '@/config/routes';
 import { HttpStatus } from '@/constants/http-status';
 import * as messages from '@/constants/messages';
 // Schema
-import { AboutMeFormSchema } from '@/schema/user';
+import { AboutMeFormSchema, PersonalInfoFormSchema } from '@/schema/user';
 // Types
 import type { BaseApiResponse } from '@/types/http';
-import type { UpdateAboutMeDto, UserMinimalProfile, UserProfile } from '@/types/user';
+import type {
+  UpdateAboutMeDto,
+  UpdatePersonalDto,
+  UserMinimalProfile,
+  UserProfile,
+} from '@/types/user';
 
 const prefix = 'user';
 const endpoint = `${getBaseApiUrl()}/${prefix}`;
@@ -47,7 +52,7 @@ async function updateAboutMe(_: any, formData: FormData): Promise<FormState | un
   const updateAboutMeDto = {
     title,
     aboutMe,
-  } as UpdateAboutMeDto;
+  };
   try {
     const data = AboutMeFormSchema.parse(updateAboutMeDto);
     const response = await mutate<UpdateAboutMeDto>(`${endpoint}/save-about-me`, 'POST', data);
@@ -65,5 +70,47 @@ async function updateAboutMe(_: any, formData: FormData): Promise<FormState | un
     return fromErrorToFormState(error);
   }
 }
+async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState | undefined> {
+  const firstName = formData.get('firstName');
+  const lastName = formData.get('lastName');
+  const gender = formData.get('gender');
+  const maritalStatus = formData.get('maritalStatus');
+  const militaryService = formData.get('militaryService');
+  const city = formData.get('city');
+  const updateAboutMeDto = {
+    firstName,
+    lastName,
+    gender,
+    maritalStatus,
+    militaryService,
+    city,
+  };
+  try {
+    const data = PersonalInfoFormSchema.parse(updateAboutMeDto);
+    const normalizedDto = {
+      ...data,
+      gender: parseInt(data.gender),
+      maritalStatus: parseInt(data.maritalStatus),
+      militaryService: parseInt(data.militaryService),
+    } as UpdatePersonalDto;
+    const response = await mutate<UpdatePersonalDto>(
+      `${endpoint}/save-personal-info`,
+      'POST',
+      normalizedDto,
+    );
+    if (response.status !== HttpStatus.OK) {
+      generateErrorFormState();
+    }
+    revalidatePath(Routes.CV_MAKER);
+    return {
+      status: 'SUCCESS',
+      message: messages.commonSuccess,
+      fieldErrors: {},
+      timestamp: Date.now(),
+    };
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
 
-export { getUserMinimalProfile, getUserProfile, updateAboutMe };
+export { getUserMinimalProfile, getUserProfile, updateAboutMe, updatePersonalInfo };
