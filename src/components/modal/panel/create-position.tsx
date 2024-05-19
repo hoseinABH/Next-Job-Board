@@ -1,9 +1,10 @@
 'use client';
+import CheckboxField from '@/components/checkbox-field';
 // Common components
-import ControlledCheckbox from '@/components/controlled-checkbox';
-import ControlledInput from '@/components/controlled-input';
-import ControlledSelect from '@/components/controlled-select';
-import { Button } from '@/components/ui/button';
+import InputField from '@/components/input-field';
+import SelectField from '@/components/select-field';
+import SubmitButton from '@/components/submit-button';
+import TextAreaField from '@/components/text-area-field';
 import {
   Dialog,
   DialogContent,
@@ -12,48 +13,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-// Utilities
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-// Hooks
-import { useForm } from 'react-hook-form';
 // Constants
-
-const educationFormSchema = z.object({
-  title: z.string().min(1, { message: 'عنوان فرصت شغلی را وارد کنید' }),
-  requiredDegree: z.enum(
-    ['Bachelor', 'Master', 'Doctoral', 'MiddleSchoolDiploma', 'Associate', 'Professional'],
-    {
-      required_error: 'مقطع تحصیلی مورد نیاز را انتخاب کنید',
-    },
-  ),
-  applicationDeadline: z.string().min(1, { message: 'تاریخ مهلت درخواست را وارد کنید' }),
-  salary: z.string().min(1, { message: 'حقوق پیشنهادی را وارد کنید' }),
-  description: z.string().min(1, { message: 'توضیحات موقعیت شغلی را وارد کنید' }),
-  isUrgent: z.boolean(),
-});
-
-type FormData = typeof educationFormSchema;
+import { educationGradeOptions } from '@/constants/user';
 
 export default function CreatePositionModal() {
-  const form = useForm<z.infer<FormData>>({
-    resolver: zodResolver(educationFormSchema),
-    defaultValues: {
-      title: '',
-      applicationDeadline: '',
-      salary: '',
-      description: '',
-      isUrgent: false,
-    },
-  });
-  function onSubmit(values: z.infer<FormData>) {
-    console.log(values);
-    form.reset();
-  }
   function onOpenChange(open: boolean) {
     // dispatch(PanelActions.setModalOpen(open, 'createPosition'));
-    form.reset();
   }
   return (
     <Dialog
@@ -65,58 +30,43 @@ export default function CreatePositionModal() {
           <DialogTitle>موقعیت شغلی جدید</DialogTitle>
           <DialogDescription>لطفا فیلد های مورد نظر را تکمیل نمایید</DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form
-            id="createPosition"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <ControlledInput control={form.control} name="title" label="عنوان موقعیت شغلی" />
-            <ControlledSelect
-              control={form.control}
+        <form id="createPosition" className="space-y-12">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <InputField name="title" label="عنوان موقعیت شغلی" />
+            <SelectField
               name="requiredDegree"
               label="مقطع تحصیلی مورد نیاز"
-              options={[]}
-              // options={educationDegreeOptions}
+              options={educationGradeOptions}
             />
-            <ControlledInput
-              control={form.control}
+            <InputField
               name="applicationDeadline"
               label="مهلت ارسال درخواست"
-              inputProps={{ dir: 'ltr', type: 'date' }}
+              dir="ltr"
+              type="data"
             />
-            <ControlledInput
-              control={form.control}
+            <InputField
               name="salary"
               label="حقوق پیشنهادی"
-              inputProps={{
-                dir: 'ltr',
-                inputMode: 'numeric',
-                placeholder: 'تومان',
-              }}
+              dir="ltr"
+              inputMode="numeric"
+              placeholder="تومان"
             />
-            <ControlledInput
-              control={form.control}
+            <TextAreaField
               name="description"
               label="توضیحات فرصت شغلی"
-              isTextArea
-              inputProps={{ rows: 6 }}
-              description="حداکثر 400 کاراکتر"
-              className="sm:col-span-2"
+              rows={6}
+              containerClassName="sm:col-span-2"
             />
-            <ControlledCheckbox
-              control={form.control}
+            <CheckboxField
               name="isUrgent"
               label="استخدام فوری"
-              className="sm:col-span-2"
+              containerClassName="sm:col-span-2"
             />
-          </form>
+          </div>
           <DialogFooter>
-            <Button form="createPosition" type="submit">
-              ثبت موقعیت شغلی
-            </Button>
+            <SubmitButton>ثبت موقعیت شغلی</SubmitButton>
           </DialogFooter>
-        </Form>
+        </form>
       </DialogContent>
     </Dialog>
   );
