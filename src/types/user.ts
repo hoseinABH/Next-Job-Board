@@ -92,3 +92,6 @@ export interface UserResume {
   skills: Skill[];
   languages: Language[];
 }
+
+export type ModalKeys = 'aboutMe';
+export type UserModals = Record<ModalKeys, boolean>;

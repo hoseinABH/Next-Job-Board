@@ -7,6 +7,8 @@ import { AboutMeModal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
+// Hooks
+import useUserStore from '@/store/user';
 // Types
 import type { AboutData } from '@/types/user';
 
@@ -16,8 +18,9 @@ interface Props {
 
 export default function AboutSection({ aboutData }: Props) {
   const { firstName, lastName, title, aboutMe } = aboutData;
+  const { openModal } = useUserStore();
   function openEditModal() {
-    // dispatch(ResumeActions.setModalOpen(true, 'aboutMe'));
+    openModal(true, 'aboutMe');
   }
   const isEmpty = !Boolean(aboutMe || title);
   const fullName = `${firstName} ${lastName}`;
@@ -46,7 +49,7 @@ export default function AboutSection({ aboutData }: Props) {
           </div>
         )}
       </SectionWrapper>
-      <AboutMeModal />
+      <AboutMeModal defaultValues={{ title, aboutMe }} />
     </Fragment>
   );
 }
