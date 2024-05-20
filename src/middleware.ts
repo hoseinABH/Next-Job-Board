@@ -6,7 +6,7 @@ import type { UserRole } from './types/user';
 
 const internRoutes = [Routes.CV_MAKER];
 const companyRoutes = [Routes.DASHBOARD, Routes.DASHBOARD_APPLICATIONS, Routes.DASHBOARD_POSITIONS];
-const privateRoutes = [...internRoutes, companyRoutes];
+const privateRoutes = [...internRoutes, ...companyRoutes];
 const authenticationRoutes = [Routes.LOGIN, Routes.REGISTER];
 
 export default async function middleware(req: NextRequest) {
