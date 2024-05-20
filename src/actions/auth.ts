@@ -6,7 +6,7 @@ import { FormState, fromErrorToFormState, generateErrorFormState } from '@/lib/e
 import { isRedirectError } from 'next/dist/client/components/redirect';
 // Actions
 import { redirect } from 'next/navigation';
-import { clearSession, setCookie } from './cookie';
+import { clearSession, setSession, setUserRole } from './cookie';
 // Schema
 import { LoginSchema, RegisterSchema } from '@/schema/auth';
 // Types
@@ -32,7 +32,9 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
     if (response.status !== HttpStatus.OK) {
       generateErrorFormState();
     }
-    setCookie(response.data.token, tokenExpirationDate);
+    // Should be replaced with user role from response
+    setUserRole('InnerUser', tokenExpirationDate);
+    setSession(response.data.token, tokenExpirationDate);
     redirect(redirectUrl);
   } catch (error) {
     /** This Condition Resolve Redirect issue **/
@@ -48,14 +50,17 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
   const lastName = formData.get('lastName');
   const username = formData.get('username');
   const password = formData.get('password');
+  const companyName = formData.get('companyName');
+  const userType = formData.get('userType');
   const registerDto = {
     email,
     firstName,
     lastName,
     username,
     password,
-    userType: 'InnerUser', //for now
-  } as RegisterDto;
+    companyName,
+    userType,
+  };
   try {
     const data = RegisterSchema.parse(registerDto);
     const response = await mutate<RegisterDto>(`${endpoint}/register`, 'POST', data);
@@ -71,7 +76,6 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
     return fromErrorToFormState(error);
   }
 }
-
 async function logout() {
   clearSession();
   redirect(Routes.LOGIN);

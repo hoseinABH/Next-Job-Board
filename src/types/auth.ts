@@ -7,8 +7,8 @@ export interface LoginResponse {
   token: string;
 }
 export interface RegisterDto extends LoginDto {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   companyName?: string;
   userType: UserRole;

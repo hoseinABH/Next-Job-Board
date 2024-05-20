@@ -9,16 +9,26 @@ export const LoginSchema = z.object({
     .regex(passwordPattern, 'رمز عبور باید شامل اعداد، نماد و حروف انگلیسی(بزرگ/کوچک) باشد'),
 });
 
-export const RegisterSchema = z.object({
+const CommonRegisterSchema = z.object({
   email: z.string().email({ message: 'ساختار ایمیل معتبر نیست' }),
   username: z.string().min(1, { message: 'نام کاربری را وارد کنید' }),
   password: z
     .string()
     .min(6, { message: 'رمزعبور حداقل باید 6 کاراکتر باشد' })
     .regex(passwordPattern, 'رمز عبور باید شامل اعداد، نماد و حروف انگلیسی(بزرگ/کوچک) باشد'),
-  firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
-  lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
-  userType: z.enum(['OuterUser', 'InnerUser', 'Company'], {
-    required_error: 'نوع کاربر را انتخاب کنید',
-  }),
 });
+
+const InnerUserSchema = CommonRegisterSchema.merge(
+  z.object({
+    userType: z.literal('InnerUser'),
+    firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
+    lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
+  }),
+);
+const CompanySchema = CommonRegisterSchema.merge(
+  z.object({
+    userType: z.literal('Company'),
+    companyName: z.string().min(1, { message: 'نام شرکت را وارد کنید' }),
+  }),
+);
+export const RegisterSchema = z.discriminatedUnion('userType', [InnerUserSchema, CompanySchema]);
