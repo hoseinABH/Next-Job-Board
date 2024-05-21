@@ -7,6 +7,7 @@ import ApplicationsTable from './_components/applications-table';
 import { getCompanyInternshipRequests } from '@/actions/company';
 
 export default async function DashboardApplicationsPage() {
+  await new Promise((res) => setTimeout(res, 7000));
   const response = await getCompanyInternshipRequests({ page: 1 });
   return (
     <Fragment>

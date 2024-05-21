@@ -2,7 +2,6 @@
 // Common components
 import IconButton from '@/components/icon-button';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -12,6 +11,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Trash2 } from 'lucide-react';
+import PositionsHeader from './positions-header';
 // Utilities
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
@@ -26,9 +26,6 @@ interface Props {
 }
 
 export default function PositionsTable({ className, positions }: Props) {
-  function openCreatePositionModal() {
-    // dispatch(PanelActions.setModalOpen(true, 'createPosition'));
-  }
   function openDeleteModal() {
     // dispatch(
     //   PanelActions.setDialogData({
@@ -44,15 +41,7 @@ export default function PositionsTable({ className, positions }: Props) {
   }
   return (
     <div className={cn('bg-card p-6', className)}>
-      <div className="flex flex-col justify-between  gap-4 sm:flex-row sm:gap-0">
-        <div>
-          <h1 className="text-2xl font-bold">موقعیت های شغلی</h1>
-          <p className="text-md text-muted-foreground">
-            {positions.length ? 'لیست موقعیت های شغلی شرکت' : 'اولین موقعیت شغلی خود را بسازید'}
-          </p>
-        </div>
-        <Button onClick={openCreatePositionModal}>موقعیت شغلی جدید</Button>
-      </div>
+      <PositionsHeader />
       {positions.length ? (
         <div className="mt-8 rounded-md border">
           <Table className="text-nowrap">
@@ -72,7 +61,7 @@ export default function PositionsTable({ className, positions }: Props) {
                     {position.title}
                   </TableCell>
                   <TableCell align="center">{mapEducationGrade[position.grade]}</TableCell>
-                  <TableCell align="center">{addCommas(position.salary)} ریال</TableCell>
+                  <TableCell align="center">{addCommas(position.salary)} تومان</TableCell>
                   <TableCell align="center">
                     {position.immediateRecruitment ? (
                       <Badge variant="destructive">فوری</Badge>
