@@ -26,9 +26,12 @@ import { educationGradeOptions } from '@/constants/user';
 export function EducationModal() {
   const [formState, action] = useFormState(createEducation, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'education');
+  }
+  function closeDialog() {
+    openModal(false, 'education');
   }
   return (
     <Dialog open={modals.education} onOpenChange={onOpenChange}>

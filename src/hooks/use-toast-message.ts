@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 // Types
 import type { FormState } from '@/lib/error';
 
-const useToastMessage = (formState?: FormState) => {
+const useToastMessage = (formState?: FormState, onSuccess?: () => void) => {
   const prevTimestamp = useRef(formState?.timestamp);
   const showToast = formState?.message && formState?.timestamp !== prevTimestamp.current;
   useEffect(() => {
@@ -14,6 +14,9 @@ const useToastMessage = (formState?: FormState) => {
           description: formState.message,
         });
       } else {
+        if (onSuccess) {
+          onSuccess();
+        }
         toast({
           variant: 'success',
           title: 'عملیات موفق',

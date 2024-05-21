@@ -24,9 +24,12 @@ import { useFormState } from 'react-dom';
 export function WorkExperienceModal() {
   const [formState, action] = useFormState(createWorkExperience, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'workExperience');
+  }
+  function closeDialog() {
+    openModal(false, 'workExperience');
   }
   return (
     <Dialog open={modals.workExperience} onOpenChange={onOpenChange}>

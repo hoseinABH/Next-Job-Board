@@ -24,9 +24,12 @@ import { seniorityLevelOptions } from '@/constants/user';
 export function LanguageModal() {
   const [formState, action] = useFormState(createLanguage, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'language');
+  }
+  function closeDialog() {
+    openModal(false, 'language');
   }
   return (
     <Dialog open={modals.language} onOpenChange={onOpenChange}>

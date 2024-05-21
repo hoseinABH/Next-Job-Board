@@ -25,9 +25,12 @@ import { seniorityLevelOptions } from '@/constants/user';
 export function SkillModal() {
   const [formState, action] = useFormState(createSkill, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'skill');
+  }
+  function closeDialog() {
+    openModal(false, 'skill');
   }
   return (
     <Dialog open={modals.skill} onOpenChange={onOpenChange}>

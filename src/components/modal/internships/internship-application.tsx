@@ -25,9 +25,12 @@ interface Props {
 export function InternshipApplicationModal({ positionId }: Props) {
   const [formState, action] = useFormState(apply, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'apply');
+  }
+  function closeDialog() {
+    openModal(false, 'apply');
   }
   return (
     <Dialog open={modals.apply} onOpenChange={onOpenChange}>

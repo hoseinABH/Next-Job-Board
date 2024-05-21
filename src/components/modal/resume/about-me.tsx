@@ -29,9 +29,12 @@ interface Props {
 export function AboutMeModal({ defaultValues }: Props) {
   const [formState, action] = useFormState(updateAboutMe, EMPTY_FORM_STATE);
   const { modals, openModal } = useUserStore();
-  useToastMessage(formState);
+  useToastMessage(formState, closeDialog);
   function onOpenChange(open: boolean) {
     openModal(open, 'aboutMe');
+  }
+  function closeDialog() {
+    openModal(false, 'aboutMe');
   }
   return (
     <Dialog open={modals.aboutMe} onOpenChange={onOpenChange}>
