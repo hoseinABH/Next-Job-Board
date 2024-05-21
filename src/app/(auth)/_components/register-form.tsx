@@ -31,7 +31,7 @@ export default function RegisterForm() {
           شرکت
         </TabsTrigger>
       </TabsList>
-      <form action={action} className="mt-8 w-full space-y-6">
+      <form action={action} className="mt-8 w-full space-y-8">
         <InputField
           name="email"
           type="email"
