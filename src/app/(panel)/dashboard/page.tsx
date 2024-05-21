@@ -1,14 +1,13 @@
 // Local components
-import StatisticCard from './_components/statistic-card';
-// Data
-import { statistics } from './data';
+import Statistics from './_components/statistics';
+// Actions
+import { getCompanyDashboard } from '@/actions/company';
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const data = await getCompanyDashboard();
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-      {statistics.map((statistic) => (
-        <StatisticCard key={statistic.key} statistic={statistic} />
-      ))}
+    <div>
+      <Statistics dashboardData={data} />
     </div>
   );
 }

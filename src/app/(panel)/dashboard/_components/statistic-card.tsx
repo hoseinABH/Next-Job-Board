@@ -1,12 +1,16 @@
 // Common components
 import { Card } from '@/components/ui/card';
 // Types
-import type { Statistic } from '../data';
-
+import type { LucideIcon } from 'lucide-react';
+export interface Statistic {
+  key: number;
+  value: number;
+  title: string;
+  icon: LucideIcon;
+}
 interface Props {
   statistic: Statistic;
 }
-
 export default function StatisticCard({ statistic }: Props) {
   return (
     <Card className="flex items-center justify-between p-6" key={statistic.key}>

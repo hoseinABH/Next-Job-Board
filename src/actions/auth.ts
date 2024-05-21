@@ -25,7 +25,7 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
   const password = formData.get('password');
   const returnUrl = formData.get('returnUrl') as string;
   const loginDto = { username, password } as LoginDto;
-  const redirectUrl = returnUrl || Routes.CV_MAKER;
+  // const redirectUrl = returnUrl || Routes.CV_MAKER;
   try {
     const data = LoginSchema.parse(loginDto);
     const response = await mutate<LoginDto, LoginResponse>(`${endpoint}/login`, 'POST', data);
@@ -33,9 +33,9 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
       generateErrorFormState();
     }
     // Should be replaced with user role from response
-    setUserRole('InnerUser', tokenExpirationDate);
+    setUserRole('Company', tokenExpirationDate);
     setSession(response.data.token, tokenExpirationDate);
-    redirect(redirectUrl);
+    redirect(Routes.DASHBOARD);
   } catch (error) {
     /** This Condition Resolve Redirect issue **/
     if (isRedirectError(error)) {

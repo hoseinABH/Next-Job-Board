@@ -34,3 +34,9 @@ export interface Company extends CompanyListItem {
   createdDate: Date;
   updatedDate: Date;
 }
+
+export interface GetCompanyDashboardResponse {
+  invitationsForInterviewCount: number;
+  sentRequestsCount: number;
+  profileVisitCount: number;
+}
