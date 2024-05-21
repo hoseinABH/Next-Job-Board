@@ -1,0 +1,6 @@
+{
+  "app": "employment-app",
+  "next": {
+    "modifyConfig": false
+  }
+}
