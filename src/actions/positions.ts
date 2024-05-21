@@ -26,7 +26,9 @@ async function getAllPositions({ page, companyId }: GetAllPositionsQueries) {
   if (companyId) {
     query.append('companyId', String(companyId));
   }
-  const result = await fetch(`${endpoint}/get-all-positions?${query.toString()}`);
+  const result = await fetch(`${endpoint}/get-all-positions?${query.toString()}`, {
+    cache: 'no-cache',
+  });
   const response: BaseApiResponse<GetAllPositionsResponse> = await result.json();
   return response.data.data;
 }
