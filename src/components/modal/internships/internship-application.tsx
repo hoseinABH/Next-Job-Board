@@ -37,7 +37,7 @@ export function InternshipApplicationModal({ positionId }: Props) {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="space-y-4">
-            <input name="positionId" hidden type="hidden" className="hidden" value={positionId} />
+            <input name="positionId" hidden className="hidden" defaultValue={positionId} />
             <TextAreaField name="description" label="توضیحات" placeholder="اختیاری" rows={6} />
           </div>
           <DialogFooter>

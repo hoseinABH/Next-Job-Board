@@ -2,7 +2,12 @@
 // Utilities
 import { mutate } from '@/lib/client';
 import { getBaseApiUrl } from '@/lib/common';
-import { fromErrorToFormState, generateErrorFormState, type FormState } from '@/lib/error';
+import {
+  fromErrorToFormState,
+  generateErrorFormState,
+  generateSuccessFormState,
+  type FormState,
+} from '@/lib/error';
 import { revalidatePath } from 'next/cache';
 // Actions
 import { getSession } from '@/actions/cookie';
@@ -67,16 +72,11 @@ async function updateAboutMe(_: any, formData: FormData): Promise<FormState | un
   try {
     const data = AboutMeFormSchema.parse(updateAboutMeDto);
     const response = await mutate<UpdateAboutMeDto>(`${endpoint}/save-about-me`, 'POST', data);
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }
@@ -109,16 +109,11 @@ async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState
       'POST',
       normalizedDto,
     );
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }
@@ -149,16 +144,11 @@ async function createWorkExperience(_: any, formData: FormData): Promise<FormSta
       'POST',
       normalizedDto,
     );
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }
@@ -190,16 +180,11 @@ async function createEducation(_: any, formData: FormData): Promise<FormState | 
       'POST',
       normalizedDto,
     );
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }
@@ -218,16 +203,11 @@ async function createSkill(_: any, formData: FormData): Promise<FormState | unde
       level: parseInt(data.level),
     } as CreateSkillDto;
     const response = await mutate<CreateSkillDto>(`${endpoint}/save-skill`, 'POST', normalizedDto);
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }
@@ -250,16 +230,11 @@ async function createLanguage(_: any, formData: FormData): Promise<FormState | u
       'POST',
       normalizedDto,
     );
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
     }
-    revalidatePath(Routes.CV_MAKER);
-    return {
-      status: 'SUCCESS',
-      message: messages.commonSuccess,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }

@@ -3,7 +3,12 @@ import { HttpStatus } from '@/constants/http-status';
 // Utilities
 import { mutate } from '@/lib/client';
 import { getBaseApiUrl } from '@/lib/common';
-import { FormState, fromErrorToFormState, generateErrorFormState } from '@/lib/error';
+import {
+  FormState,
+  fromErrorToFormState,
+  generateErrorFormState,
+  generateSuccessFormState,
+} from '@/lib/error';
 // Types
 import type { BaseApiResponse } from '@/types/http';
 import type {
@@ -41,15 +46,10 @@ async function apply(_: any, formData: FormData): Promise<FormState | undefined>
       'POST',
       applicationDto,
     );
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      return generateSuccessFormState(`درخواست کارآموزی شما با موفقیت ارسال شد`);
     }
-    return {
-      status: 'SUCCESS',
-      message: `درخواست کارآموزی شما با موفقیت ارسال شد`,
-      fieldErrors: {},
-      timestamp: Date.now(),
-    };
+    return generateErrorFormState();
   } catch (error) {
     return fromErrorToFormState(error);
   }

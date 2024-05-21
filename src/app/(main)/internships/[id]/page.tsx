@@ -38,7 +38,7 @@ export default async function Job({ params }: Props) {
           className="relative top-auto col-span-3 h-fit w-full lg:sticky lg:top-[100px] lg:w-[300px]"
         />
       </div>
-      <InternshipApplicationModal positionId={String(position.id)} />
+      <InternshipApplicationModal positionId={params.id} />
     </section>
   );
 }

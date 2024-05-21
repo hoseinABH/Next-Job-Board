@@ -15,10 +15,18 @@ export const EMPTY_FORM_STATE: FormState = {
   timestamp: Date.now(),
 };
 
-export function generateErrorFormState() {
+export function generateErrorFormState(): FormState {
   return {
     status: 'ERROR',
     message: messages.commonError,
+    fieldErrors: {},
+    timestamp: Date.now(),
+  };
+}
+export function generateSuccessFormState(msg?: string): FormState {
+  return {
+    status: 'SUCCESS',
+    message: msg || messages.commonSuccess,
     fieldErrors: {},
     timestamp: Date.now(),
   };

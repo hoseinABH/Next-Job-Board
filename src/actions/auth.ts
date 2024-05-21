@@ -29,13 +29,13 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
   try {
     const data = LoginSchema.parse(loginDto);
     const response = await mutate<LoginDto, LoginResponse>(`${endpoint}/login`, 'POST', data);
-    if (response.status !== HttpStatus.OK) {
-      generateErrorFormState();
+    if (response.status === HttpStatus.OK) {
+      // Should be replaced with user role from response
+      setUserRole('InnerUser', tokenExpirationDate);
+      setSession(response.data.token, tokenExpirationDate);
+      redirect(redirectUrl);
     }
-    // Should be replaced with user role from response
-    setUserRole('InnerUser', tokenExpirationDate);
-    setSession(response.data.token, tokenExpirationDate);
-    redirect(redirectUrl);
+    return generateErrorFormState();
   } catch (error) {
     /** This Condition Resolve Redirect issue **/
     if (isRedirectError(error)) {
