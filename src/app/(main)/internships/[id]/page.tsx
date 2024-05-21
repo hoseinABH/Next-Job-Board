@@ -6,6 +6,7 @@ import PositionContent from './_components/position-content';
 import PositionDescription from './_components/position-description';
 // Actions
 import { getPositionById } from '@/actions/positions';
+import { getSession } from '@/actions/cookie';
 // Types
 import type { Metadata } from 'next';
 
@@ -21,9 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: position.description,
   };
 }
-
 export default async function Job({ params }: Props) {
   const position = await getPositionById(params.id);
+  const session = await getSession();
   return (
     <section className="py-12">
       <BackButton>بازگشت به موقعیت‌ها</BackButton>
@@ -31,11 +32,13 @@ export default async function Job({ params }: Props) {
       <div className="relative flex flex-col-reverse gap-6 lg:flex-row">
         <PositionContent position={position} className="flex-1" />
         <PositionDescription
+          isLoggedIn={Boolean(session)}
+          positionId={params.id}
           position={position}
           className="relative top-auto col-span-3 h-fit w-full lg:sticky lg:top-[100px] lg:w-[300px]"
         />
       </div>
-      <InternshipApplicationModal />
+      <InternshipApplicationModal positionId={String(position.id)} />
     </section>
   );
 }

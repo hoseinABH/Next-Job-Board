@@ -1,8 +1,7 @@
 'use client';
-import { useState } from 'react';
 // Common components
-import { Button } from '@/components/ui/button';
-import { Card, CardTitle } from '@/components/ui/card';
+import SubmitButton from '@/components/submit-button';
+import TextAreaField from '@/components/text-area-field';
 import {
   Dialog,
   DialogContent,
@@ -11,47 +10,40 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 // Utilities
-import { cn } from '@/lib/utils';
-// Configs
-import { requestTests } from '@/config/app';
+import { EMPTY_FORM_STATE } from '@/lib/error';
+// Actions
+import { apply } from '@/actions/positions';
+// Hooks
+import { useToastMessage } from '@/hooks/use-toast-message';
+import useUserStore from '@/store/user';
+import { useFormState } from 'react-dom';
 
-export function InternshipApplicationModal() {
-  const [selectedTest, setSelectedTest] = useState<null | number>(null);
+interface Props {
+  positionId: string;
+}
+
+export function InternshipApplicationModal({ positionId }: Props) {
+  const [formState, action] = useFormState(apply, EMPTY_FORM_STATE);
+  const { modals, openModal } = useUserStore();
+  useToastMessage(formState);
   function onOpenChange(open: boolean) {
-    // dispatch(InternshipsActions.setModalOpen(open, 'internshipApplication'));
+    openModal(open, 'apply');
   }
-
   return (
-    <Dialog
-      // open={modals.internshipApplication}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={modals.apply} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>ارسال درخواست موقعیت کارآموزی</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
-          <h5 className="text-md">تست های لازم برای این موقعیت کارآموزی</h5>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {requestTests.map((test) => (
-            <Card
-              key={test.key}
-              className={cn(
-                'flex h-32 cursor-pointer items-center justify-center transition-all hover:border hover:border-foreground',
-                {
-                  ['border border-primary']: selectedTest === test.key,
-                },
-              )}
-              onClick={() => setSelectedTest(test.key)}
-            >
-              <CardTitle>{test.name}</CardTitle>
-            </Card>
-          ))}
-        </div>
-        <DialogFooter>
-          <Button>ارسال درخواست</Button>
-        </DialogFooter>
+        <form action={action} className="space-y-12">
+          <div className="space-y-4">
+            <input name="positionId" hidden type="hidden" className="hidden" value={positionId} />
+            <TextAreaField name="description" label="توضیحات" placeholder="اختیاری" rows={6} />
+          </div>
+          <DialogFooter>
+            <SubmitButton>ارسال درخواست</SubmitButton>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

@@ -115,5 +115,6 @@ export type ModalKeys =
   | 'workExperience'
   | 'education'
   | 'skill'
-  | 'language';
+  | 'language'
+  | 'apply';
 export type UserModals = Record<ModalKeys, boolean>;

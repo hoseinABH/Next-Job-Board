@@ -19,6 +19,7 @@ const initialValues: UserValues = {
     education: false,
     skill: false,
     language: false,
+    apply: false,
   },
 };
 

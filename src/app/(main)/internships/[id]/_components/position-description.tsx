@@ -1,6 +1,6 @@
 'use client';
 // UI Frameworks
-import { GraduationCap, MapPinIcon, Timer, BadgeDollarSign } from 'lucide-react';
+import { BadgeDollarSign, GraduationCap, MapPinIcon, Timer } from 'lucide-react';
 // Common components
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,16 +8,32 @@ import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
+// Hooks
+import useUserStore from '@/store/user';
+import { useRouter } from 'next/navigation';
 // Types
 import type { Position } from '@/types/internship';
-
+// Constants
+import * as Routes from '@/config/routes';
 interface Props {
+  isLoggedIn: boolean;
   className?: string;
   position: Position;
+  positionId: string;
 }
-export default function PositionDescription({ className, position }: Props) {
+export default function PositionDescription({
+  className,
+  position,
+  isLoggedIn,
+  positionId,
+}: Props) {
+  const { openModal } = useUserStore();
+  const router = useRouter();
   function applicationRequest() {
-    // dispatch(InternshipsActions.setModalOpen(true, 'internshipApplication'));
+    if (isLoggedIn) {
+      return openModal(true, 'apply');
+    }
+    router.push(`${Routes.LOGIN}?redirectUrl=${Routes.INTERNSHIPS}/${positionId}`);
   }
   const information = [
     {
@@ -61,7 +77,7 @@ export default function PositionDescription({ className, position }: Props) {
         <Separator className="my-4" />
         <p className="text-muted-foreground">درخواست برای این موقعیت</p>
         <Button size="lg" className="mt-4 w-full" onClick={applicationRequest}>
-          ارسال درخواست
+          {isLoggedIn ? 'ارسال درخواست' : 'ورود و ارسال درخواست'}
         </Button>
       </CardContent>
     </Card>

@@ -19,16 +19,7 @@ export default function JobListHeader({ count }: Props) {
         <p className="hidden text-muted-foreground sm:block">
           <span className="ml-1 font-semibold">{count}</span> فرصت کارآموزی یافت شد
         </p>
-        <div className="flex w-full items-center gap-x-2 sm:w-max">
-          <SelectField
-            options={[
-              { title: 'مرتبط ترین', value: 'mostRelevant' },
-              { title: 'جدید ترین', value: 'mostRecent' },
-              { title: 'بالاترین حقوق', value: 'highestSalary' },
-            ]}
-            placeholder="مرتب سازی"
-            name="order"
-          />
+        <div className="w-full sm:w-max">
           <IconButton className="flex lg:hidden" onClick={openFilterSheet}>
             <SlidersHorizontal />
           </IconButton>

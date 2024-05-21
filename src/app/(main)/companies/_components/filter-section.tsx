@@ -31,7 +31,7 @@ export default function FilterSection({ className }: Props) {
             <SelectField
               placeholder="دسته‌بندی شغلی"
               options={data}
-              containerClassName="min-w-full sm:min-w-fit"
+              containerClassName="w-full md:max-w-[200px]"
               name="category"
             />
           </div>
