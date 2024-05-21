@@ -9,6 +9,8 @@ import type {
   GetCompaniesQueries,
   GetCompaniesResponse,
   GetCompanyDashboardResponse,
+  GetCompanyInternshipRequestsResponse,
+  GetCompanyPositionResponse,
 } from '@/types/company';
 import type { BaseApiResponse } from '@/types/http';
 
@@ -39,5 +41,36 @@ async function getCompanyDashboard() {
   const response: BaseApiResponse<GetCompanyDashboardResponse> = await result.json();
   return response.data;
 }
+async function getCompanyPositions({ page }: { page: number }) {
+  const query = new URLSearchParams(`page=${page}`);
+  const token = await getSession();
+  const result = await fetch(
+    `${endpointUrl}/get-company-internship-positions?${query.toString()}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const response: BaseApiResponse<GetCompanyPositionResponse> = await result.json();
+  return response.data;
+}
+async function getCompanyInternshipRequests({ page }: { page: number }) {
+  const query = new URLSearchParams(`page=${page}`);
+  const token = await getSession();
+  const result = await fetch(`${endpointUrl}/get-company-internship-requests?${query.toString()}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const response: BaseApiResponse<GetCompanyInternshipRequestsResponse> = await result.json();
+  return response.data;
+}
 
-export { getAllCompanies, getCompanyById, getCompanyDashboard };
+export {
+  getAllCompanies,
+  getCompanyById,
+  getCompanyDashboard,
+  getCompanyInternshipRequests,
+  getCompanyPositions,
+};

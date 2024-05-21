@@ -1,15 +1,17 @@
+import { Fragment } from 'react';
 // Common components
 import ResumePreview from '@/components/modal/panel/resume-preview';
 // Local components
 import ApplicationsTable from './_components/applications-table';
-// Data
-import { applications } from './data';
+// Actions
+import { getCompanyInternshipRequests } from '@/actions/company';
 
-export default function DashboardApplicationsPage() {
+export default async function DashboardApplicationsPage() {
+  const response = await getCompanyInternshipRequests({ page: 1 });
   return (
-    <>
-      <ApplicationsTable applications={applications} />
+    <Fragment>
+      <ApplicationsTable applications={response.data} />
       <ResumePreview />
-    </>
+    </Fragment>
   );
 }

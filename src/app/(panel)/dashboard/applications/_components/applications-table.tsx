@@ -14,11 +14,13 @@ import {
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
-import type { Application } from '../data';
+import type { InternshipRequestItem } from '@/types/company';
+// Constants
+import { mapApplicationStatus } from '@/constants/company';
 
 interface Props {
   className?: string;
-  applications: Application[];
+  applications: InternshipRequestItem[];
 }
 
 export default function ApplicationsTable({ className, applications }: Props) {
@@ -44,13 +46,13 @@ export default function ApplicationsTable({ className, applications }: Props) {
           </TableHeader>
           <TableBody>
             {applications.map((application) => (
-              <TableRow key={application.applicant} className="h-20">
+              <TableRow key={application.userProfileId} className="h-20">
                 <TableCell align="center" className="font-medium">
-                  {application.applicant}
+                  {application.userProfileName}
                 </TableCell>
-                <TableCell align="center">{application.position}</TableCell>
+                <TableCell align="center">{application.positionTitle}</TableCell>
                 <TableCell align="center">
-                  {application.requestDate.toLocaleDateString('fa-IR')}
+                  {new Date(application.requestDate).toLocaleDateString('fa-IR')}
                 </TableCell>
                 <TableCell align="center">
                   <IconButton variant="outline" onClick={openResume}>
@@ -58,11 +60,9 @@ export default function ApplicationsTable({ className, applications }: Props) {
                   </IconButton>
                 </TableCell>
                 <TableCell align="center">
-                  {application.status === 'confirm' ? (
-                    <Badge variant="destructive">رد شده</Badge>
-                  ) : (
-                    <Badge variant="success">تایید برای مصاحبه</Badge>
-                  )}
+                  <Badge variant={mapApplicationStatus[application.status].status}>
+                    {mapApplicationStatus[application.status].title}
+                  </Badge>
                 </TableCell>
               </TableRow>
             ))}
