@@ -1,7 +1,5 @@
 'use client';
 // Common components
-import IconButton from '@/components/icon-button';
-import { Eye } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import {
   Table,
@@ -13,9 +11,12 @@ import {
 } from '@/components/ui/table';
 // Utilities
 import { cn } from '@/lib/utils';
+// Hooks
+import { useRouter } from 'next/navigation';
 // Types
 import type { InternshipRequestItem } from '@/types/company';
 // Constants
+import * as Routes from '@/config/routes';
 import { mapApplicationStatus } from '@/constants/company';
 
 interface Props {
@@ -24,8 +25,9 @@ interface Props {
 }
 
 export default function ApplicationsTable({ className, applications }: Props) {
-  function openResume() {
-    // dispatch(PanelActions.setModalOpen(true, 'resumePreview'));
+  const router = useRouter();
+  function onSelect(userProfileId: number) {
+    router.push(`${Routes.DASHBOARD_APPLICATIONS}/${userProfileId}`);
   }
   return (
     <div className={cn('rounded-md bg-card p-6', className)}>
@@ -40,13 +42,17 @@ export default function ApplicationsTable({ className, applications }: Props) {
               <TableHead className="text-center">کارجو</TableHead>
               <TableHead className="text-center">موقعیت شغلی</TableHead>
               <TableHead className="text-center">تاریخ درخواست</TableHead>
-              <TableHead className="text-center">نمایش رزومه</TableHead>
               <TableHead className="text-center">وضعیت</TableHead>
+              <TableHead className="text-center">عملیات</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {applications.map((application) => (
-              <TableRow key={application.userProfileId} className="h-20">
+              <TableRow
+                key={application.userProfileId}
+                onClick={() => onSelect(application.userProfileId)}
+                className="h-20 cursor-pointer"
+              >
                 <TableCell align="center" className="font-medium">
                   {application.userProfileName}
                 </TableCell>
@@ -55,15 +61,15 @@ export default function ApplicationsTable({ className, applications }: Props) {
                   {new Date(application.requestDate).toLocaleDateString('fa-IR')}
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton variant="outline" onClick={openResume}>
-                    <Eye className="h-4 w-4" />
-                  </IconButton>
-                </TableCell>
-                <TableCell align="center">
                   <Badge variant={mapApplicationStatus[application.status].status}>
                     {mapApplicationStatus[application.status].title}
                   </Badge>
                 </TableCell>
+                {/* <TableCell align="center">
+                  <IconButton variant="outline" onClick={openResume}>
+                    <Eye className="h-4 w-4" />
+                  </IconButton>
+                </TableCell> */}
               </TableRow>
             ))}
           </TableBody>

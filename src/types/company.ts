@@ -1,5 +1,5 @@
 import type { Nullable } from '@/types/common';
-import type { Grade } from './user';
+import type { Grade, UserProfile } from './user';
 
 export interface GetCompaniesQueries {
   page: string;
@@ -68,3 +68,12 @@ export interface GetCompanyInternshipRequestsResponse {
   countPerPage: number;
   data: InternshipRequestItem[];
 }
+
+export interface GetUserResumeResponse {
+  userProfile: UserProfile;
+  phoneNumber: string;
+  email: string;
+}
+
+export type ModalKeys = 'resumePreview';
+export type CompanyModals = Record<ModalKeys, boolean>;

@@ -19,6 +19,7 @@ export interface UserProfile {
   gender: Gender;
   city: string;
   phoneNumber: string;
+  birthDate: string;
   skills: Skill[];
   languages: Language[];
   workExperiences: WorkExperience[];

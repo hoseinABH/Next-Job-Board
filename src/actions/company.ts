@@ -9,6 +9,7 @@ import type {
   GetCompanyDashboardResponse,
   GetCompanyInternshipRequestsResponse,
   GetCompanyPositionsResponse,
+  GetUserResumeResponse,
 } from '@/types/company';
 
 const route = 'company';
@@ -44,10 +45,16 @@ async function getCompanyInternshipRequests({ page }: { page: string }) {
   const response = await fetcher<GetCompanyInternshipRequestsResponse>(path, 'no-cache');
   return response.data;
 }
+async function getUserResume(profileId: string) {
+  const path = `${route}/get-user-profile-for-company?profileId=${profileId}`;
+  const response = await fetcher<GetUserResumeResponse>(path, 'no-cache');
+  return response.data;
+}
 export {
   getAllCompanies,
   getCompanyById,
   getCompanyDashboard,
   getCompanyInternshipRequests,
   getCompanyPositions,
+  getUserResume,
 };

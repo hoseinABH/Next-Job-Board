@@ -7,7 +7,7 @@ export default function DashboardLoading() {
       {[1, 2, 3, 4].map((item) => (
         <Card className="flex items-center justify-between p-6" key={item}>
           <div className="space-y-2">
-            <Skeleton className="h-7 w-24 sm:w-44" />
+            <Skeleton className="h-7 w-24 sm:w-36" />
             <Skeleton className="h-7 w-12" />
           </div>
           <Skeleton className="h-8 w-8 " />

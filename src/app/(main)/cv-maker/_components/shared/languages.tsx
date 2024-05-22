@@ -1,11 +1,10 @@
 'use client';
 import { Fragment } from 'react';
 // UI Frameworks
-import { Languages as LanguagesIcon, X as RemoveIcon } from 'lucide-react';
+import { Languages as LanguagesIcon } from 'lucide-react';
 // Common components
-import IconButton from '@/components/icon-button';
 import { LanguageModal } from '@/components/modal';
-import { Badge } from '@/components/ui/badge';
+import SkillBox from '@/components/skill-box';
 import { Button } from '@/components/ui/button';
 // Local components
 import SectionWrapper from './section-wrapper';
@@ -55,18 +54,13 @@ export default function Languages({ languages }: Props) {
         ) : (
           <div className="grid grid-cols-1 gap-2 xl:grid-cols-3">
             {languages?.map((lang) => (
-              <div
+              <SkillBox
                 key={lang.id}
-                className="flex items-center justify-between gap-x-2 rounded-lg border p-4"
+                action={() => handleDeleteLanguage(lang)}
+                level={mapSeniorityLevel[lang.level]}
               >
-                <div className="flex items-center gap-x-2">
-                  <IconButton title="حذف" onClick={() => handleDeleteLanguage(lang)}>
-                    <RemoveIcon className="h-4 w-4" />
-                  </IconButton>
-                  <p className="text-muted-foreground">{lang.title}</p>
-                </div>
-                <Badge>{mapSeniorityLevel[lang.level]}</Badge>
-              </div>
+                {lang.title}
+              </SkillBox>
             ))}
           </div>
         )}

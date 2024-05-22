@@ -86,12 +86,14 @@ function SidebarContent({ className }: { className: string }) {
 
 function MenuItem(menu: Menu) {
   const pathname = usePathname();
+  const mainRoute = pathname.split('/')[2] ?? pathname.split('/')[1];
+  const isActive = pathname.split('/')[2] ? menu.href.includes(mainRoute) : pathname === menu.href;
   return (
     <Link
       key={menu.href}
       href={menu.href}
       className={cn('flex h-20 items-center gap-x-2 px-8 transition-all', {
-        ['bg-primary/5 text-primary dark:bg-primary/15']: menu.href === pathname,
+        ['bg-primary/5 text-primary dark:bg-primary/15']: isActive,
       })}
     >
       <menu.icon className="h-5 w-5" />

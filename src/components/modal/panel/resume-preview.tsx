@@ -1,16 +1,16 @@
 'use client';
 // Common components
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+// Hooks
+import useCompanyStore from '@/store/company';
 
 export default function ResumePreview() {
+  const { openModal, modals } = useCompanyStore();
   function onOpenChange(open: boolean) {
-    // dispatch(PanelActions.setModalOpen(open, 'resumePreview'));
+    openModal(open, 'resumePreview');
   }
   return (
-    <Dialog
-      // open={modals.resumePreview}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={modals.resumePreview} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-full max-w-4xl overflow-auto pb-4 pt-12 sm:pt-4">
         <div className="space-y-8 py-12">
           <div>
