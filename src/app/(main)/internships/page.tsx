@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Internships() {
-  const positions = await getAllPositions({ page: 1 });
+  const positions = await getAllPositions({ page: '1' });
   return (
     <section className="py-12">
       <div className="relative flex gap-6">

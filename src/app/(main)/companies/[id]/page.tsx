@@ -25,7 +25,7 @@ export default async function Company({ params }: Props) {
   return (
     <section className="space-y-8 py-12">
       <CompanyHeader company={company} />
-      <CompanyTabs company={company} />
+      <CompanyTabs companyId={params.id} company={company} />
     </section>
   );
 }

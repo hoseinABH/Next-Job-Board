@@ -2,7 +2,7 @@ import type { Nullable } from '@/types/common';
 import type { Grade } from './user';
 
 export interface GetCompaniesQueries {
-  page: number;
+  page: string;
   keyword?: string;
   city?: string;
   category?: string;
@@ -13,6 +13,7 @@ export interface CompanyListItem {
   title: string;
   logo: Nullable<string>;
   city: Nullable<string>;
+  positionCount: number;
 }
 
 export interface GetCompaniesResponse {
@@ -22,18 +23,14 @@ export interface GetCompaniesResponse {
   data: CompanyListItem[];
 }
 
-export interface Company extends CompanyListItem {
-  userId: string;
-  user: Nullable<string>;
-  phoneNumber: Nullable<string>;
-  website: Nullable<string>;
+export interface Company {
+  title: string;
+  logo: string;
+  city: string;
+  phoneNumber: string;
+  website: string;
   category: string;
-  description: Nullable<string>;
-  profileVisit: number;
-  workExperiences: Nullable<string>;
-  internshipPositions: Nullable<string>;
-  createdDate: Date;
-  updatedDate: Date;
+  description: string;
 }
 
 export interface GetCompanyDashboardResponse {

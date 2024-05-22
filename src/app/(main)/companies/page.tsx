@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Companies() {
-  const companies = await getAllCompanies({ page: 1 });
+  const companies = await getAllCompanies({ page: '1' });
   return (
     <section className="py-12">
       <div className="space-y-8">

@@ -24,7 +24,7 @@ const endpoint = `${getBaseApiUrl()}/${prefix}`;
 async function getAllPositions({ page, companyId }: GetAllPositionsQueries) {
   const query = new URLSearchParams(`page=${page}`);
   if (companyId) {
-    query.append('companyId', String(companyId));
+    query.append('companyId', companyId);
   }
   const result = await fetch(`${endpoint}/get-all-positions?${query.toString()}`, {
     cache: 'no-cache',

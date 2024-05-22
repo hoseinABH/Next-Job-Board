@@ -8,7 +8,7 @@ import { getAllPositions } from '@/actions/positions';
 import * as Routes from '@/config/routes';
 
 export default async function FeaturedJobs() {
-  const featuredPositions = await getAllPositions({ page: 1 });
+  const featuredPositions = await getAllPositions({ page: '1' });
   return (
     <section className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">

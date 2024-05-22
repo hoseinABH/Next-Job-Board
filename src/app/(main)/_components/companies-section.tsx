@@ -7,7 +7,7 @@ import { appData } from '@/config/app';
 import * as Routes from '@/config/routes';
 
 export default async function CompaniesSection() {
-  const bestCompanies = await getAllCompanies({ page: 1 });
+  const bestCompanies = await getAllCompanies({ page: '1' });
   return (
     <div className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">

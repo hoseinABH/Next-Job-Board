@@ -41,7 +41,7 @@ async function getCompanyDashboard() {
   const response: BaseApiResponse<GetCompanyDashboardResponse> = await result.json();
   return response.data;
 }
-async function getCompanyPositions({ page }: { page: number }) {
+async function getCompanyPositions({ page }: { page: string }) {
   const query = new URLSearchParams(`page=${page}`);
   const token = await getSession();
   const result = await fetch(
@@ -55,7 +55,7 @@ async function getCompanyPositions({ page }: { page: number }) {
   const response: BaseApiResponse<GetCompanyPositionResponse> = await result.json();
   return response.data;
 }
-async function getCompanyInternshipRequests({ page }: { page: number }) {
+async function getCompanyInternshipRequests({ page }: { page: string }) {
   const query = new URLSearchParams(`page=${page}`);
   const token = await getSession();
   const result = await fetch(`${endpointUrl}/get-company-internship-requests?${query.toString()}`, {

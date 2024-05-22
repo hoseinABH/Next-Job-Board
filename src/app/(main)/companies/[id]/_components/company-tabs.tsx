@@ -10,9 +10,10 @@ import type { Company } from '@/types/company';
 
 interface Props {
   company: Company;
+  companyId: string;
 }
-export default async function CompanyTabs({ company }: Props) {
-  const companyPositions = await getAllPositions({ page: 1, companyId: company.id });
+export default async function CompanyTabs({ company, companyId }: Props) {
+  const companyPositions = await getAllPositions({ page: '1', companyId });
   return (
     <Tabs defaultValue="about" className="w-full">
       <TabsList className="mx-auto flex max-w-lg">

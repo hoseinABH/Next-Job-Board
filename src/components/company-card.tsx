@@ -54,7 +54,7 @@ export default function CompanyCard({
           </div>
           <Maybe condition={visibleOpenPositions}>
             <div className="flex gap-1">
-              <span className="text-xl font-bold ">12</span> موقعیت شغلی فعال
+              <span className="text-xl font-bold ">{company.positionCount}</span> موقعیت شغلی فعال
             </div>
           </Maybe>
         </CardContent>
