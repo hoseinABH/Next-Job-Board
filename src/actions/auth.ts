@@ -6,7 +6,7 @@ import { FormState, fromErrorToFormState, generateErrorFormState } from '@/lib/e
 import { isRedirectError } from 'next/dist/client/components/redirect';
 // Actions
 import { redirect } from 'next/navigation';
-import { clearSession, setSession, setUserRole } from './cookie';
+import { clearSession, clearUserRole, setSession, setUserRole } from './cookie';
 // Schema
 import { LoginSchema, RegisterSchema } from '@/schema/auth';
 // Types
@@ -78,7 +78,8 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
 }
 async function logout() {
   clearSession();
+  clearUserRole();
   redirect(Routes.LOGIN);
 }
 
-export { login, register, logout };
+export { login, logout, register };

@@ -27,3 +27,6 @@ export async function getUserRole() {
 export async function clearSession() {
   cookies().delete(sessionKey);
 }
+export async function clearUserRole() {
+  cookies().delete(roleKey);
+}
