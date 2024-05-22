@@ -12,7 +12,7 @@ import SectionWrapper from './section-wrapper';
 // Hooks
 import useUserStore from '@/store/user';
 // Constants
-import { mapLanguageLevel } from '@/constants';
+import { mapSeniorityLevel } from '@/constants/user';
 // Types
 import type { Language } from '@/types/user';
 
@@ -65,7 +65,7 @@ export default function Languages({ languages }: Props) {
                   </IconButton>
                   <p className="text-muted-foreground">{lang.title}</p>
                 </div>
-                <Badge>{mapLanguageLevel[lang.level]}</Badge>
+                <Badge>{mapSeniorityLevel[lang.level]}</Badge>
               </div>
             ))}
           </div>

@@ -1,5 +1,5 @@
 import type { SelectOption } from '@/components/select-field';
-import type { Gender, Grade, MaritalStatus, MilitaryService } from '@/types/user';
+import type { Gender, Grade, MaritalStatus, MilitaryService, SeniorityLevel } from '@/types/user';
 
 export const mapEducationGrade: Record<Grade, string> = {
   0: 'دانشجو',
@@ -102,4 +102,20 @@ export const seniorityLevelOptions: SelectOption[] = [
     value: 3,
     title: 'متخصص',
   },
+  {
+    value: 4,
+    title: 'مدیر',
+  },
+  {
+    value: 5,
+    title: 'مدیر ارشد',
+  },
 ];
+export const mapSeniorityLevel: Record<SeniorityLevel, string> = {
+  0: 'مبتدی',
+  1: 'کارشناس',
+  2: 'کارشناس ارشد',
+  3: 'متخصص',
+  4: 'مدیر',
+  5: 'مدیر ارشد',
+};

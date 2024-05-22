@@ -12,7 +12,7 @@ import SectionWrapper from './section-wrapper';
 // Hooks
 import useUserStore from '@/store/user';
 // Constants
-import { mapLanguageLevel } from '@/constants';
+import { mapSeniorityLevel } from '@/constants/user';
 // Types
 import type { Skill } from '@/types/user';
 
@@ -65,7 +65,7 @@ export default function Skills({ skills }: Props) {
                   </IconButton>
                   <p className="text-muted-foreground">{skill.title}</p>
                 </div>
-                <Badge>{mapLanguageLevel[skill.level]}</Badge>
+                <Badge>{mapSeniorityLevel[skill.level]}</Badge>
               </div>
             ))}
           </div>
