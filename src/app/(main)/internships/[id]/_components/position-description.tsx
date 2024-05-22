@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import type { Position } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
+import { mapEducationGrade } from '@/constants/user';
 interface Props {
   isLoggedIn: boolean;
   className?: string;
@@ -52,7 +53,7 @@ export default function PositionDescription({
       id: 3,
       title: 'مقطع تحصیلی',
       icon: GraduationCap,
-      value: position.grade,
+      value: mapEducationGrade[position.grade],
     },
     {
       id: 4,

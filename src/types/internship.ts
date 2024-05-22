@@ -1,5 +1,5 @@
 import type { Company } from './company';
-import type { UserRole } from './user';
+import type { Grade, UserRole } from './user';
 
 export interface GetAllPositionsQueries {
   page: string;
@@ -10,14 +10,15 @@ export interface GetAllPositionsQueries {
   city?: string;
 }
 
-export interface Position extends PositionItem {
-  grade: number;
-  submissionDeadline: Date;
+export interface Position {
+  companyProfile: Company;
   description: string;
-  companyProfileId: number;
-  internshipRequests: unknown;
+  grade: Grade;
+  immediateRecruitment: boolean;
+  salary: string;
+  submissionDeadline: string;
+  title: string;
   userRole: UserRole;
-  updatedDate: Date;
 }
 
 export interface PositionItem {
