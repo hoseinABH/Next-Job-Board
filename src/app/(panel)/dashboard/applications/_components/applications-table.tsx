@@ -28,7 +28,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
     // dispatch(PanelActions.setModalOpen(true, 'resumePreview'));
   }
   return (
-    <div className={cn('bg-card p-6', className)}>
+    <div className={cn('rounded-md bg-card p-6', className)}>
       <div>
         <h1 className="text-2xl font-bold">درخواست های شغلی</h1>
         <p className="text-md text-muted-foreground">لیست درخواست های شغلی</p>

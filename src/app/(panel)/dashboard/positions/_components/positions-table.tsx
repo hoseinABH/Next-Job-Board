@@ -40,7 +40,7 @@ export default function PositionsTable({ className, positions }: Props) {
     // dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
   }
   return (
-    <div className={cn('bg-card p-6', className)}>
+    <div className={cn('rounded-md bg-card p-6', className)}>
       <PositionsHeader />
       {positions.length ? (
         <div className="mt-8 rounded-md border">

@@ -30,10 +30,10 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
     const data = LoginSchema.parse(loginDto);
     const response = await mutate<LoginDto, LoginResponse>(`${endpoint}/login`, 'POST', data);
     if (response.status === HttpStatus.OK) {
-      // Should be replaced with user role from response
-      setUserRole('InnerUser', tokenExpirationDate);
+      const targetRole = response.data.userRole;
+      setUserRole(targetRole, tokenExpirationDate);
       setSession(response.data.token, tokenExpirationDate);
-      redirect(redirectUrl);
+      redirect(targetRole === 'Company' ? Routes.DASHBOARD : redirectUrl);
     }
     return generateErrorFormState();
   } catch (error) {

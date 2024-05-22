@@ -5,6 +5,7 @@ export interface LoginDto {
 }
 export interface LoginResponse {
   token: string;
+  userRole: UserRole;
 }
 export interface RegisterDto extends LoginDto {
   firstName?: string;

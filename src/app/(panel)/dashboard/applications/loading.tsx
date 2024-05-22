@@ -12,7 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ApplicationsLoading() {
   return (
-    <div className="bg-card p-6">
+    <div className="rounded-md bg-card p-6">
       <div>
         <h1 className="text-2xl font-bold">درخواست های شغلی</h1>
         <p className="text-md text-muted-foreground">لیست درخواست های شغلی</p>

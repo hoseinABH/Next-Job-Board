@@ -22,7 +22,9 @@ async function getAllCompanies({ page, city }: GetCompaniesQueries) {
   if (city) {
     query.append('city', city);
   }
-  const result = await fetch(`${endpointUrl}/get-all-companies?${query.toString()}`);
+  const result = await fetch(`${endpointUrl}/get-all-companies?${query.toString()}`, {
+    cache: 'no-cache',
+  });
   const response: BaseApiResponse<GetCompaniesResponse> = await result.json();
   return response.data.data;
 }

@@ -13,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PositionsLoading() {
   return (
-    <div className="bg-card p-6">
+    <div className="rounded-md bg-card p-6">
       <PositionsHeader />
       <div className="mt-8 rounded-md border">
         <Table className="text-nowrap">
