@@ -9,6 +9,8 @@ import {
   generateErrorFormState,
   generateSuccessFormState,
 } from '@/lib/error';
+import { revalidatePath } from 'next/cache';
+import { getSession } from './cookie';
 // Types
 import type { BaseApiResponse } from '@/types/http';
 import type {
@@ -17,7 +19,8 @@ import type {
   GetAllPositionsResponse,
   Position,
 } from '@/types/internship';
-import { getSession } from './cookie';
+// Constants
+import * as Routes from '@/config/routes';
 
 const prefix = 'internship';
 const endpoint = `${getBaseApiUrl()}/${prefix}`;
@@ -63,6 +66,7 @@ async function apply(_: any, formData: FormData): Promise<FormState | undefined>
       applicationDto,
     );
     if (response.status === HttpStatus.OK) {
+      revalidatePath(`${Routes.INTERNSHIPS}/${positionId}`);
       return generateSuccessFormState(`درخواست کارآموزی شما با موفقیت ارسال شد`);
     }
     return generateErrorFormState();
@@ -71,4 +75,4 @@ async function apply(_: any, formData: FormData): Promise<FormState | undefined>
   }
 }
 
-export { getAllPositions, getPositionById, apply };
+export { apply, getAllPositions, getPositionById };

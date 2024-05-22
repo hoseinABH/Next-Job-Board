@@ -30,7 +30,9 @@ export default function PositionDescription({
 }: Props) {
   const { openModal } = useUserStore();
   const router = useRouter();
+  const isApplied = position.applied;
   function applicationRequest() {
+    if (isApplied) return;
     if (isLoggedIn) {
       return openModal(true, 'apply');
     }
@@ -62,6 +64,11 @@ export default function PositionDescription({
       value: new Date(position.submissionDeadline).toLocaleDateString('fa-IR'),
     },
   ];
+  const buttonText = isApplied
+    ? 'ارسال شده'
+    : isLoggedIn
+      ? 'ارسال درخواست'
+      : 'ورود و ارسال درخواست';
   return (
     <Card className={cn('', className)}>
       <CardContent className="p-6">
@@ -77,8 +84,8 @@ export default function PositionDescription({
         </ul>
         <Separator className="my-4" />
         <p className="text-muted-foreground">درخواست برای این موقعیت</p>
-        <Button size="lg" className="mt-4 w-full" onClick={applicationRequest}>
-          {isLoggedIn ? 'ارسال درخواست' : 'ورود و ارسال درخواست'}
+        <Button size="lg" className="mt-4 w-full" onClick={applicationRequest} disabled={isApplied}>
+          {buttonText}
         </Button>
       </CardContent>
     </Card>
