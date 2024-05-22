@@ -32,6 +32,7 @@ export function normalizeProfileData(userProfile?: UserProfile): NormalizedProfi
     educations,
     gender,
     languages,
+    phoneNumber,
   } = userProfile;
   const aboutData = {
     aboutMe,
@@ -39,6 +40,14 @@ export function normalizeProfileData(userProfile?: UserProfile): NormalizedProfi
     firstName,
     lastName,
   };
-  const personalData = { firstName, lastName, maritalStatus, militaryService, gender, city };
+  const personalData = {
+    firstName,
+    lastName,
+    maritalStatus,
+    militaryService,
+    gender,
+    city,
+    phoneNumber,
+  };
   return { aboutData, personalData, skills, workExperiences, educations, languages };
 }

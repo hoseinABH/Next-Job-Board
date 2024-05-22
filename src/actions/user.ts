@@ -58,6 +58,7 @@ async function getUserProfile() {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    cache: 'no-cache',
   });
   const response: BaseApiResponse<UserProfile> = await result.json();
   return response.data;
@@ -88,6 +89,7 @@ async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState
   const maritalStatus = formData.get('maritalStatus');
   const militaryService = formData.get('militaryService');
   const city = formData.get('city');
+  const phoneNumber = formData.get('phoneNumber');
   const updateAboutMeDto = {
     firstName,
     lastName,
@@ -95,6 +97,7 @@ async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState
     maritalStatus,
     militaryService,
     city,
+    phoneNumber,
   };
   try {
     const data = PersonalInfoFormSchema.parse(updateAboutMeDto);

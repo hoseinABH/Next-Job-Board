@@ -1,3 +1,4 @@
+import { mobileRegex } from '@/constants';
 import { z } from 'zod';
 
 export const AboutMeFormSchema = z.object({
@@ -21,6 +22,11 @@ export const PersonalInfoFormSchema = z.object({
     required_error: 'وضعیت خدمت را انتخاب کنید',
   }),
   city: z.string().min(1, { message: 'محل سکونت را وارد کنید' }),
+  phoneNumber: z
+    .string()
+    .startsWith('09', { message: 'فرمت شماره همراه صحیح نیست' })
+    .length(11, { message: 'شماره همراه باید 11 رقم باشد' })
+    .regex(mobileRegex, 'فرمت شماره همراه صحیح نیست'),
 });
 
 export const WorkExperienceFormSchema = z.object({

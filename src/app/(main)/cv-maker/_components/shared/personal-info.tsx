@@ -19,7 +19,8 @@ interface Props {
 }
 
 export default function PersonalInfo({ personalData }: Props) {
-  const { firstName, lastName, maritalStatus, militaryService, gender, city } = personalData;
+  const { firstName, lastName, maritalStatus, militaryService, gender, city, phoneNumber } =
+    personalData;
   const { openModal } = useUserStore();
   function openEditModal() {
     openModal(true, 'personalInfo');
@@ -44,7 +45,11 @@ export default function PersonalInfo({ personalData }: Props) {
       },
       {
         title: 'محل سکونت',
-        value: city,
+        value: city ?? '-',
+      },
+      {
+        title: 'شماره موبایل',
+        value: phoneNumber ?? '-',
       },
     ];
     const isEmpty = !Boolean(
@@ -54,7 +59,7 @@ export default function PersonalInfo({ personalData }: Props) {
       userData,
       isEmpty,
     };
-  }, [city, firstName, gender, lastName, maritalStatus, militaryService]);
+  }, [city, firstName, gender, lastName, maritalStatus, militaryService, phoneNumber]);
 
   return (
     <Fragment>
@@ -84,7 +89,15 @@ export default function PersonalInfo({ personalData }: Props) {
         )}
       </SectionWrapper>
       <PersonalInfoModal
-        defaultValues={{ firstName, lastName, maritalStatus, gender, militaryService, city }}
+        defaultValues={{
+          firstName,
+          lastName,
+          maritalStatus,
+          gender,
+          militaryService,
+          city,
+          phoneNumber,
+        }}
       />
     </Fragment>
   );

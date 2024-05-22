@@ -30,6 +30,7 @@ interface Props {
     gender: number;
     militaryService: number;
     city: string;
+    phoneNumber: string;
   };
 }
 
@@ -57,6 +58,15 @@ export function PersonalInfoModal({ defaultValues }: Props) {
               defaultValue={defaultValues?.lastName}
               label="نام خانوادگی"
               name="lastName"
+              formState={formState}
+            />
+            <InputField
+              defaultValue={defaultValues?.phoneNumber}
+              label="شماره موبایل"
+              name="phoneNumber"
+              type="tel"
+              inputMode="tel"
+              maxLength={11}
               formState={formState}
             />
             <SelectField

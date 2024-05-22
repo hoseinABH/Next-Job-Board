@@ -18,6 +18,7 @@ export interface UserProfile {
   militaryService: MilitaryService;
   gender: Gender;
   city: string;
+  phoneNumber: string;
   skills: Skill[];
   languages: Language[];
   workExperiences: WorkExperience[];
@@ -53,6 +54,7 @@ export interface PersonalData {
   militaryService: MilitaryService;
   gender: Gender;
   city: string;
+  phoneNumber: string;
 }
 export interface AboutData {
   firstName: string;
