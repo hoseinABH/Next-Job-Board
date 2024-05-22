@@ -43,7 +43,9 @@ async function getPositionById(positionId: string) {
   const token = await getSession();
   const result = await fetch(`${endpoint}/get-position-details?id=${positionId}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      ...(token && {
+        Authorization: `Bearer ${token}`,
+      }),
     },
   });
   const response: BaseApiResponse<Position> = await result.json();

@@ -29,7 +29,9 @@ async function getAllCompanies({ page, city }: GetCompaniesQueries) {
   return response.data.data;
 }
 async function getCompanyById(companyId: string) {
-  const result = await fetch(`${endpointUrl}/get-company-details?companyId=${companyId}`);
+  const result = await fetch(`${endpointUrl}/get-company-details?companyId=${companyId}`, {
+    cache: 'no-cache',
+  });
   const response: BaseApiResponse<Company> = await result.json();
   return response.data;
 }
