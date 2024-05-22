@@ -3,10 +3,9 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// UI Frameworks
-import { ClipboardList, Home, LucideIcon, Package } from 'lucide-react';
 // Common components
 import AppVersion from '@/components/app-version';
+import IconButton from '@/components/icon-button';
 import {
   Card,
   CardContent,
@@ -16,6 +15,9 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { ClipboardList, Home, LucideIcon, Package, LucideLogOut } from 'lucide-react';
+// Actions
+import { logout } from '@/actions/auth';
 // Utilities
 import { cn } from '@/lib/utils';
 // Configs
@@ -56,7 +58,7 @@ function SidebarContent({ className }: { className: string }) {
   return (
     <Card className={cn('flex h-full flex-col justify-between rounded-none', className)}>
       <CardHeader>
-        <CardTitle>
+        <CardTitle className="flex items-center justify-between">
           <Link href="/dashboard">
             <Image
               priority
@@ -67,6 +69,9 @@ function SidebarContent({ className }: { className: string }) {
               alt="شرکت ایرانسل"
             />
           </Link>
+          <IconButton onClick={() => logout()} title="خروج">
+            <LucideLogOut />
+          </IconButton>
         </CardTitle>
         <CardDescription className="text-lg">به پنل مدیریت خوش آمدید</CardDescription>
       </CardHeader>
