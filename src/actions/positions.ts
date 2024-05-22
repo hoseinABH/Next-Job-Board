@@ -17,23 +17,35 @@ import type {
   GetAllPositionsResponse,
   Position,
 } from '@/types/internship';
+import { getSession } from './cookie';
 
 const prefix = 'internship';
 const endpoint = `${getBaseApiUrl()}/${prefix}`;
 
-async function getAllPositions({ page, companyId }: GetAllPositionsQueries) {
-  const query = new URLSearchParams(`page=${page}`);
+async function getAllPositions({ page, companyId, city, query }: GetAllPositionsQueries) {
+  const params = new URLSearchParams(`page=${page}`);
   if (companyId) {
-    query.append('companyId', companyId);
+    params.append('companyId', companyId);
   }
-  const result = await fetch(`${endpoint}/get-all-positions?${query.toString()}`, {
+  if (query) {
+    params.append('query', query);
+  }
+  if (city) {
+    params.append('city', city);
+  }
+  const result = await fetch(`${endpoint}/get-all-positions?${params.toString()}`, {
     cache: 'no-cache',
   });
   const response: BaseApiResponse<GetAllPositionsResponse> = await result.json();
   return response.data.data;
 }
 async function getPositionById(positionId: string) {
-  const result = await fetch(`${endpoint}/get-position-details?id=${positionId}`);
+  const token = await getSession();
+  const result = await fetch(`${endpoint}/get-position-details?id=${positionId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const response: BaseApiResponse<Position> = await result.json();
   return response.data;
 }

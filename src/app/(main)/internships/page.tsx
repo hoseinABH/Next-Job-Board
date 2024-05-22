@@ -11,8 +11,18 @@ export const metadata: Metadata = {
   title: 'فرصت های کارآموزی',
 };
 
-export default async function Internships() {
-  const positions = await getAllPositions({ page: '1' });
+interface SearchParams {
+  searchParams: {
+    q?: string;
+    l?: string;
+  };
+}
+export default async function Internships({ searchParams }: SearchParams) {
+  const positions = await getAllPositions({
+    page: '1',
+    query: searchParams.q,
+    city: searchParams.l,
+  });
   return (
     <section className="py-12">
       <div className="relative flex gap-6">

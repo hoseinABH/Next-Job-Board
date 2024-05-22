@@ -7,7 +7,7 @@ import { MapPin, Search } from 'lucide-react';
 // Utilities
 import { cn } from '@/lib/utils';
 // hooks
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 // Configs
 import * as Routes from '@/config/routes';
 
@@ -16,11 +16,12 @@ interface Props {
 }
 export default function JobSearch({ className }: Props) {
   const router = useRouter();
-
-  const [searchValues, setSearchValues] = useState({
-    query: '',
-    location: '',
-  });
+  const searchParams = useSearchParams();
+  const defaultValues = {
+    query: searchParams.get('q') ?? '',
+    location: searchParams.get('l') ?? '',
+  };
+  const [searchValues, setSearchValues] = useState(defaultValues);
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setSearchValues((prev) => ({
       ...prev,
@@ -44,6 +45,7 @@ export default function JobSearch({ className }: Props) {
                 placeholder="عنوان شغلی یا شرکت..."
                 className="search-input"
                 onChange={handleChange}
+                value={searchValues.query}
               />
             </div>
             <div className="relative w-full">
@@ -54,6 +56,7 @@ export default function JobSearch({ className }: Props) {
                 placeholder="شهر"
                 className="search-input"
                 onChange={handleChange}
+                value={searchValues.location}
               />
             </div>
             <Button type="submit" className="mt-4 w-full md:mt-0 md:w-auto">

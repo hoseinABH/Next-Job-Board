@@ -19,6 +19,7 @@ export interface Position {
   submissionDeadline: string;
   title: string;
   userRole: UserRole;
+  applied: boolean;
 }
 
 export interface PositionItem {
