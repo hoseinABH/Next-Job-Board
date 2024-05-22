@@ -1,7 +1,6 @@
 'use server';
 // Utilities
 import { mutate } from '@/lib/client';
-import { getBaseApiUrl } from '@/lib/common';
 import { FormState, fromErrorToFormState, generateErrorFormState } from '@/lib/error';
 import { isRedirectError } from 'next/dist/client/components/redirect';
 // Actions
@@ -16,8 +15,7 @@ import * as Routes from '@/config/routes';
 // Constants
 import { HttpStatus } from '@/constants/http-status';
 
-const prefix = 'auth';
-const endpoint = `${getBaseApiUrl()}/${prefix}`;
+const route = 'auth';
 const tokenExpirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
 async function login(_: any, formData: FormData): Promise<FormState | undefined> {
@@ -28,7 +26,7 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
   const redirectUrl = returnUrl || Routes.CV_MAKER;
   try {
     const data = LoginSchema.parse(loginDto);
-    const response = await mutate<LoginDto, LoginResponse>(`${endpoint}/login`, 'POST', data);
+    const response = await mutate<LoginDto, LoginResponse>(`${route}/login`, 'POST', data);
     if (response.status === HttpStatus.OK) {
       const targetRole = response.data.userRole;
       setUserRole(targetRole, tokenExpirationDate);
@@ -37,7 +35,6 @@ async function login(_: any, formData: FormData): Promise<FormState | undefined>
     }
     return generateErrorFormState();
   } catch (error) {
-    /** This Condition Resolve Redirect issue **/
     if (isRedirectError(error)) {
       throw error;
     }
@@ -63,13 +60,12 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
   };
   try {
     const data = RegisterSchema.parse(registerDto);
-    const response = await mutate<RegisterDto>(`${endpoint}/register`, 'POST', data);
+    const response = await mutate<RegisterDto>(`${route}/register`, 'POST', data);
     if (response.status !== HttpStatus.Created) {
       generateErrorFormState();
     }
     redirect(Routes.LOGIN);
   } catch (error) {
-    /** This Condition Resolve Redirect issue **/
     if (isRedirectError(error)) {
       throw error;
     }

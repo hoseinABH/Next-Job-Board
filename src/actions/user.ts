@@ -1,7 +1,6 @@
 'use server';
 // Utilities
-import { mutate } from '@/lib/client';
-import { getBaseApiUrl } from '@/lib/common';
+import { fetcher, mutate } from '@/lib/client';
 import {
   fromErrorToFormState,
   generateErrorFormState,
@@ -10,11 +9,10 @@ import {
 } from '@/lib/error';
 import { revalidatePath } from 'next/cache';
 // Actions
-import { getSession } from '@/actions/cookie';
+import { getSession } from './cookie';
 // Constants
 import * as Routes from '@/config/routes';
 import { HttpStatus } from '@/constants/http-status';
-import * as messages from '@/constants/messages';
 // Schema
 import {
   AboutMeFormSchema,
@@ -25,7 +23,6 @@ import {
   WorkExperienceFormSchema,
 } from '@/schema/user';
 // Types
-import type { BaseApiResponse } from '@/types/http';
 import type {
   CreateEducationDto,
   CreateLanguageDto,
@@ -37,30 +34,17 @@ import type {
   UserProfile,
 } from '@/types/user';
 
-const prefix = 'user';
-const endpoint = `${getBaseApiUrl()}/${prefix}`;
-
+const route = 'user';
 async function getUserMinimalProfile() {
-  const token = await getSession();
-  if (!token) return;
-  const result = await fetch(`${endpoint}/get-minimal-profile`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const response: BaseApiResponse<UserMinimalProfile> = await result.json();
+  const session = await getSession();
+  if (!Boolean(session)) return;
+  const path = `${route}/get-minimal-profile`;
+  const response = await fetcher<UserMinimalProfile>(path, 'no-cache');
   return response.data;
 }
 async function getUserProfile() {
-  const token = await getSession();
-  if (!token) return;
-  const result = await fetch(`${endpoint}/get-profile`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    cache: 'no-cache',
-  });
-  const response: BaseApiResponse<UserProfile> = await result.json();
+  const path = `${route}/get-profile`;
+  const response = await fetcher<UserProfile>(path, 'no-cache');
   return response.data;
 }
 async function updateAboutMe(_: any, formData: FormData): Promise<FormState | undefined> {
@@ -72,7 +56,7 @@ async function updateAboutMe(_: any, formData: FormData): Promise<FormState | un
   };
   try {
     const data = AboutMeFormSchema.parse(updateAboutMeDto);
-    const response = await mutate<UpdateAboutMeDto>(`${endpoint}/save-about-me`, 'POST', data);
+    const response = await mutate<UpdateAboutMeDto>(`${route}/save-about-me`, 'POST', data);
     if (response.status === HttpStatus.OK) {
       revalidatePath(Routes.CV_MAKER);
       return generateSuccessFormState();
@@ -108,7 +92,7 @@ async function updatePersonalInfo(_: any, formData: FormData): Promise<FormState
       militaryService: parseInt(data.militaryService),
     } as UpdatePersonalDto;
     const response = await mutate<UpdatePersonalDto>(
-      `${endpoint}/save-personal-info`,
+      `${route}/save-personal-info`,
       'POST',
       normalizedDto,
     );
@@ -143,7 +127,7 @@ async function createWorkExperience(_: any, formData: FormData): Promise<FormSta
       endDate: data.endDate?.length ? data.endDate : null,
     } as CreateWorkExperienceDto;
     const response = await mutate<CreateWorkExperienceDto>(
-      `${endpoint}/save-work-experience`,
+      `${route}/save-work-experience`,
       'POST',
       normalizedDto,
     );
@@ -179,7 +163,7 @@ async function createEducation(_: any, formData: FormData): Promise<FormState | 
       grade: parseInt(data.grade),
     } as CreateEducationDto;
     const response = await mutate<CreateEducationDto>(
-      `${endpoint}/save-education`,
+      `${route}/save-education`,
       'POST',
       normalizedDto,
     );
@@ -205,7 +189,7 @@ async function createSkill(_: any, formData: FormData): Promise<FormState | unde
       ...data,
       level: parseInt(data.level),
     } as CreateSkillDto;
-    const response = await mutate<CreateSkillDto>(`${endpoint}/save-skill`, 'POST', normalizedDto);
+    const response = await mutate<CreateSkillDto>(`${route}/save-skill`, 'POST', normalizedDto);
     if (response.status === HttpStatus.OK) {
       revalidatePath(Routes.CV_MAKER);
       return generateSuccessFormState();
@@ -229,7 +213,7 @@ async function createLanguage(_: any, formData: FormData): Promise<FormState | u
       level: parseInt(data.level),
     } as CreateLanguageDto;
     const response = await mutate<CreateLanguageDto>(
-      `${endpoint}/save-language`,
+      `${route}/save-language`,
       'POST',
       normalizedDto,
     );
@@ -242,14 +226,13 @@ async function createLanguage(_: any, formData: FormData): Promise<FormState | u
     return fromErrorToFormState(error);
   }
 }
-
 export {
+  createEducation,
+  createLanguage,
+  createSkill,
+  createWorkExperience,
   getUserMinimalProfile,
   getUserProfile,
   updateAboutMe,
   updatePersonalInfo,
-  createWorkExperience,
-  createEducation,
-  createLanguage,
-  createSkill,
 };

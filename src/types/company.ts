@@ -47,7 +47,7 @@ export interface InternshipItem {
   immediateRecruitment: boolean;
   submissionDeadline: string;
 }
-export interface GetCompanyPositionResponse {
+export interface GetCompanyPositionsResponse {
   totalCount: number;
   currentPage: number;
   countPerPage: number;

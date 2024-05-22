@@ -1,8 +1,7 @@
 'use server';
 import { HttpStatus } from '@/constants/http-status';
 // Utilities
-import { mutate } from '@/lib/client';
-import { getBaseApiUrl } from '@/lib/common';
+import { fetcher, mutate } from '@/lib/client';
 import {
   FormState,
   fromErrorToFormState,
@@ -10,9 +9,7 @@ import {
   generateSuccessFormState,
 } from '@/lib/error';
 import { revalidatePath } from 'next/cache';
-import { getSession } from './cookie';
 // Types
-import type { BaseApiResponse } from '@/types/http';
 import type {
   ApplicationDto,
   GetAllPositionsQueries,
@@ -22,9 +19,7 @@ import type {
 // Constants
 import * as Routes from '@/config/routes';
 
-const prefix = 'internship';
-const endpoint = `${getBaseApiUrl()}/${prefix}`;
-
+const route = 'internship';
 async function getAllPositions({ page, companyId, city, query }: GetAllPositionsQueries) {
   const params = new URLSearchParams(`page=${page}`);
   if (companyId) {
@@ -36,32 +31,22 @@ async function getAllPositions({ page, companyId, city, query }: GetAllPositions
   if (city) {
     params.append('city', city);
   }
-  const result = await fetch(`${endpoint}/get-all-positions?${params.toString()}`, {
-    cache: 'no-cache',
-  });
-  const response: BaseApiResponse<GetAllPositionsResponse> = await result.json();
+  const path = `${route}/get-all-positions?${params.toString()}`;
+  const response = await fetcher<GetAllPositionsResponse>(path, 'no-cache');
   return response.data.data;
 }
 async function getPositionById(positionId: string) {
-  const token = await getSession();
-  const result = await fetch(`${endpoint}/get-position-details?id=${positionId}`, {
-    headers: {
-      ...(token && {
-        Authorization: `Bearer ${token}`,
-      }),
-    },
-  });
-  const response: BaseApiResponse<Position> = await result.json();
+  const path = `${route}/get-position-details?id=${positionId}`;
+  const response = await fetcher<Position>(path, 'no-cache');
   return response.data;
 }
-
 async function apply(_: any, formData: FormData): Promise<FormState | undefined> {
   const description = formData.get('description') as string;
   const positionId = formData.get('positionId') as string;
   const applicationDto: ApplicationDto = { description, positionId: Number(positionId) };
   try {
     const response = await mutate<ApplicationDto>(
-      `${endpoint}/apply-for-position`,
+      `${route}/apply-for-position`,
       'POST',
       applicationDto,
     );
@@ -74,5 +59,4 @@ async function apply(_: any, formData: FormData): Promise<FormState | undefined>
     return fromErrorToFormState(error);
   }
 }
-
 export { apply, getAllPositions, getPositionById };
