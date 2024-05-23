@@ -5,8 +5,6 @@ import * as Routes from '@/config/routes';
 import type { UserRole } from './types/user';
 
 const internRoutes = [Routes.CV_MAKER];
-const companyRoutes = [Routes.DASHBOARD, Routes.DASHBOARD_APPLICATIONS, Routes.DASHBOARD_POSITIONS];
-const privateRoutes = [...internRoutes, ...companyRoutes];
 const authenticationRoutes = [Routes.LOGIN, Routes.REGISTER];
 
 export default async function middleware(req: NextRequest) {
@@ -14,11 +12,11 @@ export default async function middleware(req: NextRequest) {
   const userRole = req.cookies.get('userRole')?.value as UserRole;
   const path = req.nextUrl.pathname;
   const isAuthenticationRoute = authenticationRoutes.includes(path);
-  const isPrivateRoute = privateRoutes.includes(path);
-  const isCompanyRoute = companyRoutes.includes(path);
+  const isCompanyRoute = path.startsWith(Routes.DASHBOARD);
   const isInternRoute = internRoutes.includes(path);
+  const isPrivateRoute = isInternRoute && isCompanyRoute;
   const isCompanyEntity = userRole === 'Company';
-  const isInternshipEntity = userRole === 'InnerUser';
+  const isInternEntity = userRole === 'InnerUser' || userRole === 'OuterUser';
   const homePage = new URL(Routes.HOME, req.nextUrl.origin);
 
   if (!token && isPrivateRoute) {
@@ -29,7 +27,7 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(homePage);
   }
   if (token && userRole) {
-    if (isInternshipEntity && isCompanyRoute) {
+    if (isInternEntity && isCompanyRoute) {
       return NextResponse.redirect(homePage);
     }
     if (isCompanyEntity && isInternRoute) {
