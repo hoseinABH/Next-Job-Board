@@ -16,6 +16,7 @@ import type {
   GetAllPositionsQueries,
   GetAllPositionsResponse,
   Position,
+  PositionActivationDto,
   UpdatePositionDto,
   UpdatePositionStatusDto,
 } from '@/types/internship';
@@ -154,6 +155,20 @@ async function updatePosition(_: any, formData: FormData): Promise<FormState | u
     return fromErrorToFormState(error);
   }
 }
+async function updateActivation(activationDto: PositionActivationDto) {
+  try {
+    const response = await mutate<PositionActivationDto>(
+      `${route}/deactivate-position`,
+      'PUT',
+      activationDto,
+    );
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.DASHBOARD_POSITIONS);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 export {
   apply,
   getAllPositions,
@@ -161,4 +176,5 @@ export {
   updateRequestStatus,
   createPosition,
   updatePosition,
+  updateActivation,
 };

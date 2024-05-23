@@ -47,6 +47,7 @@ export interface InternshipItem {
   immediateRecruitment: boolean;
   submissionDeadline: string;
   description: string;
+  isActive: boolean;
 }
 export interface GetCompanyPositionsResponse {
   totalCount: number;

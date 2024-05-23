@@ -1,6 +1,5 @@
 import { useState } from 'react';
 // Common components
-import IconButton from '@/components/icon-button';
 import Spinner from '@/components/spinner';
 import {
   DropdownMenu,
@@ -56,10 +55,8 @@ export default function StatusDropdown({ action, reqId, applicationStatus, pendi
   }
   return (
     <DropdownMenu open={visible} onOpenChange={onOpenChange}>
-      <DropdownMenuTrigger>
-        <IconButton onClick={(e) => e.stopPropagation()} disabled={pending}>
-          <Grip className="h-4 w-4" />
-        </IconButton>
+      <DropdownMenuTrigger onClick={(e) => e.stopPropagation()}>
+        <Grip className="h-4 w-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="center" onClick={(e) => e.stopPropagation()}>
         {menuItems.map((menu) => (

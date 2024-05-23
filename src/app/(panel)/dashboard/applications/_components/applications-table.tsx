@@ -36,10 +36,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
   }
   function determineStatus(data: UpdatePositionStatusDto) {
     startTransition(() => {
-      updateRequestStatus({
-        reqId: data.reqId,
-        requestStatus: data.requestStatus,
-      });
+      updateRequestStatus(data);
     });
   }
   return (
@@ -52,6 +49,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">
+              <TableHead className="text-center">ردیف</TableHead>
               <TableHead className="text-center">کارجو</TableHead>
               <TableHead className="text-center">موقعیت شغلی</TableHead>
               <TableHead className="text-center">تاریخ درخواست</TableHead>
@@ -60,15 +58,14 @@ export default function ApplicationsTable({ className, applications }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {applications.map((application) => (
+            {applications.map((application, index) => (
               <TableRow
                 key={application.userProfileId}
                 onClick={() => onSelect(application.userProfileId)}
                 className="h-20 cursor-pointer"
               >
-                <TableCell align="center" className="font-medium">
-                  {application.userProfileName}
-                </TableCell>
+                <TableCell align="center">{index + 1}</TableCell>
+                <TableCell align="center">{application.userProfileName}</TableCell>
                 <TableCell align="center">{application.positionTitle}</TableCell>
                 <TableCell align="center">
                   {new Date(application.requestDate).toLocaleDateString('fa-IR')}

@@ -70,3 +70,8 @@ export interface UpdatePositionStatusDto {
   reqId: number;
   requestStatus: ApplicationStatus;
 }
+
+export interface PositionActivationDto {
+  positionId: number;
+  isActive: boolean;
+}

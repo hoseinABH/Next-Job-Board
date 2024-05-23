@@ -1,6 +1,5 @@
 'use client';
 // Common components
-import IconButton from '@/components/icon-button';
 import { Badge } from '@/components/ui/badge';
 import {
   Table,
@@ -10,16 +9,22 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Settings2, Trash2 } from 'lucide-react';
+import { Settings2 } from 'lucide-react';
+import ActivationDropdown from './activation-drop-down';
 import PositionsHeader from './positions-header';
+// Actions
+import { updateActivation } from '@/actions/positions';
 // Utilities
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
+// Hooks
+import useCompanyStore from '@/store/company';
+import { useTransition } from 'react';
 // Constants
 import { mapEducationGrade } from '@/constants/user';
 // Types
 import type { InternshipItem } from '@/types/company';
-import useCompanyStore from '@/store/company';
+import type { PositionActivationDto } from '@/types/internship';
 
 interface Props {
   className?: string;
@@ -31,6 +36,13 @@ export default function PositionsTable({ className, positions }: Props) {
   function openEditModal(position: InternshipItem) {
     openModal(true, 'createPosition', position);
   }
+  const [pending, startTransition] = useTransition();
+
+  function determineActivation(data: PositionActivationDto) {
+    startTransition(() => {
+      updateActivation(data);
+    });
+  }
   return (
     <div className={cn('rounded-md bg-card p-6', className)}>
       <PositionsHeader />
@@ -39,6 +51,7 @@ export default function PositionsTable({ className, positions }: Props) {
           <Table className="text-nowrap">
             <TableHeader>
               <TableRow className="h-16">
+                <TableHead className="text-center">ردیف</TableHead>
                 <TableHead className="text-center">عنوان شغل</TableHead>
                 <TableHead className="text-center">مقطع تحصیلی</TableHead>
                 <TableHead className="text-center">حقوق</TableHead>
@@ -47,14 +60,19 @@ export default function PositionsTable({ className, positions }: Props) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {positions.map((position) => (
-                <TableRow key={position.id} className="h-20">
-                  <TableCell align="center" className="font-medium">
-                    {position.title}
-                  </TableCell>
+              {positions.map((position, index) => (
+                <TableRow
+                  key={position.id}
+                  className={cn('h-20', {
+                    ['blur-[1.2px]']: !position.isActive,
+                  })}
+                  title={!position.isActive ? 'غیر فعال' : ''}
+                >
+                  <TableCell align="center">{index + 1}</TableCell>
+                  <TableCell align="center">{position.title}</TableCell>
                   <TableCell align="center">{mapEducationGrade[position.grade]}</TableCell>
                   <TableCell align="center">{addCommas(position.salary)} تومان</TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center" className="space-x-4">
                     {position.immediateRecruitment ? (
                       <Badge variant="destructive">فوری</Badge>
                     ) : (
@@ -62,9 +80,15 @@ export default function PositionsTable({ className, positions }: Props) {
                     )}
                   </TableCell>
                   <TableCell align="center">
-                    <IconButton title="ویرایش" onClick={() => openEditModal(position)}>
-                      <Settings2 className="h-4 w-4" />
-                    </IconButton>
+                    <ActivationDropdown
+                      positionId={position.id}
+                      action={determineActivation}
+                      pending={pending}
+                      isActive={position.isActive}
+                    />
+                    <button className="mr-2" title="ویرایش" onClick={() => openEditModal(position)}>
+                      <Settings2 className="h-5 w-5" />
+                    </button>
                   </TableCell>
                 </TableRow>
               ))}

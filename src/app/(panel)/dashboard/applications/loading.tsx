@@ -21,6 +21,7 @@ export default function ApplicationsLoading() {
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">
+              <TableHead className="text-center">ردیف</TableHead>
               <TableHead className="text-center">کارجو</TableHead>
               <TableHead className="text-center">موقعیت شغلی</TableHead>
               <TableHead className="text-center">تاریخ درخواست</TableHead>
@@ -31,6 +32,9 @@ export default function ApplicationsLoading() {
           <TableBody>
             {[1, 2, 3, 4, 5].map((item) => (
               <TableRow key={item} className="h-20">
+                <TableCell align="center">
+                  <Skeleton className="h-8 w-8" />
+                </TableCell>
                 <TableCell align="center">
                   <Skeleton className="h-6 w-full sm:w-32" />
                 </TableCell>
