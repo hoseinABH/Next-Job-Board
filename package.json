@@ -1,6 +1,6 @@
 {
   "name": "karma",
-  "version": "0.2.1",
+  "version": "0.2.2-140303031920",
   "private": true,
   "scripts": {
     "dev": "next dev",
