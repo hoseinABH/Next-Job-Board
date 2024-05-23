@@ -1,17 +1,18 @@
+// Common components
+import SearchForm from '@/components/search-form';
 // Local components
-import { DivideCircle } from 'lucide-react';
-import FilterSection from './_components/filter-section';
-import FilterSheet from './_components/filter-sheet';
 import JobsList from './_components/jobs-list';
 // Actions
 import { getAllPositions } from '@/actions/positions';
 // Types
 import type { Metadata } from 'next';
+// Constants
+import * as Routes from '@/config/routes';
 
 export const metadata: Metadata = {
   title: 'فرصت های کارآموزی',
+  description: 'لیست فرصت های کارآموزی',
 };
-
 interface SearchParams {
   searchParams: {
     q?: string;
@@ -19,6 +20,7 @@ interface SearchParams {
   };
 }
 export default async function Internships({ searchParams }: SearchParams) {
+  // await new Promise((res) => setTimeout(res, 60000));
   const positions = await getAllPositions({
     page: '1',
     query: searchParams.q,
@@ -26,13 +28,14 @@ export default async function Internships({ searchParams }: SearchParams) {
   });
   return (
     <div className="space-y-8 py-4 lg:py-12">
-      <div className="relative flex gap-6">
-        <FilterSection className="sticky top-[100px] col-span-3 hidden h-fit w-[300px] lg:block" />
-        <JobsList positions={positions} className="flex-1" />
+      <div className="flex flex-col items-center justify-center">
+        <SearchForm
+          count={positions.length}
+          searchedData="فرصت کارآموزی"
+          targetRoute={Routes.INTERNSHIPS}
+        />
       </div>
-      <FilterSheet>
-        <FilterSection visibleHeader={false} className="mx-2 my-4" />
-      </FilterSheet>
+      <JobsList positions={positions} className="flex-1" />
     </div>
   );
 }

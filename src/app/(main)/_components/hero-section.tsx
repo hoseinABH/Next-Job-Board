@@ -1,6 +1,8 @@
 import Image from 'next/image';
 // Common components
-import JobSearch from '@/components/job-search';
+import SearchForm from '@/components/search-form';
+// Constants
+import * as Routes from '@/config/routes';
 
 export default function HeroSection() {
   return (
@@ -13,7 +15,7 @@ export default function HeroSection() {
             آگهی استخدام در ایران عنوان شغلی، نام شرکت، مهارت یا...
           </p>
         </div>
-        <JobSearch />
+        <SearchForm targetRoute={Routes.INTERNSHIPS} />
       </div>
       <Image
         className="hidden drop-shadow-2xl lg:block"

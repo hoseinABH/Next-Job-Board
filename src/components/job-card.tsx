@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
 // Types
 import type { PositionItem } from '@/types/internship';
+import { Skeleton } from './ui/skeleton';
 
 interface Props {
   position: PositionItem;
@@ -40,5 +41,24 @@ export default function JobCard({ className, position, href = '/' }: Props) {
         </CardContent>
       </Card>
     </Link>
+  );
+}
+
+export function JobCardSkeleton() {
+  return (
+    <Card className="">
+      <CardContent className="flex flex-col justify-center p-6  sm:flex-row md:justify-between">
+        <div className="flex flex-col items-center gap-x-4 md:flex-row">
+          <div className="flex flex-col items-center gap-y-2 md:items-start">
+            <Skeleton className="mb-2 h-6 w-60" />
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-muted-foreground sm:flex-wrap">
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-4 w-16" />
+            </div>
+            <Skeleton className="mt-1 h-4 w-36" />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

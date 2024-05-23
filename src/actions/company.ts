@@ -14,10 +14,13 @@ import type {
 
 const route = 'company';
 
-async function getAllCompanies({ page, city }: GetCompaniesQueries) {
+async function getAllCompanies({ page, city, keyword }: GetCompaniesQueries) {
   const query = new URLSearchParams(`page=${page}`);
   if (city) {
     query.append('city', city);
+  }
+  if (keyword) {
+    query.append('keyword', keyword);
   }
   const path = `${route}/get-all-companies?${query.toString()}`;
   const response = await fetcher<GetCompaniesResponse>(path, 'no-cache');

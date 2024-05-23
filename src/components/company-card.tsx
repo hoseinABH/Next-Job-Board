@@ -8,6 +8,7 @@ import { Card, CardContent } from './ui/card';
 import { cn } from '@/lib/utils';
 // Types
 import type { CompanyListItem } from '@/types/company';
+import { Skeleton } from './ui/skeleton';
 
 interface Props {
   company: CompanyListItem;
@@ -60,5 +61,36 @@ export default function CompanyCard({
         </CardContent>
       </Card>
     </Link>
+  );
+}
+
+export function CompanyCardSkeleton({ visibleOpenPositions }: Partial<Props>) {
+  return (
+    <Card>
+      <CardContent
+        className={cn('flex flex-col items-center p-6 sm:flex-row', {
+          ['justify-between']: visibleOpenPositions,
+          ['justify-center']: !visibleOpenPositions,
+        })}
+      >
+        <div
+          className={cn('flex flex-col items-center gap-4', {
+            ['flex-col sm:flex-row']: visibleOpenPositions,
+            ['flex-col text-center']: !visibleOpenPositions,
+          })}
+        >
+          <Skeleton className="h-16 w-16" />
+          <div className="my-4 space-y-4 sm:my-0">
+            <Skeleton className="h-5 w-24" />
+            <Skeleton className="h-5 w-24" />
+          </div>
+        </div>
+        <Maybe condition={Boolean(visibleOpenPositions)}>
+          <div className="flex gap-1">
+            <Skeleton className="h-6 w-24" />
+          </div>
+        </Maybe>
+      </CardContent>
+    </Card>
   );
 }

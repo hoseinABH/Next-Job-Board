@@ -1,7 +1,7 @@
-// Common components
-import CompanyCard from '@/components/company-card';
 // Local components
-import FilterSection from './_components/filter-section';
+import CompaniesList from './_components/companies-list';
+// Common components
+import SearchForm from '@/components/search-form';
 // Actions
 import { getAllCompanies } from '@/actions/company';
 // Types
@@ -11,22 +11,27 @@ import * as Routes from '@/config/routes';
 
 export const metadata: Metadata = {
   title: 'شرکت‌ها',
+  description: 'لیست شرکت ها',
 };
+interface SearchParams {
+  searchParams: {
+    q?: string;
+    l?: string;
+  };
+}
 
-export default async function Companies() {
-  const companies = await getAllCompanies({ page: '1' });
+export default async function Companies({ searchParams }: SearchParams) {
+  const companies = await getAllCompanies({
+    page: '1',
+    keyword: searchParams.q,
+    city: searchParams.l,
+  });
   return (
     <div className="space-y-8 py-4 lg:py-12">
-      <FilterSection />
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {companies.map((company) => (
-          <CompanyCard
-            key={company.id}
-            company={company}
-            href={`${Routes.COMPANIES}/${company.id}`}
-          />
-        ))}
+      <div className="flex flex-col items-center justify-center">
+        <SearchForm count={companies.length} searchedData="شرکت" targetRoute={Routes.COMPANIES} />
       </div>
+      <CompaniesList companies={companies} />
     </div>
   );
 }
