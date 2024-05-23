@@ -80,7 +80,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
                 </TableCell>
                 <TableCell align="center">
                   <StatusDropdown
-                    reqId={application.userProfileId}
+                    reqId={application.requestId}
                     action={determineStatus}
                     pending={pending}
                     applicationStatus={application.status}
