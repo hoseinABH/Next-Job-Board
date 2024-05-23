@@ -41,7 +41,7 @@ export const WorkExperienceFormSchema = z.object({
 export const EducationFormSchema = z.object({
   educationalInstitution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
   grade: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'مقطع را انتخاب کنید',
+    required_error: 'مقطع تحصیلی را انتخاب کنید',
   }),
   fieldOfEducation: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
   startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),

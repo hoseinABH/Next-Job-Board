@@ -1,9 +1,11 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import useCompanyStore from '@/store/company';
 
 export default function PositionsHeader() {
+  const { openModal } = useCompanyStore();
   function openCreatePositionModal() {
-    // dispatch(PanelActions.setModalOpen(true, 'createPosition'));
+    openModal(true, 'createPosition');
   }
   return (
     <div className="flex flex-col justify-between gap-4 sm:flex-row sm:gap-0">

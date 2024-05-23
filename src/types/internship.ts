@@ -44,12 +44,12 @@ export type InternshipsModal = Record<ModalKeys, boolean>;
 
 export interface CreatePositionDto {
   title: string;
-  grade: number;
-  submissionDeadline: Date;
+  grade: Grade;
+  submissionDeadline: string;
   salary: string;
   description: string;
   userRole: UserRole;
-  immediateRecruitment: true;
+  immediateRecruitment: boolean;
 }
 export interface CreatePositionResponse {}
 

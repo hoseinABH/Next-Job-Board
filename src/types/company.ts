@@ -75,5 +75,5 @@ export interface GetUserResumeResponse {
   email: string;
 }
 
-export type ModalKeys = 'resumePreview';
+export type ModalKeys = 'createPosition';
 export type CompanyModals = Record<ModalKeys, boolean>;

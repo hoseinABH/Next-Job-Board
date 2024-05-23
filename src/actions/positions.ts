@@ -12,6 +12,7 @@ import { revalidatePath } from 'next/cache';
 // Types
 import type {
   ApplicationDto,
+  CreatePositionDto,
   GetAllPositionsQueries,
   GetAllPositionsResponse,
   Position,
@@ -19,6 +20,7 @@ import type {
 } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
+import { CreatePositionFormSchema } from '@/schema/internship';
 
 const route = 'internship';
 async function getAllPositions({ page, companyId, city, query }: GetAllPositionsQueries) {
@@ -74,4 +76,41 @@ async function updateRequestStatus(updateRequestStatusDto: UpdatePositionStatusD
     console.log(error);
   }
 }
-export { apply, getAllPositions, getPositionById, updateRequestStatus };
+async function createPosition(_: any, formData: FormData): Promise<FormState | undefined> {
+  const title = formData.get('title');
+  const grade = formData.get('grade');
+  const submissionDeadline = formData.get('submissionDeadline');
+  const salary = formData.get('salary');
+  const description = formData.get('description');
+  const userRole = formData.get('userRole');
+  const immediateRecruitment = formData.get('immediateRecruitment');
+  const createEducationDto = {
+    title,
+    grade,
+    submissionDeadline,
+    salary,
+    description,
+    userRole,
+    immediateRecruitment: Boolean(immediateRecruitment),
+  };
+  try {
+    const data = CreatePositionFormSchema.parse(createEducationDto);
+    const normalizedDto = {
+      ...data,
+      grade: parseInt(data.grade),
+    } as CreatePositionDto;
+    const response = await mutate<CreatePositionDto>(
+      `${route}/create-position`,
+      'POST',
+      normalizedDto,
+    );
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.DASHBOARD_POSITIONS);
+      return generateSuccessFormState();
+    }
+    return generateErrorFormState();
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
+export { apply, getAllPositions, getPositionById, updateRequestStatus, createPosition };

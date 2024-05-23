@@ -11,7 +11,7 @@ export type CompanyState = CompanyValues & CompanyActions;
 
 const initialValues: CompanyValues = {
   modals: {
-    resumePreview: false,
+    createPosition: false,
   },
 };
 const useCompanyStore = create<CompanyState>((set) => ({
