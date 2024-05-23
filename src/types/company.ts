@@ -46,6 +46,7 @@ export interface InternshipItem {
   grade: Grade;
   immediateRecruitment: boolean;
   submissionDeadline: string;
+  description: string;
 }
 export interface GetCompanyPositionsResponse {
   totalCount: number;
@@ -77,3 +78,4 @@ export interface GetUserResumeResponse {
 
 export type ModalKeys = 'createPosition';
 export type CompanyModals = Record<ModalKeys, boolean>;
+export type ModalMetadata = Record<string, any> | null;

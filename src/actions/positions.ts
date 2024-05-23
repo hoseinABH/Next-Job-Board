@@ -16,6 +16,7 @@ import type {
   GetAllPositionsQueries,
   GetAllPositionsResponse,
   Position,
+  UpdatePositionDto,
   UpdatePositionStatusDto,
 } from '@/types/internship';
 // Constants
@@ -113,4 +114,51 @@ async function createPosition(_: any, formData: FormData): Promise<FormState | u
     return fromErrorToFormState(error);
   }
 }
-export { apply, getAllPositions, getPositionById, updateRequestStatus, createPosition };
+async function updatePosition(_: any, formData: FormData): Promise<FormState | undefined> {
+  const id = formData.get('id') as string;
+  const title = formData.get('title');
+  const grade = formData.get('grade');
+  const submissionDeadline = formData.get('submissionDeadline');
+  const salary = formData.get('salary');
+  const description = formData.get('description');
+  const userRole = formData.get('userRole');
+  const immediateRecruitment = formData.get('immediateRecruitment');
+  const createEducationDto = {
+    id,
+    title,
+    grade,
+    submissionDeadline,
+    salary,
+    description,
+    userRole,
+    immediateRecruitment: Boolean(immediateRecruitment),
+  };
+  try {
+    const data = CreatePositionFormSchema.parse(createEducationDto);
+    const normalizedDto = {
+      ...data,
+      id: parseInt(id),
+      grade: parseInt(data.grade),
+    } as UpdatePositionDto;
+    const response = await mutate<UpdatePositionDto>(
+      `${route}/update-position`,
+      'PUT',
+      normalizedDto,
+    );
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.DASHBOARD_POSITIONS);
+      return generateSuccessFormState();
+    }
+    return generateErrorFormState();
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
+export {
+  apply,
+  getAllPositions,
+  getPositionById,
+  updateRequestStatus,
+  createPosition,
+  updatePosition,
+};

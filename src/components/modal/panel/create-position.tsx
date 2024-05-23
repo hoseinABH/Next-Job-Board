@@ -20,15 +20,18 @@ import { useFormState } from 'react-dom';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Actions
-import { createPosition } from '@/actions/positions';
+import { createPosition, updatePosition } from '@/actions/positions';
 // Constants
 import { educationGradeOptions } from '@/constants/user';
 
 export default function CreatePositionModal() {
-  const [formState, action] = useFormState(createPosition, EMPTY_FORM_STATE);
-  const { modals, openModal } = useCompanyStore();
+  const { modals, openModal, metadata } = useCompanyStore();
+  const isUpdate = Boolean(metadata);
+  const [formState, action] = useFormState(
+    isUpdate ? updatePosition : createPosition,
+    EMPTY_FORM_STATE,
+  );
   useToastMessage(formState, closeDialog);
-
   function onOpenChange(open: boolean) {
     openModal(open, 'createPosition');
   }
@@ -44,12 +47,16 @@ export default function CreatePositionModal() {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="title" label="عنوان موقعیت شغلی" />
+            {metadata?.id ? (
+              <input hidden className="hidden" name="id" value={metadata.id} />
+            ) : null}
+            <InputField name="title" label="عنوان موقعیت شغلی" defaultValue={metadata?.title} />
             <SelectField
               name="grade"
               label="مقطع تحصیلی مورد نیاز"
               options={educationGradeOptions}
               formState={formState}
+              defaultValue={String(metadata?.grade)}
             />
             <InputField
               name="submissionDeadline"
@@ -57,6 +64,7 @@ export default function CreatePositionModal() {
               dir="ltr"
               type="date"
               formState={formState}
+              defaultValue={metadata?.submissionDeadline}
             />
             <InputField
               name="salary"
@@ -65,6 +73,7 @@ export default function CreatePositionModal() {
               inputMode="numeric"
               placeholder="تومان"
               formState={formState}
+              defaultValue={metadata?.salary}
             />
             <TextAreaField
               name="description"
@@ -72,6 +81,7 @@ export default function CreatePositionModal() {
               rows={6}
               containerClassName="sm:col-span-2"
               formState={formState}
+              defaultValue={metadata?.description}
             />
             <CheckboxField
               name="immediateRecruitment"
@@ -79,11 +89,12 @@ export default function CreatePositionModal() {
               label="استخدام فوری"
               containerClassName="sm:col-span-2"
               formState={formState}
+              defaultChecked={metadata?.immediateRecruitment}
             />
             <input hidden className="hidden" name="userRole" value="OuterUser" />
           </div>
           <DialogFooter>
-            <SubmitButton>ثبت موقعیت شغلی</SubmitButton>
+            <SubmitButton>{isUpdate ? 'ثبت تغییرات' : 'ثبت موقعیت شغلی'}</SubmitButton>
           </DialogFooter>
         </form>
       </DialogContent>

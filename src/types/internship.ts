@@ -51,7 +51,16 @@ export interface CreatePositionDto {
   userRole: UserRole;
   immediateRecruitment: boolean;
 }
-export interface CreatePositionResponse {}
+export interface UpdatePositionDto {
+  id: number;
+  title: string;
+  grade: Grade;
+  submissionDeadline: string;
+  salary: string;
+  description: string;
+  userRole: UserRole;
+  immediateRecruitment: boolean;
+}
 
 export interface ApplicationDto {
   positionId: number;

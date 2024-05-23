@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Trash2 } from 'lucide-react';
+import { Settings2, Trash2 } from 'lucide-react';
 import PositionsHeader from './positions-header';
 // Utilities
 import { cn } from '@/lib/utils';
@@ -19,6 +19,7 @@ import { addCommas } from '@persian-tools/persian-tools';
 import { mapEducationGrade } from '@/constants/user';
 // Types
 import type { InternshipItem } from '@/types/company';
+import useCompanyStore from '@/store/company';
 
 interface Props {
   className?: string;
@@ -26,18 +27,9 @@ interface Props {
 }
 
 export default function PositionsTable({ className, positions }: Props) {
-  function openDeleteModal() {
-    // dispatch(
-    //   PanelActions.setDialogData({
-    //     title: 'حذف موقعیت شغلی',
-    //     message: 'آیا از حذف این موقعیت شغلی مطمئن هستید؟',
-    //     model: {
-    //       id: '',
-    //       entity: 'position',
-    //     },
-    //   }),
-    // );
-    // dispatch(CommonActions.setModalOpen(true, 'confirmDelete'));
+  const { openModal } = useCompanyStore();
+  function openEditModal(position: InternshipItem) {
+    openModal(true, 'createPosition', position);
   }
   return (
     <div className={cn('rounded-md bg-card p-6', className)}>
@@ -70,8 +62,8 @@ export default function PositionsTable({ className, positions }: Props) {
                     )}
                   </TableCell>
                   <TableCell align="center">
-                    <IconButton title="حذف" onClick={openDeleteModal}>
-                      <Trash2 className="h-4 w-4" />
+                    <IconButton title="ویرایش" onClick={() => openEditModal(position)}>
+                      <Settings2 className="h-4 w-4" />
                     </IconButton>
                   </TableCell>
                 </TableRow>
