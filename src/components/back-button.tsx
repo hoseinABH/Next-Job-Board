@@ -15,7 +15,7 @@ export default function BackButton({ onClick, children = 'بازگشت' }: Props
   }
   return (
     <div
-      className="group flex w-max cursor-pointer items-center gap-x-px text-muted-foreground"
+      className="group flex w-max cursor-pointer items-center gap-x-px text-muted-foreground print:hidden"
       onClick={goBack}
     >
       <ArrowRight className="h-4 w-4 transition-all group-hover:translate-x-1" /> {children}
