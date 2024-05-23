@@ -1,5 +1,5 @@
 {
-  "app": "employment-app",
+  "app": "karma",
   "next": {
     "modifyConfig": false
   }
