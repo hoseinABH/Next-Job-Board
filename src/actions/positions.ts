@@ -22,6 +22,7 @@ import type {
 } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
+// Schema
 import { CreatePositionFormSchema } from '@/schema/internship';
 
 const route = 'internship';
@@ -73,9 +74,11 @@ async function updateRequestStatus(updateRequestStatusDto: UpdatePositionStatusD
     );
     if (response.status === HttpStatus.OK) {
       revalidatePath(Routes.DASHBOARD_APPLICATIONS);
+      return generateSuccessFormState();
     }
+    generateErrorFormState();
   } catch (error) {
-    console.log(error);
+    return fromErrorToFormState(error);
   }
 }
 async function createPosition(_: any, formData: FormData): Promise<FormState | undefined> {
@@ -164,9 +167,11 @@ async function updateActivation(activationDto: PositionActivationDto) {
     );
     if (response.status === HttpStatus.OK) {
       revalidatePath(Routes.DASHBOARD_POSITIONS);
+      return generateSuccessFormState();
     }
+    return generateErrorFormState();
   } catch (error) {
-    console.log(error);
+    return fromErrorToFormState(error);
   }
 }
 export {
