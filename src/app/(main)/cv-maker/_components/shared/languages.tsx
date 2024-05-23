@@ -24,18 +24,13 @@ export default function Languages({ languages }: Props) {
   function openCreateModal() {
     openModal(true, 'language');
   }
-  function handleDeleteLanguage(language: Language) {
-    // dispatch(
-    //   UserActions.setDialogData({
-    //     title: 'حذف زبان',
-    //     message: `آیا از حذف زبان ${language.title} مطمئن هستید؟`,
-    //     model: {
-    //       id: String(language.id),
-    //       entity: 'language',
-    //     },
-    //   }),
-    // );
-    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+  function removeLanguage(language: Language) {
+    openModal(true, 'removeConfirm', {
+      title: 'حذف زبان',
+      message: `آیا از حذف زبان ${language.title} مطمئن هستید؟`,
+      id: language.id,
+      entityType: 'language',
+    });
   }
   return (
     <Fragment>
@@ -56,7 +51,7 @@ export default function Languages({ languages }: Props) {
             {languages?.map((lang) => (
               <SkillBox
                 key={lang.id}
-                action={() => handleDeleteLanguage(lang)}
+                action={() => removeLanguage(lang)}
                 level={mapSeniorityLevel[lang.level]}
               >
                 {lang.title}

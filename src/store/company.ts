@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import type { CompanyModals, ModalKeys, ModalMetadata } from '@/types/company';
+import type { CompanyModals, ModalKeys } from '@/types/company';
+import type { ModalMetadata } from '@/types/common';
 
 export interface CompanyValues {
   modals: CompanyModals;

@@ -112,6 +112,11 @@ export interface WorkExperience {
   updatedDate: Date;
 }
 
+export type ResumeEntity = 'skill' | 'education' | 'workExperience' | 'language';
+export interface RemoveEntityDto {
+  id: string;
+  entityType: ResumeEntity;
+}
 export type ModalKeys =
   | 'aboutMe'
   | 'personalInfo'
@@ -119,5 +124,6 @@ export type ModalKeys =
   | 'education'
   | 'skill'
   | 'language'
-  | 'apply';
+  | 'apply'
+  | 'removeConfirm';
 export type UserModals = Record<ModalKeys, boolean>;

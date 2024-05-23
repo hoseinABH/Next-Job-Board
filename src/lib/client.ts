@@ -5,10 +5,10 @@ import { getBaseApiUrl } from './common';
 // Types
 import type { BaseApiResponse } from '@/types/http';
 
-export async function mutate<T, F = null>(
+export async function mutate<T = null, F = null>(
   path: string,
   method: string,
-  data: T,
+  data?: T,
 ): Promise<BaseApiResponse<F>> {
   const token = await getSession();
   const result = await fetch(`${getBaseApiUrl()}/${path}`, {

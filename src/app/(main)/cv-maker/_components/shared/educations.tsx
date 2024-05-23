@@ -22,18 +22,13 @@ export default function Educations({ educations }: Props) {
   function openCreateModal() {
     openModal(true, 'education');
   }
-  function handleDeleteEducation(education: Education) {
-    // dispatch(
-    //   UserActions.setDialogData({
-    //     title: 'حذف تجربه تحصیلی',
-    //     message: `آیا از حذف تجربه تحصیلی خود در ${education.educationalInstitution} مطمئن هستید؟`,
-    //     model: {
-    //       id: String(education.id),
-    //       entity: 'education',
-    //     },
-    //   }),
-    // );
-    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+  function removeEducation(education: Education) {
+    openModal(true, 'removeConfirm', {
+      title: 'حذف تجربه تحصیلی',
+      message: `آیا از حذف تجربه تحصیلی خود در ${education.educationalInstitution} مطمئن هستید؟`,
+      id: education.id,
+      entityType: 'education',
+    });
   }
   return (
     <Fragment>
@@ -56,7 +51,7 @@ export default function Educations({ educations }: Props) {
               <EducationCard
                 key={education.id}
                 education={education}
-                onDelete={() => handleDeleteEducation(education)}
+                onDelete={() => removeEducation(education)}
               />
             ))}
           </div>

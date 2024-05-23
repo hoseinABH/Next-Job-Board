@@ -22,18 +22,13 @@ export default function WorkExperience({ workExperiences }: Props) {
   function openCreateModal() {
     openModal(true, 'workExperience');
   }
-  function handleDeleteWorkExperience(experience: WorkExperience) {
-    // dispatch(
-    //   UserActions.setDialogData({
-    //     title: 'حذف تجربه کاری',
-    //     message: `آیا از حذف تجربه کاری خود در ${experience.companyTitle} مطمئن هستید؟`,
-    //     model: {
-    //       id: String(experience.id),
-    //       entity: 'workExperience',
-    //     },
-    //   }),
-    // );
-    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+  function deleteExperience(experience: WorkExperience) {
+    openModal(true, 'removeConfirm', {
+      title: 'حذف تجربه کاری',
+      message: `آیا از حذف تجربه کاری خود در ${experience.companyTitle} مطمئن هستید؟`,
+      id: experience.id,
+      entityType: 'workExperience',
+    });
   }
   return (
     <Fragment>
@@ -56,7 +51,7 @@ export default function WorkExperience({ workExperiences }: Props) {
               <WorkExperienceCard
                 key={experience.id}
                 experience={experience}
-                onDelete={() => handleDeleteWorkExperience(experience)}
+                onDelete={() => deleteExperience(experience)}
               />
             ))}
           </div>

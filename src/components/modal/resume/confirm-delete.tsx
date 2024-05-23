@@ -12,37 +12,54 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+// Utilities
+import { FormState } from '@/lib/error';
+// Actions
+import { removeEntity } from '@/actions/user';
+// Hooks
+import useUserStore from '@/store/user';
+import { useState, useTransition } from 'react';
+import { useToastMessage } from '@/hooks/use-toast-message';
 
 export function ConfirmDeleteDialog() {
+  const { openModal, metadata, modals } = useUserStore();
+  const [pending, startTransition] = useTransition();
+  const [formState, setFormState] = useState<FormState>();
   function onSubmit() {
-    // dispatch(UserActions.removeField());
+    startTransition(() => {
+      removeEntity({
+        entityType: metadata?.entityType,
+        id: metadata?.id,
+      }).then((result) => setFormState(result));
+    });
   }
   function onOpenChange(open: boolean) {
-    // if (loading.removeEntity) return;
-    // dispatch(UserActions.setModalOpen(open, 'confirmDelete'));
+    if (pending) return;
+    openModal(open, 'removeConfirm');
+  }
+  function closeModal() {
+    openModal(false, 'removeConfirm');
   }
   function dismiss() {
-    // if (loading.removeEntity) return;
-    // dispatch(UserActions.setModalOpen(false, 'confirmDelete'));
+    if (pending) return;
+    closeModal();
   }
+  useToastMessage(formState, closeModal);
   return (
-    <AlertDialog
-      // open={modals.confirmDelete}
-      onOpenChange={onOpenChange}
-    >
+    <AlertDialog open={modals.removeConfirm} onOpenChange={onOpenChange}>
       <AlertDialogContent onDismiss={dismiss}>
         <AlertDialogHeader>
           <AlertDialogTitle className="flex gap-x-2">
             <XOctagon className="h-6 w-6 text-destructive" />
-            {/* {dialogData?.title} */}
+            {metadata?.title}
           </AlertDialogTitle>
-          <AlertDialogDescription>{/* {dialogData?.message} */}</AlertDialogDescription>
+          <AlertDialogDescription>{metadata?.message}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button variant="destructive" loading={false} onClick={onSubmit}>
+          <Button variant="destructive" loading={pending} onClick={onSubmit}>
             حذف
           </Button>
-          <AlertDialogCancel disabled={false}>انصراف</AlertDialogCancel>
+          <AlertDialogCancel disabled={pending}>انصراف</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

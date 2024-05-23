@@ -13,6 +13,7 @@ import { getSession } from './cookie';
 // Constants
 import * as Routes from '@/config/routes';
 import { HttpStatus } from '@/constants/http-status';
+import { mapEntityToEndpoint } from '@/constants/user';
 // Schema
 import {
   AboutMeFormSchema,
@@ -28,6 +29,7 @@ import type {
   CreateLanguageDto,
   CreateSkillDto,
   CreateWorkExperienceDto,
+  RemoveEntityDto,
   UpdateAboutMeDto,
   UpdatePersonalDto,
   UserMinimalProfile,
@@ -226,6 +228,19 @@ async function createLanguage(_: any, formData: FormData): Promise<FormState | u
     return fromErrorToFormState(error);
   }
 }
+async function removeEntity(removeEntityDto: RemoveEntityDto) {
+  try {
+    const entityUrl = `${route}/${mapEntityToEndpoint[removeEntityDto.entityType]}=${removeEntityDto.id}`;
+    const response = await mutate(entityUrl, 'DELETE');
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.CV_MAKER);
+      return generateSuccessFormState();
+    }
+    return generateErrorFormState();
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
 export {
   createEducation,
   createLanguage,
@@ -235,4 +250,5 @@ export {
   getUserProfile,
   updateAboutMe,
   updatePersonalInfo,
+  removeEntity,
 };

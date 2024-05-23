@@ -80,4 +80,3 @@ export interface GetUserResumeResponse {
 
 export type ModalKeys = 'createPosition';
 export type CompanyModals = Record<ModalKeys, boolean>;
-export type ModalMetadata = Record<string, any> | null;

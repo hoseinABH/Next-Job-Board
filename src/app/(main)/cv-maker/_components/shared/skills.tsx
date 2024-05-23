@@ -24,18 +24,13 @@ export default function Skills({ skills }: Props) {
   function openCreateModal() {
     openModal(true, 'skill');
   }
-  function handleDeleteSkill(skill: Skill) {
-    // dispatch(
-    //   UserActions.setDialogData({
-    //     title: 'حذف مهارت',
-    //     message: `آیا از حذف مهارت ${skill.title} مطمئن هستید؟`,
-    //     model: {
-    //       id: String(skill.id),
-    //       entity: 'skill',
-    //     },
-    //   }),
-    // );
-    // dispatch(UserActions.setModalOpen(true, 'confirmDelete'));
+  function removeSkill(skill: Skill) {
+    openModal(true, 'removeConfirm', {
+      title: 'حذف مهارت',
+      message: `آیا از حذف مهارت ${skill.title} مطمئن هستید؟`,
+      id: skill.id,
+      entityType: 'skill',
+    });
   }
   return (
     <Fragment>
@@ -56,7 +51,7 @@ export default function Skills({ skills }: Props) {
             {skills?.map((skill) => (
               <SkillBox
                 key={skill.id}
-                action={() => handleDeleteSkill(skill)}
+                action={() => removeSkill(skill)}
                 level={mapSeniorityLevel[skill.level]}
               >
                 {skill.title}
