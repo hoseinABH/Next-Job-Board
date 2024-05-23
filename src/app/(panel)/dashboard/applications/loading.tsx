@@ -41,10 +41,10 @@ export default function ApplicationsLoading() {
                   <Skeleton className="h-6 w-full sm:w-32" />
                 </TableCell>
                 <TableCell align="center">
-                  <Skeleton className="h-8 w-8" />
+                  <Skeleton className="h-6 w-16" />
                 </TableCell>
                 <TableCell align="center">
-                  <Skeleton className="h-6 w-16" />
+                  <Skeleton className="h-8 w-8" />
                 </TableCell>
               </TableRow>
             ))}

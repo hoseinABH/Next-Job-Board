@@ -15,6 +15,7 @@ import type {
   GetAllPositionsQueries,
   GetAllPositionsResponse,
   Position,
+  UpdatePositionStatusDto,
 } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
@@ -59,4 +60,18 @@ async function apply(_: any, formData: FormData): Promise<FormState | undefined>
     return fromErrorToFormState(error);
   }
 }
-export { apply, getAllPositions, getPositionById };
+async function updateRequestStatus(updateRequestStatusDto: UpdatePositionStatusDto) {
+  try {
+    const response = await mutate<UpdatePositionStatusDto>(
+      `${route}/update-request-status`,
+      'PUT',
+      updateRequestStatusDto,
+    );
+    if (response.status === HttpStatus.OK) {
+      revalidatePath(Routes.DASHBOARD_APPLICATIONS);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export { apply, getAllPositions, getPositionById, updateRequestStatus };

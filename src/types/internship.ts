@@ -1,4 +1,4 @@
-import type { Company } from './company';
+import type { ApplicationStatus, Company } from './company';
 import type { Grade, UserRole } from './user';
 
 export interface GetAllPositionsQueries {
@@ -57,11 +57,7 @@ export interface ApplicationDto {
   positionId: number;
   description: string;
 }
-
-export interface ApplicationResponse {}
-
 export interface UpdatePositionStatusDto {
   reqId: number;
-  requestStatus: number;
+  requestStatus: ApplicationStatus;
 }
-export interface UpdatePositionStatusResponse {}

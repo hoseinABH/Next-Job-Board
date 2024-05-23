@@ -9,16 +9,20 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import StatusDropdown from './status-drop-down';
+// Actions
+import { updateRequestStatus } from '@/actions/positions';
 // Utilities
 import { cn } from '@/lib/utils';
 // Hooks
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 // Types
 import type { InternshipRequestItem } from '@/types/company';
+import type { UpdatePositionStatusDto } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
 import { mapApplicationStatus } from '@/constants/company';
-
 interface Props {
   className?: string;
   applications: InternshipRequestItem[];
@@ -26,8 +30,17 @@ interface Props {
 
 export default function ApplicationsTable({ className, applications }: Props) {
   const router = useRouter();
+  const [pending, startTransition] = useTransition();
   function onSelect(userProfileId: number) {
     router.push(`${Routes.DASHBOARD_APPLICATIONS}/${userProfileId}`);
+  }
+  function determineStatus(data: UpdatePositionStatusDto) {
+    startTransition(() => {
+      updateRequestStatus({
+        reqId: data.reqId,
+        requestStatus: data.requestStatus,
+      });
+    });
   }
   return (
     <div className={cn('rounded-md bg-card p-6', className)}>
@@ -65,11 +78,14 @@ export default function ApplicationsTable({ className, applications }: Props) {
                     {mapApplicationStatus[application.status].title}
                   </Badge>
                 </TableCell>
-                {/* <TableCell align="center">
-                  <IconButton variant="outline" onClick={openResume}>
-                    <Eye className="h-4 w-4" />
-                  </IconButton>
-                </TableCell> */}
+                <TableCell align="center">
+                  <StatusDropdown
+                    reqId={application.userProfileId}
+                    action={determineStatus}
+                    pending={pending}
+                    applicationStatus={application.status}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
