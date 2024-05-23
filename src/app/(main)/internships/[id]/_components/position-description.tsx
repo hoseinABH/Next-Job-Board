@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
+import { differenceInDays } from '@/lib/date';
 // Hooks
 import useUserStore from '@/store/user';
 import { useRouter } from 'next/navigation';
@@ -61,7 +62,7 @@ export default function PositionDescription({
       id: 4,
       title: 'مهلت ارسال درخواست',
       icon: Timer,
-      value: new Date(position.submissionDeadline).toLocaleDateString('fa-IR'),
+      value: differenceInDays(position.submissionDeadline),
     },
   ];
   const buttonText = isApplied

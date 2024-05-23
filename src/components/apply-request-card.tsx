@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Building2, CalendarRange } from 'lucide-react';
 import Image from 'next/image';
 // Utilities
-import { persianDate } from '@/lib/date';
+import { dateWithMonthTitle } from '@/lib/date';
 import { cn } from '@/lib/utils';
 // Constants
 import { mapApplicationStatus } from '@/constants/company';
@@ -34,7 +34,7 @@ export default function ApplyRequestCard({ className, request }: Props) {
           </p>
           <p className="flex items-center text-muted-foreground">
             <CalendarRange className="ml-1 h-4 w-4" /> تاریخ ارسال درخواست:{' '}
-            {persianDate(request.requestDate)}
+            {dateWithMonthTitle(request.requestDate)}
           </p>
         </div>
       </div>

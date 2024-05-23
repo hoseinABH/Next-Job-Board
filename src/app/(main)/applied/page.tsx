@@ -14,7 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AppliedPage() {
-  await new Promise((res) => setTimeout(res, 5000));
   const requests = await getUserApplyRequests({ page: '1' });
   return (
     <div className="space-y-8 py-4 lg:py-12">

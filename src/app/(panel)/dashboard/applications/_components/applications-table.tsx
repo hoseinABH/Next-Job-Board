@@ -14,6 +14,7 @@ import StatusDropdown from './status-drop-down';
 import { updateRequestStatus } from '@/actions/positions';
 // Utilities
 import { cn } from '@/lib/utils';
+import { dateWithMonthTitle } from '@/lib/date';
 // Hooks
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
@@ -67,9 +68,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
                 <TableCell align="center">{index + 1}</TableCell>
                 <TableCell align="center">{application.userProfileName}</TableCell>
                 <TableCell align="center">{application.positionTitle}</TableCell>
-                <TableCell align="center">
-                  {new Date(application.requestDate).toLocaleDateString('fa-IR')}
-                </TableCell>
+                <TableCell align="center">{dateWithMonthTitle(application.requestDate)}</TableCell>
                 <TableCell align="center">
                   <Badge variant={mapApplicationStatus[application.status].status}>
                     {mapApplicationStatus[application.status].title}

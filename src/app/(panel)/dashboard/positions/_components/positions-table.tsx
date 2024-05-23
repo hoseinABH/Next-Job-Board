@@ -15,6 +15,7 @@ import PositionsHeader from './positions-header';
 // Actions
 import { updateActivation } from '@/actions/positions';
 // Utilities
+import { differenceInDays } from '@/lib/date';
 import { cn } from '@/lib/utils';
 import { addCommas } from '@persian-tools/persian-tools';
 // Hooks
@@ -55,6 +56,7 @@ export default function PositionsTable({ className, positions }: Props) {
                 <TableHead className="text-center">عنوان شغل</TableHead>
                 <TableHead className="text-center">مقطع تحصیلی</TableHead>
                 <TableHead className="text-center">حقوق</TableHead>
+                <TableHead className="text-center">مهلت درخواست</TableHead>
                 <TableHead className="text-center">استخدام فوری</TableHead>
                 <TableHead className="text-center">عملیات</TableHead>
               </TableRow>
@@ -72,6 +74,9 @@ export default function PositionsTable({ className, positions }: Props) {
                   <TableCell align="center">{position.title}</TableCell>
                   <TableCell align="center">{mapEducationGrade[position.grade]}</TableCell>
                   <TableCell align="center">{addCommas(position.salary)} تومان</TableCell>
+                  <TableCell align="center">
+                    {differenceInDays(position.submissionDeadline)}
+                  </TableCell>
                   <TableCell align="center" className="space-x-4">
                     {position.immediateRecruitment ? (
                       <Badge variant="destructive">فوری</Badge>
