@@ -34,7 +34,7 @@ export default function SelectField({
     <div className={cn('space-y-2', containerClassName)}>
       {label ? <Label htmlFor={name}>{label}</Label> : null}
       <Select name={name} {...props}>
-        <SelectTrigger className={containerClassName}>
+        <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>

@@ -13,13 +13,13 @@ export const PersonalInfoFormSchema = z.object({
   firstName: z.string().min(1, { message: 'نام را وارد کنید' }),
   lastName: z.string().min(1, { message: 'نام خانوادگی را وارد کنید' }),
   maritalStatus: z.enum(['0', '1'], {
-    required_error: 'وضعیت تاهل را انتخاب کنید',
+    errorMap: () => ({ message: 'وضعیت تاهل را انتخاب کنید' }),
   }),
   gender: z.enum(['0', '1'], {
-    required_error: 'جنسیت را انتخاب کنید',
+    errorMap: () => ({ message: 'جنسیت را انتخاب کنید' }),
   }),
   militaryService: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'وضعیت خدمت را انتخاب کنید',
+    errorMap: () => ({ message: 'وضعیت خدمت را انتخاب کنید' }),
   }),
   city: z.string().min(1, { message: 'محل سکونت را وارد کنید' }),
   phoneNumber: z
@@ -41,7 +41,7 @@ export const WorkExperienceFormSchema = z.object({
 export const EducationFormSchema = z.object({
   educationalInstitution: z.string().min(1, { message: 'نام دانشگاه را وارد کنید' }),
   grade: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'مقطع تحصیلی را انتخاب کنید',
+    errorMap: () => ({ message: 'مقطع تحصیلی را انتخاب کنید' }),
   }),
   fieldOfEducation: z.string().min(1, { message: 'رشته تحصیلی را وارد کنید' }),
   startDate: z.string().min(1, { message: 'تاریخ شروع را وارد کنید' }),
@@ -52,12 +52,12 @@ export const EducationFormSchema = z.object({
 export const LanguageFormSchema = z.object({
   name: z.string().min(1, { message: 'زبان را وارد کنید' }),
   level: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'سطح را انتخاب کنید',
+    errorMap: () => ({ message: 'سطح را انتخاب کنید' }),
   }),
 });
 export const SkillFormSchema = z.object({
   name: z.string().min(1, { message: 'مهارت را وارد کنید' }),
   level: z.enum(['0', '1', '2', '3', '4', '5'], {
-    required_error: 'سطح را انتخاب کنید',
+    errorMap: () => ({ message: 'سطح را انتخاب کنید' }),
   }),
 });
