@@ -29,6 +29,7 @@ import type {
   CreateLanguageDto,
   CreateSkillDto,
   CreateWorkExperienceDto,
+  GetUserApplyRequestResponse,
   RemoveEntityDto,
   UpdateAboutMeDto,
   UpdatePersonalDto,
@@ -43,6 +44,12 @@ async function getUserMinimalProfile() {
   const path = `${route}/get-minimal-profile`;
   const response = await fetcher<UserMinimalProfile>(path, 'no-cache');
   return response.data;
+}
+async function getUserApplyRequests({ page }: { page: string }) {
+  const params = new URLSearchParams(`page=${page}`);
+  const path = `${route}/get-user-internship-requests?${params.toString()}`;
+  const response = await fetcher<GetUserApplyRequestResponse>(path, 'no-cache');
+  return response.data.data;
 }
 async function getUserProfile() {
   const path = `${route}/get-profile`;
@@ -248,7 +255,8 @@ export {
   createWorkExperience,
   getUserMinimalProfile,
   getUserProfile,
+  removeEntity,
   updateAboutMe,
   updatePersonalInfo,
-  removeEntity,
+  getUserApplyRequests,
 };

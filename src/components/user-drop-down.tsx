@@ -24,18 +24,22 @@ const userMenuItems = [
   {
     title: 'درخواست های من',
     key: 'ApplicationRequest',
+    disabled: false,
   },
   {
     title: 'حساب کاربری',
     key: 'Account',
+    disabled: true,
   },
   {
     title: 'رزومه من',
     key: 'Resume',
+    disabled: false,
   },
   {
     title: 'خروج',
     key: 'Logout',
+    disabled: false,
   },
 ];
 
@@ -53,6 +57,9 @@ export default function UserDropDown({ profileData }: Props) {
         break;
       case 'Logout':
         logout();
+        break;
+      case 'ApplicationRequest':
+        router.push(Routes.APPLIED);
         break;
       default:
         break;
@@ -79,6 +86,7 @@ export default function UserDropDown({ profileData }: Props) {
                 key={menu.key}
                 onClick={() => handleSelectMenu(menu.key)}
                 className="cursor-pointer"
+                disabled={menu.disabled}
               >
                 {menu.title}
               </DropdownMenuItem>

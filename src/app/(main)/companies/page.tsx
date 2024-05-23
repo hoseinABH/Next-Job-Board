@@ -16,19 +16,17 @@ export const metadata: Metadata = {
 export default async function Companies() {
   const companies = await getAllCompanies({ page: '1' });
   return (
-    <section className="py-12">
-      <div className="space-y-8">
-        <FilterSection />
-        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {companies.map((company) => (
-            <CompanyCard
-              key={company.id}
-              company={company}
-              href={`${Routes.COMPANIES}/${company.id}`}
-            />
-          ))}
-        </div>
+    <div className="space-y-8 py-4 lg:py-12">
+      <FilterSection />
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {companies.map((company) => (
+          <CompanyCard
+            key={company.id}
+            company={company}
+            href={`${Routes.COMPANIES}/${company.id}`}
+          />
+        ))}
       </div>
-    </section>
+    </div>
   );
 }

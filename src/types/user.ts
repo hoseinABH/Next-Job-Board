@@ -1,4 +1,5 @@
 import type { Nullable } from './common';
+import type { ApplicationStatus, Company } from './company';
 
 export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
 
@@ -8,7 +9,21 @@ export interface UserMinimalProfile {
   firstName: string;
   lastName: string;
 }
-
+export interface UserApplyRequest {
+  requestId: number;
+  companyProfileId: number;
+  companyProfile: Company;
+  positionTitle: string;
+  requestDate: string;
+  status: ApplicationStatus;
+  description: string;
+}
+export interface GetUserApplyRequestResponse {
+  totalCount: number;
+  currentPage: number;
+  countPerPage: number;
+  data: UserApplyRequest[];
+}
 export interface UserProfile {
   title: string;
   aboutMe: string;
