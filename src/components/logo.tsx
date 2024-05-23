@@ -24,6 +24,7 @@ export default function Logo({ className, onClick }: Props) {
           alt={configs.appData.appName}
           className="h-auto w-auto"
         />
+        <p className="text-lg font-bold">{configs.appData.appName}</p>
       </div>
     </Link>
   );

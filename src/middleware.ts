@@ -14,7 +14,7 @@ export default async function middleware(req: NextRequest) {
   const isAuthenticationRoute = authenticationRoutes.includes(path);
   const isCompanyRoute = path.startsWith(Routes.DASHBOARD);
   const isInternRoute = internRoutes.includes(path);
-  const isPrivateRoute = isInternRoute && isCompanyRoute;
+  const isPrivateRoute = isInternRoute || isCompanyRoute;
   const isCompanyEntity = userRole === 'Company';
   const isInternEntity = userRole === 'InnerUser' || userRole === 'OuterUser';
   const homePage = new URL(Routes.HOME, req.nextUrl.origin);

@@ -1,6 +1,6 @@
 {
-  "name": "employment-app",
-  "version": "0.1.0",
+  "name": "karma",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
