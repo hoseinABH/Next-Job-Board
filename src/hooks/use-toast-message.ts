@@ -25,6 +25,7 @@ const useToastMessage = (formState?: FormState, onSuccess?: () => void) => {
       }
       prevTimestamp.current = formState.timestamp;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState, showToast]);
 };
 

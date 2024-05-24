@@ -1,6 +1,5 @@
 import { useState } from 'react';
 // Common components
-import IconButton from '@/components/icon-button';
 import Spinner from '@/components/spinner';
 import {
   DropdownMenu,
