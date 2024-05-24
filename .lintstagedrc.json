@@ -1,0 +1,4 @@
+{
+    "*.ts": ["lint", "format"],
+    "*.tsx": ["lint", "format"]
+}
