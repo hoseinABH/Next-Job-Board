@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <main className="relative flex min-h-screen overflow-hidden">
       <SideBar />
       <main className="mr:0 h-screen flex-1 overflow-auto md:mr-[280px]">
-        <div className="relative h-full py-2 sm:container sm:py-12">{children}</div>
+        <div className="relative h-full py-6 container sm:py-12">{children}</div>
       </main>
     </main>
   );

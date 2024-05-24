@@ -1,4 +1,5 @@
 // Common components
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -9,7 +10,6 @@ import {
 } from '@/components/ui/table';
 // Local components
 import PositionsHeader from './_components/positions-header';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PositionsLoading() {
   return (

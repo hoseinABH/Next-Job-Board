@@ -5,9 +5,5 @@ import { getCompanyDashboard } from '@/actions/company';
 
 export default async function DashboardPage() {
   const data = await getCompanyDashboard();
-  return (
-    <div>
-      <Statistics dashboardData={data} />
-    </div>
-  );
+  return <Statistics dashboardData={data} />;
 }
