@@ -10,7 +10,7 @@ export default async function DashboardPositionsPage() {
   const response = await getCompanyPositions({ page: '1' });
   return (
     <Fragment>
-      <PositionsTable positions={response.data}   />
+      <PositionsTable positions={response.data} />
       <CreatePositionModal />
     </Fragment>
   );
