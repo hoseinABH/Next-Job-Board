@@ -1,7 +1,7 @@
 'use server';
 
-import { cookies } from 'next/headers';
 import type { UserRole } from '@/types/user';
+import { cookies } from 'next/headers';
 
 const sessionKey = 'session';
 const roleKey = 'userRole';

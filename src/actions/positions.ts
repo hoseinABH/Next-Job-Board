@@ -176,10 +176,10 @@ async function updateActivation(activationDto: PositionActivationDto) {
 }
 export {
   apply,
+  createPosition,
   getAllPositions,
   getPositionById,
-  updateRequestStatus,
-  createPosition,
-  updatePosition,
   updateActivation,
+  updatePosition,
+  updateRequestStatus,
 };

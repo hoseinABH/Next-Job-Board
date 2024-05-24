@@ -253,10 +253,10 @@ export {
   createLanguage,
   createSkill,
   createWorkExperience,
+  getUserApplyRequests,
   getUserMinimalProfile,
   getUserProfile,
   removeEntity,
   updateAboutMe,
   updatePersonalInfo,
-  getUserApplyRequests,
 };
