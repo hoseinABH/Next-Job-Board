@@ -1,3 +1,4 @@
+import { Nullable } from './common';
 import type { ApplicationStatus, Company } from './company';
 import type { Grade, UserRole } from './user';
 
@@ -74,4 +75,27 @@ export interface UpdatePositionStatusDto {
 export interface PositionActivationDto {
   positionId: number;
   isActive: boolean;
+}
+
+export interface Test {
+  title: string;
+  userRole: UserRole;
+  type: boolean;
+  questions: Nullable<unknown>;
+  id: number;
+  createdDate: string;
+}
+export interface Question {
+  id: number;
+  question: string;
+  answers: string[];
+}
+export interface Question {
+  id: number;
+  question: string;
+  answers: string[];
+}
+export interface Answer {
+  questionId: number;
+  answerIndex: number;
 }

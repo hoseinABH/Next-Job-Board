@@ -12,7 +12,7 @@ import {
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Actions
-import { apply } from '@/actions/positions';
+import { apply } from '@/actions/internship';
 // Hooks
 import { useToastMessage } from '@/hooks/use-toast-message';
 import useUserStore from '@/store/user';

@@ -20,7 +20,7 @@ import { useFormState } from 'react-dom';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Actions
-import { createPosition, updatePosition } from '@/actions/positions';
+import { createPosition, updatePosition } from '@/actions/internship';
 // Constants
 import { educationGradeOptions } from '@/constants/user';
 

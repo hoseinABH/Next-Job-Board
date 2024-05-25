@@ -11,12 +11,15 @@ import {
 import { revalidatePath } from 'next/cache';
 // Types
 import type {
+  Answer,
   ApplicationDto,
   CreatePositionDto,
   GetAllPositionsQueries,
   GetAllPositionsResponse,
   Position,
   PositionActivationDto,
+  Question,
+  Test,
   UpdatePositionDto,
   UpdatePositionStatusDto,
 } from '@/types/internship';
@@ -174,6 +177,21 @@ async function updateActivation(activationDto: PositionActivationDto) {
     return fromErrorToFormState(error);
   }
 }
+async function getRequestTests() {
+  const path = `${route}/get-request-tests`;
+  const response = await fetcher<Test[]>(path, 'no-cache');
+  return response.data;
+}
+async function getTestAnswers(testId: string) {
+  const path = `${route}/get-test-answers?testId=${testId}`;
+  const response = await fetcher<Answer[]>(path, 'no-cache');
+  return response.data;
+}
+async function getTestQuestions(testId: string) {
+  const path = `${route}/get-test-questions?testId=${testId}`;
+  const response = await fetcher<Question[]>(path, 'no-cache');
+  return response.data;
+}
 export {
   apply,
   createPosition,
@@ -182,4 +200,7 @@ export {
   updateActivation,
   updatePosition,
   updateRequestStatus,
+  getRequestTests,
+  getTestAnswers,
+  getTestQuestions,
 };

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import FeaturedJobCard from '@/components/featured-job-card';
 // Actions
-import { getAllPositions } from '@/actions/positions';
+import { getAllPositions } from '@/actions/internship';
 // Configs
 import * as Routes from '@/config/routes';
 

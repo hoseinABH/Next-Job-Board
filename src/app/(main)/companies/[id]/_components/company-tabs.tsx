@@ -2,7 +2,7 @@
 import FeaturedJobCard from '@/components/featured-job-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 // Actions
-import { getAllPositions } from '@/actions/positions';
+import { getAllPositions } from '@/actions/internship';
 // Configs
 import * as Routes from '@/config/routes';
 // Types

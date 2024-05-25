@@ -13,7 +13,7 @@ import { Settings2 } from 'lucide-react';
 import ActivationDropdown from './activation-drop-down';
 import PositionsHeader from './positions-header';
 // Actions
-import { updateActivation } from '@/actions/positions';
+import { updateActivation } from '@/actions/internship';
 // Utilities
 import { differenceInDays } from '@/lib/date';
 import { cn } from '@/lib/utils';

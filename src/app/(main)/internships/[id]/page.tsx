@@ -5,7 +5,7 @@ import { InternshipApplicationModal } from '@/components/modal/internships/inter
 import PositionContent from './_components/position-content';
 import PositionDescription from './_components/position-description';
 // Actions
-import { getPositionById } from '@/actions/positions';
+import { getPositionById } from '@/actions/internship';
 import { getSession } from '@/actions/cookie';
 // Types
 import type { Metadata } from 'next';

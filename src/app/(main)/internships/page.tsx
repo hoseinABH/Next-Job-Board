@@ -3,7 +3,7 @@ import SearchForm from '@/components/search-form';
 // Local components
 import JobsList from './_components/jobs-list';
 // Actions
-import { getAllPositions } from '@/actions/positions';
+import { getAllPositions } from '@/actions/internship';
 // Types
 import type { Metadata } from 'next';
 // Constants

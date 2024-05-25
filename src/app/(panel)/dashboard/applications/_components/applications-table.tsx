@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/table';
 import StatusDropdown from './status-drop-down';
 // Actions
-import { updateRequestStatus } from '@/actions/positions';
+import { updateRequestStatus } from '@/actions/internship';
 // Utilities
 import { cn } from '@/lib/utils';
 import { dateWithMonthTitle } from '@/lib/date';
