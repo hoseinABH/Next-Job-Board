@@ -32,8 +32,8 @@ export default function TestFooter({ className, questions, questionCount }: Prop
       const lastQuestion = questionIndex + 1 === questionCount;
       const firstQuestion = questionIndex === 0;
       const currentQuestion = questions[questionIndex];
-      const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'مرحله بعد';
-      const backButtonText = firstQuestion ? 'بازگشت' : 'مرحله بعد';
+      const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'سوال بعد';
+      const backButtonText = firstQuestion ? 'بازگشت' : 'سوال قبل';
       return {
         currentQuestion,
         lastQuestion,
@@ -61,6 +61,7 @@ export default function TestFooter({ className, questions, questionCount }: Prop
       return;
     }
     setQuestionIndex(questionIndex - 1);
+    setCurrentQuestionAnswer('');
   }
   useEffect(() => {
     return () => {
