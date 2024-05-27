@@ -20,7 +20,6 @@ interface SearchParams {
   };
 }
 export default async function Internships({ searchParams }: SearchParams) {
-  // await new Promise((res) => setTimeout(res, 60000));
   const positions = await getAllPositions({
     page: '1',
     query: searchParams.q,

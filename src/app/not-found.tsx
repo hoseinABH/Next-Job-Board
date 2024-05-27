@@ -1,6 +1,10 @@
 'use client';
 import { AlertTriangle } from 'lucide-react';
 import BackButton from '@/components/back-button';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+// Constants
+import * as Routes from '@/config/routes';
 
 export default function RootNotFound() {
   return (
@@ -11,6 +15,11 @@ export default function RootNotFound() {
         <AlertTriangle className="animate-pulse text-destructive" />
       </div>
       <BackButton>بازگشت</BackButton>
+      <Link href={Routes.HOME}>
+        <Button className="rounded-full" variant="secondary" size="lg">
+          خانه
+        </Button>
+      </Link>
     </div>
   );
 }

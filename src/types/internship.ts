@@ -21,6 +21,7 @@ export interface Position {
   title: string;
   userRole: UserRole;
   applied: boolean;
+  positionId: number;
 }
 
 export interface PositionItem {

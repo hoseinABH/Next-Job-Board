@@ -177,7 +177,7 @@ async function updateActivation(activationDto: PositionActivationDto) {
     return fromErrorToFormState(error);
   }
 }
-async function getRequestTests() {
+async function getRequiredTests() {
   const path = `${route}/get-request-tests`;
   const response = await fetcher<Test[]>(path, 'no-cache');
   return response.data;
@@ -200,7 +200,7 @@ export {
   updateActivation,
   updatePosition,
   updateRequestStatus,
-  getRequestTests,
+  getRequiredTests,
   getTestAnswers,
   getTestQuestions,
 };
