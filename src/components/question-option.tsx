@@ -15,7 +15,7 @@ export default function QuestionOption({ className, value, title, selectedOption
     <Label
       htmlFor={title}
       className={cn(
-        'flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border border-r-4 px-6 py-4 transition-all hover:border-purple-600',
+        'flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-md border border-r-4 px-6 py-4 transition-all hover:border-purple-600',
         {
           ['border-r-purple-700']: selectedOption === value,
         },

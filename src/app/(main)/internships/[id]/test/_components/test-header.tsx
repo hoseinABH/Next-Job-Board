@@ -1,12 +1,10 @@
 import { cn } from '@/lib/utils';
 import { FileQuestion } from 'lucide-react';
-
 interface Props {
   className?: string;
   questionCount: number;
   testTitle: string;
 }
-
 export default function TestHeader({ className, questionCount, testTitle }: Props) {
   return (
     <div className={cn('flex items-center justify-between', className)}>
