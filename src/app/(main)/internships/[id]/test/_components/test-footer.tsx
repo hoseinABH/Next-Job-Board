@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 // Hooks
 import useTestStore from '@/store/tests';
 import { useRouter } from 'next/navigation';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 interface Props {
   className?: string;
@@ -43,16 +43,21 @@ export default function TestFooter({ className, questionCount }: Props) {
     }
     setQuestionIndex(questionIndex - 1);
   }
+  useEffect(() => {
+    return () => {
+      setQuestionIndex(0);
+    };
+  }, []);
   return (
     <div className={cn('flex items-center justify-center gap-x-4', className)}>
       <Button
         onClick={next}
-        className="rounded-full bg-purple-600 hover:bg-purple-600/90"
+        className="w-32 rounded-full bg-purple-600 hover:bg-purple-600/90"
         size="lg"
       >
         {nextButtonText}
       </Button>
-      <Button onClick={back} className="rounded-full" variant="outline" size="lg">
+      <Button onClick={back} className="w-32 rounded-full" variant="outline" size="lg">
         {backButtonText}
       </Button>
     </div>
