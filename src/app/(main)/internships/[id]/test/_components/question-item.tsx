@@ -5,9 +5,10 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 // Utilities
 import { cn } from '@/lib/utils';
-import { Question } from '@/types/internship';
 // Hooks
-import { Fragment, useState } from 'react';
+import useTestStore from '@/store/tests';
+// Types
+import type { Question } from '@/types/internship';
 
 interface Props {
   className?: string;
@@ -16,17 +17,17 @@ interface Props {
 }
 
 export default function QuestionItem({ question, className, questionNumber }: Props) {
-  const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+  const { currentQuestionAnswerIndex, setCurrentQuestionAnswer } = useTestStore();
   function onChange(value: string) {
-    setSelectedAnswer(value);
+    setCurrentQuestionAnswer(value);
   }
   return (
-    <Fragment>
+    <div className="animate-slide-bottom">
       <span className="text-muted-foreground">سوال {questionNumber}</span>
       <h1 className="mt-4">{question.question}</h1>
       <Separator className="my-6" />
       <RadioGroup
-        value={selectedAnswer}
+        value={currentQuestionAnswerIndex}
         onValueChange={onChange}
         className={cn('space-y-4', className)}
       >
@@ -34,11 +35,11 @@ export default function QuestionItem({ question, className, questionNumber }: Pr
           <QuestionOption
             key={`${answer}__${index}`}
             value={String(index)}
-            selectedOption={selectedAnswer}
+            selectedOption={currentQuestionAnswerIndex}
             title={answer}
           />
         ))}
       </RadioGroup>
-    </Fragment>
+    </div>
   );
 }

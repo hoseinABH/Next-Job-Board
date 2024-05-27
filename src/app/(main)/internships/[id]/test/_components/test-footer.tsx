@@ -7,33 +7,52 @@ import { cn } from '@/lib/utils';
 import useTestStore from '@/store/tests';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
+// Types
+import type { Question } from '@/types/internship';
 
 interface Props {
   className?: string;
   questionCount: number;
+  questions: Question[];
 }
 
-export default function TestFooter({ className, questionCount }: Props) {
-  const { questionIndex, setQuestionIndex } = useTestStore();
+export default function TestFooter({ className, questions, questionCount }: Props) {
+  const {
+    questionIndex,
+    currentQuestionAnswerIndex,
+    testAnswers,
+    setCurrentQuestionAnswer,
+    setQuestionIndex,
+    setTestAnswers,
+  } = useTestStore();
   const router = useRouter();
-  const { firstQuestion, lastQuestion, backButtonText, nextButtonText } = useMemo(() => {
-    const lastQuestion = questionIndex + 1 === questionCount;
-    const firstQuestion = questionIndex === 0;
-    const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'مرحله بعد';
-    const backButtonText = firstQuestion ? 'بازگشت' : 'مرحله بعد';
-    return {
-      lastQuestion,
-      firstQuestion,
-      nextButtonText,
-      backButtonText,
-    };
-  }, [questionCount, questionIndex]);
+  console.log(testAnswers);
+  const { firstQuestion, currentQuestion, lastQuestion, backButtonText, nextButtonText } =
+    useMemo(() => {
+      const lastQuestion = questionIndex + 1 === questionCount;
+      const firstQuestion = questionIndex === 0;
+      const currentQuestion = questions[questionIndex];
+      const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'مرحله بعد';
+      const backButtonText = firstQuestion ? 'بازگشت' : 'مرحله بعد';
+      return {
+        currentQuestion,
+        lastQuestion,
+        firstQuestion,
+        nextButtonText,
+        backButtonText,
+      };
+    }, [questions, questionIndex, questionCount]);
 
   function next() {
+    setTestAnswers([
+      ...testAnswers,
+      { questionId: currentQuestion.id, answerIndex: +currentQuestionAnswerIndex },
+    ]);
     if (lastQuestion) {
       router.back();
       return;
     }
+    setCurrentQuestionAnswer('');
     setQuestionIndex(questionIndex + 1);
   }
   function back() {
@@ -46,6 +65,8 @@ export default function TestFooter({ className, questionCount }: Props) {
   useEffect(() => {
     return () => {
       setQuestionIndex(0);
+      setTestAnswers([]);
+      setCurrentQuestionAnswer('');
     };
   }, []);
   return (

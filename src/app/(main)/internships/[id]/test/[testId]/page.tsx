@@ -1,7 +1,7 @@
 // Local components
-import TestHeader from '../_components/test-header';
 import QuestionList from '../_components/question-list';
 import TestFooter from '../_components/test-footer';
+import TestHeader from '../_components/test-header';
 // Actions
 import { getTestQuestions } from '@/actions/internship';
 // Types
@@ -22,7 +22,7 @@ export default async function TestPage({ params }: Props) {
     <div className="space-y-8 py-4 lg:py-12">
       <TestHeader questionCount={questions.length} testTitle="تست شخصیتی" />
       <QuestionList questions={questions} />
-      <TestFooter questionCount={questions.length} />
+      <TestFooter questions={questions} questionCount={questions.length} />
     </div>
   );
 }

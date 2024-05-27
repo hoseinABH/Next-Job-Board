@@ -24,7 +24,7 @@ export default function QuestionList({ className, questions }: Props) {
         className,
       )}
     >
-      <div className="mx-auto w-full max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl overflow-hidden">
         <QuestionItem
           key={currentQuestion.id}
           question={currentQuestion}
