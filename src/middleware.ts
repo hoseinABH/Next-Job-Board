@@ -4,7 +4,7 @@ import * as Routes from '@/config/routes';
 // Types
 import type { UserRole } from './types/user';
 
-const internRoutes = [Routes.CV_MAKER, Routes.APPLIED];
+const internRoutes = [Routes.CV_MAKER, Routes.APPLIED, Routes.TEST];
 const authenticationRoutes = [Routes.LOGIN, Routes.REGISTER];
 
 export default async function middleware(req: NextRequest) {

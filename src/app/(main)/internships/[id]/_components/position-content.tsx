@@ -12,7 +12,7 @@ import * as Routes from '@/config/routes';
 interface Props {
   className?: string;
   position: Position;
-  tests: Test[];
+  tests?: Test[];
 }
 
 export default function PositionContent({ className, position, tests }: Props) {
@@ -23,17 +23,21 @@ export default function PositionContent({ className, position, tests }: Props) {
         <div className="py-4">
           <p className="leading-10">{position.description}</p>
         </div>
-        <Separator className="mb-4" />
-        <p className="text-muted-foreground">تست های مورد نیاز:</p>
-        <div className="grid grid-cols-1 py-4 sm:grid-cols-2 md:grid-cols-4">
-          {tests.map((test) => (
-            <TestCard
-              test={test}
-              key={test.id}
-              href={`${Routes.INTERNSHIPS}/${position.positionId}/${Routes.TEST}/${test.id}`}
-            />
-          ))}
-        </div>
+        {tests ? (
+          <>
+            <Separator className="mb-4" />
+            <p className="text-muted-foreground">تست های مورد نیاز:</p>
+            <div className="grid grid-cols-1 py-4 sm:grid-cols-2 md:grid-cols-4">
+              {tests.map((test) => (
+                <TestCard
+                  test={test}
+                  key={test.id}
+                  href={`${Routes.INTERNSHIPS}/${position.positionId}/${Routes.TEST}/${test.id}`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
       </CardContent>
     </Card>
   );

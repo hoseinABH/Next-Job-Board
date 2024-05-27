@@ -1,5 +1,7 @@
 'use server';
 import { HttpStatus } from '@/constants/http-status';
+// Actions
+import { getSession } from './cookie';
 // Utilities
 import { fetcher, mutate } from '@/lib/client';
 import {
@@ -178,6 +180,8 @@ async function updateActivation(activationDto: PositionActivationDto) {
   }
 }
 async function getRequiredTests() {
+  const session = await getSession();
+  if (!session) return;
   const path = `${route}/get-request-tests`;
   const response = await fetcher<Test[]>(path, 'no-cache');
   return response.data;
