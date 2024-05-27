@@ -77,7 +77,7 @@ const config = {
         },
       },
       animation: {
-        'slide-bottom': 'slide-to-right 0.6s ease-out',
+        'slide-bottom': 'slide-to-bottom 0.6s ease-out',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
