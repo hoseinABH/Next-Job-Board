@@ -96,7 +96,9 @@ export interface Question {
   question: string;
   answers: string[];
 }
+
+export type AnswerIndex = number | 'unanswered';
 export interface Answer {
   questionId: number;
-  answerIndex: number;
+  answerIndex: AnswerIndex;
 }

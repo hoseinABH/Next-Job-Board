@@ -8,7 +8,7 @@ import useTestStore from '@/store/tests';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 // Types
-import type { Question } from '@/types/internship';
+import type { Answer, AnswerIndex, Question } from '@/types/internship';
 
 interface Props {
   className?: string;
@@ -26,28 +26,49 @@ export default function TestFooter({ className, questions, questionCount }: Prop
     setTestAnswers,
   } = useTestStore();
   const router = useRouter();
-  console.log(testAnswers);
-  const { firstQuestion, currentQuestion, lastQuestion, backButtonText, nextButtonText } =
-    useMemo(() => {
-      const lastQuestion = questionIndex + 1 === questionCount;
-      const firstQuestion = questionIndex === 0;
-      const currentQuestion = questions[questionIndex];
-      const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'سوال بعد';
-      const backButtonText = firstQuestion ? 'بازگشت' : 'سوال قبل';
-      return {
-        currentQuestion,
-        lastQuestion,
-        firstQuestion,
-        nextButtonText,
-        backButtonText,
-      };
-    }, [questions, questionIndex, questionCount]);
+  const {
+    firstQuestion,
+    currentQuestion,
+    lastQuestion,
+    backButtonText,
+    nextButtonText,
+    alreadyAnswered,
+    currentAnswer,
+  } = useMemo(() => {
+    const lastQuestion = questionIndex + 1 === questionCount;
+    const firstQuestion = questionIndex === 0;
+    const currentQuestion = questions[questionIndex];
+    const nextButtonText = lastQuestion ? 'ثبت پاسخ ها' : 'سوال بعد';
+    const backButtonText = firstQuestion ? 'بازگشت' : 'سوال قبل';
+    const alreadyAnswered = testAnswers.find((answer) => answer.questionId === currentQuestion.id);
+    const currentAnswer: AnswerIndex =
+      currentQuestionAnswerIndex === '' ? 'unanswered' : +currentQuestionAnswerIndex;
+    return {
+      currentQuestion,
+      lastQuestion,
+      firstQuestion,
+      nextButtonText,
+      backButtonText,
+      alreadyAnswered,
+      currentAnswer,
+    };
+  }, [questionIndex, questionCount, questions, testAnswers, currentQuestionAnswerIndex]);
 
   function next() {
-    setTestAnswers([
-      ...testAnswers,
-      { questionId: currentQuestion.id, answerIndex: +currentQuestionAnswerIndex },
-    ]);
+    let finalAnswers: Answer[] = [];
+    if (alreadyAnswered) {
+      finalAnswers = testAnswers.map((answer) =>
+        answer.questionId === currentQuestion.id
+          ? { ...alreadyAnswered, answerIndex: currentAnswer }
+          : answer,
+      );
+    } else {
+      finalAnswers = [
+        ...testAnswers,
+        { questionId: currentQuestion.id, answerIndex: currentAnswer },
+      ];
+    }
+    setTestAnswers(finalAnswers);
     if (lastQuestion) {
       router.back();
       return;
