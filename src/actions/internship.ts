@@ -11,8 +11,10 @@ import {
   generateSuccessFormState,
 } from '@/lib/error';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 // Types
 import type {
+  Answer,
   ApplicationDto,
   CreatePositionDto,
   GetAllPositionsQueries,
@@ -190,6 +192,21 @@ async function getTestById(testId: string) {
   const response = await fetcher<GetTestByIdResponse>(path, 'no-cache');
   return response.data;
 }
+async function postTestAnswer(testId: string, positionId: string, answers: Answer[]) {
+  try {
+    console.log({ answers });
+
+    const path = `${route}/post-test-answers?testId=${testId}`;
+    const response = await mutate<Answer[]>(path, 'POST', answers);
+    console.log({ response });
+    if (response.status === HttpStatus.OK) {
+      redirect(`${Routes.INTERNSHIPS}/${positionId}`);
+    }
+    return generateErrorFormState();
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+}
 export {
   apply,
   createPosition,
@@ -200,4 +217,5 @@ export {
   updateActivation,
   updatePosition,
   updateRequestStatus,
+  postTestAnswer,
 };

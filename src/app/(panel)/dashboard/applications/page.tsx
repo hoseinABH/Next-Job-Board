@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 // Local components
 import ApplicationsTable from './_components/applications-table';
 // Actions

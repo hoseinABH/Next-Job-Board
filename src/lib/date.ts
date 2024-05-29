@@ -14,5 +14,8 @@ export function timeAgo(date: string) {
 
 export function differenceInDays(date: string) {
   const days = differenceInCalendarDays(date, new Date());
-  return `${days} روز دیگر`;
+  if (days > 0) {
+    return `${days} روز دیگر`;
+  }
+  return 'منقضی شده';
 }
