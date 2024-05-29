@@ -82,9 +82,8 @@ export interface Test {
   title: string;
   userRole: UserRole;
   type: boolean;
-  questions: Nullable<unknown>;
   id: number;
-  createdDate: string;
+  isPassed: boolean;
 }
 export interface Question {
   id: number;
