@@ -90,10 +90,9 @@ export interface Question {
   question: string;
   answers: string[];
 }
-export interface Question {
-  id: number;
-  question: string;
-  answers: string[];
+export interface GetTestByIdResponse {
+  testTitle: string;
+  questions: Question[];
 }
 
 export type AnswerIndex = number | 'unanswered';

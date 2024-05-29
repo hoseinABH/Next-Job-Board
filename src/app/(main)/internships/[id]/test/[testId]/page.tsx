@@ -3,26 +3,29 @@ import QuestionList from '../_components/question-list';
 import TestFooter from '../_components/test-footer';
 import TestHeader from '../_components/test-header';
 // Actions
-import { getTestQuestions } from '@/actions/internship';
+import { getTestById } from '@/actions/internship';
 // Types
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'تست شخصیتی',
-  description: 'تست مورد نیاز برای درخواست کارآموزی',
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const test = await getTestById(params.testId);
+  return {
+    title: test.testTitle,
+    description: `تست ${test.testTitle} برای این موقعیت شغلی`,
+  };
+}
 interface Props {
   params: {
     testId: string;
   };
 }
 export default async function TestPage({ params }: Props) {
-  const questions = await getTestQuestions(params.testId);
+  const test = await getTestById(params.testId);
   return (
     <div className="space-y-8 py-4 lg:py-12">
-      <TestHeader questionCount={questions.length} testTitle="تست شخصیتی" />
-      <QuestionList questions={questions} />
-      <TestFooter questions={questions} questionCount={questions.length} />
+      <TestHeader questionCount={test.questions.length} testTitle={test.testTitle} />
+      <QuestionList questions={test.questions} />
+      <TestFooter questions={test.questions} questionCount={test.questions.length} />
     </div>
   );
 }

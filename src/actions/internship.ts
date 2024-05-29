@@ -13,14 +13,13 @@ import {
 import { revalidatePath } from 'next/cache';
 // Types
 import type {
-  Answer,
   ApplicationDto,
   CreatePositionDto,
   GetAllPositionsQueries,
   GetAllPositionsResponse,
+  GetTestByIdResponse,
   Position,
   PositionActivationDto,
-  Question,
   Test,
   UpdatePositionDto,
   UpdatePositionStatusDto,
@@ -186,14 +185,9 @@ async function getRequiredTests() {
   const response = await fetcher<Test[]>(path, 'no-cache');
   return response.data;
 }
-async function getTestAnswers(testId: string) {
-  const path = `${route}/get-test-answers?testId=${testId}`;
-  const response = await fetcher<Answer[]>(path, 'no-cache');
-  return response.data;
-}
-async function getTestQuestions(testId: string) {
+async function getTestById(testId: string) {
   const path = `${route}/get-test-questions?testId=${testId}`;
-  const response = await fetcher<Question[]>(path, 'no-cache');
+  const response = await fetcher<GetTestByIdResponse>(path, 'no-cache');
   return response.data;
 }
 export {
@@ -201,10 +195,9 @@ export {
   createPosition,
   getAllPositions,
   getPositionById,
+  getRequiredTests,
+  getTestById,
   updateActivation,
   updatePosition,
   updateRequestStatus,
-  getRequiredTests,
-  getTestAnswers,
-  getTestQuestions,
 };
