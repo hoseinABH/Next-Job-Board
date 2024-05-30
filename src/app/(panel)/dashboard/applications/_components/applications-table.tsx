@@ -54,6 +54,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
               <TableHead className="text-center">کارجو</TableHead>
               <TableHead className="text-center">موقعیت شغلی</TableHead>
               <TableHead className="text-center">تاریخ درخواست</TableHead>
+              <TableHead className="text-center">نمره تست</TableHead>
               <TableHead className="text-center">وضعیت</TableHead>
               <TableHead className="text-center">عملیات</TableHead>
             </TableRow>
@@ -69,6 +70,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
                 <TableCell align="center">{application.userProfileName}</TableCell>
                 <TableCell align="center">{application.positionTitle}</TableCell>
                 <TableCell align="center">{dateWithMonthTitle(application.requestDate)}</TableCell>
+                <TableCell align="center">{application.avgTestScores}</TableCell>
                 <TableCell align="center">
                   <Badge variant={mapApplicationStatus[application.status].status}>
                     {mapApplicationStatus[application.status].title}

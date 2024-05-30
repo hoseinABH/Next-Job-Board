@@ -64,6 +64,8 @@ export interface InternshipRequestItem {
   requestDate: string;
   status: ApplicationStatus;
   requestId: number;
+  description?: string;
+  avgTestScores: number;
 }
 export interface GetCompanyInternshipRequestsResponse {
   totalCount: number;
