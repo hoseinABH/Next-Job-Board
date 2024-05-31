@@ -34,18 +34,16 @@ const data = [
 
 export default function FrequentlyAskedQuestions() {
   return (
-    <div className="my-12 flex flex-col items-center justify-center gap-y-8">
+    <div className="container my-12 flex flex-col items-center justify-center gap-y-8 px-4 sm:px-8">
       <h1 className="text-2xl font-bold text-secondary md:text-3xl">سوالات متداول</h1>
-      <div className="container">
-        <Accordion type="single" collapsible className="w-full space-y-4">
-          {data.map((item) => (
-            <AccordionItem key={item.id} value={item.id}>
-              <AccordionTrigger>{item.title}</AccordionTrigger>
-              <AccordionContent>{item.content}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+      <Accordion type="single" collapsible className="w-full space-y-4">
+        {data.map((item) => (
+          <AccordionItem key={item.id} value={item.id}>
+            <AccordionTrigger>{item.title}</AccordionTrigger>
+            <AccordionContent>{item.content}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 }

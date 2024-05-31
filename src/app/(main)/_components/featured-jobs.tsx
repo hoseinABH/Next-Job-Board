@@ -1,6 +1,4 @@
-import Link from 'next/link';
 // Common components
-import { buttonVariants } from '@/components/ui/button';
 import FeaturedJobCard from '@/components/featured-job-card';
 // Actions
 import { getAllPositions } from '@/actions/internship';
@@ -10,7 +8,7 @@ import * as Routes from '@/config/routes';
 export default async function FeaturedJobs() {
   const featuredPositions = await getAllPositions({ page: '1' });
   return (
-    <section className="my-12 flex flex-col items-center justify-center">
+    <section className="container my-12 flex flex-col items-center justify-center px-4 sm:px-8">
       <div className="text-center">
         <h1 className="mb-4 text-xl font-bold text-secondary sm:text-2xl md:text-3xl ">
           تازه‌ترین موقعیت‌های کارآموزی برای شما{' '}
@@ -29,12 +27,6 @@ export default async function FeaturedJobs() {
           />
         ))}
       </div>
-      <Link
-        className={buttonVariants({ variant: 'outline', className: 'mt-14' })}
-        href={Routes.INTERNSHIPS}
-      >
-        مشاهده همه
-      </Link>
     </section>
   );
 }

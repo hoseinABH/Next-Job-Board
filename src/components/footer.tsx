@@ -8,7 +8,7 @@ import * as appConfig from '@/config/app';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-secondary py-12 text-secondary-foreground">
+    <footer className="w-full bg-secondary py-4 text-secondary-foreground sm:py-12">
       <div className="container py-6">
         {/* Top Section */}
         <div className="flex flex-col items-center lg:flex-row">
@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Footer Description */}
           <div className="mt-8 max-w-sm lg:mt-auto">
             <Logo />
-            <p className="text-md mt-4 text-justify leading-7 text-secondary-foreground/80">
+            <p className="text-md mt-4 text-right leading-7 text-secondary-foreground/80">
               {appConfig.footerDescription}
             </p>
           </div>

@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CvMakerLoading() {
   return (
-    <div className="py-4 lg:py-12">
+    <div className="container space-y-8 px-4 py-24 sm:px-8">
       <div className="relative grid grid-cols-12 gap-6">
         <ContentSidebar className="sticky top-[100px] col-span-3 hidden h-max lg:block" />
         <div className="col-span-12 flex flex-col gap-y-4 lg:col-span-9">

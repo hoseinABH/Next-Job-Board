@@ -9,7 +9,7 @@ import * as Routes from '@/config/routes';
 export default async function TopCompanies() {
   const bestCompanies = await getAllCompanies({ page: '1' });
   return (
-    <div className="my-12 flex flex-col items-center justify-center">
+    <div className="container my-12 flex flex-col items-center justify-center px-4 sm:px-8">
       <div className="text-center">
         <h1 className="mb-4 text-2xl font-bold text-secondary md:text-3xl">
           استخدام شرکت های برتر در {appData.appName}

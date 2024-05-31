@@ -9,7 +9,7 @@ import { getUserMinimalProfile } from '@/actions/user';
 export default async function Header() {
   const profileData = await getUserMinimalProfile();
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="absolute z-50 w-full bg-primary text-primary-foreground">
       <div className="container flex h-14 items-center justify-between px-2 sm:px-8">
         {/* Right Part */}
         <div className="flex items-center">

@@ -3,7 +3,7 @@ import { SearchFormSkeleton } from '@/components/search-form';
 
 export default function CompaniesLoading() {
   return (
-    <div className="flex-1 space-y-10 py-12">
+    <div className="container space-y-8 px-4 py-24 sm:px-8">
       <div className="flex flex-col items-center justify-center">
         <SearchFormSkeleton />
       </div>
