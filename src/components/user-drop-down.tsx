@@ -94,7 +94,7 @@ export default function UserDropDown({ profileData }: Props) {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Link href={Routes.LOGIN} className={buttonVariants()}>
+        <Link href={Routes.LOGIN} className={buttonVariants({ variant: 'ghost' })}>
           <Fingerprint className="ml-2 h-4 w-4" />
           <span>ورود | ثبت نام</span>
         </Link>

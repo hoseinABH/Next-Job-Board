@@ -4,9 +4,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="container px-4 sm:px-8">
-        <div className="grid h-full min-h-full w-full grid-cols-1 overflow-hidden rounded-lg border bg-background shadow-md dark:bg-secondary/30 md:min-h-[700px] lg:grid-cols-2">
+        <div className="card-shadow grid h-full min-h-full w-full grid-cols-1 overflow-hidden rounded-lg border md:min-h-[700px] lg:grid-cols-2">
           {children}
-          <div className="hidden items-center justify-center bg-secondary dark:bg-secondary/40 lg:flex">
+          <div className="hidden items-center justify-center bg-secondary lg:flex">
             <Image
               src="/auth.png"
               alt="صفحه ورود"
