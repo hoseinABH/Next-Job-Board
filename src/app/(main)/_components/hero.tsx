@@ -3,6 +3,7 @@ import SearchForm from '@/components/search-form';
 // Constants
 import * as Routes from '@/config/routes';
 import * as appConfigs from '@/config/app';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -18,6 +19,20 @@ export default function Hero() {
         </p>
         <SearchForm className="mx-auto pt-6" targetRoute={Routes.INTERNSHIPS} />
       </div>
+      <Image
+        width={300}
+        height={300}
+        src="/hero-shape.svg"
+        alt="hero-shape"
+        className="absolute left-0 top-0 hidden translate-y-24 md:block"
+      />
+      <Image
+        width={1200}
+        height={100}
+        className="absolute top-0 hidden -translate-y-28 translate-x-20 md:block"
+        src="/line-vector.svg"
+        alt="line-vector"
+      />
     </section>
   );
 }
