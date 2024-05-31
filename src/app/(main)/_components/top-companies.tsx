@@ -11,8 +11,8 @@ export default async function TopCompanies() {
   return (
     <div className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="mb-4  text-2xl font-bold md:text-3xl">
-          استخدام شرکت های برتر در <span className="">{appData.appName}</span>
+        <h1 className="mb-4 text-2xl font-bold text-secondary md:text-3xl">
+          استخدام شرکت های برتر در {appData.appName}
         </h1>
         <p className="text-muted-foreground">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده

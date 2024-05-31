@@ -12,7 +12,7 @@ export default async function FeaturedJobs() {
   return (
     <section className="my-12 flex flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="mb-4 text-xl font-bold sm:text-2xl md:text-3xl ">
+        <h1 className="mb-4 text-xl font-bold text-secondary sm:text-2xl md:text-3xl ">
           تازه‌ترین موقعیت‌های کارآموزی برای شما{' '}
           <span className="absolute ml-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
         </h1>
