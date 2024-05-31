@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
+import { RadioGroupItem } from './ui/radio-group';
 // Types
 import { Label } from './ui/label';
-import { RadioGroupItem } from './ui/radio-group';
 
 interface Props {
   className?: string;
@@ -15,9 +15,9 @@ export default function QuestionOption({ className, value, title, selectedOption
     <Label
       htmlFor={title}
       className={cn(
-        'flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-md border border-r-4 px-6 py-4 transition-all hover:border-purple-600',
+        'flex w-full cursor-pointer items-center justify-between space-x-2 overflow-hidden rounded-md border border-r-4 px-6 py-4 transition-all hover:border-secondary',
         {
-          ['border-r-purple-700']: selectedOption === value,
+          ['border-r-secondary']: selectedOption === value,
         },
         className,
       )}

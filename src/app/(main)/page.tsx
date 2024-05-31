@@ -1,6 +1,6 @@
 // Local components
-import HeroSection from './_components/hero-section';
-import CompaniesSection from './_components/companies-section';
+import HeroSection from './_components/hero';
+import CompaniesSection from './_components/top-companies';
 import FeaturedJobs from './_components/featured-jobs';
 
 export default function Home() {

@@ -102,21 +102,10 @@ export default function TestFooter({ className, questions, questionCount }: Prop
   }, []);
   return (
     <div className={cn('flex items-center justify-center gap-x-4', className)}>
-      <Button
-        onClick={next}
-        className="w-32 rounded-full bg-purple-600 hover:bg-purple-600/90"
-        size="lg"
-        loading={pending}
-      >
+      <Button onClick={next} className="w-32" size="lg" loading={pending}>
         {nextButtonText}
       </Button>
-      <Button
-        onClick={back}
-        className="w-32 rounded-full"
-        variant="outline"
-        size="lg"
-        disabled={pending}
-      >
+      <Button onClick={back} className="w-32" variant="outline" size="lg" disabled={pending}>
         {backButtonText}
       </Button>
     </div>

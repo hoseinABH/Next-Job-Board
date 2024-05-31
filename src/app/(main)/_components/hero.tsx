@@ -1,10 +1,9 @@
-import Image from 'next/image';
 // Common components
 import SearchForm from '@/components/search-form';
 // Constants
 import * as Routes from '@/config/routes';
 
-export default function HeroSection() {
+export default function Hero() {
   return (
     <section className="mt-4 flex w-full items-center justify-around">
       <div>
@@ -17,14 +16,6 @@ export default function HeroSection() {
         </div>
         <SearchForm targetRoute={Routes.INTERNSHIPS} />
       </div>
-      <Image
-        className="hidden drop-shadow-2xl lg:block"
-        src="/hero.png"
-        alt="hero image"
-        height={300}
-        width={300}
-        priority={true}
-      />
     </section>
   );
 }

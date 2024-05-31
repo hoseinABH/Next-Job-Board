@@ -41,7 +41,8 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, loading, disabled, children, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
-
+    const spinnerColor =
+      variant === 'outline' ? 'hsl(var(--secondary))' : 'hsl(var(--secondary-foreground))';
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
@@ -49,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         {...props}
       >
-        {loading ? <Spinner buttonChild /> : children}
+        {loading ? <Spinner color={spinnerColor} /> : children}
       </Comp>
     );
   },

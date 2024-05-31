@@ -20,7 +20,7 @@ export default function QuestionList({ className, questions }: Props) {
   return (
     <div
       className={cn(
-        'flex items-center justify-between rounded-md border bg-secondary/40 px-6 py-12',
+        'flex items-center justify-between rounded-md border bg-accent/40 px-6 py-12',
         className,
       )}
     >
