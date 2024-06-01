@@ -1,5 +1,5 @@
 // Common components
-import CompanyCard from '@/components/company-card';
+import TopCompanyCard from '@/components/top-company-card';
 // Actions
 import { getAllCompanies } from '@/actions/company';
 // Configs
@@ -18,13 +18,12 @@ export default async function TopCompanies() {
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
         </p>
       </div>
-      <div className="mt-10 grid w-full grid-cols-1 gap-2 lg:grid-cols-2">
+      <div className="mt-10 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {bestCompanies.map((company) => (
-          <CompanyCard
+          <TopCompanyCard
             key={company.id}
             company={company}
             href={`${Routes.COMPANIES}/${company.id}`}
-            visibleOpenPositions
           />
         ))}
       </div>
