@@ -76,7 +76,7 @@ export default function UserDropDown({ profileData }: Props) {
           <DropdownMenuTrigger className="flex items-center gap-x-2 outline-none">
             <Avatar>
               <AvatarImage src="/" alt={fullName} />
-              <AvatarFallback>{fullName[0]}</AvatarFallback>
+              <AvatarFallback className="text-secondary-foreground">{fullName[0]}</AvatarFallback>
             </Avatar>
             {fullName}
           </DropdownMenuTrigger>
