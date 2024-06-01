@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="w-full rounded-none bg-[#0A65CC] pb-6 pt-20 text-primary-foreground md:rounded-b-[5rem] md:pb-24 md:pt-24">
+    <section className="w-full overflow-hidden rounded-none bg-[#0A65CC] pb-6 pt-20 text-primary-foreground md:rounded-b-[5rem] md:pb-28 md:pt-24">
       <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-y-4 px-4 text-center">
         <h1 className="text-2xl font-bold md:text-3xl">
           {appConfigs.appData.appName} پلتفرم جذب کارآموزان
