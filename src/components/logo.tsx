@@ -19,12 +19,11 @@ export default function Logo({ className, onClick }: Props) {
           onClick={onClick}
           priority
           src="/logo.png"
-          width={40}
+          width={80}
           height={40}
           alt={configs.appData.appName}
-          className="h-auto w-auto"
+          className="h-auto w-auto rounded-full"
         />
-        <p className="text-lg font-bold">{configs.appData.appName}</p>
       </div>
     </Link>
   );
