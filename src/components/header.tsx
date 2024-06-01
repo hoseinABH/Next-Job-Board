@@ -17,7 +17,7 @@ export default async function Header() {
           <div className="ml-4 inline md:hidden">
             <NavigationDrawer />
           </div>
-          <Logo />
+          <Logo className="hidden sm:block" />
           <NavigationItems className="mr-6 hidden items-center gap-6 text-sm md:flex" />
         </div>
         {/* Left Part */}

@@ -22,7 +22,7 @@ interface Props {
 export default async function TestPage({ params }: Props) {
   const test = await getTestById(params.testId);
   return (
-    <div className="space-y-8 py-4 lg:py-12">
+    <div className="container space-y-8 px-4 py-24 sm:px-8">
       <TestHeader questionCount={test.questions.length} testTitle={test.testTitle} />
       <QuestionList questions={test.questions} />
       <TestFooter questions={test.questions} questionCount={test.questions.length} />
