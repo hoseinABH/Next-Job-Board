@@ -55,6 +55,9 @@
   .right-input-adornment {
     @apply absolute right-2 top-[25%] h-6 w-6 text-muted-foreground;
   }
+  ::selection {
+    @apply bg-secondary text-secondary-foreground
+  }
 }
 .card-shadow {
   -webkit-box-shadow: 0px 3px 30px 0px rgba(0, 0, 0, 0.05);
@@ -62,8 +65,3 @@
   box-shadow: 0px 3px 30px 0px rgba(0, 0, 0, 0.05);
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}

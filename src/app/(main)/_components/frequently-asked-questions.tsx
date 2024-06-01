@@ -34,8 +34,8 @@ const data = [
 
 export default function FrequentlyAskedQuestions() {
   return (
-    <div className="container my-12 flex flex-col items-center justify-center gap-y-8 px-4 sm:px-8">
-      <h1 className="text-2xl font-bold text-secondary md:text-3xl">سوالات متداول</h1>
+    <div className="container flex flex-col items-center justify-center gap-y-8 px-4 sm:px-8">
+      <h1 className="text-xl font-bold text-secondary sm:text-2xl md:text-3xl">سوالات متداول</h1>
       <Accordion type="single" collapsible className="w-full space-y-4">
         {data.map((item) => (
           <AccordionItem key={item.id} value={item.id}>
