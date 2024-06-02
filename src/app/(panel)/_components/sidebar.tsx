@@ -60,10 +60,10 @@ function SidebarContent({ className }: { className: string }) {
             <Image
               priority
               src="/logo.png"
-              className="rounded-sm drop-shadow-md"
-              width={60}
-              height={60}
-              alt="شرکت ایرانسل"
+              className="h-auto w-auto drop-shadow-md"
+              alt="شرکت"
+              width={80}
+              height={40}
             />
           </Link>
           <IconButton onClick={() => logout()} title="خروج">

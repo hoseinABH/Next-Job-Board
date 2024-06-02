@@ -25,8 +25,9 @@ export default function ApplicationsLoading() {
               <TableHead className="text-center">کارجو</TableHead>
               <TableHead className="text-center">موقعیت شغلی</TableHead>
               <TableHead className="text-center">تاریخ درخواست</TableHead>
-              <TableHead className="text-center">نمایش رزومه</TableHead>
+              <TableHead className="text-center">نتیجه تست</TableHead>
               <TableHead className="text-center">وضعیت</TableHead>
+              <TableHead className="text-center">عملیات</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -43,6 +44,9 @@ export default function ApplicationsLoading() {
                 </TableCell>
                 <TableCell align="center">
                   <Skeleton className="h-6 w-full sm:w-32" />
+                </TableCell>
+                <TableCell align="center">
+                  <Skeleton className="h-6 w-16" />
                 </TableCell>
                 <TableCell align="center">
                   <Skeleton className="h-6 w-16" />

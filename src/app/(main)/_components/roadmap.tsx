@@ -66,7 +66,7 @@ export default function Roadmap() {
           </div>
         ))}
       </div>
-      <div className="mt-8 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+      <div className="mt-20 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
         <Link href={Routes.INTERNSHIPS} className="w-full sm:w-auto">
           <Button
             variant="outline"
