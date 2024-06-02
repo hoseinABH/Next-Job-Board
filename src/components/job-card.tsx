@@ -9,6 +9,7 @@ import { addCommas } from '@persian-tools/persian-tools';
 // Types
 import type { PositionItem } from '@/types/internship';
 import { Skeleton } from './ui/skeleton';
+import Image from 'next/image';
 
 interface Props {
   position: PositionItem;
@@ -21,7 +22,15 @@ export default function JobCard({ className, position, href = '/' }: Props) {
   return (
     <Link href={href} className={cn('', className)}>
       <Card>
-        <CardContent className="flex flex-col justify-center p-6  sm:flex-row md:justify-between">
+        <CardContent className="flex flex-col items-center justify-start gap-4 p-6 sm:flex-row sm:items-start ">
+          <Image
+            // src={company.logo}
+            src="/companies/digikala.webp"
+            className="rounded-sm drop-shadow-md"
+            width={60}
+            height={60}
+            alt={position.title}
+          />
           <div className="flex flex-col items-center gap-x-4 md:flex-row">
             <div className="flex flex-col items-center gap-y-2 md:items-start">
               <h2 className="text-lg font-semibold  transition-all">{position.title}</h2>
