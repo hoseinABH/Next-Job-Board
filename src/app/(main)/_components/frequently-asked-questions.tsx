@@ -36,7 +36,7 @@ const data = [
 export default function FrequentlyAskedQuestions() {
   return (
     <LandingSection title="سوالات متداول">
-      <Accordion type="single" collapsible className="w-full space-y-4">
+      <Accordion type="single" collapsible className="mt-10 w-full space-y-4">
         {data.map((item) => (
           <AccordionItem key={item.id} value={item.id}>
             <AccordionTrigger>{item.title}</AccordionTrigger>

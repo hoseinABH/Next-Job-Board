@@ -11,10 +11,10 @@ export default async function Header() {
   const profileData = await getUserMinimalProfile();
   return (
     <HeaderContainer>
-      <div className="container flex h-14 items-center justify-between px-2 sm:px-8">
+      <div className="container flex h-14 items-center justify-between px-4 sm:px-8">
         {/* Right Part */}
         <div className="flex items-center">
-          <div className="ml-4 inline md:hidden">
+          <div className="block md:hidden">
             <NavigationDrawer />
           </div>
           <Logo className="hidden sm:block" />
