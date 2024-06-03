@@ -19,8 +19,7 @@ export default function FeaturedJobCard({ className, position, href }: Props) {
       <div className={cn('card-shadow space-y-4 rounded-md p-4 ', className)}>
         <div className="flex items-center gap-x-4">
           <Image
-            // src={company.logo}
-            src="/companies/digikala.webp"
+            src={position.companyProfile.logo || '/companies/digikala.webp'}
             className="rounded-sm drop-shadow-md"
             width={60}
             height={60}

@@ -20,8 +20,7 @@ export default function TopCompanyCard({ href, company, className }: Props) {
         )}
       >
         <Image
-          // src={company.logo}
-          src="/companies/alibaba.webp"
+          src={company.logo || '/companies/alibaba.webp'}
           className="rounded-sm drop-shadow-md"
           width={60}
           height={60}

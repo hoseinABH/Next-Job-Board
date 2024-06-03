@@ -1,8 +1,12 @@
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+// Common components
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+// Utilities
+import { cn } from '@/lib/utils';
+// Constants
 import * as Routes from '@/config/routes';
+import LandingSection from '@/components/landing-section';
 const data = [
   {
     id: 1,
@@ -34,10 +38,7 @@ const data = [
 ];
 export default function Roadmap() {
   return (
-    <div className="container flex flex-col items-center justify-center px-4 sm:px-8">
-      <h1 className="mb-4 text-center text-xl font-bold text-secondary sm:text-2xl md:text-3xl">
-        مراحل ثبت درخواست کارآموزی
-      </h1>
+    <LandingSection title="مراحل ثبت درخواست کارآموزی">
       <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
         {data.map((item, index) => (
           <div key={item.id} className="relative">
@@ -79,6 +80,6 @@ export default function Roadmap() {
           <Button className="w-full sm:w-auto">ایجاد حساب کاربری</Button>
         </Link>
       </div>
-    </div>
+    </LandingSection>
   );
 }
