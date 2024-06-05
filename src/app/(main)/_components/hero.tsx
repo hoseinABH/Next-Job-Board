@@ -24,13 +24,13 @@ export default function Hero() {
         height={300}
         src="/hero-shape.svg"
         alt="hero-shape"
-        className="absolute left-0 top-0 z-auto hidden translate-y-24 animate-pulse select-none md:block"
+        className="absolute left-0 top-0 z-auto hidden translate-y-24 select-none md:block"
         priority
       />
       <Image
         width={1100}
         height={100}
-        className="absolute top-0 z-auto hidden -translate-y-28 translate-x-20 animate-pulse select-none md:block"
+        className="absolute top-0 z-auto hidden -translate-y-28 translate-x-20 select-none md:block"
         src="/line-vector.svg"
         alt="line-vector"
         priority

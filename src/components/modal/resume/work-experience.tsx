@@ -40,8 +40,8 @@ export function WorkExperienceModal() {
         </DialogHeader>
         <form action={action} className="space-y-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="title" label="عنوان شغلی" formState={formState} />
-            <InputField name="companyName" label="نام شرکت" formState={formState} />
+            <InputField maxLength={32} name="title" label="عنوان شغلی" formState={formState} />
+            <InputField maxLength={32} name="companyName" label="نام شرکت" formState={formState} />
             <InputField
               name="startDate"
               label="تاریخ شروع"
@@ -68,6 +68,7 @@ export function WorkExperienceModal() {
               label="توضیحات"
               rows={6}
               formState={formState}
+              maxLength={300}
             />
           </div>
           <DialogFooter>

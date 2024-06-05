@@ -17,9 +17,9 @@ import { FormState } from '@/lib/error';
 // Actions
 import { removeEntity } from '@/actions/user';
 // Hooks
+import { useToastMessage } from '@/hooks/use-toast-message';
 import useUserStore from '@/store/user';
 import { useState, useTransition } from 'react';
-import { useToastMessage } from '@/hooks/use-toast-message';
 
 export function ConfirmDeleteDialog() {
   const { openModal, metadata, modals } = useUserStore();

@@ -41,7 +41,7 @@ export function SkillModal() {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="name" label="مهارت" formState={formState} />
+            <InputField maxLength={24} name="name" label="مهارت" formState={formState} />
             <SelectField
               name="level"
               label="سطح"

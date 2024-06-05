@@ -14,11 +14,12 @@ import {
 } from './ui/dropdown-menu';
 // Hooks
 import { useRouter } from 'next/navigation';
+// Actions
+import { logout } from '@/actions/auth';
 // Configs
 import * as Routes from '@/config/routes';
 // Types
 import type { UserMinimalProfile } from '@/types/user';
-import { logout } from '@/actions/auth';
 
 const userMenuItems = [
   {

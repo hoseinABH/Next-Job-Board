@@ -5,7 +5,7 @@ export const appData = {
   appDescription: 'کاریوا بهترین راه ارتباطی کارجویان و کارفرمایان',
 };
 
-export const navigationLinks = [
+export const userNavigationLinks = [
   {
     name: 'فرصت‌های کارآموزی',
     href: Routes.INTERNSHIPS,
@@ -17,6 +17,16 @@ export const navigationLinks = [
   {
     name: 'رزومه ساز',
     href: Routes.CV_MAKER,
+  },
+];
+export const companyNavigationLinks = [
+  {
+    name: 'فرصت‌های کارآموزی',
+    href: Routes.INTERNSHIPS,
+  },
+  {
+    name: 'شرکت‌ها',
+    href: Routes.COMPANIES,
   },
 ];
 

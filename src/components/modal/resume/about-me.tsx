@@ -50,6 +50,7 @@ export function AboutMeModal({ defaultValues }: Props) {
               label="عنوان"
               defaultValue={defaultValues.title}
               formState={formState}
+              maxLength={48}
             />
             <TextAreaField
               name="aboutMe"
@@ -57,6 +58,7 @@ export function AboutMeModal({ defaultValues }: Props) {
               defaultValue={defaultValues.aboutMe}
               rows={6}
               formState={formState}
+              maxLength={400}
             />
           </div>
           <DialogFooter>

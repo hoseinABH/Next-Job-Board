@@ -21,7 +21,7 @@ export async function getSession() {
 export async function getUserRole() {
   const useRole = cookies().get(roleKey)?.value;
   if (!useRole) return;
-  return useRole;
+  return useRole as UserRole;
 }
 
 export async function clearSession() {

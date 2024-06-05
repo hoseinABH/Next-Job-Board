@@ -50,7 +50,12 @@ export default function CreatePositionModal() {
             {metadata?.id ? (
               <input hidden className="hidden" name="id" value={metadata.id} />
             ) : null}
-            <InputField name="title" label="عنوان موقعیت شغلی" defaultValue={metadata?.title} />
+            <InputField
+              name="title"
+              label="عنوان موقعیت شغلی"
+              maxLength={32}
+              defaultValue={metadata?.title}
+            />
             <SelectField
               name="grade"
               label="مقطع تحصیلی مورد نیاز"
@@ -72,6 +77,7 @@ export default function CreatePositionModal() {
               dir="ltr"
               inputMode="numeric"
               placeholder="تومان"
+              maxLength={12}
               formState={formState}
               defaultValue={metadata?.salary}
             />
@@ -82,6 +88,7 @@ export default function CreatePositionModal() {
               containerClassName="sm:col-span-2"
               formState={formState}
               defaultValue={metadata?.description}
+              maxLength={400}
             />
             <CheckboxField
               name="immediateRecruitment"
