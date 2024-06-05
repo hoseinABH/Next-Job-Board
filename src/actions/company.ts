@@ -14,6 +14,12 @@ import type {
 
 const route = 'company';
 
+async function getCompanyProfile() {
+  const path = `${route}/get-profile`;
+  const response = await fetcher<Company>(path, 'no-cache');
+  return response.data;
+}
+
 async function getAllCompanies({ page, city, keyword }: GetCompaniesQueries) {
   const query = new URLSearchParams(`page=${page}`);
   if (city) {
@@ -60,4 +66,5 @@ export {
   getCompanyInternshipRequests,
   getCompanyPositions,
   getUserResume,
+  getCompanyProfile,
 };

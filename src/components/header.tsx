@@ -5,12 +5,12 @@ import NavigationDrawer from './navigation-drawer';
 import NavigationItems from './navigation-items';
 import UserDropDown from './user-drop-down';
 // Actions
-import { getUserMinimalProfile } from '@/actions/user';
 import { getUserRole } from '@/actions/cookie';
+import { getUserProfile } from '@/actions/shared';
 
 export default async function Header() {
-  const profileData = await getUserMinimalProfile();
   const userRole = await getUserRole();
+  const profile = await getUserProfile(userRole);
   return (
     <HeaderContainer>
       <div className="container flex h-14 items-center justify-between px-4 sm:px-8">
@@ -27,7 +27,7 @@ export default async function Header() {
         </div>
         {/* Left Part */}
         <div className="flex flex-1 items-center justify-end">
-          <UserDropDown profileData={profileData} />
+          <UserDropDown profileData={profile} userRole={userRole} />
         </div>
       </div>
     </HeaderContainer>

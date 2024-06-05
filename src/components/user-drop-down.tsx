@@ -18,43 +18,32 @@ import { useRouter } from 'next/navigation';
 import { logout } from '@/actions/auth';
 // Configs
 import * as Routes from '@/config/routes';
+import { companyDropdownMenu, userDropdownMenu } from '@/config/app';
 // Types
-import type { UserMinimalProfile } from '@/types/user';
-
-const userMenuItems = [
-  {
-    title: 'درخواست های من',
-    key: 'ApplicationRequest',
-    disabled: false,
-  },
-  {
-    title: 'حساب کاربری',
-    key: 'Account',
-    disabled: true,
-  },
-  {
-    title: 'رزومه من',
-    key: 'Resume',
-    disabled: false,
-  },
-  {
-    title: 'خروج',
-    key: 'Logout',
-    disabled: false,
-  },
-];
+import type { UserMinimalProfile, UserRole } from '@/types/user';
+import type { Company } from '@/types/company';
 
 interface Props {
-  profileData?: UserMinimalProfile;
+  profileData?: UserMinimalProfile | Company;
+  userRole?: UserRole;
 }
 
-export default function UserDropDown({ profileData }: Props) {
+export default function UserDropDown({ profileData, userRole }: Props) {
   const router = useRouter();
 
   function handleSelectMenu(menuKey: string) {
     switch (menuKey) {
       case 'Resume':
         router.push(Routes.CV_MAKER);
+        break;
+      case 'Dashboard':
+        router.push(Routes.DASHBOARD);
+        break;
+      case 'DashboardApplications':
+        router.push(Routes.DASHBOARD_APPLICATIONS);
+        break;
+      case 'DashboardPositions':
+        router.push(Routes.DASHBOARD_POSITIONS);
         break;
       case 'Logout':
         logout();
@@ -66,10 +55,17 @@ export default function UserDropDown({ profileData }: Props) {
         break;
     }
   }
-  const fullName = useMemo(
-    () => profileData?.firstName + ' ' + profileData?.lastName,
-    [profileData],
-  );
+  const dropdownMenu = userRole === 'Company' ? companyDropdownMenu : userDropdownMenu;
+  const fullName = useMemo(() => {
+    if (userRole === 'Company') {
+      return (profileData as Company)?.title;
+    }
+    return (
+      (profileData as UserMinimalProfile)?.firstName +
+      ' ' +
+      (profileData as UserMinimalProfile)?.lastName
+    );
+  }, [profileData, userRole]);
   return (
     <>
       {Boolean(profileData) ? (
@@ -82,7 +78,7 @@ export default function UserDropDown({ profileData }: Props) {
             {fullName}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            {userMenuItems.map((menu) => (
+            {dropdownMenu.map((menu) => (
               <DropdownMenuItem
                 key={menu.key}
                 onClick={() => handleSelectMenu(menu.key)}

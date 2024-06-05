@@ -30,6 +30,51 @@ export const companyNavigationLinks = [
   },
 ];
 
+export const userDropdownMenu = [
+  {
+    title: 'درخواست های من',
+    key: 'ApplicationRequest',
+    disabled: false,
+  },
+  {
+    title: 'حساب کاربری',
+    key: 'Account',
+    disabled: true,
+  },
+  {
+    title: 'رزومه من',
+    key: 'Resume',
+    disabled: false,
+  },
+  {
+    title: 'خروج',
+    key: 'Logout',
+    disabled: false,
+  },
+];
+export const companyDropdownMenu = [
+  {
+    title: 'درخواست‌های کارآموزی',
+    key: 'DashboardApplications',
+    disabled: false,
+  },
+  {
+    title: 'موقعیت‌های کارآموزی',
+    key: 'DashboardPositions',
+    disabled: false,
+  },
+  {
+    title: 'داشبورد شرکت',
+    key: 'Dashboard',
+    disabled: false,
+  },
+  {
+    title: 'خروج',
+    key: 'Logout',
+    disabled: false,
+  },
+];
+
 export const footerLinks = [
   {
     id: 1,

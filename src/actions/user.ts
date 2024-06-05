@@ -39,8 +39,6 @@ import type {
 
 const route = 'user';
 async function getUserMinimalProfile() {
-  const session = await getSession();
-  if (!Boolean(session)) return;
   const path = `${route}/get-minimal-profile`;
   const response = await fetcher<UserMinimalProfile>(path, 'no-cache');
   return response.data;
