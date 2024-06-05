@@ -8,34 +8,41 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import Maybe from './maybe';
 // Hooks
 import usePagination from '@/hooks/use-pagination';
+// Utilities
+import { cn } from '@/lib/utils';
 // Types
 import type { PaginationData } from '@/types/common';
 
 interface Props {
   paginationData: PaginationData;
+  className?: string;
 }
 
-export default function PaginationContainer({ paginationData }: Props) {
-  const { prevUrl, nextUrl, currentPage, paginationNumbers } = usePagination(paginationData);
+export default function PaginationContainer({ paginationData, className }: Props) {
+  const { needPagination, prevUrl, nextUrl, currentPage, paginationNumbers } =
+    usePagination(paginationData);
   return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href={prevUrl} />
-        </PaginationItem>
-        {paginationNumbers.map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink isActive={page === currentPage} href={`?p=${page}`}>
-              {page}
-            </PaginationLink>
+    <Maybe condition={needPagination}>
+      <Pagination className={cn('', className)}>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href={prevUrl} />
           </PaginationItem>
-        ))}
-        <PaginationItem>
-          <PaginationNext href={nextUrl} />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
+          {paginationNumbers.map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink isActive={page === currentPage} href={`?p=${page}`}>
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationNext href={nextUrl} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </Maybe>
   );
 }

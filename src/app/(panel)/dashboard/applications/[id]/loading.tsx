@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ApplicationLoading() {
   return (
-    <div className="rounded-md bg-card p-6">
+    <div className="rounded-md bg-card p-2 sm:p-6">
       <div className="flex w-full items-center justify-between">
         <Skeleton className="h-8 w-48" />
         <BackButton>بازگشت به درخواست ها</BackButton>

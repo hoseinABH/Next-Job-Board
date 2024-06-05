@@ -24,12 +24,16 @@ import type { UpdatePositionStatusDto } from '@/types/internship';
 // Constants
 import * as Routes from '@/config/routes';
 import { mapApplicationStatus } from '@/constants/company';
+// Types
+import type { PaginationData } from '@/types/common';
+import PaginationContainer from '@/components/pagination-container';
 interface Props {
   className?: string;
   applications: InternshipRequestItem[];
+  paginationData: PaginationData;
 }
 
-export default function ApplicationsTable({ className, applications }: Props) {
+export default function ApplicationsTable({ className, applications, paginationData }: Props) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   function onSelect(userProfileId: number) {
@@ -53,7 +57,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
     };
   }
   return (
-    <div className={cn('rounded-md bg-card p-6', className)}>
+    <div className={cn('rounded-md bg-card p-2 sm:p-6', className)}>
       <div>
         <h1 className="text-2xl font-bold">درخواست های شغلی</h1>
         <p className="text-md text-muted-foreground">لیست درخواست های شغلی</p>
@@ -108,6 +112,7 @@ export default function ApplicationsTable({ className, applications }: Props) {
           </TableBody>
         </Table>
       </div>
+      <PaginationContainer className="mt-6" paginationData={paginationData} />
     </div>
   );
 }

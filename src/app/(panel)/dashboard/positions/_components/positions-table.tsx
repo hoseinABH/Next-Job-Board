@@ -48,7 +48,7 @@ export default function PositionsTable({ className, positions, paginationData }:
     });
   }
   return (
-    <div className={cn('rounded-md bg-card p-6', className)}>
+    <div className={cn('rounded-md bg-card p-2 sm:p-6', className)}>
       <PositionsHeader />
       {positions.length ? (
         <div className="mt-8 overflow-hidden rounded-md border">
@@ -104,7 +104,7 @@ export default function PositionsTable({ className, positions, paginationData }:
           </Table>
         </div>
       ) : null}
-      <PaginationContainer paginationData={paginationData} />
+      <PaginationContainer className="mt-6" paginationData={paginationData} />
     </div>
   );
 }

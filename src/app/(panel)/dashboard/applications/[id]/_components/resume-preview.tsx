@@ -52,7 +52,7 @@ export default function ResumePreview({ resume }: Props) {
     },
   ];
   return (
-    <div className="rounded-md bg-card p-6">
+    <div className="rounded-md bg-card p-2 sm:p-6">
       <div className="flex w-full items-baseline justify-between">
         <h1 className="text-2xl font-bold">{fullName}</h1>
         <BackButton>بازگشت به درخواست ها</BackButton>

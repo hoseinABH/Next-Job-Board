@@ -13,7 +13,7 @@ import PositionsHeader from './_components/positions-header';
 
 export default function PositionsLoading() {
   return (
-    <div className="rounded-md bg-card p-6">
+    <div className="rounded-md bg-card p-2 sm:p-6">
       <PositionsHeader />
       <div className="mt-8 overflow-hidden rounded-md border">
         <Table className="text-nowrap">

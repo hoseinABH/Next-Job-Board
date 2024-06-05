@@ -1,4 +1,4 @@
-import type { Nullable } from './common';
+import type { Nullable, PaginationData } from './common';
 import type { ApplicationStatus, Company } from './company';
 
 export type UserRole = 'OuterUser' | 'InnerUser' | 'Company';
@@ -18,10 +18,7 @@ export interface UserApplyRequest {
   status: ApplicationStatus;
   description: string;
 }
-export interface GetUserApplyRequestResponse {
-  totalCount: number;
-  currentPage: number;
-  countPerPage: number;
+export interface GetUserApplyRequestResponse extends PaginationData {
   data: UserApplyRequest[];
 }
 export interface UserProfile {

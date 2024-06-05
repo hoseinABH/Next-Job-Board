@@ -19,6 +19,7 @@ export default function usePagination(paginationData: PaginationData) {
     const defaultLink = `?p=${currentPage}`;
     const nextUrl = nextDisabled ? defaultLink : `?p=${currentPage + 1}`;
     const prevUrl = prevDisabled ? defaultLink : `?p=${currentPage - 1}`;
+    const needPagination = totalPages > 1;
     return {
       paginationNumbers,
       nextUrl,
@@ -26,6 +27,7 @@ export default function usePagination(paginationData: PaginationData) {
       currentPage,
       nextDisabled,
       prevDisabled,
+      needPagination,
     };
   }, [paginationData, targetPage]);
   return pagination;
