@@ -17,7 +17,7 @@ export default function ApplicationsLoading() {
         <h1 className="text-2xl font-bold">درخواست های شغلی</h1>
         <p className="text-md text-muted-foreground">لیست درخواست های شغلی</p>
       </div>
-      <div className="mt-8 rounded-md border">
+      <div className="mt-8 overflow-hidden rounded-md border">
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow className="h-16">

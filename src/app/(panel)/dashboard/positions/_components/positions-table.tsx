@@ -48,7 +48,7 @@ export default function PositionsTable({ className, positions }: Props) {
     <div className={cn('rounded-md bg-card p-6', className)}>
       <PositionsHeader />
       {positions.length ? (
-        <div className="mt-8 rounded-md border">
+        <div className="mt-8 overflow-hidden rounded-md border">
           <Table className="text-nowrap">
             <TableHeader>
               <TableRow className="h-16">
