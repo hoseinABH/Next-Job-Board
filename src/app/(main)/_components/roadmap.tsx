@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 // Constants
 import * as Routes from '@/config/routes';
 import LandingSection from '@/components/landing-section';
+import { appData } from '@/config/app';
+
 const data = [
   {
     id: 1,
@@ -17,7 +19,7 @@ const data = [
   },
   {
     id: 2,
-    title: 'ساخت و آپلود رزومه',
+    title: 'ساخت رزومه',
     text: 'لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود.',
     src: '/landing/cloud-arrow-up-duotone.svg',
     afterArrow: '/landing/Arrow2.svg',
@@ -38,7 +40,10 @@ const data = [
 ];
 export default function Roadmap() {
   return (
-    <LandingSection title="مراحل ثبت درخواست کارآموزی">
+    <LandingSection
+      title="مراحل ثبت درخواست کارآموزی"
+      subTitle={`طراحی و اجرای مسیر استخدام حرفه ای با ${appData.appName}`}
+    >
       <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
         {data.map((item, index) => (
           <div key={item.id} className="relative">

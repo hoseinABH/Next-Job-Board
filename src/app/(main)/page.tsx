@@ -10,8 +10,8 @@ export default function Home() {
     <>
       <HeroSection />
       <div className="space-y-20 py-20">
-        <CompaniesSection />
         <Roadmap />
+        <CompaniesSection />
         <FeaturedJobs />
         <FrequentlyAskedQuestions />
       </div>

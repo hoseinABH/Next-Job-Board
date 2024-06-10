@@ -9,19 +9,18 @@ export default function Hero() {
   return (
     <section className="relative flex h-[60vh] w-full items-center justify-center overflow-hidden rounded-none bg-[#0A65CC] text-primary-foreground md:rounded-b-[5rem]">
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-y-4 px-4 text-center">
-        <h1 className="text-2xl font-bold md:text-3xl">
-          {appConfigs.appData.appName} پلتفرم جذب کارآموزان
+        <h1 className="text-3xl font-bold md:text-4xl">
+          استخدام حرفه ای با {appConfigs.appData.appName}
         </h1>
-        <p className="text-sm leading-6">
-          لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک
-          گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
-          اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید.
+        <p className="mt-2 text-lg">کاریابی • کارورزی • کارآموزی </p>
+        <p className="mt-2 text-xl">
+          اولین پلتفرم مبتنی بر طراحی و اجرای پروژه های استخدامی حرفه ای
         </p>
         <SearchForm className="z-50 mx-auto block pt-6" targetRoute={Routes.INTERNSHIPS} />
       </div>
       <Image
-        width={400}
-        height={400}
+        width={300}
+        height={300}
         src="/hero-shape.svg"
         alt="hero-shape"
         className="absolute bottom-24 left-0 z-auto hidden translate-y-24 select-none md:block"

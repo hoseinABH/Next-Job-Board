@@ -62,7 +62,7 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
     const data = RegisterSchema.parse(registerDto);
     const response = await mutate<RegisterDto>(`${route}/register`, 'POST', data);
     if (response.status !== HttpStatus.Created) {
-      generateErrorFormState();
+      return generateErrorFormState();
     }
     redirect(Routes.LOGIN);
   } catch (error) {
