@@ -5,6 +5,7 @@ import { LucideIcon } from 'lucide-react';
 // Common components
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
 // Utilities
 import Maybe from '@/components/maybe';
 import { cn } from '@/lib/utils';
@@ -14,9 +15,17 @@ interface Props {
   title: string;
   children: ReactNode;
   icon?: LucideIcon;
+  loading?: boolean;
   visible?: boolean;
 }
-export default function InfoCard({ children, className, icon, title, visible = true }: Props) {
+export default function InfoCard({
+  children,
+  className,
+  icon,
+  title,
+  loading = false,
+  visible = true,
+}: Props) {
   const SectionIcon = icon;
   return (
     <Maybe condition={visible}>
@@ -27,6 +36,9 @@ export default function InfoCard({ children, className, icon, title, visible = t
         )}
       >
         <div className="flex items-center gap-x-3">
+          <Maybe condition={loading}>
+            <Skeleton className="h-6 w-6" />
+          </Maybe>
           {SectionIcon ? <SectionIcon className="h-6 w-6" /> : null}
           <p className="text-lg">{title}</p>
         </div>
