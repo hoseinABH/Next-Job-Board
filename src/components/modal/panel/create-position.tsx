@@ -23,6 +23,7 @@ import { EMPTY_FORM_STATE } from '@/lib/error';
 import { createPosition, updatePosition } from '@/actions/internship';
 // Constants
 import { educationGradeOptions } from '@/constants/user';
+import { positionTypeOptions } from '@/constants/company';
 
 export default function CreatePositionModal() {
   const { modals, openModal, metadata } = useCompanyStore();
@@ -82,6 +83,12 @@ export default function CreatePositionModal() {
               formState={formState}
               defaultValue={metadata?.salary}
             />
+            <SelectField
+              name="userRole"
+              label="نوع موقعیت شغلی"
+              options={positionTypeOptions}
+              formState={formState}
+            />
             <TextAreaField
               name="description"
               label="توضیحات فرصت شغلی"
@@ -99,7 +106,6 @@ export default function CreatePositionModal() {
               formState={formState}
               defaultChecked={metadata?.immediateRecruitment}
             />
-            <input hidden className="hidden" name="userRole" defaultValue="OuterUser" />
           </div>
           <DialogFooter>
             <SubmitButton>{isUpdate ? 'ثبت تغییرات' : 'ثبت موقعیت شغلی'}</SubmitButton>
