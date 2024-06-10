@@ -21,7 +21,7 @@ export default function Logo({ className, onClick }: Props) {
         width={80}
         height={40}
         alt={configs.appData.appName}
-        className="h-auto w-auto rounded-full"
+        className="h-auto w-auto rounded-b-lg bg-white"
       />
     </Link>
   );
