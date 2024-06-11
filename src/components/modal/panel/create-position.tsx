@@ -96,7 +96,7 @@ export default function CreatePositionModal() {
               containerClassName="sm:col-span-2"
               formState={formState}
               defaultValue={metadata?.description}
-              maxLength={400}
+              maxLength={2500}
             />
             <CheckboxField
               name="immediateRecruitment"
