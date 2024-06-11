@@ -51,11 +51,11 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
   const userType = formData.get('userType');
   const registerDto = {
     email,
-    firstName,
-    lastName,
+    ...(firstName ? { firstName } : {}),
+    ...(lastName ? { lastName } : {}),
+    ...(companyName ? { companyName } : {}),
     username,
     password,
-    companyName,
     userType,
   };
   try {
