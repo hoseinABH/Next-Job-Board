@@ -1,5 +1,6 @@
 'use client';
 // Common components
+import PaginationContainer from '@/components/pagination-container';
 import { Badge } from '@/components/ui/badge';
 import {
   Table,
@@ -26,13 +27,15 @@ import { mapEducationGrade } from '@/constants/user';
 // Types
 import type { InternshipItem } from '@/types/company';
 import type { PositionActivationDto } from '@/types/internship';
+import type { PaginationData } from '@/types/common';
 
 interface Props {
   className?: string;
   positions: InternshipItem[];
+  paginationData: PaginationData;
 }
 
-export default function PositionsTable({ className, positions }: Props) {
+export default function PositionsTable({ className, positions, paginationData }: Props) {
   const { openModal } = useCompanyStore();
   function openEditModal(position: InternshipItem) {
     openModal(true, 'createPosition', position);
@@ -45,10 +48,10 @@ export default function PositionsTable({ className, positions }: Props) {
     });
   }
   return (
-    <div className={cn('rounded-md bg-card p-6', className)}>
+    <div className={cn('rounded-md bg-card p-2 sm:p-6', className)}>
       <PositionsHeader />
       {positions.length ? (
-        <div className="mt-8 rounded-md border">
+        <div className="mt-8 overflow-hidden rounded-md border">
           <Table className="text-nowrap">
             <TableHeader>
               <TableRow className="h-16">
@@ -101,6 +104,7 @@ export default function PositionsTable({ className, positions }: Props) {
           </Table>
         </div>
       ) : null}
+      <PaginationContainer className="mt-6" paginationData={paginationData} />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import type { SelectOption } from '@/components/select-field';
 import type { ApplicationStatus } from '@/types/company';
 
 export interface ApplicationMetadata {
@@ -22,3 +23,14 @@ export const mapApplicationStatus: Record<ApplicationStatus, ApplicationMetadata
     status: 'destructive',
   },
 };
+
+export const positionTypeOptions: SelectOption[] = [
+  {
+    value: 'InnerUser',
+    title: 'داخلی',
+  },
+  {
+    value: 'OuterUser',
+    title: 'عمومی',
+  },
+];

@@ -23,6 +23,7 @@ import { EMPTY_FORM_STATE } from '@/lib/error';
 import { createPosition, updatePosition } from '@/actions/internship';
 // Constants
 import { educationGradeOptions } from '@/constants/user';
+import { positionTypeOptions } from '@/constants/company';
 
 export default function CreatePositionModal() {
   const { modals, openModal, metadata } = useCompanyStore();
@@ -48,15 +49,21 @@ export default function CreatePositionModal() {
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {metadata?.id ? (
-              <input hidden className="hidden" name="id" value={metadata.id} />
+              <input hidden className="hidden" name="id" defaultValue={metadata.id} />
             ) : null}
-            <InputField name="title" label="عنوان موقعیت شغلی" defaultValue={metadata?.title} />
+            <InputField
+              name="title"
+              label="عنوان موقعیت شغلی"
+              maxLength={32}
+              formState={formState}
+              defaultValue={metadata?.title}
+            />
             <SelectField
               name="grade"
               label="مقطع تحصیلی مورد نیاز"
               options={educationGradeOptions}
               formState={formState}
-              defaultValue={String(metadata?.grade)}
+              defaultValue={metadata?.grade ? String(metadata?.grade) : undefined}
             />
             <InputField
               name="submissionDeadline"
@@ -72,8 +79,15 @@ export default function CreatePositionModal() {
               dir="ltr"
               inputMode="numeric"
               placeholder="تومان"
+              maxLength={12}
               formState={formState}
               defaultValue={metadata?.salary}
+            />
+            <SelectField
+              name="userRole"
+              label="نوع موقعیت شغلی"
+              options={positionTypeOptions}
+              formState={formState}
             />
             <TextAreaField
               name="description"
@@ -82,6 +96,7 @@ export default function CreatePositionModal() {
               containerClassName="sm:col-span-2"
               formState={formState}
               defaultValue={metadata?.description}
+              maxLength={2500}
             />
             <CheckboxField
               name="immediateRecruitment"
@@ -91,7 +106,6 @@ export default function CreatePositionModal() {
               formState={formState}
               defaultChecked={metadata?.immediateRecruitment}
             />
-            <input hidden className="hidden" name="userRole" value="OuterUser" />
           </div>
           <DialogFooter>
             <SubmitButton>{isUpdate ? 'ثبت تغییرات' : 'ثبت موقعیت شغلی'}</SubmitButton>

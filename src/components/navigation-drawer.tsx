@@ -1,16 +1,19 @@
 'use client';
-import { Fragment, useState } from 'react';
-// UI frameworks
-import { AlignJustify } from 'lucide-react';
 // Common components
-import Logo from './logo';
+import { Fragment, useState } from 'react';
+import { AlignJustify } from 'lucide-react';
 import AppVersion from './app-version';
+import Logo from './logo';
 import NavigationItems from './navigation-items';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetPortal, SheetTitle } from './ui/sheet';
-
-export default function NavigationDrawer() {
+// Types
+import { UserRole } from '@/types/user';
+interface Props {
+  userRole?: UserRole;
+}
+export default function NavigationDrawer({ userRole }: Props) {
   const [open, setOpen] = useState(false);
 
   function openChange(open: boolean) {
@@ -36,7 +39,11 @@ export default function NavigationDrawer() {
               </SheetTitle>
             </SheetHeader>
             <Separator className="mt-4" />
-            <NavigationItems className="mt-4 flex flex-col gap-4" onSelect={closeDrawer} />
+            <NavigationItems
+              userRole={userRole}
+              className="mt-4 flex flex-col gap-4"
+              onSelect={closeDrawer}
+            />
             <SheetFooter className="absolute bottom-4">
               <AppVersion />
             </SheetFooter>

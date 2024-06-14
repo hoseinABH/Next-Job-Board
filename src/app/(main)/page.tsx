@@ -1,14 +1,20 @@
 // Local components
-import HeroSection from './_components/hero-section';
-import CompaniesSection from './_components/companies-section';
+import HeroSection from './_components/hero';
+import CompaniesSection from './_components/top-companies';
 import FeaturedJobs from './_components/featured-jobs';
+import FrequentlyAskedQuestions from './_components/frequently-asked-questions';
+import Roadmap from './_components/roadmap';
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <CompaniesSection />
-      <FeaturedJobs />
+      <div className="space-y-20 py-20">
+        <Roadmap />
+        <CompaniesSection />
+        <FeaturedJobs />
+        <FrequentlyAskedQuestions />
+      </div>
     </>
   );
 }

@@ -27,7 +27,7 @@ export default async function Job({ params }: Props) {
   const tests = await getRequiredTests();
   const session = await getSession();
   return (
-    <section className="py-4 lg:py-12">
+    <section className="container space-y-8 px-4 py-24 sm:px-8">
       <BackButton>بازگشت به موقعیت‌ها</BackButton>
       <h1 className="my-4 text-2xl font-bold">{position.title}</h1>
       <div className="relative flex flex-col-reverse gap-6 lg:flex-row">

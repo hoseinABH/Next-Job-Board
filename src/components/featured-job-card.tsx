@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 // Common components
-import { MapPin } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+import { MapPin, Calendar } from 'lucide-react';
 // Utilities
 import { cn } from '@/lib/utils';
 // Types
@@ -16,15 +16,29 @@ interface Props {
 export default function FeaturedJobCard({ className, position, href }: Props) {
   return (
     <Link href={href}>
-      <Card className={cn('relative', className)}>
-        <CardContent className="flex w-full flex-col items-center justify-center p-6">
-          <span className="mt-4 text-sm">{position.title}</span>
-          <p className="text-md  font-semibold">{position.companyProfile.title}</p>
-          <p className="flex items-center text-muted-foreground">
-            <MapPin className="ml-1 h-4 w-4" /> {position.companyProfile.city}
-          </p>
-        </CardContent>
-      </Card>
+      <div className={cn('card-shadow space-y-4 rounded-md p-4 ', className)}>
+        <div className="flex items-center gap-x-4">
+          <Image
+            src={position.companyProfile.logo || '/companies/digikala.webp'}
+            className="rounded-sm drop-shadow-md"
+            width={60}
+            height={60}
+            alt={position.title}
+          />
+          <h2 className="font-bold text-secondary">{position.title}</h2>
+        </div>
+        <div className="space-y-1">
+          <p className="text-secondary">{position.companyProfile.title}</p>
+          <span className="flex items-center gap-x-2 text-muted-foreground">
+            <MapPin className="h-4 w-4" />
+            {position.companyProfile.city}
+          </span>
+          <span className="flex items-center gap-x-2 text-muted-foreground">
+            <Calendar className="h-4 w-4" />
+            {position.companyProfile.category}
+          </span>
+        </div>
+      </div>
     </Link>
   );
 }

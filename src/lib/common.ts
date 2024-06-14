@@ -20,3 +20,7 @@ export function isServer() {
 export function getBaseApiUrl() {
   return process.env.API_URL;
 }
+
+export async function pause(timeout: number) {
+  return new Promise((res) => setTimeout(res, timeout));
+}

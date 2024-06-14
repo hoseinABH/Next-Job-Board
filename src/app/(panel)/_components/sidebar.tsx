@@ -1,5 +1,4 @@
 'use client';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -15,15 +14,13 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { ClipboardList, Home, LucideIcon, Package, LucideLogOut } from 'lucide-react';
+import { ClipboardList, Home, LucideIcon, LucideLogOut, Package } from 'lucide-react';
 // Actions
 import { logout } from '@/actions/auth';
 // Utilities
 import { cn } from '@/lib/utils';
 // Configs
 import * as Routes from '@/config/routes';
-
-const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), { ssr: false });
 
 interface Menu {
   title: string;
@@ -63,10 +60,10 @@ function SidebarContent({ className }: { className: string }) {
             <Image
               priority
               src="/logo.png"
-              className="rounded-sm drop-shadow-md"
-              width={60}
-              height={60}
-              alt="شرکت ایرانسل"
+              className="h-auto w-auto drop-shadow-md"
+              alt="شرکت"
+              width={80}
+              height={40}
             />
           </Link>
           <IconButton onClick={() => logout()} title="خروج">
@@ -82,7 +79,6 @@ function SidebarContent({ className }: { className: string }) {
         ))}
       </CardContent>
       <CardFooter className="mt-auto flex w-full justify-between">
-        <ThemeToggle />
         <AppVersion />
       </CardFooter>
     </Card>

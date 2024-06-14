@@ -24,7 +24,7 @@ export default function SocialLinks(props: Props) {
         <a
           key={social.key}
           href={social.href}
-          className="text-muted-foreground transition-colors hover:text-foreground"
+          className="text-secondary-foreground/80 transition-colors hover:text-secondary-foreground"
           target="_blank"
         >
           {mapSocialKeyToIcon[social.key]}

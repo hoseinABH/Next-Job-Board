@@ -193,18 +193,10 @@ async function getTestById(testId: string) {
   return response.data;
 }
 async function postTestAnswer(testId: string, positionId: string, answers: Answer[]) {
-  try {
-    console.log({ answers });
-
-    const path = `${route}/post-test-answers?testId=${testId}`;
-    const response = await mutate<Answer[]>(path, 'POST', answers);
-    console.log({ response });
-    if (response.status === HttpStatus.OK) {
-      redirect(`${Routes.INTERNSHIPS}/${positionId}`);
-    }
-    return generateErrorFormState();
-  } catch (error) {
-    return fromErrorToFormState(error);
+  const path = `${route}/post-test-answers?testId=${testId}`;
+  const response = await mutate<Answer[]>(path, 'POST', answers);
+  if (response.status === HttpStatus.OK) {
+    redirect(`${Routes.INTERNSHIPS}/${positionId}`);
   }
 }
 export {

@@ -51,18 +51,18 @@ async function register(_: any, formData: FormData): Promise<FormState | undefin
   const userType = formData.get('userType');
   const registerDto = {
     email,
-    firstName,
-    lastName,
+    ...(firstName ? { firstName } : {}),
+    ...(lastName ? { lastName } : {}),
+    ...(companyName ? { companyName } : {}),
     username,
     password,
-    companyName,
     userType,
   };
   try {
     const data = RegisterSchema.parse(registerDto);
     const response = await mutate<RegisterDto>(`${route}/register`, 'POST', data);
     if (response.status !== HttpStatus.Created) {
-      generateErrorFormState();
+      return generateErrorFormState();
     }
     redirect(Routes.LOGIN);
   } catch (error) {

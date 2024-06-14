@@ -1,4 +1,4 @@
-import type { Nullable } from '@/types/common';
+import type { Nullable, PaginationData } from '@/types/common';
 import type { Grade, UserProfile } from './user';
 
 export interface GetCompaniesQueries {
@@ -16,10 +16,7 @@ export interface CompanyListItem {
   positionCount: number;
 }
 
-export interface GetCompaniesResponse {
-  totalCount: number;
-  currentPage: number;
-  countPerPage: number;
+export interface GetCompaniesResponse extends PaginationData {
   data: CompanyListItem[];
 }
 
@@ -49,10 +46,7 @@ export interface InternshipItem {
   description: string;
   isActive: boolean;
 }
-export interface GetCompanyPositionsResponse {
-  totalCount: number;
-  currentPage: number;
-  countPerPage: number;
+export interface GetCompanyPositionsResponse extends PaginationData {
   data: InternshipItem[];
 }
 
@@ -67,10 +61,7 @@ export interface InternshipRequestItem {
   description?: string;
   avgTestScores: number;
 }
-export interface GetCompanyInternshipRequestsResponse {
-  totalCount: number;
-  currentPage: number;
-  countPerPage: number;
+export interface GetCompanyInternshipRequestsResponse extends PaginationData {
   data: InternshipRequestItem[];
 }
 

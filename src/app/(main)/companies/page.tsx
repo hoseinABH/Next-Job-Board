@@ -27,7 +27,7 @@ export default async function Companies({ searchParams }: SearchParams) {
     city: searchParams.l,
   });
   return (
-    <div className="space-y-8 py-4 lg:py-12">
+    <div className="container space-y-8 px-4 py-24 sm:px-8">
       <div className="flex flex-col items-center justify-center">
         <SearchForm count={companies.length} searchedData="شرکت" targetRoute={Routes.COMPANIES} />
       </div>

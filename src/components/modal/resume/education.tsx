@@ -42,8 +42,18 @@ export function EducationModal() {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField name="fieldOfEducation" label="رشته تحصیلی و گرایش" formState={formState} />
-            <InputField name="educationalInstitution" label="نام دانشگاه" formState={formState} />
+            <InputField
+              maxLength={32}
+              name="fieldOfEducation"
+              label="رشته تحصیلی و گرایش"
+              formState={formState}
+            />
+            <InputField
+              maxLength={32}
+              name="educationalInstitution"
+              label="نام دانشگاه"
+              formState={formState}
+            />
             <SelectField
               name="grade"
               label="مقطع تحصیلی"

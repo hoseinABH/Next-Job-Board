@@ -9,5 +9,7 @@ export const CreatePositionFormSchema = z.object({
   salary: z.string().min(1, { message: 'حقوق پیشنهادی را وارد کنید' }),
   description: z.string().min(1, { message: 'توضیحات موقعیت شغلی را وارد کنید' }),
   immediateRecruitment: z.boolean(),
-  userRole: z.enum(['Company', 'InnerUser', 'OuterUser']),
+  userRole: z.enum(['InnerUser', 'OuterUser'], {
+    errorMap: () => ({ message: 'نوع موقعیت شغلی را وارد کنید' }),
+  }),
 });

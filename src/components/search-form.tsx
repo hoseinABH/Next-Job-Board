@@ -38,7 +38,7 @@ export default function SearchForm({ className, targetRoute, count, searchedData
   return (
     <div className={cn('w-full max-w-2xl space-y-2', className)}>
       <Card>
-        <CardContent className="flex w-full p-6">
+        <CardContent className="flex w-full p-4">
           <form
             onSubmit={handleSubmit}
             className="flex w-full flex-col items-center gap-2 md:flex-row"

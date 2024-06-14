@@ -53,12 +53,18 @@ export function PersonalInfoModal({ defaultValues }: Props) {
         </DialogHeader>
         <form action={action} className="space-y-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InputField defaultValue={defaultValues?.firstName} label="نام" name="firstName" />
+            <InputField
+              maxLength={12}
+              defaultValue={defaultValues?.firstName}
+              label="نام"
+              name="firstName"
+            />
             <InputField
               defaultValue={defaultValues?.lastName}
               label="نام خانوادگی"
               name="lastName"
               formState={formState}
+              maxLength={16}
             />
             <InputField
               defaultValue={defaultValues?.phoneNumber}

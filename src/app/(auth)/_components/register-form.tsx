@@ -2,24 +2,26 @@
 import SubmitButton from '@/components/submit-button';
 // Common components
 import InputField from '@/components/input-field';
+import Maybe from '@/components/maybe';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 // Utilities
 import { EMPTY_FORM_STATE } from '@/lib/error';
 // Actions
 import { register } from '@/actions/auth';
 // Hooks
-import Maybe from '@/components/maybe';
 import { useToastMessage } from '@/hooks/use-toast-message';
 import { UserRole } from '@/types/user';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useFormState } from 'react-dom';
 
 export default function RegisterForm() {
   const [userType, setUserType] = useState<UserRole>('InnerUser');
+  const formRef = useRef<HTMLFormElement>(null);
   const [formState, action] = useFormState(register, EMPTY_FORM_STATE);
   useToastMessage(formState);
   function onChangeTab(entity: UserRole) {
     setUserType(entity);
+    formRef.current?.reset();
   }
   return (
     <Tabs defaultValue="InnerUser" className="w-full max-w-sm">
@@ -31,7 +33,7 @@ export default function RegisterForm() {
           شرکت
         </TabsTrigger>
       </TabsList>
-      <form action={action} className="mt-8 w-full space-y-8">
+      <form ref={formRef} action={action} className="mt-8 w-full space-y-8">
         <InputField
           name="email"
           type="email"

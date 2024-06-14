@@ -1,11 +1,11 @@
 import * as Routes from './routes';
 
 export const appData = {
-  appName: 'کارما',
-  appDescription: 'کارما بهترین راه ارتباطی کارجویان و کارفرمایان',
+  appName: 'کاریوا',
+  appDescription: 'کاریوا بهترین راه ارتباطی کارجویان و کارفرمایان',
 };
 
-export const navigationLinks = [
+export const userNavigationLinks = [
   {
     name: 'فرصت‌های کارآموزی',
     href: Routes.INTERNSHIPS,
@@ -17,6 +17,61 @@ export const navigationLinks = [
   {
     name: 'رزومه ساز',
     href: Routes.CV_MAKER,
+  },
+];
+export const companyNavigationLinks = [
+  {
+    name: 'فرصت‌های کارآموزی',
+    href: Routes.INTERNSHIPS,
+  },
+  {
+    name: 'شرکت‌ها',
+    href: Routes.COMPANIES,
+  },
+];
+
+export const userDropdownMenu = [
+  {
+    title: 'درخواست های من',
+    key: 'ApplicationRequest',
+    disabled: false,
+  },
+  {
+    title: 'حساب کاربری',
+    key: 'Account',
+    disabled: true,
+  },
+  {
+    title: 'رزومه من',
+    key: 'Resume',
+    disabled: false,
+  },
+  {
+    title: 'خروج',
+    key: 'Logout',
+    disabled: false,
+  },
+];
+export const companyDropdownMenu = [
+  {
+    title: 'درخواست‌های کارآموزی',
+    key: 'DashboardApplications',
+    disabled: false,
+  },
+  {
+    title: 'موقعیت‌های کارآموزی',
+    key: 'DashboardPositions',
+    disabled: false,
+  },
+  {
+    title: 'داشبورد شرکت',
+    key: 'Dashboard',
+    disabled: false,
+  },
+  {
+    title: 'خروج',
+    key: 'Logout',
+    disabled: false,
   },
 ];
 
@@ -102,8 +157,7 @@ export const footerLinks = [
 ] as const;
 
 export const footerDescription =
-  'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.';
-
+  'پلتفرم کاریوا، برای اجرای موثر فرآیند جذب و استخدام در مقیاس بزرگ طراحی شده است. در این پلتفرم برای هر شرکت یک فرآیند منحصر به فرد و شخصی سازی شده طراحی می گردد.';
 export const socials = [
   {
     key: 'linkedin',
@@ -114,14 +168,3 @@ export const socials = [
     href: 'https://www.instagram.com/',
   },
 ] as const;
-
-export const requestTests = [
-  {
-    key: 1,
-    name: 'تست شخصیتی',
-  },
-  {
-    key: 2,
-    name: 'تست فنی اول',
-  },
-];

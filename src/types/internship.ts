@@ -1,4 +1,4 @@
-import { Nullable } from './common';
+import type { PaginationData } from './common';
 import type { ApplicationStatus, Company } from './company';
 import type { Grade, UserRole } from './user';
 
@@ -33,10 +33,7 @@ export interface PositionItem {
   immediateRecruitment: boolean;
 }
 
-export interface GetAllPositionsResponse {
-  totalCount: number;
-  currentPage: number;
-  countPerPage: number;
+export interface GetAllPositionsResponse extends PaginationData {
   data: PositionItem[];
 }
 

@@ -13,19 +13,16 @@ interface Props {
 }
 export default function Logo({ className, onClick }: Props) {
   return (
-    <Link href={Routes.HOME}>
-      <div className={cn('group flex w-fit items-center gap-x-2 text-nowrap', className)}>
-        <Image
-          onClick={onClick}
-          priority
-          src="/logo.png"
-          width={40}
-          height={40}
-          alt={configs.appData.appName}
-          className="h-auto w-auto"
-        />
-        <p className="text-lg font-bold">{configs.appData.appName}</p>
-      </div>
+    <Link href={Routes.HOME} className={cn('', className)}>
+      <Image
+        onClick={onClick}
+        priority
+        src="/logo.png"
+        width={80}
+        height={40}
+        alt={configs.appData.appName}
+        className="h-auto w-auto rounded-b-lg bg-white"
+      />
     </Link>
   );
 }

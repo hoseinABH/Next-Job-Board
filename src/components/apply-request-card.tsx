@@ -1,6 +1,5 @@
 // Common components
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
 import { Building2, CalendarRange } from 'lucide-react';
 import Image from 'next/image';
 // Utilities
@@ -18,8 +17,11 @@ interface Props {
 
 export default function ApplyRequestCard({ className, request }: Props) {
   return (
-    <Card key={request.requestId} className={cn('flex items-start justify-between p-6', className)}>
-      <div className="flex items-start gap-x-4">
+    <div
+      key={request.requestId}
+      className={cn('card-shadow relative rounded-md border p-6', className)}
+    >
+      <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
         <Image
           src="/companies/alibaba.webp"
           className="rounded-sm drop-shadow-md"
@@ -27,7 +29,7 @@ export default function ApplyRequestCard({ className, request }: Props) {
           height={60}
           alt={request.positionTitle}
         />
-        <div className="space-y-2">
+        <div className="space-y-2 text-center sm:text-right">
           <h2 className="font-bold text-primary">{request.positionTitle}</h2>
           <p className="flex items-center text-muted-foreground">
             <Building2 className="ml-1 h-4 w-4" /> {request.companyProfile.title}
@@ -38,9 +40,12 @@ export default function ApplyRequestCard({ className, request }: Props) {
           </p>
         </div>
       </div>
-      <Badge variant={mapApplicationStatus[request.status].status}>
+      <Badge
+        variant={mapApplicationStatus[request.status].status}
+        className="absolute left-6 top-6"
+      >
         {mapApplicationStatus[request.status].title}
       </Badge>
-    </Card>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CompanyLoading() {
   return (
-    <section className="space-y-8 py-12">
+    <section className="container space-y-8 px-4 py-24 sm:px-8">
       <div className="flex flex-col items-center justify-center gap-y-4">
         <Skeleton className="h-20 w-20" />
         <Skeleton className="h-4 w-40" />

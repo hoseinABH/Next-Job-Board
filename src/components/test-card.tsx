@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { TestTube2Icon } from 'lucide-react';
 import Link from 'next/link';
-import { Button, buttonVariants } from './ui/button';
+import { Button } from './ui/button';
 // Types
 import type { Test } from '@/types/internship';
 
@@ -24,18 +24,12 @@ export default function TestCard({ test, className, href }: Props) {
       </div>
       <h4>{test.title}</h4>
       {test.isPassed ? (
-        <div
-          className={buttonVariants({
-            variant: 'secondary',
-            size: 'lg',
-            className: 'rounded-full px-8',
-          })}
-        >
+        <Button size="lg" variant="secondary" className="px-8" disabled>
           انجام شده
-        </div>
+        </Button>
       ) : (
         <Link href={href}>
-          <Button size="lg" variant="secondary" className="rounded-full px-8">
+          <Button size="lg" variant="secondary" className="px-8">
             شروع تست
           </Button>
         </Link>
