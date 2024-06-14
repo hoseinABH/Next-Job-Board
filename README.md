@@ -1,4 +1,4 @@
-Kariva is loading ...
+Deployed On **Liara**: [Kariva](https://kariva.liara.run)
 ## Getting Started
 ```bash
 # first, install the npm packages:
