@@ -1,6 +1,6 @@
 {
   "name": "kariva",
-  "version": "0.3.1-140303220900",
+  "version": "0.3.2-140303252300",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
