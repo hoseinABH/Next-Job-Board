@@ -1,6 +1,5 @@
 import localFont from 'next/font/local';
 // Providers
-import ThemeProvider from '@/providers/theme-provider';
 import DirectionProvider from '@/providers/direction-provider';
 // Common components
 import { Toaster } from '@/components/ui/toaster';
@@ -31,12 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" dir="rtl" suppressHydrationWarning>
       <body className={appFont.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
-          <DirectionProvider>
-            {children}
-            <Toaster />
-          </DirectionProvider>
-        </ThemeProvider>
+        <DirectionProvider>
+          {children}
+          <Toaster />
+        </DirectionProvider>
       </body>
     </html>
   );

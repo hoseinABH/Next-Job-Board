@@ -94,7 +94,7 @@ function MenuItem(menu: Menu) {
       key={menu.href}
       href={menu.href}
       className={cn('flex h-20 items-center gap-x-2 px-8 transition-all', {
-        ['bg-primary/5 text-primary dark:bg-primary/15']: isActive,
+        ['bg-primary/5 text-primary']: isActive,
       })}
     >
       <menu.icon className="h-5 w-5" />

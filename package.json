@@ -34,7 +34,6 @@
     "date-fns-jalali": "^3.6.0-0",
     "lucide-react": "^0.309.0",
     "next": "^14.2.4",
-    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "react-loader-spinner": "^6.1.6",
