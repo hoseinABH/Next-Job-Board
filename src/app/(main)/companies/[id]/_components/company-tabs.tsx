@@ -13,7 +13,7 @@ interface Props {
   companyId: string;
 }
 export default async function CompanyTabs({ company, companyId }: Props) {
-  const companyPositions = await getAllPositions({ page: '1', companyId });
+  const response = await getAllPositions({ page: '1', companyId });
   return (
     <Tabs defaultValue="about" className="w-full">
       <TabsList className="mx-auto flex max-w-lg">
@@ -29,7 +29,7 @@ export default async function CompanyTabs({ company, companyId }: Props) {
       </TabsContent>
       <TabsContent value="positions">
         <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2 lg:grid-cols-4">
-          {companyPositions.map((position) => (
+          {response.data.map((position) => (
             <FeaturedJobCard
               key={position.id}
               position={position}

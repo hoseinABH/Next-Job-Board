@@ -13,28 +13,28 @@ const data = [
   {
     id: 1,
     title: 'ایجاد حساب کاربری',
-    text: 'لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود.',
+    text: 'حساب کاربری خود را در سریع ترین زمان ممکن ایجاد کنید.',
     src: '/landing/user-plus-duotone.svg',
     afterArrow: '/landing/Arrow1.svg',
   },
   {
     id: 2,
     title: 'ساخت رزومه',
-    text: 'لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود.',
+    text: 'پروفایل شخصی خود را با کاریوا تجربه کنید.',
     src: '/landing/cloud-arrow-up-duotone.svg',
     afterArrow: '/landing/Arrow2.svg',
   },
   {
     id: 3,
     title: 'جست و جو در مشاغل موجود',
-    text: 'لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود.',
+    text: 'به راحتی از بین مشاغل موجود شغل مورد نظر خود را پیدا کنید.',
     src: '/landing/magnifying-glass-plus-duotone.svg',
     afterArrow: '/landing/Arrow3.svg',
   },
   {
     id: 4,
     title: 'ثبت درخواست',
-    text: 'لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود.',
+    text: 'با ایجاد درخواست برای موقعیت شغلی مورد نظر شما در مسیر موفقیت گام خواهید برداشت.',
     src: '/landing/circle-wavy-check-duotone.svg',
   },
 ];
@@ -44,14 +44,14 @@ export default function Roadmap() {
       title="مراحل ثبت درخواست کارآموزی"
       subTitle={`طراحی و اجرای مسیر استخدام حرفه ای با ${appData.appName}`}
     >
-      <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
+      <div className="mt-10 flex w-full flex-col items-center justify-center gap-8 lg:flex-row">
         {data.map((item, index) => (
           <div key={item.id} className="relative">
             <div className="flex flex-col items-center gap-y-6">
               <div className="rounded-full bg-[#F2F5FF] p-4">
                 <Image src={item.src} width={28} height={28} alt={item.title} />
               </div>
-              <div className="space-y-2 text-center">
+              <div className="max-w-[300px] space-y-2 text-center">
                 <h6 className="text-secondary">{item.title}</h6>
                 <p className="text-sm text-muted-foreground">{item.text}</p>
               </div>
