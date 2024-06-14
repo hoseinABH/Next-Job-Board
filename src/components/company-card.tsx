@@ -39,7 +39,7 @@ export default function CompanyCard({
             })}
           >
             <Image
-              src={company.logo || '/companies/alibaba.webp'}
+              src={'/companies/alibaba.webp'}
               className="rounded-sm drop-shadow-md"
               width={60}
               height={60}

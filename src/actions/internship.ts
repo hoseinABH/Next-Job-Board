@@ -45,7 +45,7 @@ async function getAllPositions({ page, companyId, city, query }: GetAllPositions
   }
   const path = `${route}/get-all-positions?${params.toString()}`;
   const response = await fetcher<GetAllPositionsResponse>(path, 'no-cache');
-  return response.data.data;
+  return response.data;
 }
 async function getPositionById(positionId: string) {
   const path = `${route}/get-position-details?id=${positionId}`;

@@ -1,5 +1,6 @@
 'use client';
 // Common components
+import PaginationContainer from '@/components/pagination-container';
 import { Badge } from '@/components/ui/badge';
 import {
   Table,
@@ -13,8 +14,8 @@ import StatusDropdown from './status-drop-down';
 // Actions
 import { updateRequestStatus } from '@/actions/internship';
 // Utilities
-import { cn } from '@/lib/utils';
 import { dateWithMonthTitle } from '@/lib/date';
+import { cn } from '@/lib/utils';
 // Hooks
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
@@ -26,7 +27,6 @@ import * as Routes from '@/config/routes';
 import { mapApplicationStatus } from '@/constants/company';
 // Types
 import type { PaginationData } from '@/types/common';
-import PaginationContainer from '@/components/pagination-container';
 interface Props {
   className?: string;
   applications: InternshipRequestItem[];

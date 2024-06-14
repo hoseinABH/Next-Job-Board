@@ -24,7 +24,7 @@ export default function JobCard({ className, position, href = '/' }: Props) {
       <Card>
         <CardContent className="flex flex-col items-center justify-start gap-4 p-6 sm:flex-row sm:items-start">
           <Image
-            src={position.companyProfile.logo || '/companies/digikala.webp'}
+            src={'/companies/digikala.webp'}
             className="rounded-sm drop-shadow-md"
             width={60}
             height={60}
