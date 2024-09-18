@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getPaginationDataFromResponse(response: unknown & PaginationData) {
+export function getPaginationDataFromResponse(response: PaginationData) {
   const paginationData: PaginationData = {
     countPerPage: response.countPerPage,
     currentPage: response.currentPage,
