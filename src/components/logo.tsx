@@ -18,10 +18,9 @@ export default function Logo({ className, onClick }: Props) {
         onClick={onClick}
         priority
         src="/logo.png"
-        width={80}
-        height={40}
+        width={60}
+        height={60}
         alt={configs.appData.appName}
-        className="h-auto w-auto rounded-b-lg bg-white"
       />
     </Link>
   );
