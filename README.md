@@ -1,5 +1,3 @@
-Deployed On **Liara**: [Kariva](https://kariva.liara.run)
-
 ## Getting Started
 
 ```bash

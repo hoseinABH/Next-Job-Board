@@ -1,8 +1,8 @@
 import * as Routes from './routes';
 
 export const appData = {
-  appName: 'کاریوا',
-  appDescription: 'کاریوا بهترین راه ارتباطی کارجویان و کارفرمایان',
+  appName: 'نکست جاب بورد',
+  appDescription: 'نکست جاب بورد بهترین راه ارتباطی کارجویان و کارفرمایان',
 };
 
 export const userNavigationLinks = [
@@ -157,7 +157,7 @@ export const footerLinks = [
 ] as const;
 
 export const footerDescription =
-  'پلتفرم کاریوا، برای اجرای موثر فرآیند جذب و استخدام در مقیاس بزرگ طراحی شده است. در این پلتفرم برای هر شرکت یک فرآیند منحصر به فرد و شخصی سازی شده طراحی می گردد.';
+  'پلتفرم نکست جاب بورد، برای اجرای موثر فرآیند جذب و استخدام در مقیاس بزرگ طراحی شده است. در این پلتفرم برای هر شرکت یک فرآیند منحصر به فرد و شخصی سازی شده طراحی می گردد.';
 export const socials = [
   {
     key: 'linkedin',

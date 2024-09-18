@@ -20,7 +20,7 @@ const data = [
   {
     id: 2,
     title: 'ساخت رزومه',
-    text: 'پروفایل شخصی خود را با کاریوا تجربه کنید.',
+    text: 'پروفایل شخصی خود را با  نکست جاب بورد تجربه کنید.',
     src: '/landing/cloud-arrow-up-duotone.svg',
     afterArrow: '/landing/Arrow2.svg',
   },
