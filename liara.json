@@ -1,7 +1,6 @@
 {
-    "app": "job-father",
-    "next": {
-      "modifyConfig": false
-    }
+  "app": "job-father",
+  "next": {
+    "modifyConfig": false
   }
-  
+}
